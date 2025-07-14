@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV_level2
+    Simulation Type: forward Simulation
+    Number of groups: 2
+    Dimensions: 3D triangular
+    Final keff: 1.009136+0.000000j
+    Elapsed Time: 5.390e+02 seconds
+    Solver Used: LU
+    

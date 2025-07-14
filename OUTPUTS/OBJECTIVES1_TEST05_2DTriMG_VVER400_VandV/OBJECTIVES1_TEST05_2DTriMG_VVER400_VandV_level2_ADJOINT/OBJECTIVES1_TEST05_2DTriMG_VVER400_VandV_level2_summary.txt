@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES1_TEST05_2DTriMG_VVER400_VandV_level2
+    Simulation Type: adjoint Simulation
+    Number of groups: 2
+    Dimensions: 2D triangular
+    Final keff: 1.002570+0.000000j
+    Elapsed Time: 1.133e+01 seconds
+    Solver Used: LU
+    

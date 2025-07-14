@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES1_TEST03_2DMG_BIBLIS_VandV
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 2D rectangular
+    Final keff: 1.027480
+    Elapsed Time: 7.819e+00 seconds
+    Solver Used: Sparse Direct Solver
+    
