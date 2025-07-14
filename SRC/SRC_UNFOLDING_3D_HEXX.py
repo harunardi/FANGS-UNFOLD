@@ -704,7 +704,7 @@ def main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_ma
     for k in range(K_max):
         filename_map_detector = plot_triangular_3D_general(map_detector_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_detector', title=f'2D Plot of map_detector, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
         image_files_mag.append(filename_map_detector)
-    gif_filename_map_detector = f'{output_ZONE}_magnitude_map_detector_animation_G{g+1}.gif'
+    gif_filename_map_detector = f'{output_ZONE}_magnitude_map_detector_animation.gif'
     images_map_detector_mag = [Image.open(img) for img in image_files_mag]
     images_map_detector_mag[0].save(gif_filename_map_detector, save_all=True, append_images=images_map_detector_mag[1:], duration=300, loop=0)
     print(f"GIF saved as {gif_filename_map_detector}")
@@ -731,14 +731,14 @@ def main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_ma
 
     map_zone_hexx_plot = np.array(map_zone_hexx)
     map_zone_conv_plot = np.array(map_zone_conv)
-    image_files_mag = []
-    for k in range(K_max):
-        filename_map_zone = plot_triangular_3D_general(map_zone_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_zone', title=f'2D Plot of map_zone, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
-        image_files_mag.append(filename_map_zone)
-    gif_filename_map_zone = f'{output_ZONE}_magnitude_map_zone_animation_G{g+1}.gif'
-    images_map_zone_mag = [Image.open(img) for img in image_files_mag]
-    images_map_zone_mag[0].save(gif_filename_map_zone, save_all=True, append_images=images_map_zone_mag[1:], duration=300, loop=0)
-    print(f"GIF saved as {gif_filename_map_zone}")
+#    image_files_mag = []
+#    for k in range(K_max):
+#        filename_map_zone = plot_triangular_3D_general(map_zone_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_zone', title=f'2D Plot of map_zone, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
+#        image_files_mag.append(filename_map_zone)
+#    gif_filename_map_zone = f'{output_ZONE}_magnitude_map_zone_animation.gif'
+#    images_map_zone_mag = [Image.open(img) for img in image_files_mag]
+#    images_map_zone_mag[0].save(gif_filename_map_zone, save_all=True, append_images=images_map_zone_mag[1:], duration=300, loop=0)
+#    print(f"GIF saved as {gif_filename_map_zone}")
 
     zone_length = np.zeros(int(max(map_zone_conv)))
     for u in range(int(max(map_zone_conv))):
@@ -2253,7 +2253,7 @@ def main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
         plt.ylabel('Index')
         plt.gca().invert_yaxis()
         plt.title('Plot of the Magnitude of G_inverse')
-        plt.savefig(f'{output_dir}/{case_name}_06_BRUTE/{case_name}_G_inverse.png')
+        plt.savefig(f'{output_dir}/{case_name}_08_GREEDY_NEW/{case_name}_G_inverse.png')
 
         # UNFOLD ALL INTERPOLATED
         dS_unfold_GREEDY_temp = np.dot(G_inverse, dPHI_temp_GREEDY)
@@ -2301,7 +2301,7 @@ def main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
             output_direct1[dS_unfold_direct_groupname] = dS_unfold_direct_list
 
         # Save data to JSON file
-        with open(f'{output_dir}/{case_name}_08_GREEDY/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
+        with open(f'{output_dir}/{case_name}_08_GREEDY_NEW/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
             json.dump(output_direct1, json_file, indent=4)
 
         # Calculate error and compare
