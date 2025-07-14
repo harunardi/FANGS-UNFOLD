@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS
+    Simulation Type: forward Simulation
+    Number of groups: 2
+    Dimensions: 2D rectangular
+    Final keff: 1.027480+0.000000j
+    Elapsed Time: 1.593e+02 seconds
+    Solver Used: Sparse Direct Solver
+    

@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 2D rectangular
+    Final keff: 1.027115
+    Elapsed Time: 2.004e+02 seconds
+    Solver Used: LU
+    
