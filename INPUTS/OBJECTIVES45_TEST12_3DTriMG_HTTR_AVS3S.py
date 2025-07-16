@@ -85,8 +85,8 @@ v = [v1_hexx, v2_hexx]
 dTOT1 = [0] * N
 dTOT2 = [0] * N
 dTOT2[4*(J_max * I_max) + 114] = 0.05 * ABS[1][4][114]
-dTOT2[6*(J_max * I_max) + 91] = 0.05 * ABS[1][6][91]
-dTOT2[14*(J_max * I_max) + 100] = 0.05 * ABS[1][14][100]
+dTOT1[1*(J_max * I_max) + 81] = 0.05 * ABS[0][1][81]
+dTOT2[5*(J_max * I_max) + 100] = 0.05 * ABS[1][5][100]
 dTOT = [dTOT1, dTOT2]
 
 dNUFIS = [[0] * N for _ in range(group)]
