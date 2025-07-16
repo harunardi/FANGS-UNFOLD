@@ -587,29 +587,29 @@ for i, idx in enumerate(active_indices):
     dPHI_temp = main_unfold_3D_rect_noise(PHI_temp, keff, group, N, I_max, J_max, K_max, TOT, SIGS_reshaped, BC, dx, dy, dz, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_max, J_max, K_max, TOT, SIGS_reshaped, BC, dx, dy, dz, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y, z)
 
-    try:
-        dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_rect_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-        dS_unfold_ZONE_temp = main_unfold_3D_rect_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-        dS_unfold_SCAN_temp = main_unfold_3D_rect_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-        if np.allclose(S, dS_unfold_INVERT_temp, atol=1E-06):
-            validity_INVERT.append('yes')
-        else:
-            validity_INVERT.append('no')
-        if np.allclose(S, dS_unfold_ZONE_temp, atol=1E-06):
-            validity_ZONE.append('yes')
-        else:
-            validity_ZONE.append('no')
-        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
-            validity_SCAN.append('yes')
-        else:
-            validity_SCAN.append('no')
-    except Exception as e:
-        print(f"Unfolding failed: {e}")
-
-        # Append failure indicators
-        validity_INVERT.append('fail')
-        validity_ZONE.append('fail')
-        validity_SCAN.append('fail')  
+#    try:
+#        dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_rect_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+#        dS_unfold_ZONE_temp = main_unfold_3D_rect_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+#        dS_unfold_SCAN_temp = main_unfold_3D_rect_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+#        if np.allclose(S, dS_unfold_INVERT_temp, atol=1E-06):
+#            validity_INVERT.append('yes')
+#        else:
+#            validity_INVERT.append('no')
+#        if np.allclose(S, dS_unfold_ZONE_temp, atol=1E-06):
+#            validity_ZONE.append('yes')
+#        else:
+#            validity_ZONE.append('no')
+#        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
+#            validity_SCAN.append('yes')
+#        else:
+#            validity_SCAN.append('no')
+#    except Exception as e:
+#        print(f"Unfolding failed: {e}")
+#
+#        # Append failure indicators
+#        validity_INVERT.append('fail')
+#        validity_ZONE.append('fail')
+#        validity_SCAN.append('fail')  
 
     try:
         dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_rect_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, output_dir, case_name, x, y, z)

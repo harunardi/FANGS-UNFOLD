@@ -1,0 +1,6 @@
+INVERT 
+ZONE 
+SCAN 
+BRUTE yes, yes
+BACK 
+GREEDY yes, yes
