@@ -18,3 +18,4 @@ ARCHIEVE*
 *.h5
 *_subset_residuals.txt
 *.json
+.DS_Store
