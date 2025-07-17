@@ -1,6 +1,6 @@
 INVERT 
 ZONE 
 SCAN 
-BRUTE yes, yes
+BRUTE yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes
 BACK 
-GREEDY yes, yes
+GREEDY yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes

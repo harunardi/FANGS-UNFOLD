@@ -1,3 +1,14 @@
 Iteration: 1, number of active detectors: 420
 Iteration: 2, number of active detectors: 419
 Iteration: 3, number of active detectors: 418
+Iteration: 4, number of active detectors: 417
+Iteration: 5, number of active detectors: 416
+Iteration: 6, number of active detectors: 415
+Iteration: 7, number of active detectors: 414
+Iteration: 8, number of active detectors: 413
+Iteration: 9, number of active detectors: 412
+Iteration: 10, number of active detectors: 411
+Iteration: 11, number of active detectors: 410
+Iteration: 12, number of active detectors: 409
+Iteration: 13, number of active detectors: 408
+Iteration: 14, number of active detectors: 407
