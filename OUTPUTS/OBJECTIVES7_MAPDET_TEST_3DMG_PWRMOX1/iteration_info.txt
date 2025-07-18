@@ -40,3 +40,15 @@ Iteration: 39, number of active detectors: 382
 Iteration: 40, number of active detectors: 381
 Iteration: 41, number of active detectors: 380
 Iteration: 42, number of active detectors: 379
+Iteration: 43, number of active detectors: 378
+Iteration: 44, number of active detectors: 377
+Iteration: 45, number of active detectors: 376
+Iteration: 46, number of active detectors: 375
+Iteration: 47, number of active detectors: 374
+Iteration: 48, number of active detectors: 373
+Iteration: 49, number of active detectors: 372
+Iteration: 50, number of active detectors: 371
+Iteration: 51, number of active detectors: 370
+Iteration: 52, number of active detectors: 369
+Iteration: 53, number of active detectors: 368
+Iteration: 54, number of active detectors: 367
