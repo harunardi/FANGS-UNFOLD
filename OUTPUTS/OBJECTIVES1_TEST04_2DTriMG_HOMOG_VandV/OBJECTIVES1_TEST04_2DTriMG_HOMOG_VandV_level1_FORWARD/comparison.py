@@ -140,21 +140,46 @@ def plot_1D_distance_to_core(PHIg, FLXg, h, I_max, J_max, g, level, varname=None
     # Create an array for analytical flux values corresponding to unique distances
     analytical_flux_values = np.interp(unique_distances, r, FLXg)  # Use linear interpolation to match distances    
 
+#    # Plot distance vs max flux values
+#    plt.figure(figsize=(8, 6))
+#    plt.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
+#
+#    # Plot analytical flux values
+#    plt.plot(unique_distances, analytical_flux_values, 'r-', label='Analytical Flux')  # Add this line
+#
+#    plt.xlabel('Distance to Core Center')
+#    plt.ylabel('Forward Flux Values (normalized)')
+#    plt.title('Forward Flux Values vs. Distance to Core Center')
+#
+#    # Set axis limits from -radius to radius
+#    plt.xlim(-max_distance, max_distance)
+#    plt.grid(True)
+#    plt.legend()
+#    plt.savefig(f'Verification_{varname}_{process_data}_G{g}.png')
+
+    # Calculate relative error
+    relative_error = np.abs(np.array(flux_values) - np.array(analytical_flux_values)) / np.array(analytical_flux_values)
+
     # Plot distance vs max flux values
-    plt.figure(figsize=(8, 6))
-    plt.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
+    fig, ax1 = plt.subplots(figsize=(8, 6))
 
-    # Plot analytical flux values
-    plt.plot(unique_distances, analytical_flux_values, 'r-', label='Analytical Flux')  # Add this line
+    # Plot primary y-axis (left)
+    ax1.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
+    ax1.plot(unique_distances, analytical_flux_values, 'r-', label='Analytical Flux')
+    ax1.set_xlabel('Distance to Core Center')
+    ax1.set_ylabel(f'Forward Flux Group {g+1} Values (normalized)')
+    ax1.set_title(f'Forward Flux Group {g+1} Values vs. Distance to Core Center')
+    ax1.set_xlim(-max_distance, max_distance)
+    ax1.grid(True)
+    ax1.legend()
 
-    plt.xlabel('Distance to Core Center')
-    plt.ylabel('Forward Flux Values (normalized)')
-    plt.title('Forward Flux Values vs. Distance to Core Center')
+    # Create secondary y-axis (right) for relative error
+    ax2 = ax1.twinx()
+    ax2.plot(unique_distances, relative_error, 'g--', label='Relative Error')
+    ax2.set_ylabel('Relative Error')
+    ax2.legend(loc='upper right')
 
-    # Set axis limits from -radius to radius
-    plt.xlim(-max_distance, max_distance)
-    plt.grid(True)
-    plt.legend()
+    # Save the figure
     plt.savefig(f'Verification_{varname}_{process_data}_G{g}.png')
 #    plt.show()
 
