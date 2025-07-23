@@ -150,32 +150,57 @@ def plot_1D_distance_to_core(PHIg, FLXg, h, I_max, J_max, g, level, varname=None
     # Create an array for analytical flux values corresponding to unique distances
     analytical_flux_values = np.interp(unique_distances, r, FLXg)  # Use linear interpolation to match distances    
 
-    # Plot distance vs max flux values
-    plt.figure(figsize=(8, 6))
-    plt.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
-
-    # Plot analytical flux values
     # Initialize empty lists to store distances and flux values within the range [-150, 150]
     filtered_distances = []
     filtered_flux_values = []
 
-    # Iterate over the unique distances and corresponding flux values
-    for i, d in enumerate(unique_distances):
-        if -150 <= d <= 150:  # Check if the distance is within the range [-150, 150]
-            filtered_distances.append(d)  # Save the distance to the filtered list
-            filtered_flux_values.append(analytical_flux_values[i])  # Save the corresponding flux value
+#    # Iterate over the unique distances and corresponding flux values
+#    for i, d in enumerate(unique_distances):
+#        if -150 <= d <= 150:  # Check if the distance is within the range [-150, 150]
+#            filtered_distances.append(d)  # Save the distance to the filtered list
+#            filtered_flux_values.append(analytical_flux_values[i])  # Save the corresponding flux value
 
-    plt.plot(filtered_distances, filtered_flux_values, 'r-', label='Analytical Flux')
+#    # Plot distance vs max flux values
+#    plt.figure(figsize=(8, 6))
+#    plt.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
+#    plt.plot(filtered_distances, filtered_flux_values, 'r-', label='Analytical Flux')
+#
+#    plt.xlabel('Distance to Core Center')
+#    plt.ylabel(f'{process_data} dPHI Values (normalized)')
+#    plt.title(f'Group {g} {process_data} dPHI Values vs. Distance to Core Center')
+#
+#    # Set axis limits from -radius to radius
+#    plt.xlim(-150, 150)
+#    plt.grid(True)
+#    plt.legend()
+#    plt.savefig(f'Verification_{varname}_{process_data}_G{g}.png')
 
-    plt.xlabel('Distance to Core Center')
-    plt.ylabel(f'{process_data} dPHI Values (normalized)')
-    plt.title(f'Group {g} {process_data} dPHI Values vs. Distance to Core Center')
+    # Calculate relative error
+    relative_error = np.abs(np.array(flux_values) - np.array(analytical_flux_values)) / np.array(analytical_flux_values) * 100
 
-    # Set axis limits from -radius to radius
-    plt.xlim(-150, 150)
-    plt.grid(True)
-    plt.legend()
+    # Plot distance vs max flux values
+    fig, ax1 = plt.subplots(figsize=(8, 6))
+
+    # Plot primary y-axis (left)
+    ax1.plot(unique_distances, flux_values, 'bo', markersize=5, label='Numerical Flux at Centerline')
+    ax1.plot(unique_distances, analytical_flux_values, 'r-', label='Analytical Flux')
+    ax1.set_xlabel('Distance to Core Center')
+    ax1.set_ylabel(f'{process_data} dPHI Group {g} Values (normalized)')
+    ax1.set_title(f'Group {g} {process_data} dPHI Values vs. Distance to Core Center')
+    ax1.set_xlim(-150, 150)
+    ax1.grid(True)
+    ax1.legend(loc='best')
+
+    # Create secondary y-axis (right) for relative error
+    ax2 = ax1.twinx()
+    ax2.plot(unique_distances, relative_error, 'g--', label='Relative Error (in %)')
+    ax2.set_ylabel('Relative Error')
+    ax2.legend(loc='best')
+
+    # Save the figure
     plt.savefig(f'Verification_{varname}_{process_data}_G{g}.png')
+
+
 #    plt.show()
 
 #*************************************************************************************
