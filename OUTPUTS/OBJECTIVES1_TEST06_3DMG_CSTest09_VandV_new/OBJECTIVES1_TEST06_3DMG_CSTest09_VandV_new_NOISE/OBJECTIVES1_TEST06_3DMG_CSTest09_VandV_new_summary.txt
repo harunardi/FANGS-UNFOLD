@@ -5,6 +5,6 @@
     Number of groups: 2
     Dimensions: 3D rectangular
     Final keff: 1.000966
-    Elapsed Time: 1.447e+03 seconds
+    Elapsed Time: 2.800e+03 seconds
     Solver Used: LU
     
