@@ -107,7 +107,7 @@ def main():
 
 ###### GREEDY METHOD
 ##    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
-    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
+#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
 
     ####################################################################################################
     end_time = time.time()
