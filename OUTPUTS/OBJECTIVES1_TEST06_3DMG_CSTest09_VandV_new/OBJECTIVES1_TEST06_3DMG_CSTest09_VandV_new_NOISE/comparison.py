@@ -116,7 +116,7 @@ for g in range(group):
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
-    gif_filename_PHI = f'{case_name}_NOISE_FLX_animation_G{g+1}_magnitude.gif'
+    gif_filename_PHI = f'{case_name}_NOISE_dFLX_animation_G{g+1}_magnitude.gif'
 
     # Open images and save as GIF
     images_PHI = [Image.open(img) for img in image_files]
@@ -126,11 +126,11 @@ for g in range(group):
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(dFLX_CORESIM_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='dFLX', title=f'2D Plot of dFLX{g+1}, Z={k+1} Phase', case_name=case_name, process_data='phase', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(dFLX_CORESIM_new_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='dFLX', title=f'2D Plot of dFLX{g+1}, Z={k+1} Phase', case_name=case_name, process_data='phase', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
-    gif_filename_PHI = f'{case_name}_NOISE_FLX_animation_G{g+1}_phase.gif'
+    gif_filename_PHI = f'{case_name}_NOISE_dFLX_animation_G{g+1}_phase.gif'
 
     # Open images and save as GIF
     images_PHI = [Image.open(img) for img in image_files]
