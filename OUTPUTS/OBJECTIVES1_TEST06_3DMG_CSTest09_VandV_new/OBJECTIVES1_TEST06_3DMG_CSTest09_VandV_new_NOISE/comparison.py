@@ -43,6 +43,19 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
     plt.close()
 
     return filename
+
+def convert_index_3D_rect(D, I_max, J_max, K_max):
+    conv = [0] * (I_max * J_max * K_max)
+    tmp_conv = 0
+    for k in range(K_max):
+        for j in range(J_max):
+            for i in range(I_max):
+                if D[0][k][j][i] != 0:
+                    tmp_conv += 1
+                    m = k * (I_max * J_max) + j * I_max + i
+                    conv[m] = tmp_conv
+    return conv
+
 #######################################################################################################
 #*************************************************************************************
 inputs_dir = os.path.abspath(os.path.join(os.getcwd(), '..', '..', '..', 'INPUTS'))
@@ -53,6 +66,8 @@ sys.path.remove(inputs_dir)
 # Load data from JSON file
 with open(f'{case_name}_NOISE_output.json', 'r') as json_file:
     noise_output = json.load(json_file)
+
+conv = convert_index_3D_rect(D, I_max, J_max, K_max)
 
 # Access keff and PHI from the loaded data
 # Access dPHI from the loaded data
@@ -71,6 +86,15 @@ dFLX_CORESIM = [[dFLX1_CORESIM_flattened_array], [dFLX2_CORESIM_flattened_array]
 dFLX_CORESIM_array = np.array(dFLX_CORESIM)
 dFLX_CORESIM_reshaped = dFLX_CORESIM_array.reshape(group, K_max, J_max, I_max)
 
+dFLX_CORESIM_new = dFLX_CORESIM
+print("dFLX_CORESIM_new shape:", np.shape(dFLX_CORESIM_new))
+for g in range(group):
+    for n in range(N):
+        if conv[n] == 0:
+            dFLX_CORESIM_new[g][0][n] = np.nan
+dFLX_CORESIM_new_array = np.array(dFLX_CORESIM_new)
+dFLX_CORESIM_new_reshaped = dFLX_CORESIM_new_array.reshape(group, K_max, J_max, I_max)
+
 # Calculate error and compare
 diff_dflx1_CS = np.abs((dFLX1_CORESIM_flattened_array - np.array(dPHI1))/dFLX1_CORESIM_flattened_array) * 100
 diff_dflx2_CS = np.abs((dFLX2_CORESIM_flattened_array - np.array(dPHI2))/dFLX2_CORESIM_flattened_array) * 100
@@ -88,7 +112,7 @@ diff_dflx_CS_phase_reshaped = diff_dflx_CS_phase_array.reshape(group, K_max, J_m
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(dFLX_CORESIM_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='dFLX', title=f'2D Plot of dFLX{g+1}, Z={k+1} Magnitude', case_name=case_name, process_data='magnitude', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(dFLX_CORESIM_new_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='dFLX', title=f'2D Plot of dFLX{g+1}, Z={k+1} Magnitude', case_name=case_name, process_data='magnitude', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
@@ -118,7 +142,7 @@ for g in range(group):
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(diff_dflx_CS_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_PHI{g+1}, Z={k+1} Magnitude in %', case_name=case_name, process_data='magnitude', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(diff_dflx_CS_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Magnitude in %', case_name=case_name, process_data='magnitude', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
@@ -132,7 +156,7 @@ for g in range(group):
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(diff_dflx_CS_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_PHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='phase', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(diff_dflx_CS_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='phase', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images

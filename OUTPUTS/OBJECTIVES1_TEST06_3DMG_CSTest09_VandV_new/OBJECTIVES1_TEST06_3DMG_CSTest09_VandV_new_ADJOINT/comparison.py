@@ -43,6 +43,19 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
     plt.close()
 
     return filename
+
+def convert_index_3D_rect(D, I_max, J_max, K_max):
+    conv = [0] * (I_max * J_max * K_max)
+    tmp_conv = 0
+    for k in range(K_max):
+        for j in range(J_max):
+            for i in range(I_max):
+                if D[0][k][j][i] != 0:
+                    tmp_conv += 1
+                    m = k * (I_max * J_max) + j * I_max + i
+                    conv[m] = tmp_conv
+    return conv
+
 #######################################################################################################
 #*************************************************************************************
 inputs_dir = os.path.abspath(os.path.join(os.getcwd(), '..', '..', '..', 'INPUTS'))
@@ -53,6 +66,8 @@ sys.path.remove(inputs_dir)
 # Load data from JSON file
 with open(f'{case_name}_ADJOINT_output.json', 'r') as json_file:
     forward_output = json.load(json_file)
+
+conv = convert_index_3D_rect(D, I_max, J_max, K_max)
 
 # Access keff and PHI from the loaded data
 keff = forward_output["keff"]
@@ -71,6 +86,14 @@ FLX_CORESIM = [[FLX1_CORESIM_flattened_array], [FLX2_CORESIM_flattened_array]]
 FLX_CORESIM_array = np.array(FLX_CORESIM)
 FLX_CORESIM_reshaped = FLX_CORESIM_array.reshape(group, K_max, J_max, I_max)
 
+FLX_CORESIM_new = FLX_CORESIM
+for g in range(group):
+    for n in range(N):
+        if conv[n] == 0:
+            FLX_CORESIM_new[g][0][n] = np.nan
+FLX_CORESIM_new_array = np.array(FLX_CORESIM_new)
+FLX_CORESIM_new_reshaped = FLX_CORESIM_new_array.reshape(group, K_max, J_max, I_max)
+
 # Calculate error and compare
 diff_flx1_CS = np.abs((FLX1_CORESIM_flattened_array - np.array(PHI1))/FLX1_CORESIM_flattened_array) * 100
 diff_flx2_CS = np.abs((FLX2_CORESIM_flattened_array - np.array(PHI2))/FLX2_CORESIM_flattened_array) * 100
@@ -82,7 +105,7 @@ diff_flx_CS_reshaped = diff_flx_CS_array.reshape(group, K_max, J_max, I_max)
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(FLX_CORESIM_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='FLX_ADJ', title=f'2D Plot of FLX{g+1}_ADJ, Z={k+1}', case_name=case_name, process_data='magnitude', solve='ADJOINT')
+        filename_PHI = plot_heatmap_3D(FLX_CORESIM_new_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='FLX_ADJ', title=f'2D Plot of FLX{g+1}_ADJ, Z={k+1}', case_name=case_name, process_data='magnitude', solve='ADJOINT')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
