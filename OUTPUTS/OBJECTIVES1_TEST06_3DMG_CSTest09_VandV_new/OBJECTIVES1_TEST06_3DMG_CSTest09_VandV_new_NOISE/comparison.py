@@ -18,6 +18,8 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
     elif process_data == 'phase':
         data_rad = np.angle(data)  # Compute phase
         data = np.degrees(data_rad)  # Compute phase
+    elif process_data == 'diff_phase':
+        data = data
 
     extent = [x.min(), x.max(), y.min(), y.max()]
     plt.imshow(data, cmap=cmap, interpolation='nearest', extent=extent, origin='lower')
@@ -26,6 +28,8 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
         plt.colorbar(label=f'{varname}{g}')  # Add color bar to show scale
     elif process_data == 'phase':
         plt.colorbar(label=f'{varname}{g}_deg')  # Add color bar to show scale
+    elif process_data == 'diff_phase':
+        plt.colorbar(label=f'{varname}{g}')  # Add color bar to show scale
 
     if title:
         plt.title(title)
@@ -38,7 +42,10 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
     plt.xticks(x_ticks, labels=[f'{val:.1f}' for val in x_ticks])
     plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
 
-    filename = f'{case_name}_{solve}_{varname}_{process_data}_G{g}_Z{z}.png'
+    if process_data == 'diff_phase':
+        filename = f'{case_name}_{solve}_{varname}_phase_G{g}_Z{z}.png'
+    else:
+        filename = f'{case_name}_{solve}_{varname}_{process_data}_G{g}_Z{z}.png'
     plt.savefig(filename)
     plt.close()
 
@@ -102,8 +109,10 @@ diff_dflx_CS = [[diff_dflx1_CS], [diff_dflx2_CS]]
 diff_dflx_CS_array = np.array(diff_dflx_CS)
 diff_dflx_CS_reshaped = diff_dflx_CS_array.reshape(group, K_max, J_max, I_max)
 
-diff_dflx1_CS_phase = np.angle((dFLX1_CORESIM_flattened_array - np.array(dPHI1))/dFLX1_CORESIM_flattened_array) * 100
-diff_dflx2_CS_phase = np.angle((dFLX2_CORESIM_flattened_array - np.array(dPHI2))/dFLX2_CORESIM_flattened_array) * 100
+#diff_dflx1_CS_phase = np.angle((dFLX1_CORESIM_flattened_array - np.array(dPHI1))/dFLX1_CORESIM_flattened_array) * 100
+#diff_dflx2_CS_phase = np.angle((dFLX2_CORESIM_flattened_array - np.array(dPHI2))/dFLX2_CORESIM_flattened_array) * 100
+diff_dflx1_CS_phase = (np.angle(dFLX1_CORESIM_flattened_array) - np.angle(np.array(dPHI1)))/np.angle(dFLX1_CORESIM_flattened_array) * 100
+diff_dflx2_CS_phase = (np.angle(dFLX2_CORESIM_flattened_array) - np.angle(np.array(dPHI2)))/np.angle(dFLX2_CORESIM_flattened_array) * 100
 diff_dflx_CS_phase = [[diff_dflx1_CS_phase], [diff_dflx2_CS_phase]]
 diff_dflx_CS_phase_array = np.array(diff_dflx_CS_phase)
 diff_dflx_CS_phase_reshaped = diff_dflx_CS_phase_array.reshape(group, K_max, J_max, I_max)
@@ -137,8 +146,6 @@ for g in range(group):
     images_PHI[0].save(gif_filename_PHI, save_all=True, append_images=images_PHI[1:], duration=300, loop=0)
     print(f"GIF saved as {gif_filename_PHI}")
 
-
-
 for g in range(group):
     image_files = []
     for k in range(K_max):
@@ -156,7 +163,7 @@ for g in range(group):
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(diff_dflx_CS_phase_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='phase', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(diff_dflx_CS_phase_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='diff_phase', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images

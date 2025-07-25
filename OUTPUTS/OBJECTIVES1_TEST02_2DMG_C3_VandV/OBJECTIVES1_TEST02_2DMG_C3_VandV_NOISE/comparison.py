@@ -79,8 +79,10 @@ diff_dflx_CS = [[diff_dflx1_CS], [diff_dflx2_CS]]
 diff_dflx_CS_array = np.array(diff_dflx_CS)
 diff_dflx_CS_reshaped = diff_dflx_CS_array.reshape(group, I_max, J_max)
 
-diff_dflx1_CS_phase = np.angle((dFLX1_CORESIM_flattened_array - np.array(dPHI1))/dFLX1_CORESIM_flattened_array) * 100
-diff_dflx2_CS_phase = np.angle((dFLX2_CORESIM_flattened_array - np.array(dPHI2))/dFLX2_CORESIM_flattened_array) * 100
+#diff_dflx1_CS_phase = np.angle((dFLX1_CORESIM_flattened_array - np.array(dPHI1))/dFLX1_CORESIM_flattened_array) * 100
+#diff_dflx2_CS_phase = np.angle((dFLX2_CORESIM_flattened_array - np.array(dPHI2))/dFLX2_CORESIM_flattened_array) * 100
+diff_dflx1_CS_phase = (np.angle(dFLX1_CORESIM_flattened_array) - np.angle(np.array(dPHI1)))/np.angle(dFLX1_CORESIM_flattened_array) * 100
+diff_dflx2_CS_phase = (np.angle(dFLX2_CORESIM_flattened_array) - np.angle(np.array(dPHI2)))/np.angle(dFLX2_CORESIM_flattened_array) * 100
 diff_dflx_CS_phase = [[diff_dflx1_CS_phase], [diff_dflx2_CS_phase]]
 diff_dflx_CS_phase_array = np.array(diff_dflx_CS_phase)
 diff_dflx_CS_phase_reshaped = diff_dflx_CS_phase_array.reshape(group, I_max, J_max)
@@ -101,8 +103,10 @@ diff_dflx_Sn = [[diff_dflx1_Sn], [diff_dflx2_Sn]]
 diff_dflx_Sn_array = np.array(diff_dflx_Sn)
 diff_dflx_Sn_reshaped = diff_dflx_Sn_array.reshape(group, I_max, J_max)
 
-diff_dflx1_Sn_phase = np.angle((dFLX1_Sn_flattened_array - np.array(dPHI1))/dFLX1_Sn_flattened_array) * 100
-diff_dflx2_Sn_phase = np.angle((dFLX2_Sn_flattened_array - np.array(dPHI2))/dFLX2_Sn_flattened_array) * 100
+#diff_dflx1_Sn_phase = np.angle((dFLX1_Sn_flattened_array - np.array(dPHI1))/dFLX1_Sn_flattened_array) * 100
+#diff_dflx2_Sn_phase = np.angle((dFLX2_Sn_flattened_array - np.array(dPHI2))/dFLX2_Sn_flattened_array) * 100
+diff_dflx1_Sn_phase = (np.angle(dFLX1_Sn_flattened_array) - np.angle(np.array(dPHI1)))/np.angle(dFLX1_Sn_flattened_array) * 100
+diff_dflx2_Sn_phase = (np.angle(dFLX2_Sn_flattened_array) - np.angle(np.array(dPHI2)))/np.angle(dFLX2_Sn_flattened_array) * 100
 diff_dflx_Sn_phase = [[diff_dflx1_Sn_phase], [diff_dflx2_Sn_phase]]
 diff_dflx_Sn_phase_array = np.array(diff_dflx_Sn_phase)
 diff_dflx_Sn_phase_reshaped = diff_dflx_Sn_phase_array.reshape(group, I_max, J_max)
