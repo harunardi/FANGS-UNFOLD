@@ -156,7 +156,7 @@ for g in range(group):
 for g in range(group):
     image_files = []
     for k in range(K_max):
-        filename_PHI = plot_heatmap_3D(diff_dflx_CS_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='phase', solve='NOISE')
+        filename_PHI = plot_heatmap_3D(diff_dflx_CS_phase_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', varname='diff_dPHI', title=f'2D Plot of diff_dPHI{g+1}, Z={k+1} Phase in %', case_name=case_name, process_data='phase', solve='NOISE')
         image_files.append(filename_PHI)
 
     # Create a GIF from the saved images
