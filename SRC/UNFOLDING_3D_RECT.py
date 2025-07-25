@@ -93,11 +93,11 @@ def main():
     G_matrix = main_unfold_3D_rect_green(PHI_temp, keff, group, N, I_max, J_max, K_max, TOT, SIGS_reshaped, BC, dx, dy, dz, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_max, J_max, K_max, TOT, SIGS_reshaped, BC, dx, dy, dz, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y, z)
 
-###### OLD METHODS (INVERSION, ZONING, and SCANNING)
-#    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_rect_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-#    dS_unfold_ZONE_temp = main_unfold_3D_rect_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-#    dS_unfold_SCAN_temp = main_unfold_3D_rect_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
-#
+##### OLD METHODS (INVERSION, ZONING, and SCANNING)
+    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_rect_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+    dS_unfold_ZONE_temp = main_unfold_3D_rect_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+    dS_unfold_SCAN_temp = main_unfold_3D_rect_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, map_zone, output_dir, case_name, x, y, z)
+
 ##### BRUTE FORCE METHOD
     if type_noise == 'FVX' or type_noise == 'FAV':
         print("Brute Force Skipped")
@@ -105,9 +105,9 @@ def main():
     else:
         dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_rect_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, map_detector, output_dir, case_name, x, y, z)
 
-###### GREEDY METHOD
-##    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
-#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
+##### GREEDY METHOD
+#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
+    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z)
 
     ####################################################################################################
     end_time = time.time()

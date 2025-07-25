@@ -61,9 +61,9 @@ dSIGS22 = [[[0] * I_max for _ in range(J_max)] for _ in range(K_max)]
 
 noise_pos = 0
 type_noise = "AVS"
-dTOT2[9][13][13] = 0.05 * ABS[1][9][13 * I_max + 13]
-dTOT2[9][11][14] = 0.05 * ABS[1][9][11 * I_max + 14]
-dTOT2[9][9][9] = 0.05 * ABS[1][9][9 * I_max + 9]
+dTOT1[0][1][6] = 0.05 * ABS[0][0][1 * I_max + 6]
+dTOT2[10][11][14] = 0.05 * ABS[1][10][11 * I_max + 14]
+dTOT2[19][9][9] = 0.05 * ABS[1][19][9 * I_max + 9]
 
 dTOT = [dTOT1, dTOT2]
 dNUFIS = [dNUFIS1, dNUFIS2]
