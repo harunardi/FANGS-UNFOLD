@@ -87,7 +87,7 @@ v = [v1_hexx, v2_hexx]
 # Noise Sources
 dTOT1 = [0] * N
 dTOT2 = [0] * N
-dTOT1[0*(J_max * I_max) + 52] = 0.05 * ABS[0][0][52]
+dTOT1[0*(J_max * I_max) + 22] = 0.05 * ABS[0][0][22]
 dTOT2[4*(J_max * I_max) + 114] = 0.05 * ABS[1][4][114]
 dTOT2[8*(J_max * I_max) + 100] = 0.05 * ABS[1][8][100]
 dTOT = [dTOT1, dTOT2]
