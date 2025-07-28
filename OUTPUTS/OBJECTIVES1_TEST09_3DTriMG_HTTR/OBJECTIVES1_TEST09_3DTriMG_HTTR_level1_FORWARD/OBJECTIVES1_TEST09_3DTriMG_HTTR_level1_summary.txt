@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES1_TEST09_3DTriMG_HTTR_level1
+    Simulation Type: forward Simulation
+    Number of groups: 2
+    Dimensions: 3D triangular
+    Final keff: nan+nanj
+    Elapsed Time: 1.963e+01 seconds
+    Solver Used: LU
+    

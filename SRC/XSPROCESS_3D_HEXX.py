@@ -329,7 +329,6 @@ def FORWARD_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
 
     def DIFCOEFF_TRI_INTERIOR_axial(D_i, D_next, dz):
@@ -341,7 +340,6 @@ def FORWARD_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (2 * D_i) / ((2 * D_i * dz) + (dz**2))
             return (2 * D_i) / ((4 * D_i * dz) + (dz**2))
 
     n = 6 * (4 ** (level - 1))
