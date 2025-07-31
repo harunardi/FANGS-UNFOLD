@@ -57,9 +57,9 @@ v = [v1_hexx, v2_hexx]
 type_noise = 'AVS'
 dTOT1 = [0] * I_max * J_max
 dTOT2 = [0] * I_max * J_max
+dTOT1[52] = 0.05 * ABS[0][52]
 dTOT2[71] = 0.05 * ABS[1][71]
 dTOT2[81] = 0.05 * ABS[1][81]
-dTOT1[71] = 0.05 * ABS[0][71]
 dTOT = [dTOT1, dTOT2]
 
 dNUFIS = [[0] * I_max * J_max for _ in range(group)]
