@@ -6,9 +6,11 @@ Neutron noise has been studied since the early adaptation of power reactors. Thi
 
 Neutron noise serves several beneficial purposes, one for core monitoring and diagnostics. The monitoring and diagnostics encompass a wide range of nuclear reactor operations, including steady-state and transient operations. During the operation of any system, perturbations are unavoidable, including in nuclear reactor systems. The perturbations could be significant, such as control rod insertion, loss of forced cooling, and many other examples that could lead to unexpected behavior in the transient operation \cite{ottIntroductoryNuclearReactor1985}. Detecting any anomalies or perturbations would enable operators to respond appropriately to the problem. This will prevent any accident from occurring \cite{ferrierReactorNoise1963}. 
 
-Various aspects can cause the effects of perturbation. For example, several technological processes such as mechanical vibrations in the fuel assemblies and absorbers, boiling of the coolant/moderator in a Boiling Water Reactor (BWR), and instability of flow dynamics in the system may cause some perturbations that will lead to fluctuations of reactor system behavior \cite{thiePowerReactorNoise1981}. Reactor diagnostics using noise analysis have been widely employed globally. Noise analysis relies on measuring fluctuations in process parameters, such as neutron flux, around their mean values. Using noise analysis, non-intrusive, online core monitoring can be done more accurately \cite{demaziereDevelopmentNonintrusiveMethod2002}. These fluctuations represent the localized and instantaneous phenomenon in the nuclear reactor. It is described as the deviation around the mean values
+Various aspects can cause the effects of perturbation. For example, several technological processes such as mechanical vibrations in the fuel assemblies and absorbers, boiling of the coolant/moderator in a Boiling Water Reactor (BWR), and instability of flow dynamics in the system may cause some perturbations that will lead to fluctuations of reactor system behavior \cite{thiePowerReactorNoise1981}. Reactor diagnostics using noise analysis have been widely employed globally. Noise analysis relies on measuring fluctuations in process parameters, such as neutron flux, around their mean values. Using noise analysis, non-intrusive, online core monitoring can be done more accurately \cite{demaziereDevelopmentNonintrusiveMethod2002}. These fluctuations represent the localized and instantaneous phenomenon in the nuclear reactor. It is described as the deviation around the mean values.
+
+The structure of this chapter is as follow. First, we provide an overview of the neutron noise experiment and its applications. This is important to highlight the need to develop the computational methods for solving the noise problem. Second, we derive the multigroup neutron noise equation that will be used for the computational methods of neutron noise analysis. This includes the definition of the noise sources and models. Lastly, we provide several examples of existing tools to solve neutron noise equation, based on deterministic methods and Monte Carlo methods.
  
-\section{Theory of Power Reactor Noise and Its Approaches}
+\section{Neutron Noise Experiments and Its Applicationss}
 
 \subsection{The Neutron Noise Experiments}
 
@@ -19,11 +21,18 @@ The detector responses are then converted into the frequency domain by performin
     S_{xy}(f) = \lim_{T \rightarrow \infty} \frac{1}{T} \mathbb{E} \bigg( X^*(f) \cdot Y(f) \bigg)
     \label{eq:S_xy}
 \end{equation}
-where $S_{xy} (f)$ is the CPSD as a function of frequency, $T$ is the period, $X(f)$ and $Y(f)$ is the Fourier transform of $x(t)$ and $y(t)$, and $X^* (f)$ is the complex conjugate of $X(f)$. It should be noted that Equation \ref{eq:S_xy} shows that CPSD is essentially the Fourier transform of the cross-correlation function \cite{thiePowerReactorNoise1981}. It should also be noted that the signal is recorded at a particular time value in the noise experiments. Therefore, Equation 1 would be complicated to achieve. Another way to calculate CPSD is to calculate each detector signal’s power spectral density (PSD). One method used to estimate the PSD for a detector signal is the Welch method, where the PSD is calculated directly without an autocorrelation function \cite{welchDirectDigitalMethod1961}. The Welch method works by introducing a window function to each frequency segment, performing a fast Fourier transform for each segment, and then averaging the resulting PSD estimates over all segments. The Welch method can be written as follows:
+\begin{itemize}
+    \item[] $S_{x,y}(f)$ = CPSD as a function of frequency, 
+    \item[] $T$ = Period (s), 
+    \item[] $X(f)$, $Y(f)$ = Fourier transform of $x(t)$, $y(t)$, 
+    \item[] $X^*(f)$ = Complex conjugate of $X(f)$. 
+\end{itemize}
+
+It should be noted that Equation \ref{eq:S_xy} shows that CPSD is essentially the Fourier transform of the cross-correlation function \cite{thiePowerReactorNoise1981}. It should also be noted that the signal is recorded at a particular time value in the noise experiments. Therefore, Equation 1 would be complicated to achieve. Another way to calculate CPSD is to calculate each detector signal’s power spectral density (PSD). One method used to estimate the PSD for a detector signal is the Welch method, where the PSD is calculated directly without an autocorrelation function \cite{welchDirectDigitalMethod1961}. The Welch method works by introducing a window function to each frequency segment, performing a fast Fourier transform for each segment, and then averaging the resulting PSD estimates over all segments. The Welch method can be written as follows:
 \begin{equation}
     S_{xy}(f) = \frac{1}{N} \sum_{k=1}^{N} X_k^*(f) \cdot Y_k(f)
 \end{equation}
-where $N$ is the number of segments in the Welch method, $X(f)$ and $Y(f)$ are the Fourier transforms of $x(t)$ and $y(t)$, and $X^* (f)$ the complex conjugate of $X(f)$ \cite{ambrozicNoiseAnalysisTechniques2020}.
+where $N$ is the number of segments in the Welch method \cite{ambrozicNoiseAnalysisTechniques2020}.
 
 Other than the CPSD, another variable of interest in a neutron noise experiment is coherence, which is defined as the measure of commonality between two signals. It can also be defined as the closeness of two signals to have a cause-and-effect relationship. The coherence is described as follows \cite{fryAnalysisNeutrondensityOscillations1975}:
 
@@ -32,17 +41,68 @@ Other than the CPSD, another variable of interest in a neutron noise experiment 
     \label{eq:COH}
 \end{equation}
 
-Equation \ref{eq:COH} shows that two perfectly correlated signals would have a coherence of 1, and two uncorrelated signals would have a coherence of 1. The coherence would act as an indicator of the data quality from the signals. It is common to aim for COH > 0.8 for noise experiments \cite{ambrozicNoiseAnalysisTechniques2020}. If the two signals have relatively high coherence, it is also meaningful to have the phase relationship between the signals, which is defined as follows \cite{fryAnalysisNeutrondensityOscillations1975}:
+Equation \ref{eq:COH} shows that two perfectly correlated signals would have a coherence of 1, and two uncorrelated signals would have a coherence of 1. The coherence would act as an indicator of the data quality from the signals. It is common to aim for COH $>$ 0.8 for noise experiments \cite{ambrozicNoiseAnalysisTechniques2020}. If the two signals have relatively high coherence, it is also meaningful to have the phase relationship between the signals, which is defined as follows \cite{fryAnalysisNeutrondensityOscillations1975}:
 
 \begin{equation}
-    \theta (f) = \tan^{-1} \biggr( \frac{Im(S_{xy} (f)}{Re(S_{xy} (f)} \biggr)
+    \theta (f) = \tan^{-1} \biggl( \frac{Im(S_{xy} (f)}{Re(S_{xy} (f)} \biggr)
 \end{equation}
 
 The spectral analysis is done by observing the detector signals’ CPSD, PSD, and coherence. The PSD analysis can show some fluctuations directly, but using CPSD and coherence will help eliminate some uncertainties that might still be propagated in the PSD.
 
+\subsection{Application to Reactor Diagnostics}
+
+The theory of neutron noise has been applied in various nuclear reactors by utilizing the noise characteristics of these reactors. The reference \cite{thiePowerReactorNoise1981} explained several reasons for using noise analysis in nuclear reactors. This includes the capability to perform specific measurements, design, or model verification, as well as simplicity, low cost, and no interference with operating procedures. Noise can also be used as a substitute for another test or inspection. The use of neutron noise analysis varies depending on the specific interest it is intended for \cite{torresNeutronNoiseAnalysis2019}. However, neutron noise theory is widely used for sensor surveillance \cite{hashemianMeasurementDynamicTemperatures2011, hashemianPracticalReviewMethods2010, montalvoAdvancedSurveillanceResistance2014}, core monitoring \cite{czibokRegularNeutronNoise2003, hashemianOnlineMonitoringApplications2011, ortiz-villafuerteBWROnlineMonitoring2006}, and core diagnostics \cite{pazsitDevelopmentsCoreBarrelMotion2016, montalvoFirstEvidencePivotal2016}. Table \ref{table:diagnostics} provides examples of noise analysis applications for various reactor types.
+
+\begin{table}[ht]
+        \centering
+        \caption{Some examples of noise application for power reactors}
+        {\renewcommand{\arraystretch}{2}%
+        \begin{tabular}{ | m{3.5cm} |c| m{7cm} |c| } 
+         \hline
+         \textbf{Reactor Name} & \textbf{Type} & \textbf{Application}& \textbf{References} \\ 
+         \hline
+         Novovoronezh-1 & PWR &  Excessive looseness in the thermal shield & \cite{thiePowerReactorNoise1981} \\ 
+         \hline
+         Fukushima Daiichi-2 & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977}\\ 
+         \hline
+         Dresden & BWR & Monitor stability during startup & \cite{thieElementaryMethodsReactor1963} \\ 
+         \hline
+         Palisades & PWR & Detection of excessive and damaging flow-induced core barrel motion & \cite{fryAnalysisNeutrondensityOscillations1975} \\ 
+         \hline
+         High Flux Isotope Reactor (HFIR) & Research & Problems with abnormally loose control rods & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977}\\ 
+         \hline
+         Experimental Breeder Reactor-1 (EBR-1) & FBR & Oscillatory fuel motion & \cite{thiePowerReactorNoise1981} \\ 
+         \hline
+         Dounreay Fast Reactor & FBR & Problems with abnormally loose control rods & \cite{barclayDevelopmentNoiseAnalysis1977} \\ 
+         \hline
+         Fort St. Vrain & Gas-cooled & Problems with motion of the core structure & \cite{thiePowerReactorNoise1981} \\ 
+         \hline
+         Browns Ferry-2 & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977} \\ 
+         \hline
+         Vermont Yankee & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977} \\ 
+         \hline
+        \end{tabular}} \quad
+        \label{table:diagnostics}
+\end{table}
+
+In the context of core monitoring and surveillance, one example is core barrel motion (CBM) monitoring \cite{pazsitDevelopmentsCoreBarrelMotion2016}. This paper develops a methodology for investigating, diagnosing, and surveilling CBM. The surveillance was conducted at the core of Ringhals 2-4 in Sweden by inspecting the amplitude of the peaks in the normalized auto power spectral densities (APSDs) of the ex-core neutron detectors.
+
+In this instance, the CBM was employed because visible vibrations were detected in the radial supports of the core barrel in the Ringhals reactors. In \cite{martinSURVEILLANCEDIAGNOSTICSBEAM2012}, the investigation focuses on the pendulum motion of the core barrel, or it is also known as the beam mode. During the Ringhals operation, monitoring of the beam mode indicated that the amplitude of the APSD increased throughout the fuel cycle. However, the APSD decreased after the refueling \cite{pazsitFinalReportResearch2011}. 
+
+In the context of reactor core diagnostics, noise analysis is useful for analyzing situations that require changes in state variables, as these changes affect the reactor's status. This was demonstrated in \cite{demaziereDevelopmentNonintrusiveMethod2002} by measuring the moderator temperature coefficient (MTC). Traditionally, at-power MTC measurement techniques require the reactor to be perturbed to induce the change of the moderator temperature. The implementation of the direct perturbation method is the MTC measurement at the Righals-4 reactor using the boron dilution method. The result of this method shows that the uncertainty of using boron dilution method was much more significant than expected due to the necessary reactivity corrections. This prompted the use of non-intrusive methods such as noise analysis for reactor diagnostics.
+
+Some noise experiments were done in two research reactors (AKR-2 and CROCUS) using two different types of neutron noise. The first type of perturbation was generated by a rotating neutron absorber with a varying absorption cross-section with respect to the rotation angle and the second one by fuel rods that oscillate in a controlled manner inside the reactor core \cite{lamirandExperimentalReport1st2018, lamirandExperimentalReport2nd2021, lamirandExperimentalReport3rd2021}. The experiments consisted of two different parts representing different sources of periodic reactivity perturbation that created neutron flux oscillations. The experiments produced two different quantities of interest: the spectral power density (SPD) and the phase shift angle between detector pairs \cite{ambrozicNoiseAnalysisTechniques2020}. 
+
+AKR-2 reactor is a thermal, homogeneous, polyethylene-moderated zero-power reactor located at TU Dresden. For the first type of experiment in AKR-2, a piece of Cadmium is rotated in the reactor core. Cadmium was chosen due to the variable absorption reaction rate with respect to the rotation angle \cite{hubnerEXPERIMENTALDETERMINATIONZERO2021}. For the second type of experiment in AKR-2, the mechanical vibration consists of a neutron absorber that moves linearly back and forth in an experimental channel located outside of the reactor core \cite{lamirandExperimentalReport1st2018}. The CROCUS reactor is an experimental reactor dedicated to research and teaching in radiation and reactor physics, located at the École Polytechnique Fédérale de Lausanne (EPFL). For noise analysis, the CROCUS reactor used the COLIBRI experimental setup consisting of a fuel rod oscillator and neutron detection instrumentation \cite{lamirandExperimentalReport1st2018, lamirandExperimentalReport2nd2021, lamirandExperimentalReport3rd2021, lamirandCOLIBRIExperimentalProgram2020}. 
+
+In terms of modeling validation, the CORTEX (COre monitoring Techniques: EXperimental validation and Demonstration) project used two approaches to implement noise analysis based on a given noise source \cite{demaziereCORTEXProjectImproving2020}. The first approach uses the formulation of the linearized neutron noise equation in the frequency domain. From the equation, the neutron noise can be determined as a complex quantity. The second approach calculates the evolution of the spatial distribution of the flux as a function of time by solving the time-dependent neutron transport equation \cite{hursinModelingNoiseExperiments2023, brighentiDevelopmentValidationTimedependent2022}. 
+
+The CORTEX project concluded in 2021; its final phase involves implementing commercial nuclear power plants (NPPs). This is done by demonstrating the approaches to four different commercial reactors. Four reactors are used for the demonstration exercises: a German four-loop pre-Konvoi PWR, a Swiss three-loop pre-Konvoi PWR, a Czech VVER-1000 reactor, and a Hungarian VVER-440 reactor \cite{demaziereCORTEXProjectImproving2020, seidlReviewHistoricNeutron2015}. For the German pre-Konvoi and Konvoi-type PWR, noise measurement and analysis have been topics of interest for several years. Numerous noise observations have been conducted on both reactors during the commissioning and operational phases. It has been observed that during its 30-year operation, fluctuations in neutron noise signals have occurred. These were mainly low-frequency neutron noise, which could cause problems for future reactor operations. Some knowledge of neutron noise and the reactor's operation is necessary to solve the problem \cite{seidlReviewHistoricNeutron2015, rohdeNeutronNoiseObservations2018}.
+
+\section{Computational Methods of Neutron Noise Analysis}
 \subsection{Neutron Noise Derivation in Frequency Domain}
 
-Neutron noise is derived using neutron transport theory, such as $P_N$ transport and $S_N$ transport theory, or diffusion \cite{bahramiNewApproachCalculation2020, demaziereDevelopment2D2group2004}, in the case of power reactors. Here, we will focus on the diffusion theory and its application to neutron noise analysis. The diffusion theory is chosen as it satisfies the phenomena for most cases of practical interest \cite{pazsitNoiseTechniquesNuclear2010}. Here, we will consider only one group diffusion, which allows us to understand the general behavior of the system \cite{pazsitNoiseTechniquesNuclear2010}. 
+Neutron noise is derived using neutron transport theory, such as $P_N$ transport and $S_N$ transport theory, or diffusion \cite{bahramiNewApproachCalculation2020, demaziereDevelopment2D2group2004}, in the case of power reactors. Here, we will focus on the diffusion theory and its application to neutron noise analysis. The diffusion theory is chosen as it satisfies the phenomena for most cases of practical interest \cite{pazsitNoiseTechniquesNuclear2010}. Here, we will consider multigroup diffusion \cite{pazsitNoiseTechniquesNuclear2010}. 
 
 In general, the derivation of the neutron noise equation begins with the neutron diffusion equation and the precursor equation. We are interested in the local scale case of neutron noise. Therefore, we can assume that temporal fluctuation in diffusion coefficient can be neglected, such that,
 
@@ -63,7 +123,6 @@ We can apply these definitions to the time-dependent neutron diffusion equations
         \begin{equation}
                 \Sigma_t (\textbf{r}, t) \phi_g (\textbf{r}, t) = \Sigma_{t,0} (\textbf{r}) \phi_{g0} (\textbf{r}) + \delta \Sigma_t (\textbf{r}, t) \phi_{g0} (\textbf{r}) + \Sigma_{t,0} (\textbf{r}) \delta \phi_g (\textbf{r}, t)
         \end{equation}
-
 
         \item The reactor system is assumed to be critical. A critical reactor assumes that the number of neutrons in each cycle is constant at all times, reducing fluctuations in neutron behavior. 
 	\item One group of delayed neutron precursors is used. 
@@ -119,7 +178,7 @@ Equation \ref{eq:freq_4} is the neutron noise equation in the frequency domain. 
 The computational method can work in tandem with the experimental method of neutron noise. The experimental method measures the quantity of interest using the known power spectral density of the detectors. The computational method can extend the analysis by verifying the CPSD at known frequency to detect the location of noise sources \cite{hursinModelingNoiseExperiments2023}. The general workflow is described in Figure \ref{fig:flow_diagram}.
 \begin{figure}[h]
         \centering
-        \includegraphics[width=\textwidth]{figures/ch1_Picture1.png}
+        \includegraphics[width=\textwidth]{figures/noise_workflow.png}
         \caption{General workflow of neutron noise experiment and simulation}
         \label{fig:flow_diagram}
 \end{figure}
@@ -244,59 +303,9 @@ If the amplitude of $\varepsilon_x (\omega)$ and $\varepsilon_y (\omega)$ signif
 \end{equation}
 where $\textbf{r}_p$ is the equilibrium position of the rods in motion, and $\varepsilon(t)$ is the two-dimensional displacement of the rods in motion from the equilibrium position \cite{pazsitNoiseTechniquesNuclear2010}. This model is also called the $\varepsilon/d$ model. In terms of modeling the noise source in a solver, the localized vibrating absorbers can be modeled as a perturbation of cross-sections at the boundary of the vibrating region \cite{mylonakisCORESIMFlexible2021}.
 
-\section{Application to Reactor Diagnostics}
+\section{Existing Computational Tools of Neutron Noise Analysis}
 
-The theory of neutron noise has been applied in various nuclear reactors by utilizing the noise characteristics of these reactors. The reference \cite{thiePowerReactorNoise1981} explained several reasons for using noise analysis in nuclear reactors. This includes the capability to perform specific measurements, design, or model verification, as well as simplicity, low cost, and no interference with operating procedures. Noise can also be used as a substitute for another test or inspection. The use of neutron noise analysis varies depending on the specific interest it is intended for \cite{torresNeutronNoiseAnalysis2019}. However, neutron noise theory is widely used for sensor surveillance \cite{hashemianMeasurementDynamicTemperatures2011, hashemianPracticalReviewMethods2010, montalvoAdvancedSurveillanceResistance2014}, core monitoring \cite{czibokRegularNeutronNoise2003, hashemianOnlineMonitoringApplications2011, ortiz-villafuerteBWROnlineMonitoring2006}, and core diagnostics \cite{pazsitDevelopmentsCoreBarrelMotion2016, montalvoFirstEvidencePivotal2016}. Table \ref{table:diagnostics} provides examples of noise analysis applications for various reactor types.
-
-\begin{table}[ht]
-        \centering
-        \caption{Some examples of noise application for power reactors}
-        {\renewcommand{\arraystretch}{2}%
-        \begin{tabular}{ | m{3.5cm} |c| m{7cm} |c| } 
-         \hline
-         \textbf{Reactor Name} & \textbf{Type} & \textbf{Application}& \textbf{References} \\ 
-         \hline
-         Novovoronezh-1 & PWR &  Excessive looseness in the thermal shield & \cite{thiePowerReactorNoise1981} \\ 
-         \hline
-         Fukushima Daiichi-2 & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977}\\ 
-         \hline
-         Dresden & BWR & Monitor stability during startup & \cite{thieElementaryMethodsReactor1963} \\ 
-         \hline
-         Palisades & PWR & Detection of excessive and damaging flow-induced core barrel motion & \cite{fryAnalysisNeutrondensityOscillations1975} \\ 
-         \hline
-         High Flux Isotope Reactor (HFIR) & Research & Problems with abnormally loose control rods & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977}\\ 
-         \hline
-         Experimental Breeder Reactor-1 (EBR-1) & FBR & Oscillatory fuel motion & \cite{thiePowerReactorNoise1981} \\ 
-         \hline
-         Dounreay Fast Reactor & FBR & Problems with abnormally loose control rods & \cite{barclayDevelopmentNoiseAnalysis1977} \\ 
-         \hline
-         Fort St. Vrain & Gas-cooled & Problems with motion of the core structure & \cite{thiePowerReactorNoise1981} \\ 
-         \hline
-         Browns Ferry-2 & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977} \\ 
-         \hline
-         Vermont Yankee & BWR & Flow impingement caused excessive tube vibration & \cite{behringerObservationIncoreInstrument1977, mathisCharacterizationStudiesBWR41977} \\ 
-         \hline
-        \end{tabular}} \quad
-        \label{table:diagnostics}
-\end{table}
-
-In the context of core monitoring and surveillance, one example is core barrel motion (CBM) monitoring \cite{pazsitDevelopmentsCoreBarrelMotion2016}. This paper develops a methodology for investigating, diagnosing, and surveilling CBM. The surveillance was conducted at the core of Ringhals 2-4 in Sweden by inspecting the amplitude of the peaks in the normalized auto power spectral densities (APSDs) of the ex-core neutron detectors.
-
-In this instance, the CBM was employed because visible vibrations were detected in the radial supports of the core barrel in the Ringhals reactors. In \cite{martinSURVEILLANCEDIAGNOSTICSBEAM2012}, the investigation focuses on the pendulum motion of the core barrel, or it is also known as the beam mode. During the Ringhals operation, monitoring of the beam mode indicated that the amplitude of the APSD increased throughout the fuel cycle. However, the APSD decreased after the refueling \cite{pazsitFinalReportResearch2011}. 
-
-In the context of reactor core diagnostics, noise analysis is useful for analyzing situations that require changes in state variables, as these changes affect the reactor's status. This was demonstrated in \cite{demaziereDevelopmentNonintrusiveMethod2002} by measuring the moderator temperature coefficient (MTC). Traditionally, at-power MTC measurement techniques require the reactor to be perturbed to induce the change of the moderator temperature. The implementation of the direct perturbation method is the MTC measurement at the Righals-4 reactor using the boron dilution method. The result of this method shows that the uncertainty of using boron dilution method was much more significant than expected due to the necessary reactivity corrections. This prompted the use of non-intrusive methods such as noise analysis for reactor diagnostics.
-
-Some noise experiments were done in two research reactors (AKR-2 and CROCUS) using two different types of neutron noise. The first type of perturbation was generated by a rotating neutron absorber with a varying absorption cross-section with respect to the rotation angle and the second one by fuel rods that oscillate in a controlled manner inside the reactor core \cite{lamirandExperimentalReport1st2018, lamirandExperimentalReport2nd2021, lamirandExperimentalReport3rd2021}. The experiments consisted of two different parts representing different sources of periodic reactivity perturbation that created neutron flux oscillations. The experiments produced two different quantities of interest: the spectral power density (SPD) and the phase shift angle between detector pairs \cite{ambrozicNoiseAnalysisTechniques2020}. 
-
-AKR-2 reactor is a thermal, homogeneous, polyethylene-moderated zero-power reactor located at TU Dresden. For the first type of experiment in AKR-2, a piece of Cadmium is rotated in the reactor core. Cadmium was chosen due to the variable absorption reaction rate with respect to the rotation angle \cite{hubnerEXPERIMENTALDETERMINATIONZERO2021}. For the second type of experiment in AKR-2, the mechanical vibration consists of a neutron absorber that moves linearly back and forth in an experimental channel located outside of the reactor core \cite{lamirandExperimentalReport1st2018}. The CROCUS reactor is an experimental reactor dedicated to research and teaching in radiation and reactor physics, located at the École Polytechnique Fédérale de Lausanne (EPFL). For noise analysis, the CROCUS reactor used the COLIBRI experimental setup consisting of a fuel rod oscillator and neutron detection instrumentation \cite{lamirandExperimentalReport1st2018, lamirandExperimentalReport2nd2021, lamirandExperimentalReport3rd2021, lamirandCOLIBRIExperimentalProgram2020}. 
-
-In terms of modeling validation, the CORTEX (COre monitoring Techniques: EXperimental validation and Demonstration) project used two approaches to implement noise analysis based on a given noise source \cite{demaziereCORTEXProjectImproving2020}. The first approach uses the formulation of the linearized neutron noise equation in the frequency domain. From the equation, the neutron noise can be determined as a complex quantity. The second approach calculates the evolution of the spatial distribution of the flux as a function of time by solving the time-dependent neutron transport equation \cite{hursinModelingNoiseExperiments2023, brighentiDevelopmentValidationTimedependent2022}. 
-
-The CORTEX project concluded in 2021; its final phase involves implementing commercial nuclear power plants (NPPs). This is done by demonstrating the approaches to four different commercial reactors. Four reactors are used for the demonstration exercises: a German four-loop pre-Konvoi PWR, a Swiss three-loop pre-Konvoi PWR, a Czech VVER-1000 reactor, and a Hungarian VVER-440 reactor \cite{demaziereCORTEXProjectImproving2020, seidlReviewHistoricNeutron2015}. For the German pre-Konvoi and Konvoi-type PWR, noise measurement and analysis have been topics of interest for several years. Numerous noise observations have been conducted on both reactors during the commissioning and operational phases. It has been observed that during its 30-year operation, fluctuations in neutron noise signals have occurred. These were mainly low-frequency neutron noise, which could cause problems for future reactor operations. Some knowledge of neutron noise and the reactor's operation is necessary to solve the problem \cite{seidlReviewHistoricNeutron2015, rohdeNeutronNoiseObservations2018}.
-
-\section{Computational Methods and Tools of Neutron Noise Analysis}
-
-\subsection{Solving Neutron Noise Problems using Deterministic Methods}
+\subsection{Tools based on Deterministic Methods}
 
 Building on the success of neutron noise experiments, computational methods and tools are being developed to support neutron noise's validation and verification efforts. Deterministic transport methods have been developed to solve the neutron noise equation. It should be noted that knowledge of the forward neutron flux distribution and k-criticality is necessary to perform neutron noise simulations, as these parameters become the input to the neutron noise simulation \cite{demaziereDevelopment2D2group2004}. The tools developed varied in terms of spatial discretization, energy discretization, angular discretization, and the domain of interest to solve the neutron noise equation. 
 
@@ -310,7 +319,7 @@ Several tools investigate the application of time-domain calculations to neutron
 
 It should be noted that in deterministic code, the perturbed cross-sections are not calculated directly from the neutron cross-section libraries \cite{ardiansyahEvaluationPBMR400Core2021}. Instead, these cross-sections are already a function of space, time, energy, and direction based on the mesh in which the calculation is performed. Therefore, it is essential to consider that the neutron cross-sections must be defined in advance in deterministic methods. 
 
-\subsection{Solving Neutron Noise Problems using Monte Carlo Methods}
+\subsection{Tools based on Monte Carlo Methods}
 
 For neutron transport calculation, the use of Monte Carlo arises since we can treat the macroscopic cross-sections of neutrons as the probability of interactions per unit distance traveled by neutrons. The Monte Carlo method has proven effective for some cases of neutron transport, especially those related to complex geometries and variations in neutron cross-sections with energy. Monte Carlo eliminates the need for subsidiary calculations such as resonance flux and cross-section group constants \cite{bellNuclearReactorTheory1970, duderstadtNuclearReactorAnalysis1977}. In Monte Carlo, sets of neutrons are generated and simulated. For each individual neutron, the path is traced as it traveled through some materials, including the types of interactions that happened to the neutrons. The generation of neutrons, actual locations, types of interactions, and the results are all determined from a range of possibilities that are set by random numbers generated in Monte Carlo \cite{lewisComputationalMethodsNeutron1984, luxMonteCarloParticle1991}. 
 
@@ -328,13 +337,12 @@ Another topic of interest in Monte Carlo application is neutron noise sampling a
 
 \section{Summary}
 
-This chapter provides a general overview of neutron noise analysis and its implementation for nuclear reactor core diagnostics. Noise has varying definitions depending on the context. In general, it is considered a disruptive or unwanted disturbance. In nuclear reactor engineering, it refers to stochastic processes, such as fluctuations in detector output, inherent to the nature of fission and particle transport processes. Fission and neutron transport, both stochastic processes, are essential for understanding reactor state and uncertainties.
+This chapter provides a general overview of neutron noise analysis and its implementation for nuclear reactor core diagnostics. Noise has varying definitions depending on the context. In general, it is considered a disruptive or unwanted disturbance. In nuclear reactor engineering, it refers to stochastic processes, such as fluctuations in detector output, inherent to the nature of fission and particle transport processes. Fission and neutron transport, both stochastic processes, are essential for understanding reactor state and uncertainties. 
 
-Nuclear reactor core diagnostics plays a critical role in ensuring reactor safety and licensing. Reactor perturbations, like oscillating absorbers, affect core behavior, requiring continuous monitoring. Reactor systems are inherently noisy, and localized and instantaneous fluctuations cannot be adequately explained by time-averaged analysis. Complex factors, such as mechanical vibrations and flow dynamics, introduce perturbations that noise analysis can identify. Neutron noise analysis helps detect malfunctions and anomalies, with real-world examples highlighting its importance. 
+Nuclear reactor core diagnostics play a critical role in ensuring reactor safety and licensing. Reactor perturbations, like oscillating absorbers, affect core behavior, requiring continuous monitoring. Reactor systems are inherently noisy, and localized and instantaneous fluctuations cannot be adequately explained by time-averaged analysis. Complex factors, such as mechanical vibrations and flow dynamics, introduce perturbations that noise analysis can identify. Neutron noise analysis helps detect malfunctions and anomalies, with real-world examples highlighting its importance. 
 
-Neutron noise has been a subject of study since the early development of reactors. Experiments with neutron noise revealed its utility for understanding reactor behavior. This laid the groundwork for using neutron noise analysis in power reactors. Current developments involve applying neutron noise analysis to reactor diagnostics, using numerical methods to solve neutron noise problems efficiently. The focus is now on identifying the fluctuations and noises in nuclear reactors. In power reactors, noise can be classified based on its source or the system variables it affects. In advanced reactors like molten salt reactors, additional factors, such as cross-section changes and molten salt velocity, introduce new noise sources that require consideration in noise analysis. Neutron noise proved a versatile technique used in sensor surveillance, core monitoring, and diagnostics. The CORTEX project demonstrated its effectiveness by employing noise analysis in experiments and modeling for anomaly detection in various reactors. 
+Neutron noise has been a subject of study since the early development of reactors. Experiments with neutron noise revealed its utility for understanding reactor behavior. This laid the groundwork for using neutron noise analysis in power reactors. Current developments involve applying neutron noise analysis to reactor diagnostics, using numerical methods to solve neutron noise problems efficiently. The focus is now on identifying the fluctuations and noises in nuclear reactors. In power reactors, noise can be classified based on its source or the system variables it affects. In advanced reactors like molten salt reactors, additional factors, such as cross-section changes and molten salt velocity, introduce new noise sources that require consideration in noise analysis. Neutron noise proved to be a versatile technique used in sensor surveillance, core monitoring, and diagnostics. The CORTEX project demonstrated its effectiveness by employing noise analysis in experiments and modeling for anomaly detection in various reactors.
 
-Neutron is a random phenomenon. This randomness of neutron noise may be represented in both the time and frequency domains. For power reactors, the analysis starts with the neutron transport equation. Several papers have included the use of $\text{S}_\text{N}$, $\text{P}_\text{N}$, and diffusion theory for noise analysis. Diffusion theory is preferable due to its simplicity. Using neutron diffusion theory, One must apply several approximations to derive the neutron noise equation in the frequency domain. The neutron noise equation would include components such as perturbed flux and reactor transfer functions. The structure of the neutron noise equation is similar to the fixed source problem of the neutron transport equation. This could be understood that the noise in a reactor system is treated as a source, a noise source. Understanding the different types of noise sources is the key to solving the neutron noise equation.
+Neutron noise is a random phenomenon. This randomness of neutron noise may be represented in both time and frequency domains. For power reactors, the analysis starts with the neutron transport equation. Several papers have included the use of SN, PN, and diffusion theory for noise analysis. Using neutron diffusion theory, one must apply several approximations to derive the neutron noise equation in the frequency domain. The neutron noise equation would include components such as perturbed flux and reactor transfer functions. The structure of the neutron noise equation is similar to the fixed source problem of the neutron transport equation. This could be understood that the noise in a reactor system is treated as a source, a noise source. Understanding the different types of noise sources is the key to solving the neutron noise equation.
 
-Neutron noise analysis found extensive application in light water reactors, primarily for assessing perturbations caused by absorbers of variable strength and localized vibrations. In the former case, noise stems from absorption cross-section perturbations. In the latter, vibrations alter macroscopic cross-sections, which can be solved in both the time domain and frequency domain. These vibrations can be categorized as periodic or stochastic. While initial studies focused on simple homogeneous reactor systems, their utility for diagnosing current reactor conditions is clear. Measured data from light-water reactors can validate these models. Notably, Green’s function methods facilitate solving neutron noise equations in both scenarios, aiding reactor diagnostics.
-Currently, specialized software such as CORE SIM and CORE SIM+ have been developed for neutron noise analysis, enabling both critical and subcritical system simulations. Finite element method-based FEMFFUSION enhances computational efficiency in time and frequency domains, allowing accurate prediction of noise sources. Monte Carlo methods, known for their versatility, have also been adapted to address the neutron noise equation’s unique challenges, using complex particle weights or altered collision kernels to handle real and imaginary values accurately. These methods enable precise noise analysis in various nuclear reactor scenarios.
+Neutron noise analysis found extensive application in light water reactors, primarily for assessing perturbations caused by absorbers of variable strength and localized vibrations. In the former case, noise stems from absorption cross-section perturbations. In the latter, vibrations alter macroscopic cross-sections, which can be solved in both the time domain and frequency domain.

@@ -8,13 +8,13 @@ The success of core diagnostics using neutron noise experiments motivates the de
 
 The development of advanced reactors has been rising for the last several years. This is backed with the support of the financial market through startups and private funds, and also supportive public perception of nuclear in recent years. While many developers focuses on inherent reactor safety of advanced reactors, it is also important to develop a monitoring and diagnostic methods in advanced reactors.
 
-In this work, computational models of neutron noise are developed based on the neutron diffusion equation in the frequency domain. The solver is developed using the box-scheme finite difference for rectangular and hexagonal geometries. The main goal of the solver is application to \glspl*{HTGR}. However, application to rectangular geometries is also provided to differentiate the characteristics of \glspl*{HTGR} and \glspl*{LWR} systems. In this work, code-to-code comparisons are provided. Methods for unfolding neutron noise are also developed in the simulator to highlight the advantages and disadvantages of the methods. 
+In this dissertation, computational models of neutron noise are developed based on the neutron diffusion equation in the frequency domain. The solver is developed using the box-scheme finite difference for rectangular and triangular geometries. The main goal of the solver is application to \glspl*{HTGR}. However, application to rectangular geometries is also provided to differentiate the characteristics of \glspl*{HTGR} and \glspl*{LWR} systems. In this dissertation, code-to-code comparisons are provided. Methods for unfolding neutron noise are also developed in the simulator to highlight the advantages and disadvantages of the methods. 
 
 \section{Objectives}
 
 The main objective of this work is to develop and demonstrate core diagnostics in HTGR system using neutron noise method. The following objectives are identified to advance this goal:
 \begin{enumerate}
-    \item Develop a numerical solver to perform forward, adjoint, and noise (in frequency domain) calculations, based on multigroup diffusion theory, in cartesian and hexagonal geometry.
+    \item Develop a numerical solver to perform forward, adjoint, and noise (in frequency domain) calculations, based on multigroup diffusion theory, in cartesian and triangular geometry.
     \item Determine the characteristics of noise in HTGRs compared to LWRs through the zero-power reactor transfer function.
     \item Determine the distinct characteristics of noise sources in LWRs and HTGRs for absorber of variable strength and fuel assembly vibration.
     \item Perform noise unfolding in prismatic HTGRs using existing methods.
@@ -61,10 +61,11 @@ In terms of neutron noise unfolding method, \cite{demaziereIdentificationLocaliz
 
 This dissertation describes the motivation, objectives, methodology, results, and conclusions towards the advancement of the neutron noise unfolding methods and its application HTGR core.
 The remainder of this dissertation is organized as follows.
-Chapter \ref{ch:literature_review} presents a literature review of neutron noise methods, its applications for diagnostics, and neutron noise unfolding method.
-Chapter \ref{ch:simulations} provide the development of computational tools for forward, adjoint, and noise calculations, and also verification of results in 2D, 3D rectangular and hexagonal geometries.
-Chapter \ref{ch:existing_methods} focuses on the application of neutron noise methods for AVS and FAV in 2D and 3D HTTR core, including application of existing neutron noise unfolding methods
-Chapter \ref{ch:novel_methods} introduces the novel methods of neutron noise unfolding and their application to 2D and 3D HTTR core.
+Chapter \ref{ch:literature_review} presents a literature review of neutron noise methods and its applications for diagnostics.
+Chapter \ref{ch:simulations} provide the development of computational tools for forward, adjoint, and noise calculations, and also verification of results in 2D, 3D rectangular and triangular geometries.
+Chapter \ref{ch:noise_HTTR} focuses on the application of neutron noise methods for AVS and FAV in 2D and 3D HTTR core.
+Chapter \ref{ch:unfolding_methods} introduces the novel methods of neutron noise unfolding and their application to 2D and 3D HTTR core. This includes the comparison between existing neutron noise unfolding methods and the novel methods.
+Finally, Chapter \ref{ch:conclusions} summarizes the findings of this dissertation and provides recommendations for future work.
 
 % input individual chapters files
 % \input{1-introduction}
