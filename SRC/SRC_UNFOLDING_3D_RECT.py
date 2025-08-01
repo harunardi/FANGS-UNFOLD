@@ -1944,6 +1944,7 @@ def main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
     tol_GREEDY = 1E-10  # Stopping tolerance
     comb_first_atom = 1
     selected_atoms = []
+    selected_atoms_first_loop = []
     contribution_threshold = 1e-6  # Define the contribution threshold
 
     # Dictionary to store valid solutions with term counts
@@ -2006,20 +2007,26 @@ def main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
                 print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
                 break
 
+        for atom in selected_atoms:
+            if atom not in selected_atoms_first_loop:
+                selected_atoms_first_loop.append(atom)
+
         if first_atom_counter >= total_first_atom_counter:
             break
 
-    valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
+#    valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
 
-    print(f"\nThe selected atoms for second loop are {selected_atoms}\n")
-    first_loop_selected_atoms = selected_atoms.copy()
-    first_loop_residual_norm = residual_norm
+    print(f"\nThe selected atoms for second loop are {selected_atoms_first_loop}\n")
+    first_loop_selected_atoms = selected_atoms_first_loop.copy()
+#    first_loop_residual_norm = residual_norm
 
-    second_atom_iter = combinations(first_loop_selected_atoms, comb_first_atom)
+    second_atom_list = list(combinations(first_loop_selected_atoms, comb_first_atom))
+    second_atom_iter_length = len(second_atom_list)
     second_atom_counter = 0
-    for first_atom in second_atom_iter:
+    selected_atoms = []
+    for first_atom in second_atom_list:
         second_atom_counter += 1
-        print(f"Trying first atom in second loop {first_atom}, Loop {second_atom_counter}/{len(selected_atoms)}") #/{total_second_loop}
+        print(f"Trying first atom in second loop {first_atom}, Loop {second_atom_counter}/{second_atom_iter_length}")
 
         # Initialize residual and coefficients
         residual = dPHI_temp_meas.copy()
