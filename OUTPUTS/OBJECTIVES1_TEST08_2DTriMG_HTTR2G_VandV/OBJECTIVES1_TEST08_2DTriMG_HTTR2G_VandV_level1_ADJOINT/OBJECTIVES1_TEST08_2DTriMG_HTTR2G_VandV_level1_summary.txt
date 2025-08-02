@@ -4,7 +4,7 @@
     Simulation Type: adjoint Simulation
     Number of groups: 2
     Dimensions: 2D triangular
-    Final keff: 1.002342+0.000000j
-    Elapsed Time: 1.405e+00 seconds
+    Final keff: 1.002455+0.000000j
+    Elapsed Time: 8.966e-01 seconds
     Solver Used: LU
     
