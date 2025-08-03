@@ -1,2 +1,0 @@
-Iteration: 1, number of known noise flux: 126
-Iteration: 2, number of known noise flux: 125
