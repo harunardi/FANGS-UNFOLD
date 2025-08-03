@@ -374,8 +374,8 @@ with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver
 # magnitude -> linspace 1% to 10% of Total XS
 # 50 iterations each
 
-additional_iter = 3
-max_num_source = 3
+additional_iter = 2
+max_num_source = 2
 #freq = np.logspace(-2, 1, 10)
 freq = np.random.uniform(1E-2, 10, 10)
 add_iter = 0
