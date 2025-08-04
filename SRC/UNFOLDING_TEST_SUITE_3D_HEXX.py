@@ -223,9 +223,9 @@ for g in range(group):
         if conv_tri[n] > 0:
             conv_new[m] = g * max(conv_tri) + conv_tri[n]
 
-additional_iter = 3
-max_num_source = 3
-freq = np.logspace(-2, 1, 10)
+additional_iter = 1
+max_num_source = 2
+freq = np.logspace(-2, 1, 5)
 add_iter = 0
 iter = 0
 validity_INVERT = []
