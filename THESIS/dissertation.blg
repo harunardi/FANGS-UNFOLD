@@ -1,15 +1,15 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[1] Config.pm:310> INFO - Logfile is 'dissertation.blg'
-[201] biber:340> INFO - === Mon Aug  4, 2025, 12:32:15
-[227] Biber.pm:419> INFO - Reading 'dissertation.bcf'
-[377] Biber.pm:979> INFO - Found 91 citekeys in bib section 0
-[404] Biber.pm:4419> INFO - Processing section 0
-[421] Biber.pm:4610> INFO - Looking for bibtex file './references.bib' for section 0
-[443] bibtex.pm:1713> INFO - LaTeX decoding ...
-[686] bibtex.pm:1519> INFO - Found BibTeX data source './references.bib'
-[3450] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[3451] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[3451] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[3451] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[3526] bbl.pm:660> INFO - Writing 'dissertation.bbl' with encoding 'UTF-8'
-[3612] bbl.pm:763> INFO - Output to dissertation.bbl
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'dissertation.blg'
+[103] biber:340> INFO - === Mon Aug  4, 2025, 12:33:55
+[126] Biber.pm:418> INFO - Reading 'dissertation.bcf'
+[378] Biber.pm:972> INFO - Found 91 citekeys in bib section 0
+[405] Biber.pm:4383> INFO - Processing section 0
+[422] Biber.pm:4574> INFO - Looking for bibtex file './references.bib' for section 0
+[438] bibtex.pm:1713> INFO - LaTeX decoding ...
+[600] bibtex.pm:1518> INFO - Found BibTeX data source './references.bib'
+[1258] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1259] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1259] Biber.pm:4203> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[1259] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[1312] bbl.pm:654> INFO - Writing 'dissertation.bbl' with encoding 'UTF-8'
+[1392] bbl.pm:757> INFO - Output to dissertation.bbl

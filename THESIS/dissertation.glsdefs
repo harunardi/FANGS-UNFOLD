@@ -1,14 +1,14 @@
 \glsdefs@newdocentry{AGR1}%
 {%
-name={\acronymfont {\glsentryshort {AGR1}}},%
+name={AGR-1},%
 sort={AGR-1},%
 type={acronym},%
-first={AGR-1},%
-firstplural={AGR-1s},%
+first={Advanced Gas Reactor 1\glsspace (AGR-1)},%
+firstplural={Advanced Gas Reactor 1\acrpluralsuffix \glsspace (AGR-1\acrpluralsuffix )},%
 text={AGR-1},%
-plural={AGR-1s},%
+plural={AGR-1\acrpluralsuffix },%
 description={Advanced Gas Reactor 1},%
-descriptionplural={Advanced Gas Reactor 1},%
+descriptionplural={Advanced Gas Reactor 1\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -28,15 +28,15 @@ parent={},%
 
 \glsdefs@newdocentry{ANL}%
 {%
-name={\acronymfont {\glsentryshort {ANL}}},%
+name={ANL},%
 sort={ANL},%
 type={acronym},%
-first={ANL},%
-firstplural={ANLs},%
+first={Argonne National Laboratory\glsspace (ANL)},%
+firstplural={Argonne National Laboratory\acrpluralsuffix \glsspace (ANL\acrpluralsuffix )},%
 text={ANL},%
-plural={ANLs},%
+plural={ANL\acrpluralsuffix },%
 description={Argonne National Laboratory},%
-descriptionplural={Argonne National Laboratory},%
+descriptionplural={Argonne National Laboratory\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -56,15 +56,15 @@ parent={},%
 
 \glsdefs@newdocentry{ANN}%
 {%
-name={\acronymfont {\glsentryshort {ANN}}},%
+name={ANN},%
 sort={ANN},%
 type={acronym},%
-first={ANN},%
-firstplural={ANNs},%
+first={Artificial Neural Network\glsspace (ANN)},%
+firstplural={Artificial Neural Network\acrpluralsuffix \glsspace (ANN\acrpluralsuffix )},%
 text={ANN},%
-plural={ANNs},%
+plural={ANN\acrpluralsuffix },%
 description={Artificial Neural Network},%
-descriptionplural={Artificial Neural Network},%
+descriptionplural={Artificial Neural Network\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -84,15 +84,15 @@ parent={},%
 
 \glsdefs@newdocentry{API}%
 {%
-name={\acronymfont {\glsentryshort {API}}},%
+name={API},%
 sort={API},%
 type={acronym},%
-first={API},%
-firstplural={APIs},%
+first={Application Programming Interface\glsspace (API)},%
+firstplural={Application Programming Interface\acrpluralsuffix \glsspace (API\acrpluralsuffix )},%
 text={API},%
-plural={APIs},%
+plural={API\acrpluralsuffix },%
 description={Application Programming Interface},%
-descriptionplural={Application Programming Interface},%
+descriptionplural={Application Programming Interface\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -112,15 +112,15 @@ parent={},%
 
 \glsdefs@newdocentry{ATR}%
 {%
-name={\acronymfont {\glsentryshort {ATR}}},%
+name={ATR},%
 sort={ATR},%
 type={acronym},%
-first={ATR},%
-firstplural={ATRs},%
+first={Advanced Test Reactor\glsspace (ATR)},%
+firstplural={Advanced Test Reactor\acrpluralsuffix \glsspace (ATR\acrpluralsuffix )},%
 text={ATR},%
-plural={ATRs},%
+plural={ATR\acrpluralsuffix },%
 description={Advanced Test Reactor},%
-descriptionplural={Advanced Test Reactor},%
+descriptionplural={Advanced Test Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -140,15 +140,15 @@ parent={},%
 
 \glsdefs@newdocentry{B4C}%
 {%
-name={\acronymfont {\glsentryshort {B4C}}},%
+name={B4C},%
 sort={B4C},%
 type={acronym},%
-first={B4C},%
-firstplural={B4Cs},%
+first={boron carbide\glsspace (B4C)},%
+firstplural={boron carbide\acrpluralsuffix \glsspace (B4C\acrpluralsuffix )},%
 text={B4C},%
-plural={B4Cs},%
+plural={B4C\acrpluralsuffix },%
 description={boron carbide},%
-descriptionplural={boron carbide},%
+descriptionplural={boron carbide\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -168,15 +168,15 @@ parent={},%
 
 \glsdefs@newdocentry{BC}%
 {%
-name={\acronymfont {\glsentryshort {BC}}},%
+name={BC},%
 sort={BC},%
 type={acronym},%
-first={BC},%
-firstplural={BCs},%
+first={boundary condition\glsspace (BC)},%
+firstplural={boundary condition\acrpluralsuffix \glsspace (BC\acrpluralsuffix )},%
 text={BC},%
-plural={BCs},%
+plural={BC\acrpluralsuffix },%
 description={boundary condition},%
-descriptionplural={boundary condition},%
+descriptionplural={boundary condition\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -196,15 +196,15 @@ parent={},%
 
 \glsdefs@newdocentry{BOC}%
 {%
-name={\acronymfont {\glsentryshort {BOC}}},%
+name={BOC},%
 sort={BOC},%
 type={acronym},%
-first={BOC},%
-firstplural={BOCs},%
+first={beginning of the equilibrium cycle\glsspace (BOC)},%
+firstplural={beginning of the equilibrium cycle\acrpluralsuffix \glsspace (BOC\acrpluralsuffix )},%
 text={BOC},%
-plural={BOCs},%
+plural={BOC\acrpluralsuffix },%
 description={beginning of the equilibrium cycle},%
-descriptionplural={beginning of the equilibrium cycle},%
+descriptionplural={beginning of the equilibrium cycle\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -224,15 +224,15 @@ parent={},%
 
 \glsdefs@newdocentry{BNCT}%
 {%
-name={\acronymfont {\glsentryshort {BNCT}}},%
+name={BNCT},%
 sort={BNCT},%
 type={acronym},%
-first={BNCT},%
-firstplural={BNCTs},%
+first={Boron Neutron Capture Therapy\glsspace (BNCT)},%
+firstplural={Boron Neutron Capture Therapy\acrpluralsuffix \glsspace (BNCT\acrpluralsuffix )},%
 text={BNCT},%
-plural={BNCTs},%
+plural={BNCT\acrpluralsuffix },%
 description={Boron Neutron Capture Therapy},%
-descriptionplural={Boron Neutron Capture Therapy},%
+descriptionplural={Boron Neutron Capture Therapy\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -252,15 +252,15 @@ parent={},%
 
 \glsdefs@newdocentry{BSD}%
 {%
-name={\acronymfont {\glsentryshort {BSD}}},%
+name={BSD},%
 sort={BSD},%
 type={acronym},%
-first={BSD},%
-firstplural={BSDs},%
+first={Berkeley Software Distribution\glsspace (BSD)},%
+firstplural={Berkeley Software Distribution\acrpluralsuffix \glsspace (BSD\acrpluralsuffix )},%
 text={BSD},%
-plural={BSDs},%
+plural={BSD\acrpluralsuffix },%
 description={Berkeley Software Distribution},%
-descriptionplural={Berkeley Software Distribution},%
+descriptionplural={Berkeley Software Distribution\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -280,15 +280,15 @@ parent={},%
 
 \glsdefs@newdocentry{BWR}%
 {%
-name={\acronymfont {\glsentryshort {BWR}}},%
+name={BWR},%
 sort={BWR},%
 type={acronym},%
-first={BWR},%
-firstplural={BWRs},%
+first={Boiling Water Reactor\glsspace (BWR)},%
+firstplural={Boiling Water Reactor\acrpluralsuffix \glsspace (BWR\acrpluralsuffix )},%
 text={BWR},%
-plural={BWRs},%
+plural={BWR\acrpluralsuffix },%
 description={Boiling Water Reactor},%
-descriptionplural={Boiling Water Reactor},%
+descriptionplural={Boiling Water Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -308,15 +308,15 @@ parent={},%
 
 \glsdefs@newdocentry{CAISO}%
 {%
-name={\acronymfont {\glsentryshort {CAISO}}},%
+name={CAISO},%
 sort={CAISO},%
 type={acronym},%
-first={CAISO},%
-firstplural={CAISOs},%
+first={California ISO\glsspace (CAISO)},%
+firstplural={California ISO\acrpluralsuffix \glsspace (CAISO\acrpluralsuffix )},%
 text={CAISO},%
-plural={CAISOs},%
+plural={CAISO\acrpluralsuffix },%
 description={California ISO},%
-descriptionplural={California ISO},%
+descriptionplural={California ISO\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -336,15 +336,15 @@ parent={},%
 
 \glsdefs@newdocentry{CAPP}%
 {%
-name={\acronymfont {\glsentryshort {CAPP}}},%
+name={CAPP},%
 sort={CAPP},%
 type={acronym},%
-first={CAPP},%
-firstplural={CAPPs},%
+first={Core Analyzer for Pebble and Prism type VHTRs\glsspace (CAPP)},%
+firstplural={Core Analyzer for Pebble and Prism type VHTRs\acrpluralsuffix \glsspace (CAPP\acrpluralsuffix )},%
 text={CAPP},%
-plural={CAPPs},%
+plural={CAPP\acrpluralsuffix },%
 description={Core Analyzer for Pebble and Prism type VHTRs},%
-descriptionplural={Core Analyzer for Pebble and Prism type VHTRs},%
+descriptionplural={Core Analyzer for Pebble and Prism type VHTRs\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -364,15 +364,15 @@ parent={},%
 
 \glsdefs@newdocentry{CEA}%
 {%
-name={\acronymfont {\glsentryshort {CEA}}},%
+name={CEA},%
 sort={CEA},%
 type={acronym},%
-first={CEA},%
-firstplural={CEAs},%
+first={Commissariat a l'Energie Atomique\glsspace (CEA)},%
+firstplural={Commissariat a l'Energie Atomique\acrpluralsuffix \glsspace (CEA\acrpluralsuffix )},%
 text={CEA},%
-plural={CEAs},%
+plural={CEA\acrpluralsuffix },%
 description={Commissariat a l'Energie Atomique},%
-descriptionplural={Commissariat a l'Energie Atomique},%
+descriptionplural={Commissariat a l'Energie Atomique\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -392,15 +392,15 @@ parent={},%
 
 \glsdefs@newdocentry{CFD}%
 {%
-name={\acronymfont {\glsentryshort {CFD}}},%
+name={CFD},%
 sort={CFD},%
 type={acronym},%
-first={CFD},%
-firstplural={CFDs},%
+first={computational fluid dynamics\glsspace (CFD)},%
+firstplural={computational fluid dynamics\acrpluralsuffix \glsspace (CFD\acrpluralsuffix )},%
 text={CFD},%
-plural={CFDs},%
+plural={CFD\acrpluralsuffix },%
 description={computational fluid dynamics},%
-descriptionplural={computational fluid dynamics},%
+descriptionplural={computational fluid dynamics\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -420,15 +420,15 @@ parent={},%
 
 \glsdefs@newdocentry{CO2}%
 {%
-name={\acronymfont {\glsentryshort {CO2}}},%
+name={CO$_2$},%
 sort={CO$_2$},%
 type={acronym},%
-first={CO$_2$},%
-firstplural={CO$_2$s},%
+first={carbon dioxide\glsspace (CO$_2$)},%
+firstplural={carbon dioxide\acrpluralsuffix \glsspace (CO$_2$\acrpluralsuffix )},%
 text={CO$_2$},%
-plural={CO$_2$s},%
+plural={CO$_2$\acrpluralsuffix },%
 description={carbon dioxide},%
-descriptionplural={carbon dioxide},%
+descriptionplural={carbon dioxide\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -448,15 +448,15 @@ parent={},%
 
 \glsdefs@newdocentry{CNN}%
 {%
-name={\acronymfont {\glsentryshort {CNN}}},%
+name={CNN},%
 sort={CNN},%
 type={acronym},%
-first={CNN},%
-firstplural={CNNs},%
+first={Convolutional Neural Network\glsspace (CNN)},%
+firstplural={Convolutional Neural Network\acrpluralsuffix \glsspace (CNN\acrpluralsuffix )},%
 text={CNN},%
-plural={CNNs},%
+plural={CNN\acrpluralsuffix },%
 description={Convolutional Neural Network},%
-descriptionplural={Convolutional Neural Network},%
+descriptionplural={Convolutional Neural Network\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -476,15 +476,15 @@ parent={},%
 
 \glsdefs@newdocentry{CR}%
 {%
-name={\acronymfont {\glsentryshort {CR}}},%
+name={CR},%
 sort={CR},%
 type={acronym},%
-first={CR},%
-firstplural={CRs},%
+first={control rod\glsspace (CR)},%
+firstplural={control rod\acrpluralsuffix \glsspace (CR\acrpluralsuffix )},%
 text={CR},%
-plural={CRs},%
+plural={CR\acrpluralsuffix },%
 description={control rod},%
-descriptionplural={control rod},%
+descriptionplural={control rod\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -504,15 +504,15 @@ parent={},%
 
 \glsdefs@newdocentry{CRAM}%
 {%
-name={\acronymfont {\glsentryshort {CRAM}}},%
+name={CRAM},%
 sort={CRAM},%
 type={acronym},%
-first={CRAM},%
-firstplural={CRAMs},%
+first={Chebyshev Rational Approximation Method\glsspace (CRAM)},%
+firstplural={Chebyshev Rational Approximation Method\acrpluralsuffix \glsspace (CRAM\acrpluralsuffix )},%
 text={CRAM},%
-plural={CRAMs},%
+plural={CRAM\acrpluralsuffix },%
 description={Chebyshev Rational Approximation Method},%
-descriptionplural={Chebyshev Rational Approximation Method},%
+descriptionplural={Chebyshev Rational Approximation Method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -532,15 +532,15 @@ parent={},%
 
 \glsdefs@newdocentry{CRP}%
 {%
-name={\acronymfont {\glsentryshort {CRP}}},%
+name={CRP},%
 sort={CRP},%
 type={acronym},%
-first={CRP},%
-firstplural={CRPs},%
+first={Coordinated Research Project\glsspace (CRP)},%
+firstplural={Coordinated Research Project\acrpluralsuffix \glsspace (CRP\acrpluralsuffix )},%
 text={CRP},%
-plural={CRPs},%
+plural={CRP\acrpluralsuffix },%
 description={Coordinated Research Project},%
-descriptionplural={Coordinated Research Project},%
+descriptionplural={Coordinated Research Project\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -560,15 +560,15 @@ parent={},%
 
 \glsdefs@newdocentry{CZP}%
 {%
-name={\acronymfont {\glsentryshort {CZP}}},%
+name={CZP},%
 sort={CZP},%
 type={acronym},%
-first={CZP},%
-firstplural={CZPs},%
+first={Cold Zero Power\glsspace (CZP)},%
+firstplural={Cold Zero Power\acrpluralsuffix \glsspace (CZP\acrpluralsuffix )},%
 text={CZP},%
-plural={CZPs},%
+plural={CZP\acrpluralsuffix },%
 description={Cold Zero Power},%
-descriptionplural={Cold Zero Power},%
+descriptionplural={Cold Zero Power\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -588,15 +588,15 @@ parent={},%
 
 \glsdefs@newdocentry{DCC}%
 {%
-name={\acronymfont {\glsentryshort {DCC}}},%
+name={DCC},%
 sort={DCC},%
 type={acronym},%
-first={DCC},%
-firstplural={DCCs},%
+first={depressurized conduction cool-down\glsspace (DCC)},%
+firstplural={depressurized conduction cool-down\acrpluralsuffix \glsspace (DCC\acrpluralsuffix )},%
 text={DCC},%
-plural={DCCs},%
+plural={DCC\acrpluralsuffix },%
 description={depressurized conduction cool-down},%
-descriptionplural={depressurized conduction cool-down},%
+descriptionplural={depressurized conduction cool-down\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -616,15 +616,15 @@ parent={},%
 
 \glsdefs@newdocentry{DOD}%
 {%
-name={\acronymfont {\glsentryshort {DOD}}},%
+name={DOD},%
 sort={DOD},%
 type={acronym},%
-first={DOD},%
-firstplural={DODs},%
+first={U.S. Department of Defense\glsspace (DOD)},%
+firstplural={U.S. Department of Defense\acrpluralsuffix \glsspace (DOD\acrpluralsuffix )},%
 text={DOD},%
-plural={DODs},%
+plural={DOD\acrpluralsuffix },%
 description={U.S. Department of Defense},%
-descriptionplural={U.S. Department of Defense},%
+descriptionplural={U.S. Department of Defense\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -644,15 +644,15 @@ parent={},%
 
 \glsdefs@newdocentry{DOE}%
 {%
-name={\acronymfont {\glsentryshort {DOE}}},%
+name={DOE},%
 sort={DOE},%
 type={acronym},%
-first={DOE},%
-firstplural={DOEs},%
+first={Department of Energy\glsspace (DOE)},%
+firstplural={Department of Energy\acrpluralsuffix \glsspace (DOE\acrpluralsuffix )},%
 text={DOE},%
-plural={DOEs},%
+plural={DOE\acrpluralsuffix },%
 description={Department of Energy},%
-descriptionplural={Department of Energy},%
+descriptionplural={Department of Energy\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -672,15 +672,15 @@ parent={},%
 
 \glsdefs@newdocentry{DoF}%
 {%
-name={\acronymfont {\glsentryshort {DoF}}},%
+name={DoF},%
 sort={DoF},%
 type={acronym},%
-first={DoF},%
-firstplural={DoFs},%
+first={degree of freedom\glsspace (DoF)},%
+firstplural={degrees of freedom\glsspace (DoF\acrpluralsuffix )},%
 text={DoF},%
-plural={DoFs},%
+plural={DoF\acrpluralsuffix },%
 description={degree of freedom},%
-descriptionplural={degree of freedom},%
+descriptionplural={degrees of freedom},%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -700,15 +700,15 @@ parent={},%
 
 \glsdefs@newdocentry{DT}%
 {%
-name={\acronymfont {\glsentryshort {DT}}},%
+name={DT},%
 sort={DT},%
 type={acronym},%
-first={DT},%
-firstplural={DTs},%
+first={Decision Tree\glsspace (DT)},%
+firstplural={Decision Tree\acrpluralsuffix \glsspace (DT\acrpluralsuffix )},%
 text={DT},%
-plural={DTs},%
+plural={DT\acrpluralsuffix },%
 description={Decision Tree},%
-descriptionplural={Decision Tree},%
+descriptionplural={Decision Tree\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -728,15 +728,15 @@ parent={},%
 
 \glsdefs@newdocentry{DTR}%
 {%
-name={\acronymfont {\glsentryshort {DTR}}},%
+name={DTR},%
 sort={DTR},%
 type={acronym},%
-first={DTR},%
-firstplural={DTRs},%
+first={Decision Tree Regression\glsspace (DTR)},%
+firstplural={Decision Tree Regression\acrpluralsuffix \glsspace (DTR\acrpluralsuffix )},%
 text={DTR},%
-plural={DTRs},%
+plural={DTR\acrpluralsuffix },%
 description={Decision Tree Regression},%
-descriptionplural={Decision Tree Regression},%
+descriptionplural={Decision Tree Regression\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -756,15 +756,15 @@ parent={},%
 
 \glsdefs@newdocentry{EOC}%
 {%
-name={\acronymfont {\glsentryshort {EOC}}},%
+name={EOC},%
 sort={EOC},%
 type={acronym},%
-first={EOC},%
-firstplural={EOCs},%
+first={end of the equilibrium cycle\glsspace (EOC)},%
+firstplural={end of the equilibrium cycle\acrpluralsuffix \glsspace (EOC\acrpluralsuffix )},%
 text={EOC},%
-plural={EOCs},%
+plural={EOC\acrpluralsuffix },%
 description={end of the equilibrium cycle},%
-descriptionplural={end of the equilibrium cycle},%
+descriptionplural={end of the equilibrium cycle\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -784,15 +784,15 @@ parent={},%
 
 \glsdefs@newdocentry{FCEV}%
 {%
-name={\acronymfont {\glsentryshort {FCEV}}},%
+name={FCEV},%
 sort={FCEV},%
 type={acronym},%
-first={FCEV},%
-firstplural={FCEVs},%
+first={Fuel Cell Electric Vehicle\glsspace (FCEV)},%
+firstplural={Fuel Cell Electric Vehicle\acrpluralsuffix \glsspace (FCEV\acrpluralsuffix )},%
 text={FCEV},%
-plural={FCEVs},%
+plural={FCEV\acrpluralsuffix },%
 description={Fuel Cell Electric Vehicle},%
-descriptionplural={Fuel Cell Electric Vehicle},%
+descriptionplural={Fuel Cell Electric Vehicle\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -812,15 +812,15 @@ parent={},%
 
 \glsdefs@newdocentry{FDM}%
 {%
-name={\acronymfont {\glsentryshort {FDM}}},%
+name={FDM},%
 sort={FDM},%
 type={acronym},%
-first={FDM},%
-firstplural={FDMs},%
+first={Finite Difference Method\glsspace (FDM)},%
+firstplural={Finite Difference Method\acrpluralsuffix \glsspace (FDM\acrpluralsuffix )},%
 text={FDM},%
-plural={FDMs},%
+plural={FDM\acrpluralsuffix },%
 description={Finite Difference Method},%
-descriptionplural={Finite Difference Method},%
+descriptionplural={Finite Difference Method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -840,15 +840,15 @@ parent={},%
 
 \glsdefs@newdocentry{FEM}%
 {%
-name={\acronymfont {\glsentryshort {FEM}}},%
+name={FEM},%
 sort={FEM},%
 type={acronym},%
-first={FEM},%
-firstplural={FEMs},%
+first={Finite Element Method\glsspace (FEM)},%
+firstplural={Finite Element Method\acrpluralsuffix \glsspace (FEM\acrpluralsuffix )},%
 text={FEM},%
-plural={FEMs},%
+plural={FEM\acrpluralsuffix },%
 description={Finite Element Method},%
-descriptionplural={Finite Element Method},%
+descriptionplural={Finite Element Method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -868,15 +868,15 @@ parent={},%
 
 \glsdefs@newdocentry{FNN}%
 {%
-name={\acronymfont {\glsentryshort {FNN}}},%
+name={FNN},%
 sort={FNN},%
 type={acronym},%
-first={FNN},%
-firstplural={FNNs},%
+first={Feedforward Neural Network\glsspace (FNN)},%
+firstplural={Feedforward Neural Network\acrpluralsuffix \glsspace (FNN\acrpluralsuffix )},%
 text={FNN},%
-plural={FNNs},%
+plural={FNN\acrpluralsuffix },%
 description={Feedforward Neural Network},%
-descriptionplural={Feedforward Neural Network},%
+descriptionplural={Feedforward Neural Network\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -896,15 +896,15 @@ parent={},%
 
 \glsdefs@newdocentry{FVM}%
 {%
-name={\acronymfont {\glsentryshort {FVM}}},%
+name={FVM},%
 sort={FVM},%
 type={acronym},%
-first={FVM},%
-firstplural={FVMs},%
+first={Finite Volume Method\glsspace (FVM)},%
+firstplural={Finite Volume Method\acrpluralsuffix \glsspace (FVM\acrpluralsuffix )},%
 text={FVM},%
-plural={FVMs},%
+plural={FVM\acrpluralsuffix },%
 description={Finite Volume Method},%
-descriptionplural={Finite Volume Method},%
+descriptionplural={Finite Volume Method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -924,15 +924,15 @@ parent={},%
 
 \glsdefs@newdocentry{GHG}%
 {%
-name={\acronymfont {\glsentryshort {GHG}}},%
+name={GHG},%
 sort={GHG},%
 type={acronym},%
-first={GHG},%
-firstplural={GHGs},%
+first={greenhouse gas\glsspace (GHG)},%
+firstplural={greenhouse gases\glsspace (GHG\acrpluralsuffix )},%
 text={GHG},%
-plural={GHGs},%
+plural={GHG\acrpluralsuffix },%
 description={greenhouse gas},%
-descriptionplural={greenhouse gas},%
+descriptionplural={greenhouse gases},%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -952,15 +952,15 @@ parent={},%
 
 \glsdefs@newdocentry{GP}%
 {%
-name={\acronymfont {\glsentryshort {GP}}},%
+name={GP},%
 sort={GP},%
 type={acronym},%
-first={GP},%
-firstplural={GPs},%
+first={Gaussian process\glsspace (GP)},%
+firstplural={Gaussian processes\glsspace (GP\acrpluralsuffix )},%
 text={GP},%
-plural={GPs},%
+plural={GP\acrpluralsuffix },%
 description={Gaussian process},%
-descriptionplural={Gaussian process},%
+descriptionplural={Gaussian processes},%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -980,15 +980,15 @@ parent={},%
 
 \glsdefs@newdocentry{GRS}%
 {%
-name={\acronymfont {\glsentryshort {GRS}}},%
+name={GRS},%
 sort={GRS},%
 type={acronym},%
-first={GRS},%
-firstplural={GRSs},%
+first={Gesellschaft für Anlagen und Reaktorsicherheit\glsspace (GRS)},%
+firstplural={Gesellschaft für Anlagen und Reaktorsicherheit\acrpluralsuffix \glsspace (GRS\acrpluralsuffix )},%
 text={GRS},%
-plural={GRSs},%
+plural={GRS\acrpluralsuffix },%
 description={Gesellschaft für Anlagen und Reaktorsicherheit},%
-descriptionplural={Gesellschaft für Anlagen und Reaktorsicherheit},%
+descriptionplural={Gesellschaft für Anlagen und Reaktorsicherheit\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1008,15 +1008,15 @@ parent={},%
 
 \glsdefs@newdocentry{GT-MHR}%
 {%
-name={\acronymfont {\glsentryshort {GT-MHR}}},%
+name={GT-MHR},%
 sort={GT-MHR},%
 type={acronym},%
-first={GT-MHR},%
-firstplural={GT-MHRs},%
+first={Gas Turbine-Modular Helium Reactor\glsspace (GT-MHR)},%
+firstplural={Gas Turbine-Modular Helium Reactor\acrpluralsuffix \glsspace (GT-MHR\acrpluralsuffix )},%
 text={GT-MHR},%
-plural={GT-MHRs},%
+plural={GT-MHR\acrpluralsuffix },%
 description={Gas Turbine-Modular Helium Reactor},%
-descriptionplural={Gas Turbine-Modular Helium Reactor},%
+descriptionplural={Gas Turbine-Modular Helium Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1036,15 +1036,15 @@ parent={},%
 
 \glsdefs@newdocentry{H2}%
 {%
-name={\acronymfont {\glsentryshort {H2}}},%
+name={H$_2$},%
 sort={H$_2$},%
 type={acronym},%
-first={H$_2$},%
-firstplural={H$_2$s},%
+first={hydrogen\glsspace (H$_2$)},%
+firstplural={hydrogen\acrpluralsuffix \glsspace (H$_2$\acrpluralsuffix )},%
 text={H$_2$},%
-plural={H$_2$s},%
+plural={H$_2$\acrpluralsuffix },%
 description={hydrogen},%
-descriptionplural={hydrogen},%
+descriptionplural={hydrogen\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1064,15 +1064,15 @@ parent={},%
 
 \glsdefs@newdocentry{He}%
 {%
-name={\acronymfont {\glsentryshort {He}}},%
+name={He},%
 sort={He},%
 type={acronym},%
-first={He},%
-firstplural={Hes},%
+first={helium\glsspace (He)},%
+firstplural={helium\acrpluralsuffix \glsspace (He\acrpluralsuffix )},%
 text={He},%
-plural={Hes},%
+plural={He\acrpluralsuffix },%
 description={helium},%
-descriptionplural={helium},%
+descriptionplural={helium\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1092,15 +1092,15 @@ parent={},%
 
 \glsdefs@newdocentry{HFIR}%
 {%
-name={\acronymfont {\glsentryshort {HFIR}}},%
+name={HFIR},%
 sort={HFIR},%
 type={acronym},%
-first={HFIR},%
-firstplural={HFIRs},%
+first={High Flux Isotope Reactor\glsspace (HFIR)},%
+firstplural={High Flux Isotope Reactor\acrpluralsuffix \glsspace (HFIR\acrpluralsuffix )},%
 text={HFIR},%
-plural={HFIRs},%
+plural={HFIR\acrpluralsuffix },%
 description={High Flux Isotope Reactor},%
-descriptionplural={High Flux Isotope Reactor},%
+descriptionplural={High Flux Isotope Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1120,15 +1120,15 @@ parent={},%
 
 \glsdefs@newdocentry{HFP}%
 {%
-name={\acronymfont {\glsentryshort {HFP}}},%
+name={HFP},%
 sort={HFP},%
 type={acronym},%
-first={HFP},%
-firstplural={HFPs},%
+first={Hot Full Power\glsspace (HFP)},%
+firstplural={Hot Full Power\acrpluralsuffix \glsspace (HFP\acrpluralsuffix )},%
 text={HFP},%
-plural={HFPs},%
+plural={HFP\acrpluralsuffix },%
 description={Hot Full Power},%
-descriptionplural={Hot Full Power},%
+descriptionplural={Hot Full Power\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1148,15 +1148,15 @@ parent={},%
 
 \glsdefs@newdocentry{HPC}%
 {%
-name={\acronymfont {\glsentryshort {HPC}}},%
+name={HPC},%
 sort={HPC},%
 type={acronym},%
-first={HPC},%
-firstplural={HPCs},%
+first={high-performance computing\glsspace (HPC)},%
+firstplural={high-performance computing\acrpluralsuffix \glsspace (HPC\acrpluralsuffix )},%
 text={HPC},%
-plural={HPCs},%
+plural={HPC\acrpluralsuffix },%
 description={high-performance computing},%
-descriptionplural={high-performance computing},%
+descriptionplural={high-performance computing\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1176,15 +1176,15 @@ parent={},%
 
 \glsdefs@newdocentry{HPCC}%
 {%
-name={\acronymfont {\glsentryshort {HPCC}}},%
+name={HPCC},%
 sort={HPCC},%
 type={acronym},%
-first={HPCC},%
-firstplural={HPCCs},%
+first={high-pressure conduction cool-down\glsspace (HPCC)},%
+firstplural={high-pressure conduction cool-down\acrpluralsuffix \glsspace (HPCC\acrpluralsuffix )},%
 text={HPCC},%
-plural={HPCCs},%
+plural={HPCC\acrpluralsuffix },%
 description={high-pressure conduction cool-down},%
-descriptionplural={high-pressure conduction cool-down},%
+descriptionplural={high-pressure conduction cool-down\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1204,15 +1204,15 @@ parent={},%
 
 \glsdefs@newdocentry{HTE}%
 {%
-name={\acronymfont {\glsentryshort {HTE}}},%
+name={HTE},%
 sort={HTE},%
 type={acronym},%
-first={HTE},%
-firstplural={HTEs},%
+first={High-Temperature Electrolysis\glsspace (HTE)},%
+firstplural={High-Temperature Electrolysis\acrpluralsuffix \glsspace (HTE\acrpluralsuffix )},%
 text={HTE},%
-plural={HTEs},%
+plural={HTE\acrpluralsuffix },%
 description={High-Temperature Electrolysis},%
-descriptionplural={High-Temperature Electrolysis},%
+descriptionplural={High-Temperature Electrolysis\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1232,15 +1232,15 @@ parent={},%
 
 \glsdefs@newdocentry{HTGR}%
 {%
-name={\acronymfont {\glsentryshort {HTGR}}},%
+name={HTGR},%
 sort={HTGR},%
 type={acronym},%
-first={HTGR},%
-firstplural={HTGRs},%
+first={High-Temperature Gas-Cooled Reactor\glsspace (HTGR)},%
+firstplural={High-Temperature Gas-Cooled Reactor\acrpluralsuffix \glsspace (HTGR\acrpluralsuffix )},%
 text={HTGR},%
-plural={HTGRs},%
+plural={HTGR\acrpluralsuffix },%
 description={High-Temperature Gas-Cooled Reactor},%
-descriptionplural={High-Temperature Gas-Cooled Reactor},%
+descriptionplural={High-Temperature Gas-Cooled Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1260,15 +1260,15 @@ parent={},%
 
 \glsdefs@newdocentry{HTR}%
 {%
-name={\acronymfont {\glsentryshort {HTR}}},%
+name={HTR},%
 sort={HTR},%
 type={acronym},%
-first={HTR},%
-firstplural={HTRs},%
+first={High Temperature Reactor\glsspace (HTR)},%
+firstplural={High Temperature Reactor\acrpluralsuffix \glsspace (HTR\acrpluralsuffix )},%
 text={HTR},%
-plural={HTRs},%
+plural={HTR\acrpluralsuffix },%
 description={High Temperature Reactor},%
-descriptionplural={High Temperature Reactor},%
+descriptionplural={High Temperature Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1288,15 +1288,15 @@ parent={},%
 
 \glsdefs@newdocentry{HTTR}%
 {%
-name={\acronymfont {\glsentryshort {HTTR}}},%
+name={HTTR},%
 sort={HTTR},%
 type={acronym},%
-first={HTTR},%
-firstplural={HTTRs},%
+first={High-Temperature engineering Test Reactor\glsspace (HTTR)},%
+firstplural={High-Temperature engineering Test Reactor\acrpluralsuffix \glsspace (HTTR\acrpluralsuffix )},%
 text={HTTR},%
-plural={HTTRs},%
+plural={HTTR\acrpluralsuffix },%
 description={High-Temperature engineering Test Reactor},%
-descriptionplural={High-Temperature engineering Test Reactor},%
+descriptionplural={High-Temperature engineering Test Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1316,15 +1316,15 @@ parent={},%
 
 \glsdefs@newdocentry{HZDR}%
 {%
-name={\acronymfont {\glsentryshort {HZDR}}},%
+name={HZDR},%
 sort={HZDR},%
 type={acronym},%
-first={HZDR},%
-firstplural={HZDRs},%
+first={Helmholtz-Zentrum Dresden-Rossendorf\glsspace (HZDR)},%
+firstplural={Helmholtz-Zentrum Dresden-Rossendorf\acrpluralsuffix \glsspace (HZDR\acrpluralsuffix )},%
 text={HZDR},%
-plural={HZDRs},%
+plural={HZDR\acrpluralsuffix },%
 description={Helmholtz-Zentrum Dresden-Rossendorf},%
-descriptionplural={Helmholtz-Zentrum Dresden-Rossendorf},%
+descriptionplural={Helmholtz-Zentrum Dresden-Rossendorf\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1344,15 +1344,15 @@ parent={},%
 
 \glsdefs@newdocentry{IAEA}%
 {%
-name={\acronymfont {\glsentryshort {IAEA}}},%
+name={IAEA},%
 sort={IAEA},%
 type={acronym},%
-first={IAEA},%
-firstplural={IAEAs},%
+first={International Atomic Energy Agency\glsspace (IAEA)},%
+firstplural={International Atomic Energy Agency\acrpluralsuffix \glsspace (IAEA\acrpluralsuffix )},%
 text={IAEA},%
-plural={IAEAs},%
+plural={IAEA\acrpluralsuffix },%
 description={International Atomic Energy Agency},%
-descriptionplural={International Atomic Energy Agency},%
+descriptionplural={International Atomic Energy Agency\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1372,15 +1372,15 @@ parent={},%
 
 \glsdefs@newdocentry{icap}%
 {%
-name={\acronymfont {\glsentryshort {icap}}},%
+name={iCAP},%
 sort={iCAP},%
 type={acronym},%
-first={iCAP},%
-firstplural={iCAPs},%
+first={Illinois Climate Action Plan\glsspace (iCAP)},%
+firstplural={Illinois Climate Action Plan\acrpluralsuffix \glsspace (iCAP\acrpluralsuffix )},%
 text={iCAP},%
-plural={iCAPs},%
+plural={iCAP\acrpluralsuffix },%
 description={Illinois Climate Action Plan},%
-descriptionplural={Illinois Climate Action Plan},%
+descriptionplural={Illinois Climate Action Plan\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1400,15 +1400,15 @@ parent={},%
 
 \glsdefs@newdocentry{INL}%
 {%
-name={\acronymfont {\glsentryshort {INL}}},%
+name={INL},%
 sort={INL},%
 type={acronym},%
-first={INL},%
-firstplural={INLs},%
+first={Idaho National Laboratory\glsspace (INL)},%
+firstplural={Idaho National Laboratory\acrpluralsuffix \glsspace (INL\acrpluralsuffix )},%
 text={INL},%
-plural={INLs},%
+plural={INL\acrpluralsuffix },%
 description={Idaho National Laboratory},%
-descriptionplural={Idaho National Laboratory},%
+descriptionplural={Idaho National Laboratory\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1428,15 +1428,15 @@ parent={},%
 
 \glsdefs@newdocentry{IPyC}%
 {%
-name={\acronymfont {\glsentryshort {IPyC}}},%
+name={IPyC},%
 sort={IPyC},%
 type={acronym},%
-first={IPyC},%
-firstplural={IPyCs},%
+first={inner pyrolytic carbon\glsspace (IPyC)},%
+firstplural={inner pyrolytic carbon\acrpluralsuffix \glsspace (IPyC\acrpluralsuffix )},%
 text={IPyC},%
-plural={IPyCs},%
+plural={IPyC\acrpluralsuffix },%
 description={inner pyrolytic carbon},%
-descriptionplural={inner pyrolytic carbon},%
+descriptionplural={inner pyrolytic carbon\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1456,15 +1456,15 @@ parent={},%
 
 \glsdefs@newdocentry{IRIS}%
 {%
-name={\acronymfont {\glsentryshort {IRIS}}},%
+name={IRIS},%
 sort={IRIS},%
 type={acronym},%
-first={IRIS},%
-firstplural={IRISs},%
+first={International Reactor Innovative and Secure\glsspace (IRIS)},%
+firstplural={International Reactor Innovative and Secure\acrpluralsuffix \glsspace (IRIS\acrpluralsuffix )},%
 text={IRIS},%
-plural={IRISs},%
+plural={IRIS\acrpluralsuffix },%
 description={International Reactor Innovative and Secure},%
-descriptionplural={International Reactor Innovative and Secure},%
+descriptionplural={International Reactor Innovative and Secure\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1484,15 +1484,15 @@ parent={},%
 
 \glsdefs@newdocentry{ITER}%
 {%
-name={\acronymfont {\glsentryshort {ITER}}},%
+name={ITER},%
 sort={ITER},%
 type={acronym},%
-first={ITER},%
-firstplural={ITERs},%
+first={International Thermonuclear Experimental Reactor\glsspace (ITER)},%
+firstplural={International Thermonuclear Experimental Reactor\acrpluralsuffix \glsspace (ITER\acrpluralsuffix )},%
 text={ITER},%
-plural={ITERs},%
+plural={ITER\acrpluralsuffix },%
 description={International Thermonuclear Experimental Reactor},%
-descriptionplural={International Thermonuclear Experimental Reactor},%
+descriptionplural={International Thermonuclear Experimental Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1512,15 +1512,15 @@ parent={},%
 
 \glsdefs@newdocentry{JFNK}%
 {%
-name={\acronymfont {\glsentryshort {JFNK}}},%
+name={JFNK},%
 sort={JFNK},%
 type={acronym},%
-first={JFNK},%
-firstplural={JFNKs},%
+first={Jacobian-Free Newton-Krylov\glsspace (JFNK)},%
+firstplural={Jacobian-Free Newton-Krylov\acrpluralsuffix \glsspace (JFNK\acrpluralsuffix )},%
 text={JFNK},%
-plural={JFNKs},%
+plural={JFNK\acrpluralsuffix },%
 description={Jacobian-Free Newton-Krylov},%
-descriptionplural={Jacobian-Free Newton-Krylov},%
+descriptionplural={Jacobian-Free Newton-Krylov\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1540,15 +1540,15 @@ parent={},%
 
 \glsdefs@newdocentry{KAERI}%
 {%
-name={\acronymfont {\glsentryshort {KAERI}}},%
+name={KAERI},%
 sort={KAERI},%
 type={acronym},%
-first={KAERI},%
-firstplural={KAERIs},%
+first={Korea Atomic Energy Research Institute\glsspace (KAERI)},%
+firstplural={Korea Atomic Energy Research Institute\acrpluralsuffix \glsspace (KAERI\acrpluralsuffix )},%
 text={KAERI},%
-plural={KAERIs},%
+plural={KAERI\acrpluralsuffix },%
 description={Korea Atomic Energy Research Institute},%
-descriptionplural={Korea Atomic Energy Research Institute},%
+descriptionplural={Korea Atomic Energy Research Institute\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1568,15 +1568,15 @@ parent={},%
 
 \glsdefs@newdocentry{Keff}%
 {%
-name={\acronymfont {\glsentryshort {Keff}}},%
+name={k$_{eff}$},%
 sort={k$_{eff}$},%
 type={acronym},%
-first={k$_{eff}$},%
-firstplural={k$_{eff}$s},%
+first={multiplication factor\glsspace (k$_{eff}$)},%
+firstplural={multiplication factor\acrpluralsuffix \glsspace (k$_{eff}$\acrpluralsuffix )},%
 text={k$_{eff}$},%
-plural={k$_{eff}$s},%
+plural={k$_{eff}$\acrpluralsuffix },%
 description={multiplication factor},%
-descriptionplural={multiplication factor},%
+descriptionplural={multiplication factor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1596,15 +1596,15 @@ parent={},%
 
 \glsdefs@newdocentry{KNN}%
 {%
-name={\acronymfont {\glsentryshort {KNN}}},%
+name={KNN},%
 sort={KNN},%
 type={acronym},%
-first={KNN},%
-firstplural={KNNs},%
+first={K-Nearest Neighbors\glsspace (KNN)},%
+firstplural={K-Nearest Neighbors\acrpluralsuffix \glsspace (KNN\acrpluralsuffix )},%
 text={KNN},%
-plural={KNNs},%
+plural={KNN\acrpluralsuffix },%
 description={K-Nearest Neighbors},%
-descriptionplural={K-Nearest Neighbors},%
+descriptionplural={K-Nearest Neighbors\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1624,15 +1624,15 @@ parent={},%
 
 \glsdefs@newdocentry{LANL}%
 {%
-name={\acronymfont {\glsentryshort {LANL}}},%
+name={LANL},%
 sort={LANL},%
 type={acronym},%
-first={LANL},%
-firstplural={LANLs},%
+first={Los Alamos National Laboratory\glsspace (LANL)},%
+firstplural={Los Alamos National Laboratory\acrpluralsuffix \glsspace (LANL\acrpluralsuffix )},%
 text={LANL},%
-plural={LANLs},%
+plural={LANL\acrpluralsuffix },%
 description={Los Alamos National Laboratory},%
-descriptionplural={Los Alamos National Laboratory},%
+descriptionplural={Los Alamos National Laboratory\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1652,15 +1652,15 @@ parent={},%
 
 \glsdefs@newdocentry{LBP}%
 {%
-name={\acronymfont {\glsentryshort {LBP}}},%
+name={LBP},%
 sort={LBP},%
 type={acronym},%
-first={LBP},%
-firstplural={LBPs},%
+first={Lumped Burnable Poison\glsspace (LBP)},%
+firstplural={Lumped Burnable Poison\acrpluralsuffix \glsspace (LBP\acrpluralsuffix )},%
 text={LBP},%
-plural={LBPs},%
+plural={LBP\acrpluralsuffix },%
 description={Lumped Burnable Poison},%
-descriptionplural={Lumped Burnable Poison},%
+descriptionplural={Lumped Burnable Poison\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1680,15 +1680,15 @@ parent={},%
 
 \glsdefs@newdocentry{LEU}%
 {%
-name={\acronymfont {\glsentryshort {LEU}}},%
+name={LEU},%
 sort={LEU},%
 type={acronym},%
-first={LEU},%
-firstplural={LEUs},%
+first={low-enriched uranium\glsspace (LEU)},%
+firstplural={low-enriched uranium\acrpluralsuffix \glsspace (LEU\acrpluralsuffix )},%
 text={LEU},%
-plural={LEUs},%
+plural={LEU\acrpluralsuffix },%
 description={low-enriched uranium},%
-descriptionplural={low-enriched uranium},%
+descriptionplural={low-enriched uranium\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1708,15 +1708,15 @@ parent={},%
 
 \glsdefs@newdocentry{HEU}%
 {%
-name={\acronymfont {\glsentryshort {HEU}}},%
+name={HEU},%
 sort={HEU},%
 type={acronym},%
-first={HEU},%
-firstplural={HEUs},%
+first={highly-enriched uranium\glsspace (HEU)},%
+firstplural={highly-enriched uranium\acrpluralsuffix \glsspace (HEU\acrpluralsuffix )},%
 text={HEU},%
-plural={HEUs},%
+plural={HEU\acrpluralsuffix },%
 description={highly-enriched uranium},%
-descriptionplural={highly-enriched uranium},%
+descriptionplural={highly-enriched uranium\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1736,15 +1736,15 @@ parent={},%
 
 \glsdefs@newdocentry{LGPL}%
 {%
-name={\acronymfont {\glsentryshort {LGPL}}},%
+name={LGPL},%
 sort={LGPL},%
 type={acronym},%
-first={LGPL},%
-firstplural={LGPLs},%
+first={Lesser GNU Public License\glsspace (LGPL)},%
+firstplural={Lesser GNU Public License\acrpluralsuffix \glsspace (LGPL\acrpluralsuffix )},%
 text={LGPL},%
-plural={LGPLs},%
+plural={LGPL\acrpluralsuffix },%
 description={Lesser GNU Public License},%
-descriptionplural={Lesser GNU Public License},%
+descriptionplural={Lesser GNU Public License\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1764,15 +1764,15 @@ parent={},%
 
 \glsdefs@newdocentry{LOCA}%
 {%
-name={\acronymfont {\glsentryshort {LOCA}}},%
+name={LOCA},%
 sort={LOCA},%
 type={acronym},%
-first={LOCA},%
-firstplural={LOCAs},%
+first={loss-of-coolant accident\glsspace (LOCA)},%
+firstplural={loss-of-coolant accident\acrpluralsuffix \glsspace (LOCA\acrpluralsuffix )},%
 text={LOCA},%
-plural={LOCAs},%
+plural={LOCA\acrpluralsuffix },%
 description={loss-of-coolant accident},%
-descriptionplural={loss-of-coolant accident},%
+descriptionplural={loss-of-coolant accident\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1792,15 +1792,15 @@ parent={},%
 
 \glsdefs@newdocentry{LOFW}%
 {%
-name={\acronymfont {\glsentryshort {LOFW}}},%
+name={LOFW},%
 sort={LOFW},%
 type={acronym},%
-first={LOFW},%
-firstplural={LOFWs},%
+first={loss-of-feedwater\glsspace (LOFW)},%
+firstplural={loss-of-feedwater\acrpluralsuffix \glsspace (LOFW\acrpluralsuffix )},%
 text={LOFW},%
-plural={LOFWs},%
+plural={LOFW\acrpluralsuffix },%
 description={loss-of-feedwater},%
-descriptionplural={loss-of-feedwater},%
+descriptionplural={loss-of-feedwater\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1820,15 +1820,15 @@ parent={},%
 
 \glsdefs@newdocentry{LOFA}%
 {%
-name={\acronymfont {\glsentryshort {LOFA}}},%
+name={LOFA},%
 sort={LOFA},%
 type={acronym},%
-first={LOFA},%
-firstplural={LOFAs},%
+first={loss-of-flow accident\glsspace (LOFA)},%
+firstplural={loss-of-flow accident\acrpluralsuffix \glsspace (LOFA\acrpluralsuffix )},%
 text={LOFA},%
-plural={LOFAs},%
+plural={LOFA\acrpluralsuffix },%
 description={loss-of-flow accident},%
-descriptionplural={loss-of-flow accident},%
+descriptionplural={loss-of-flow accident\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1848,15 +1848,15 @@ parent={},%
 
 \glsdefs@newdocentry{LogR}%
 {%
-name={\acronymfont {\glsentryshort {LogR}}},%
+name={LogR},%
 sort={LogR},%
 type={acronym},%
-first={LogR},%
-firstplural={LogRs},%
+first={Logistic Regression\glsspace (LogR)},%
+firstplural={Logistic Regression\acrpluralsuffix \glsspace (LogR\acrpluralsuffix )},%
 text={LogR},%
-plural={LogRs},%
+plural={LogR\acrpluralsuffix },%
 description={Logistic Regression},%
-descriptionplural={Logistic Regression},%
+descriptionplural={Logistic Regression\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1876,15 +1876,15 @@ parent={},%
 
 \glsdefs@newdocentry{LPCC}%
 {%
-name={\acronymfont {\glsentryshort {LPCC}}},%
+name={LPCC},%
 sort={LPCC},%
 type={acronym},%
-first={LPCC},%
-firstplural={LPCCs},%
+first={low-pressure conduction cool-down\glsspace (LPCC)},%
+firstplural={low-pressure conduction cool-down\acrpluralsuffix \glsspace (LPCC\acrpluralsuffix )},%
 text={LPCC},%
-plural={LPCCs},%
+plural={LPCC\acrpluralsuffix },%
 description={low-pressure conduction cool-down},%
-descriptionplural={low-pressure conduction cool-down},%
+descriptionplural={low-pressure conduction cool-down\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1904,15 +1904,15 @@ parent={},%
 
 \glsdefs@newdocentry{LR}%
 {%
-name={\acronymfont {\glsentryshort {LR}}},%
+name={LR},%
 sort={LR},%
 type={acronym},%
-first={LR},%
-firstplural={LRs},%
+first={Linear Regression\glsspace (LR)},%
+firstplural={Linear Regression\acrpluralsuffix \glsspace (LR\acrpluralsuffix )},%
 text={LR},%
-plural={LRs},%
+plural={LR\acrpluralsuffix },%
 description={Linear Regression},%
-descriptionplural={Linear Regression},%
+descriptionplural={Linear Regression\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1932,15 +1932,15 @@ parent={},%
 
 \glsdefs@newdocentry{LSTM}%
 {%
-name={\acronymfont {\glsentryshort {LSTM}}},%
+name={LSTM},%
 sort={LSTM},%
 type={acronym},%
-first={LSTM},%
-firstplural={LSTMs},%
+first={Long Short-Term Memory Network\glsspace (LSTM)},%
+firstplural={Long Short-Term Memory Network\acrpluralsuffix \glsspace (LSTM\acrpluralsuffix )},%
 text={LSTM},%
-plural={LSTMs},%
+plural={LSTM\acrpluralsuffix },%
 description={Long Short-Term Memory Network},%
-descriptionplural={Long Short-Term Memory Network},%
+descriptionplural={Long Short-Term Memory Network\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1960,15 +1960,15 @@ parent={},%
 
 \glsdefs@newdocentry{LTE}%
 {%
-name={\acronymfont {\glsentryshort {LTE}}},%
+name={LTE},%
 sort={LTE},%
 type={acronym},%
-first={LTE},%
-firstplural={LTEs},%
+first={Low-Temperature Electrolysis\glsspace (LTE)},%
+firstplural={Low-Temperature Electrolysis\acrpluralsuffix \glsspace (LTE\acrpluralsuffix )},%
 text={LTE},%
-plural={LTEs},%
+plural={LTE\acrpluralsuffix },%
 description={Low-Temperature Electrolysis},%
-descriptionplural={Low-Temperature Electrolysis},%
+descriptionplural={Low-Temperature Electrolysis\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -1988,15 +1988,15 @@ parent={},%
 
 \glsdefs@newdocentry{LWR}%
 {%
-name={\acronymfont {\glsentryshort {LWR}}},%
+name={LWR},%
 sort={LWR},%
 type={acronym},%
-first={LWR},%
-firstplural={LWRs},%
+first={Light Water Reactor\glsspace (LWR)},%
+firstplural={Light Water Reactor\acrpluralsuffix \glsspace (LWR\acrpluralsuffix )},%
 text={LWR},%
-plural={LWRs},%
+plural={LWR\acrpluralsuffix },%
 description={Light Water Reactor},%
-descriptionplural={Light Water Reactor},%
+descriptionplural={Light Water Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2016,15 +2016,15 @@ parent={},%
 
 \glsdefs@newdocentry{MOAA}%
 {%
-name={\acronymfont {\glsentryshort {MOAA}}},%
+name={MOAA},%
 sort={MOAA},%
 type={acronym},%
-first={MOAA},%
-firstplural={MOAAs},%
+first={MCNP-ORIGEN Activation Automation\glsspace (MOAA)},%
+firstplural={MCNP-ORIGEN Activation Automation\acrpluralsuffix \glsspace (MOAA\acrpluralsuffix )},%
 text={MOAA},%
-plural={MOAAs},%
+plural={MOAA\acrpluralsuffix },%
 description={MCNP-ORIGEN Activation Automation},%
-descriptionplural={MCNP-ORIGEN Activation Automation},%
+descriptionplural={MCNP-ORIGEN Activation Automation\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2044,15 +2044,15 @@ parent={},%
 
 \glsdefs@newdocentry{MC}%
 {%
-name={\acronymfont {\glsentryshort {MC}}},%
+name={MC},%
 sort={MC},%
 type={acronym},%
-first={MC},%
-firstplural={MCs},%
+first={Monte Carlo\glsspace (MC)},%
+firstplural={Monte Carlo\acrpluralsuffix \glsspace (MC\acrpluralsuffix )},%
 text={MC},%
-plural={MCs},%
+plural={MC\acrpluralsuffix },%
 description={Monte Carlo},%
-descriptionplural={Monte Carlo},%
+descriptionplural={Monte Carlo\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2072,15 +2072,15 @@ parent={},%
 
 \glsdefs@newdocentry{MHTGR}%
 {%
-name={\acronymfont {\glsentryshort {MHTGR}}},%
+name={MHTGR},%
 sort={MHTGR},%
 type={acronym},%
-first={MHTGR},%
-firstplural={MHTGRs},%
+first={Modular High-Temperature Gas-Cooled Reactor\glsspace (MHTGR)},%
+firstplural={Modular High-Temperature Gas-Cooled Reactor\acrpluralsuffix \glsspace (MHTGR\acrpluralsuffix )},%
 text={MHTGR},%
-plural={MHTGRs},%
+plural={MHTGR\acrpluralsuffix },%
 description={Modular High-Temperature Gas-Cooled Reactor},%
-descriptionplural={Modular High-Temperature Gas-Cooled Reactor},%
+descriptionplural={Modular High-Temperature Gas-Cooled Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2100,15 +2100,15 @@ parent={},%
 
 \glsdefs@newdocentry{ML}%
 {%
-name={\acronymfont {\glsentryshort {ML}}},%
+name={ML},%
 sort={ML},%
 type={acronym},%
-first={ML},%
-firstplural={MLs},%
+first={machine learning\glsspace (ML)},%
+firstplural={machine learning\acrpluralsuffix \glsspace (ML\acrpluralsuffix )},%
 text={ML},%
-plural={MLs},%
+plural={ML\acrpluralsuffix },%
 description={machine learning},%
-descriptionplural={machine learning},%
+descriptionplural={machine learning\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2128,15 +2128,15 @@ parent={},%
 
 \glsdefs@newdocentry{MMR}%
 {%
-name={\acronymfont {\glsentryshort {MMR}}},%
+name={MMR},%
 sort={MMR},%
 type={acronym},%
-first={MMR},%
-firstplural={MMRs},%
+first={Micro Modular Reactor\glsspace (MMR)},%
+firstplural={Micro Modular Reactor\acrpluralsuffix \glsspace (MMR\acrpluralsuffix )},%
 text={MMR},%
-plural={MMRs},%
+plural={MMR\acrpluralsuffix },%
 description={Micro Modular Reactor},%
-descriptionplural={Micro Modular Reactor},%
+descriptionplural={Micro Modular Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2156,15 +2156,15 @@ parent={},%
 
 \glsdefs@newdocentry{MOC}%
 {%
-name={\acronymfont {\glsentryshort {MOC}}},%
+name={MOC},%
 sort={MOC},%
 type={acronym},%
-first={MOC},%
-firstplural={MOCs},%
+first={middle of the equilibrium cycle\glsspace (MOC)},%
+firstplural={middle of the equilibrium cycle\acrpluralsuffix \glsspace (MOC\acrpluralsuffix )},%
 text={MOC},%
-plural={MOCs},%
+plural={MOC\acrpluralsuffix },%
 description={middle of the equilibrium cycle},%
-descriptionplural={middle of the equilibrium cycle},%
+descriptionplural={middle of the equilibrium cycle\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2184,15 +2184,15 @@ parent={},%
 
 \glsdefs@newdocentry{MOX}%
 {%
-name={\acronymfont {\glsentryshort {MOX}}},%
+name={MOX},%
 sort={MOX},%
 type={acronym},%
-first={MOX},%
-firstplural={MOXs},%
+first={Mixed-Oxide\glsspace (MOX)},%
+firstplural={Mixed-Oxide\acrpluralsuffix \glsspace (MOX\acrpluralsuffix )},%
 text={MOX},%
-plural={MOXs},%
+plural={MOX\acrpluralsuffix },%
 description={Mixed-Oxide},%
-descriptionplural={Mixed-Oxide},%
+descriptionplural={Mixed-Oxide\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2212,15 +2212,15 @@ parent={},%
 
 \glsdefs@newdocentry{MOOSE}%
 {%
-name={\acronymfont {\glsentryshort {MOOSE}}},%
+name={MOOSE},%
 sort={MOOSE},%
 type={acronym},%
-first={MOOSE},%
-firstplural={MOOSEs},%
+first={Multi-physics Object-Oriented Simulation Environment\glsspace (MOOSE)},%
+firstplural={Multi-physics Object-Oriented Simulation Environment\acrpluralsuffix \glsspace (MOOSE\acrpluralsuffix )},%
 text={MOOSE},%
-plural={MOOSEs},%
+plural={MOOSE\acrpluralsuffix },%
 description={Multi-physics Object-Oriented Simulation Environment},%
-descriptionplural={Multi-physics Object-Oriented Simulation Environment},%
+descriptionplural={Multi-physics Object-Oriented Simulation Environment\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2240,15 +2240,15 @@ parent={},%
 
 \glsdefs@newdocentry{MPI}%
 {%
-name={\acronymfont {\glsentryshort {MPI}}},%
+name={MPI},%
 sort={MPI},%
 type={acronym},%
-first={MPI},%
-firstplural={MPIs},%
+first={Message Passing Interface\glsspace (MPI)},%
+firstplural={Message Passing Interface\acrpluralsuffix \glsspace (MPI\acrpluralsuffix )},%
 text={MPI},%
-plural={MPIs},%
+plural={MPI\acrpluralsuffix },%
 description={Message Passing Interface},%
-descriptionplural={Message Passing Interface},%
+descriptionplural={Message Passing Interface\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2268,15 +2268,15 @@ parent={},%
 
 \glsdefs@newdocentry{MAE}%
 {%
-name={\acronymfont {\glsentryshort {MAE}}},%
+name={MAE},%
 sort={MAE},%
 type={acronym},%
-first={MAE},%
-firstplural={MAEs},%
+first={Mean Absolute Error\glsspace (MAE)},%
+firstplural={Mean Absolute Error\acrpluralsuffix \glsspace (MAE\acrpluralsuffix )},%
 text={MAE},%
-plural={MAEs},%
+plural={MAE\acrpluralsuffix },%
 description={Mean Absolute Error},%
-descriptionplural={Mean Absolute Error},%
+descriptionplural={Mean Absolute Error\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2296,15 +2296,15 @@ parent={},%
 
 \glsdefs@newdocentry{MSE}%
 {%
-name={\acronymfont {\glsentryshort {MSE}}},%
+name={MSE},%
 sort={MSE},%
 type={acronym},%
-first={MSE},%
-firstplural={MSEs},%
+first={Mean Squared Error\glsspace (MSE)},%
+firstplural={Mean Squared Error\acrpluralsuffix \glsspace (MSE\acrpluralsuffix )},%
 text={MSE},%
-plural={MSEs},%
+plural={MSE\acrpluralsuffix },%
 description={Mean Squared Error},%
-descriptionplural={Mean Squared Error},%
+descriptionplural={Mean Squared Error\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2324,15 +2324,15 @@ parent={},%
 
 \glsdefs@newdocentry{MSR}%
 {%
-name={\acronymfont {\glsentryshort {MSR}}},%
+name={MSR},%
 sort={MSR},%
 type={acronym},%
-first={MSR},%
-firstplural={MSRs},%
+first={Molten Salt Reactor\glsspace (MSR)},%
+firstplural={Molten Salt Reactor\acrpluralsuffix \glsspace (MSR\acrpluralsuffix )},%
 text={MSR},%
-plural={MSRs},%
+plural={MSR\acrpluralsuffix },%
 description={Molten Salt Reactor},%
-descriptionplural={Molten Salt Reactor},%
+descriptionplural={Molten Salt Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2352,15 +2352,15 @@ parent={},%
 
 \glsdefs@newdocentry{MSRE}%
 {%
-name={\acronymfont {\glsentryshort {MSRE}}},%
+name={MSRE},%
 sort={MSRE},%
 type={acronym},%
-first={MSRE},%
-firstplural={MSREs},%
+first={Molten Salt Reactor Experiment\glsspace (MSRE)},%
+firstplural={Molten Salt Reactor Experiment\acrpluralsuffix \glsspace (MSRE\acrpluralsuffix )},%
 text={MSRE},%
-plural={MSREs},%
+plural={MSRE\acrpluralsuffix },%
 description={Molten Salt Reactor Experiment},%
-descriptionplural={Molten Salt Reactor Experiment},%
+descriptionplural={Molten Salt Reactor Experiment\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2380,15 +2380,15 @@ parent={},%
 
 \glsdefs@newdocentry{MTR}%
 {%
-name={\acronymfont {\glsentryshort {MTR}}},%
+name={MTR},%
 sort={MTR},%
 type={acronym},%
-first={MTR},%
-firstplural={MTRs},%
+first={material-testing reactor\glsspace (MTR)},%
+firstplural={material-testing reactor\acrpluralsuffix \glsspace (MTR\acrpluralsuffix )},%
 text={MTR},%
-plural={MTRs},%
+plural={MTR\acrpluralsuffix },%
 description={material-testing reactor},%
-descriptionplural={material-testing reactor},%
+descriptionplural={material-testing reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2408,15 +2408,15 @@ parent={},%
 
 \glsdefs@newdocentry{ND}%
 {%
-name={\acronymfont {\glsentryshort {ND}}},%
+name={ND},%
 sort={ND},%
 type={acronym},%
-first={ND},%
-firstplural={NDs},%
+first={net demand\glsspace (ND)},%
+firstplural={net demand\acrpluralsuffix \glsspace (ND\acrpluralsuffix )},%
 text={ND},%
-plural={NDs},%
+plural={ND\acrpluralsuffix },%
 description={net demand},%
-descriptionplural={net demand},%
+descriptionplural={net demand\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2436,15 +2436,15 @@ parent={},%
 
 \glsdefs@newdocentry{NEA}%
 {%
-name={\acronymfont {\glsentryshort {NEA}}},%
+name={NEA},%
 sort={NEA},%
 type={acronym},%
-first={NEA},%
-firstplural={NEAs},%
+first={Nuclear Energy Agency\glsspace (NEA)},%
+firstplural={Nuclear Energy Agency\acrpluralsuffix \glsspace (NEA\acrpluralsuffix )},%
 text={NEA},%
-plural={NEAs},%
+plural={NEA\acrpluralsuffix },%
 description={Nuclear Energy Agency},%
-descriptionplural={Nuclear Energy Agency},%
+descriptionplural={Nuclear Energy Agency\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2464,15 +2464,15 @@ parent={},%
 
 \glsdefs@newdocentry{NEM}%
 {%
-name={\acronymfont {\glsentryshort {NEM}}},%
+name={NEM},%
 sort={NEM},%
 type={acronym},%
-first={NEM},%
-firstplural={NEMs},%
+first={Nodal Expansion Method\glsspace (NEM)},%
+firstplural={Nodal Expansion Method\acrpluralsuffix \glsspace (NEM\acrpluralsuffix )},%
 text={NEM},%
-plural={NEMs},%
+plural={NEM\acrpluralsuffix },%
 description={Nodal Expansion Method},%
-descriptionplural={Nodal Expansion Method},%
+descriptionplural={Nodal Expansion Method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2492,15 +2492,15 @@ parent={},%
 
 \glsdefs@newdocentry{NGNP}%
 {%
-name={\acronymfont {\glsentryshort {NGNP}}},%
+name={NGNP},%
 sort={NGNP},%
 type={acronym},%
-first={NGNP},%
-firstplural={NGNPs},%
+first={Next Generation Nuclear Power\glsspace (NGNP)},%
+firstplural={Next Generation Nuclear Power\acrpluralsuffix \glsspace (NGNP\acrpluralsuffix )},%
 text={NGNP},%
-plural={NGNPs},%
+plural={NGNP\acrpluralsuffix },%
 description={Next Generation Nuclear Power},%
-descriptionplural={Next Generation Nuclear Power},%
+descriptionplural={Next Generation Nuclear Power\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2520,15 +2520,15 @@ parent={},%
 
 \glsdefs@newdocentry{NPP}%
 {%
-name={\acronymfont {\glsentryshort {NPP}}},%
+name={NPP},%
 sort={NPP},%
 type={acronym},%
-first={NPP},%
-firstplural={NPPs},%
+first={Nuclear Power Plant\glsspace (NPP)},%
+firstplural={Nuclear Power Plant\acrpluralsuffix \glsspace (NPP\acrpluralsuffix )},%
 text={NPP},%
-plural={NPPs},%
+plural={NPP\acrpluralsuffix },%
 description={Nuclear Power Plant},%
-descriptionplural={Nuclear Power Plant},%
+descriptionplural={Nuclear Power Plant\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2548,15 +2548,15 @@ parent={},%
 
 \glsdefs@newdocentry{NRC}%
 {%
-name={\acronymfont {\glsentryshort {NRC}}},%
+name={NRC},%
 sort={NRC},%
 type={acronym},%
-first={NRC},%
-firstplural={NRCs},%
+first={Nuclear Regulatory Commission\glsspace (NRC)},%
+firstplural={Nuclear Regulatory Commission\acrpluralsuffix \glsspace (NRC\acrpluralsuffix )},%
 text={NRC},%
-plural={NRCs},%
+plural={NRC\acrpluralsuffix },%
 description={Nuclear Regulatory Commission},%
-descriptionplural={Nuclear Regulatory Commission},%
+descriptionplural={Nuclear Regulatory Commission\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2576,15 +2576,15 @@ parent={},%
 
 \glsdefs@newdocentry{NSC}%
 {%
-name={\acronymfont {\glsentryshort {NSC}}},%
+name={NSC},%
 sort={NSC},%
 type={acronym},%
-first={NSC},%
-firstplural={NSCs},%
+first={Nuclear Science Committee\glsspace (NSC)},%
+firstplural={Nuclear Science Committee\acrpluralsuffix \glsspace (NSC\acrpluralsuffix )},%
 text={NSC},%
-plural={NSCs},%
+plural={NSC\acrpluralsuffix },%
 description={Nuclear Science Committee},%
-descriptionplural={Nuclear Science Committee},%
+descriptionplural={Nuclear Science Committee\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2604,15 +2604,15 @@ parent={},%
 
 \glsdefs@newdocentry{NSUF}%
 {%
-name={\acronymfont {\glsentryshort {NSUF}}},%
+name={NSUF},%
 sort={NSUF},%
 type={acronym},%
-first={NSUF},%
-firstplural={NSUFs},%
+first={Nuclear Science User Facility\glsspace (NSUF)},%
+firstplural={Nuclear Science User Facility\acrpluralsuffix \glsspace (NSUF\acrpluralsuffix )},%
 text={NSUF},%
-plural={NSUFs},%
+plural={NSUF\acrpluralsuffix },%
 description={Nuclear Science User Facility},%
-descriptionplural={Nuclear Science User Facility},%
+descriptionplural={Nuclear Science User Facility\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2632,15 +2632,15 @@ parent={},%
 
 \glsdefs@newdocentry{OECD}%
 {%
-name={\acronymfont {\glsentryshort {OECD}}},%
+name={OECD},%
 sort={OECD},%
 type={acronym},%
-first={OECD},%
-firstplural={OECDs},%
+first={Organisation for Economic Co-operation and Development\glsspace (OECD)},%
+firstplural={Organisation for Economic Co-operation and Development\acrpluralsuffix \glsspace (OECD\acrpluralsuffix )},%
 text={OECD},%
-plural={OECDs},%
+plural={OECD\acrpluralsuffix },%
 description={Organisation for Economic Co-operation and Development},%
-descriptionplural={Organisation for Economic Co-operation and Development},%
+descriptionplural={Organisation for Economic Co-operation and Development\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2660,15 +2660,15 @@ parent={},%
 
 \glsdefs@newdocentry{OPyC}%
 {%
-name={\acronymfont {\glsentryshort {OPyC}}},%
+name={OPyC},%
 sort={OPyC},%
 type={acronym},%
-first={OPyC},%
-firstplural={OPyCs},%
+first={outer pyrolytic carbon\glsspace (OPyC)},%
+firstplural={outer pyrolytic carbon\acrpluralsuffix \glsspace (OPyC\acrpluralsuffix )},%
 text={OPyC},%
-plural={OPyCs},%
+plural={OPyC\acrpluralsuffix },%
 description={outer pyrolytic carbon},%
-descriptionplural={outer pyrolytic carbon},%
+descriptionplural={outer pyrolytic carbon\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2688,15 +2688,15 @@ parent={},%
 
 \glsdefs@newdocentry{ORNL}%
 {%
-name={\acronymfont {\glsentryshort {ORNL}}},%
+name={ORNL},%
 sort={ORNL},%
 type={acronym},%
-first={ORNL},%
-firstplural={ORNLs},%
+first={Oak Ridge National Laboratory\glsspace (ORNL)},%
+firstplural={Oak Ridge National Laboratory\acrpluralsuffix \glsspace (ORNL\acrpluralsuffix )},%
 text={ORNL},%
-plural={ORNLs},%
+plural={ORNL\acrpluralsuffix },%
 description={Oak Ridge National Laboratory},%
-descriptionplural={Oak Ridge National Laboratory},%
+descriptionplural={Oak Ridge National Laboratory\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2716,15 +2716,15 @@ parent={},%
 
 \glsdefs@newdocentry{OS}%
 {%
-name={\acronymfont {\glsentryshort {OS}}},%
+name={OS},%
 sort={OS},%
 type={acronym},%
-first={OS},%
-firstplural={OSs},%
+first={Operator-Splitting\glsspace (OS)},%
+firstplural={Operator-Splitting\acrpluralsuffix \glsspace (OS\acrpluralsuffix )},%
 text={OS},%
-plural={OSs},%
+plural={OS\acrpluralsuffix },%
 description={Operator-Splitting},%
-descriptionplural={Operator-Splitting},%
+descriptionplural={Operator-Splitting\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2744,15 +2744,15 @@ parent={},%
 
 \glsdefs@newdocentry{PBMR}%
 {%
-name={\acronymfont {\glsentryshort {PBMR}}},%
+name={PBMR},%
 sort={PBMR},%
 type={acronym},%
-first={PBMR},%
-firstplural={PBMRs},%
+first={Pebble Bed Modular Reactor\glsspace (PBMR)},%
+firstplural={Pebble Bed Modular Reactor\acrpluralsuffix \glsspace (PBMR\acrpluralsuffix )},%
 text={PBMR},%
-plural={PBMRs},%
+plural={PBMR\acrpluralsuffix },%
 description={Pebble Bed Modular Reactor},%
-descriptionplural={Pebble Bed Modular Reactor},%
+descriptionplural={Pebble Bed Modular Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2772,15 +2772,15 @@ parent={},%
 
 \glsdefs@newdocentry{PDE}%
 {%
-name={\acronymfont {\glsentryshort {PDE}}},%
+name={PDE},%
 sort={PDE},%
 type={acronym},%
-first={PDE},%
-firstplural={PDEs},%
+first={Partial Differential Equation\glsspace (PDE)},%
+firstplural={Partial Differential Equation\acrpluralsuffix \glsspace (PDE\acrpluralsuffix )},%
 text={PDE},%
-plural={PDEs},%
+plural={PDE\acrpluralsuffix },%
 description={Partial Differential Equation},%
-descriptionplural={Partial Differential Equation},%
+descriptionplural={Partial Differential Equation\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2800,15 +2800,15 @@ parent={},%
 
 \glsdefs@newdocentry{PIE}%
 {%
-name={\acronymfont {\glsentryshort {PIE}}},%
+name={PIE},%
 sort={PIE},%
 type={acronym},%
-first={PIE},%
-firstplural={PIEs},%
+first={post-irradiation examination\glsspace (PIE)},%
+firstplural={post-irradiation examination\acrpluralsuffix \glsspace (PIE\acrpluralsuffix )},%
 text={PIE},%
-plural={PIEs},%
+plural={PIE\acrpluralsuffix },%
 description={post-irradiation examination},%
-descriptionplural={post-irradiation examination},%
+descriptionplural={post-irradiation examination\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2828,15 +2828,15 @@ parent={},%
 
 \glsdefs@newdocentry{PMR}%
 {%
-name={\acronymfont {\glsentryshort {PMR}}},%
+name={PMR},%
 sort={PMR},%
 type={acronym},%
-first={PMR},%
-firstplural={PMRs},%
+first={Prismatic Modular Reactor\glsspace (PMR)},%
+firstplural={Prismatic Modular Reactor\acrpluralsuffix \glsspace (PMR\acrpluralsuffix )},%
 text={PMR},%
-plural={PMRs},%
+plural={PMR\acrpluralsuffix },%
 description={Prismatic Modular Reactor},%
-descriptionplural={Prismatic Modular Reactor},%
+descriptionplural={Prismatic Modular Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2856,15 +2856,15 @@ parent={},%
 
 \glsdefs@newdocentry{PV}%
 {%
-name={\acronymfont {\glsentryshort {PV}}},%
+name={PV},%
 sort={PV},%
 type={acronym},%
-first={PV},%
-firstplural={PVs},%
+first={photovoltaics\glsspace (PV)},%
+firstplural={photovoltaics\acrpluralsuffix \glsspace (PV\acrpluralsuffix )},%
 text={PV},%
-plural={PVs},%
+plural={PV\acrpluralsuffix },%
 description={photovoltaics},%
-descriptionplural={photovoltaics},%
+descriptionplural={photovoltaics\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2884,15 +2884,15 @@ parent={},%
 
 \glsdefs@newdocentry{PWR}%
 {%
-name={\acronymfont {\glsentryshort {PWR}}},%
+name={PWR},%
 sort={PWR},%
 type={acronym},%
-first={PWR},%
-firstplural={PWRs},%
+first={Pressurized Water Reactor\glsspace (PWR)},%
+firstplural={Pressurized Water Reactor\acrpluralsuffix \glsspace (PWR\acrpluralsuffix )},%
 text={PWR},%
-plural={PWRs},%
+plural={PWR\acrpluralsuffix },%
 description={Pressurized Water Reactor},%
-descriptionplural={Pressurized Water Reactor},%
+descriptionplural={Pressurized Water Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2912,15 +2912,15 @@ parent={},%
 
 \glsdefs@newdocentry{RF}%
 {%
-name={\acronymfont {\glsentryshort {RF}}},%
+name={RF},%
 sort={RF},%
 type={acronym},%
-first={RF},%
-firstplural={RFs},%
+first={Random Forest\glsspace (RF)},%
+firstplural={Random Forest\acrpluralsuffix \glsspace (RF\acrpluralsuffix )},%
 text={RF},%
-plural={RFs},%
+plural={RF\acrpluralsuffix },%
 description={Random Forest},%
-descriptionplural={Random Forest},%
+descriptionplural={Random Forest\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2940,15 +2940,15 @@ parent={},%
 
 \glsdefs@newdocentry{RFR}%
 {%
-name={\acronymfont {\glsentryshort {RFR}}},%
+name={RFR},%
 sort={RFR},%
 type={acronym},%
-first={RFR},%
-firstplural={RFRs},%
+first={Random Forest Regression\glsspace (RFR)},%
+firstplural={Random Forest Regression\acrpluralsuffix \glsspace (RFR\acrpluralsuffix )},%
 text={RFR},%
-plural={RFRs},%
+plural={RFR\acrpluralsuffix },%
 description={Random Forest Regression},%
-descriptionplural={Random Forest Regression},%
+descriptionplural={Random Forest Regression\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2968,15 +2968,15 @@ parent={},%
 
 \glsdefs@newdocentry{RNN}%
 {%
-name={\acronymfont {\glsentryshort {RNN}}},%
+name={RNN},%
 sort={RNN},%
 type={acronym},%
-first={RNN},%
-firstplural={RNNs},%
+first={Recurrent Neural Network\glsspace (RNN)},%
+firstplural={Recurrent Neural Network\acrpluralsuffix \glsspace (RNN\acrpluralsuffix )},%
 text={RNN},%
-plural={RNNs},%
+plural={RNN\acrpluralsuffix },%
 description={Recurrent Neural Network},%
-descriptionplural={Recurrent Neural Network},%
+descriptionplural={Recurrent Neural Network\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -2996,15 +2996,15 @@ parent={},%
 
 \glsdefs@newdocentry{RPV}%
 {%
-name={\acronymfont {\glsentryshort {RPV}}},%
+name={RPV},%
 sort={RPV},%
 type={acronym},%
-first={RPV},%
-firstplural={RPVs},%
+first={Reactor Pressure Vessel\glsspace (RPV)},%
+firstplural={Reactor Pressure Vessel\acrpluralsuffix \glsspace (RPV\acrpluralsuffix )},%
 text={RPV},%
-plural={RPVs},%
+plural={RPV\acrpluralsuffix },%
 description={Reactor Pressure Vessel},%
-descriptionplural={Reactor Pressure Vessel},%
+descriptionplural={Reactor Pressure Vessel\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3024,15 +3024,15 @@ parent={},%
 
 \glsdefs@newdocentry{RSC}%
 {%
-name={\acronymfont {\glsentryshort {RSC}}},%
+name={RSC},%
 sort={RSC},%
 type={acronym},%
-first={RSC},%
-firstplural={RSCs},%
+first={Reserve Shutdown Control\glsspace (RSC)},%
+firstplural={Reserve Shutdown Control\acrpluralsuffix \glsspace (RSC\acrpluralsuffix )},%
 text={RSC},%
-plural={RSCs},%
+plural={RSC\acrpluralsuffix },%
 description={Reserve Shutdown Control},%
-descriptionplural={Reserve Shutdown Control},%
+descriptionplural={Reserve Shutdown Control\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3052,15 +3052,15 @@ parent={},%
 
 \glsdefs@newdocentry{RSD}%
 {%
-name={\acronymfont {\glsentryshort {RSD}}},%
+name={RSD},%
 sort={RSD},%
 type={acronym},%
-first={RSD},%
-firstplural={RSDs},%
+first={Relative Standard Deviation\glsspace (RSD)},%
+firstplural={Relative Standard Deviation\acrpluralsuffix \glsspace (RSD\acrpluralsuffix )},%
 text={RSD},%
-plural={RSDs},%
+plural={RSD\acrpluralsuffix },%
 description={Relative Standard Deviation},%
-descriptionplural={Relative Standard Deviation},%
+descriptionplural={Relative Standard Deviation\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3080,15 +3080,15 @@ parent={},%
 
 \glsdefs@newdocentry{R2S}%
 {%
-name={\acronymfont {\glsentryshort {R2S}}},%
+name={R2S},%
 sort={R2S},%
 type={acronym},%
-first={R2S},%
-firstplural={R2Ss},%
+first={Rigorous 2-Step\glsspace (R2S)},%
+firstplural={Rigorous 2-Step\acrpluralsuffix \glsspace (R2S\acrpluralsuffix )},%
 text={R2S},%
-plural={R2Ss},%
+plural={R2S\acrpluralsuffix },%
 description={Rigorous 2-Step},%
-descriptionplural={Rigorous 2-Step},%
+descriptionplural={Rigorous 2-Step\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3108,15 +3108,15 @@ parent={},%
 
 \glsdefs@newdocentry{SD}%
 {%
-name={\acronymfont {\glsentryshort {SD}}},%
+name={SD},%
 sort={SD},%
 type={acronym},%
-first={SD},%
-firstplural={SDs},%
+first={Standard Deviation\glsspace (SD)},%
+firstplural={Standard Deviation\acrpluralsuffix \glsspace (SD\acrpluralsuffix )},%
 text={SD},%
-plural={SDs},%
+plural={SD\acrpluralsuffix },%
 description={Standard Deviation},%
-descriptionplural={Standard Deviation},%
+descriptionplural={Standard Deviation\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3136,15 +3136,15 @@ parent={},%
 
 \glsdefs@newdocentry{SI}%
 {%
-name={\acronymfont {\glsentryshort {SI}}},%
+name={SI},%
 sort={SI},%
 type={acronym},%
-first={SI},%
-firstplural={SIs},%
+first={Sulfur-Iodine\glsspace (SI)},%
+firstplural={Sulfur-Iodine\acrpluralsuffix \glsspace (SI\acrpluralsuffix )},%
 text={SI},%
-plural={SIs},%
+plural={SI\acrpluralsuffix },%
 description={Sulfur-Iodine},%
-descriptionplural={Sulfur-Iodine},%
+descriptionplural={Sulfur-Iodine\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3164,15 +3164,15 @@ parent={},%
 
 \glsdefs@newdocentry{SiC}%
 {%
-name={\acronymfont {\glsentryshort {SiC}}},%
+name={SiC},%
 sort={SiC},%
 type={acronym},%
-first={SiC},%
-firstplural={SiCs},%
+first={silicon carbide\glsspace (SiC)},%
+firstplural={silicon carbide\acrpluralsuffix \glsspace (SiC\acrpluralsuffix )},%
 text={SiC},%
-plural={SiCs},%
+plural={SiC\acrpluralsuffix },%
 description={silicon carbide},%
-descriptionplural={silicon carbide},%
+descriptionplural={silicon carbide\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3192,15 +3192,15 @@ parent={},%
 
 \glsdefs@newdocentry{SMR}%
 {%
-name={\acronymfont {\glsentryshort {SMR}}},%
+name={SMR},%
 sort={SMR},%
 type={acronym},%
-first={SMR},%
-firstplural={SMRs},%
+first={Small Modular Reactor\glsspace (SMR)},%
+firstplural={Small Modular Reactor\acrpluralsuffix \glsspace (SMR\acrpluralsuffix )},%
 text={SMR},%
-plural={SMRs},%
+plural={SMR\acrpluralsuffix },%
 description={Small Modular Reactor},%
-descriptionplural={Small Modular Reactor},%
+descriptionplural={Small Modular Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3220,15 +3220,15 @@ parent={},%
 
 \glsdefs@newdocentry{SNU}%
 {%
-name={\acronymfont {\glsentryshort {SNU}}},%
+name={SNU},%
 sort={SNU},%
 type={acronym},%
-first={SNU},%
-firstplural={SNUs},%
+first={Seoul National University\glsspace (SNU)},%
+firstplural={Seoul National University\acrpluralsuffix \glsspace (SNU\acrpluralsuffix )},%
 text={SNU},%
-plural={SNUs},%
+plural={SNU\acrpluralsuffix },%
 description={Seoul National University},%
-descriptionplural={Seoul National University},%
+descriptionplural={Seoul National University\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3248,15 +3248,15 @@ parent={},%
 
 \glsdefs@newdocentry{SOEC}%
 {%
-name={\acronymfont {\glsentryshort {SOEC}}},%
+name={SOEC},%
 sort={SOEC},%
 type={acronym},%
-first={SOEC},%
-firstplural={SOECs},%
+first={Solid Oxide Electrolysis Cells\glsspace (SOEC)},%
+firstplural={Solid Oxide Electrolysis Cells\acrpluralsuffix \glsspace (SOEC\acrpluralsuffix )},%
 text={SOEC},%
-plural={SOECs},%
+plural={SOEC\acrpluralsuffix },%
 description={Solid Oxide Electrolysis Cells},%
-descriptionplural={Solid Oxide Electrolysis Cells},%
+descriptionplural={Solid Oxide Electrolysis Cells\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3276,15 +3276,15 @@ parent={},%
 
 \glsdefs@newdocentry{SP3}%
 {%
-name={\acronymfont {\glsentryshort {SP3}}},%
+name={SP$_3$},%
 sort={SP$_3$},%
 type={acronym},%
-first={SP$_3$},%
-firstplural={SP$_3$s},%
+first={Simplified P$_3$\glsspace (SP$_3$)},%
+firstplural={Simplified P$_3$\acrpluralsuffix \glsspace (SP$_3$\acrpluralsuffix )},%
 text={SP$_3$},%
-plural={SP$_3$s},%
+plural={SP$_3$\acrpluralsuffix },%
 description={Simplified P$_3$},%
-descriptionplural={Simplified P$_3$},%
+descriptionplural={Simplified P$_3$\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3304,15 +3304,15 @@ parent={},%
 
 \glsdefs@newdocentry{SVM}%
 {%
-name={\acronymfont {\glsentryshort {SVM}}},%
+name={SVM},%
 sort={SVM},%
 type={acronym},%
-first={SVM},%
-firstplural={SVMs},%
+first={Support Vector Machine\glsspace (SVM)},%
+firstplural={Support Vector Machine\acrpluralsuffix \glsspace (SVM\acrpluralsuffix )},%
 text={SVM},%
-plural={SVMs},%
+plural={SVM\acrpluralsuffix },%
 description={Support Vector Machine},%
-descriptionplural={Support Vector Machine},%
+descriptionplural={Support Vector Machine\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3332,15 +3332,15 @@ parent={},%
 
 \glsdefs@newdocentry{SVR}%
 {%
-name={\acronymfont {\glsentryshort {SVR}}},%
+name={SVR},%
 sort={SVR},%
 type={acronym},%
-first={SVR},%
-firstplural={SVRs},%
+first={Support Vector Regression\glsspace (SVR)},%
+firstplural={Support Vector Regression\acrpluralsuffix \glsspace (SVR\acrpluralsuffix )},%
 text={SVR},%
-plural={SVRs},%
+plural={SVR\acrpluralsuffix },%
 description={Support Vector Regression},%
-descriptionplural={Support Vector Regression},%
+descriptionplural={Support Vector Regression\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3360,15 +3360,15 @@ parent={},%
 
 \glsdefs@newdocentry{TFHR}%
 {%
-name={\acronymfont {\glsentryshort {TFHR}}},%
+name={TFHR},%
 sort={TFHR},%
 type={acronym},%
-first={TFHR},%
-firstplural={TFHRs},%
+first={Transportable Fluoride-salt-cooled High-temperature Reactor\glsspace (TFHR)},%
+firstplural={Transportable Fluoride-salt-cooled High-temperature Reactor\acrpluralsuffix \glsspace (TFHR\acrpluralsuffix )},%
 text={TFHR},%
-plural={TFHRs},%
+plural={TFHR\acrpluralsuffix },%
 description={Transportable Fluoride-salt-cooled High-temperature Reactor},%
-descriptionplural={Transportable Fluoride-salt-cooled High-temperature Reactor},%
+descriptionplural={Transportable Fluoride-salt-cooled High-temperature Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3388,15 +3388,15 @@ parent={},%
 
 \glsdefs@newdocentry{TIP}%
 {%
-name={\acronymfont {\glsentryshort {TIP}}},%
+name={TIP},%
 sort={TIP},%
 type={acronym},%
-first={TIP},%
-firstplural={TIPs},%
+first={transverse integration procedure\glsspace (TIP)},%
+firstplural={transverse integration procedure\acrpluralsuffix \glsspace (TIP\acrpluralsuffix )},%
 text={TIP},%
-plural={TIPs},%
+plural={TIP\acrpluralsuffix },%
 description={transverse integration procedure},%
-descriptionplural={transverse integration procedure},%
+descriptionplural={transverse integration procedure\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3416,15 +3416,15 @@ parent={},%
 
 \glsdefs@newdocentry{TRISO}%
 {%
-name={\acronymfont {\glsentryshort {TRISO}}},%
+name={TRISO},%
 sort={TRISO},%
 type={acronym},%
-first={TRISO},%
-firstplural={TRISOs},%
+first={Tristructural Isotropic\glsspace (TRISO)},%
+firstplural={Tristructural Isotropic\acrpluralsuffix \glsspace (TRISO\acrpluralsuffix )},%
 text={TRISO},%
-plural={TRISOs},%
+plural={TRISO\acrpluralsuffix },%
 description={Tristructural Isotropic},%
-descriptionplural={Tristructural Isotropic},%
+descriptionplural={Tristructural Isotropic\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3444,15 +3444,15 @@ parent={},%
 
 \glsdefs@newdocentry{TREAT}%
 {%
-name={\acronymfont {\glsentryshort {TREAT}}},%
+name={TREAT},%
 sort={TREAT},%
 type={acronym},%
-first={TREAT},%
-firstplural={TREATs},%
+first={Transient Reactor Test Facility\glsspace (TREAT)},%
+firstplural={Transient Reactor Test Facility\acrpluralsuffix \glsspace (TREAT\acrpluralsuffix )},%
 text={TREAT},%
-plural={TREATs},%
+plural={TREAT\acrpluralsuffix },%
 description={Transient Reactor Test Facility},%
-descriptionplural={Transient Reactor Test Facility},%
+descriptionplural={Transient Reactor Test Facility\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3472,15 +3472,15 @@ parent={},%
 
 \glsdefs@newdocentry{UIF}%
 {%
-name={\acronymfont {\glsentryshort {UIF}}},%
+name={UIF},%
 sort={UIF},%
 type={acronym},%
-first={UIF},%
-firstplural={UIFs},%
+first={user input file\glsspace (UIF)},%
+firstplural={user input file\acrpluralsuffix \glsspace (UIF\acrpluralsuffix )},%
 text={UIF},%
-plural={UIFs},%
+plural={UIF\acrpluralsuffix },%
 description={user input file},%
-descriptionplural={user input file},%
+descriptionplural={user input file\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3500,15 +3500,15 @@ parent={},%
 
 \glsdefs@newdocentry{UIUC}%
 {%
-name={\acronymfont {\glsentryshort {UIUC}}},%
+name={UIUC},%
 sort={UIUC},%
 type={acronym},%
-first={UIUC},%
-firstplural={UIUCs},%
+first={University of Illinois Urbana-Champaign\glsspace (UIUC)},%
+firstplural={University of Illinois Urbana-Champaign\acrpluralsuffix \glsspace (UIUC\acrpluralsuffix )},%
 text={UIUC},%
-plural={UIUCs},%
+plural={UIUC\acrpluralsuffix },%
 description={University of Illinois Urbana-Champaign},%
-descriptionplural={University of Illinois Urbana-Champaign},%
+descriptionplural={University of Illinois Urbana-Champaign\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3528,15 +3528,15 @@ parent={},%
 
 \glsdefs@newdocentry{UNIST}%
 {%
-name={\acronymfont {\glsentryshort {UNIST}}},%
+name={UNIST},%
 sort={UNIST},%
 type={acronym},%
-first={UNIST},%
-firstplural={UNISTs},%
+first={Ulsan National Institute of Science and Technology\glsspace (UNIST)},%
+firstplural={Ulsan National Institute of Science and Technology\acrpluralsuffix \glsspace (UNIST\acrpluralsuffix )},%
 text={UNIST},%
-plural={UNISTs},%
+plural={UNIST\acrpluralsuffix },%
 description={Ulsan National Institute of Science and Technology},%
-descriptionplural={Ulsan National Institute of Science and Technology},%
+descriptionplural={Ulsan National Institute of Science and Technology\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3556,15 +3556,15 @@ parent={},%
 
 \glsdefs@newdocentry{UK}%
 {%
-name={\acronymfont {\glsentryshort {UK}}},%
+name={UK},%
 sort={UK},%
 type={acronym},%
-first={UK},%
-firstplural={UKs},%
+first={United Kingdom\glsspace (UK)},%
+firstplural={United Kingdom\acrpluralsuffix \glsspace (UK\acrpluralsuffix )},%
 text={UK},%
-plural={UKs},%
+plural={UK\acrpluralsuffix },%
 description={United Kingdom},%
-descriptionplural={United Kingdom},%
+descriptionplural={United Kingdom\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3584,15 +3584,15 @@ parent={},%
 
 \glsdefs@newdocentry{UMICH}%
 {%
-name={\acronymfont {\glsentryshort {UMICH}}},%
+name={UMICH},%
 sort={UMICH},%
 type={acronym},%
-first={UMICH},%
-firstplural={UMICHs},%
+first={University of Michigan\glsspace (UMICH)},%
+firstplural={University of Michigan\acrpluralsuffix \glsspace (UMICH\acrpluralsuffix )},%
 text={UMICH},%
-plural={UMICHs},%
+plural={UMICH\acrpluralsuffix },%
 description={University of Michigan},%
-descriptionplural={University of Michigan},%
+descriptionplural={University of Michigan\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3612,15 +3612,15 @@ parent={},%
 
 \glsdefs@newdocentry{UQ}%
 {%
-name={\acronymfont {\glsentryshort {UQ}}},%
+name={UQ},%
 sort={UQ},%
 type={acronym},%
-first={UQ},%
-firstplural={UQs},%
+first={Uncertainty Quantification\glsspace (UQ)},%
+firstplural={Uncertainty Quantification\acrpluralsuffix \glsspace (UQ\acrpluralsuffix )},%
 text={UQ},%
-plural={UQs},%
+plural={UQ\acrpluralsuffix },%
 description={Uncertainty Quantification},%
-descriptionplural={Uncertainty Quantification},%
+descriptionplural={Uncertainty Quantification\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3640,15 +3640,15 @@ parent={},%
 
 \glsdefs@newdocentry{US}%
 {%
-name={\acronymfont {\glsentryshort {US}}},%
+name={US},%
 sort={US},%
 type={acronym},%
-first={US},%
-firstplural={USs},%
+first={United States\glsspace (US)},%
+firstplural={United States\acrpluralsuffix \glsspace (US\acrpluralsuffix )},%
 text={US},%
-plural={USs},%
+plural={US\acrpluralsuffix },%
 description={United States},%
-descriptionplural={United States},%
+descriptionplural={United States\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3668,15 +3668,15 @@ parent={},%
 
 \glsdefs@newdocentry{USNC}%
 {%
-name={\acronymfont {\glsentryshort {USNC}}},%
+name={USNC},%
 sort={USNC},%
 type={acronym},%
-first={USNC},%
-firstplural={USNCs},%
+first={Ultra Safe Nuclear Corporation\glsspace (USNC)},%
+firstplural={Ultra Safe Nuclear Corporation\acrpluralsuffix \glsspace (USNC\acrpluralsuffix )},%
 text={USNC},%
-plural={USNCs},%
+plural={USNC\acrpluralsuffix },%
 description={Ultra Safe Nuclear Corporation},%
-descriptionplural={Ultra Safe Nuclear Corporation},%
+descriptionplural={Ultra Safe Nuclear Corporation\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3696,15 +3696,15 @@ parent={},%
 
 \glsdefs@newdocentry{VHTR}%
 {%
-name={\acronymfont {\glsentryshort {VHTR}}},%
+name={VHTR},%
 sort={VHTR},%
 type={acronym},%
-first={VHTR},%
-firstplural={VHTRs},%
+first={Very High-Temperature Gas-Cooled Reactor\glsspace (VHTR)},%
+firstplural={Very High-Temperature Gas-Cooled Reactor\acrpluralsuffix \glsspace (VHTR\acrpluralsuffix )},%
 text={VHTR},%
-plural={VHTRs},%
+plural={VHTR\acrpluralsuffix },%
 description={Very High-Temperature Gas-Cooled Reactor},%
-descriptionplural={Very High-Temperature Gas-Cooled Reactor},%
+descriptionplural={Very High-Temperature Gas-Cooled Reactor\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -3724,15 +3724,15 @@ parent={},%
 
 \glsdefs@newdocentry{WRM}%
 {%
-name={\acronymfont {\glsentryshort {WRM}}},%
+name={WRM},%
 sort={WRM},%
 type={acronym},%
-first={WRM},%
-firstplural={WRMs},%
+first={weighted residual method\glsspace (WRM)},%
+firstplural={weighted residual method\acrpluralsuffix \glsspace (WRM\acrpluralsuffix )},%
 text={WRM},%
-plural={WRMs},%
+plural={WRM\acrpluralsuffix },%
 description={weighted residual method},%
-descriptionplural={weighted residual method},%
+descriptionplural={weighted residual method\acrpluralsuffix },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
