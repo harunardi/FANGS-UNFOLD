@@ -1,0 +1,3752 @@
+\glsdefs@newdocentry{AGR1}%
+{%
+name={\acronymfont {\glsentryshort {AGR1}}},%
+sort={AGR-1},%
+type={acronym},%
+first={AGR-1},%
+firstplural={AGR-1s},%
+text={AGR-1},%
+plural={AGR-1s},%
+description={Advanced Gas Reactor 1},%
+descriptionplural={Advanced Gas Reactor 1},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Advanced Gas Reactor 1},%
+longplural={Advanced Gas Reactor 1s},%
+short={AGR-1},%
+shortplural={AGR-1s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ANL}%
+{%
+name={\acronymfont {\glsentryshort {ANL}}},%
+sort={ANL},%
+type={acronym},%
+first={ANL},%
+firstplural={ANLs},%
+text={ANL},%
+plural={ANLs},%
+description={Argonne National Laboratory},%
+descriptionplural={Argonne National Laboratory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Argonne National Laboratory},%
+longplural={Argonne National Laboratorys},%
+short={ANL},%
+shortplural={ANLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ANN}%
+{%
+name={\acronymfont {\glsentryshort {ANN}}},%
+sort={ANN},%
+type={acronym},%
+first={ANN},%
+firstplural={ANNs},%
+text={ANN},%
+plural={ANNs},%
+description={Artificial Neural Network},%
+descriptionplural={Artificial Neural Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Artificial Neural Network},%
+longplural={Artificial Neural Networks},%
+short={ANN},%
+shortplural={ANNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{API}%
+{%
+name={\acronymfont {\glsentryshort {API}}},%
+sort={API},%
+type={acronym},%
+first={API},%
+firstplural={APIs},%
+text={API},%
+plural={APIs},%
+description={Application Programming Interface},%
+descriptionplural={Application Programming Interface},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Application Programming Interface},%
+longplural={Application Programming Interfaces},%
+short={API},%
+shortplural={APIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ATR}%
+{%
+name={\acronymfont {\glsentryshort {ATR}}},%
+sort={ATR},%
+type={acronym},%
+first={ATR},%
+firstplural={ATRs},%
+text={ATR},%
+plural={ATRs},%
+description={Advanced Test Reactor},%
+descriptionplural={Advanced Test Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Advanced Test Reactor},%
+longplural={Advanced Test Reactors},%
+short={ATR},%
+shortplural={ATRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{B4C}%
+{%
+name={\acronymfont {\glsentryshort {B4C}}},%
+sort={B4C},%
+type={acronym},%
+first={B4C},%
+firstplural={B4Cs},%
+text={B4C},%
+plural={B4Cs},%
+description={boron carbide},%
+descriptionplural={boron carbide},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={boron carbide},%
+longplural={boron carbides},%
+short={B4C},%
+shortplural={B4Cs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BC}%
+{%
+name={\acronymfont {\glsentryshort {BC}}},%
+sort={BC},%
+type={acronym},%
+first={BC},%
+firstplural={BCs},%
+text={BC},%
+plural={BCs},%
+description={boundary condition},%
+descriptionplural={boundary condition},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={boundary condition},%
+longplural={boundary conditions},%
+short={BC},%
+shortplural={BCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BOC}%
+{%
+name={\acronymfont {\glsentryshort {BOC}}},%
+sort={BOC},%
+type={acronym},%
+first={BOC},%
+firstplural={BOCs},%
+text={BOC},%
+plural={BOCs},%
+description={beginning of the equilibrium cycle},%
+descriptionplural={beginning of the equilibrium cycle},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={beginning of the equilibrium cycle},%
+longplural={beginning of the equilibrium cycles},%
+short={BOC},%
+shortplural={BOCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BNCT}%
+{%
+name={\acronymfont {\glsentryshort {BNCT}}},%
+sort={BNCT},%
+type={acronym},%
+first={BNCT},%
+firstplural={BNCTs},%
+text={BNCT},%
+plural={BNCTs},%
+description={Boron Neutron Capture Therapy},%
+descriptionplural={Boron Neutron Capture Therapy},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Boron Neutron Capture Therapy},%
+longplural={Boron Neutron Capture Therapys},%
+short={BNCT},%
+shortplural={BNCTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BSD}%
+{%
+name={\acronymfont {\glsentryshort {BSD}}},%
+sort={BSD},%
+type={acronym},%
+first={BSD},%
+firstplural={BSDs},%
+text={BSD},%
+plural={BSDs},%
+description={Berkeley Software Distribution},%
+descriptionplural={Berkeley Software Distribution},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Berkeley Software Distribution},%
+longplural={Berkeley Software Distributions},%
+short={BSD},%
+shortplural={BSDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BWR}%
+{%
+name={\acronymfont {\glsentryshort {BWR}}},%
+sort={BWR},%
+type={acronym},%
+first={BWR},%
+firstplural={BWRs},%
+text={BWR},%
+plural={BWRs},%
+description={Boiling Water Reactor},%
+descriptionplural={Boiling Water Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Boiling Water Reactor},%
+longplural={Boiling Water Reactors},%
+short={BWR},%
+shortplural={BWRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CAISO}%
+{%
+name={\acronymfont {\glsentryshort {CAISO}}},%
+sort={CAISO},%
+type={acronym},%
+first={CAISO},%
+firstplural={CAISOs},%
+text={CAISO},%
+plural={CAISOs},%
+description={California ISO},%
+descriptionplural={California ISO},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={California ISO},%
+longplural={California ISOs},%
+short={CAISO},%
+shortplural={CAISOs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CAPP}%
+{%
+name={\acronymfont {\glsentryshort {CAPP}}},%
+sort={CAPP},%
+type={acronym},%
+first={CAPP},%
+firstplural={CAPPs},%
+text={CAPP},%
+plural={CAPPs},%
+description={Core Analyzer for Pebble and Prism type VHTRs},%
+descriptionplural={Core Analyzer for Pebble and Prism type VHTRs},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Core Analyzer for Pebble and Prism type VHTRs},%
+longplural={Core Analyzer for Pebble and Prism type VHTRss},%
+short={CAPP},%
+shortplural={CAPPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CEA}%
+{%
+name={\acronymfont {\glsentryshort {CEA}}},%
+sort={CEA},%
+type={acronym},%
+first={CEA},%
+firstplural={CEAs},%
+text={CEA},%
+plural={CEAs},%
+description={Commissariat a l'Energie Atomique},%
+descriptionplural={Commissariat a l'Energie Atomique},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Commissariat a l'Energie Atomique},%
+longplural={Commissariat a l'Energie Atomiques},%
+short={CEA},%
+shortplural={CEAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CFD}%
+{%
+name={\acronymfont {\glsentryshort {CFD}}},%
+sort={CFD},%
+type={acronym},%
+first={CFD},%
+firstplural={CFDs},%
+text={CFD},%
+plural={CFDs},%
+description={computational fluid dynamics},%
+descriptionplural={computational fluid dynamics},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={computational fluid dynamics},%
+longplural={computational fluid dynamicss},%
+short={CFD},%
+shortplural={CFDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CO2}%
+{%
+name={\acronymfont {\glsentryshort {CO2}}},%
+sort={CO$_2$},%
+type={acronym},%
+first={CO$_2$},%
+firstplural={CO$_2$s},%
+text={CO$_2$},%
+plural={CO$_2$s},%
+description={carbon dioxide},%
+descriptionplural={carbon dioxide},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={carbon dioxide},%
+longplural={carbon dioxides},%
+short={CO$_2$},%
+shortplural={CO$_2$s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CNN}%
+{%
+name={\acronymfont {\glsentryshort {CNN}}},%
+sort={CNN},%
+type={acronym},%
+first={CNN},%
+firstplural={CNNs},%
+text={CNN},%
+plural={CNNs},%
+description={Convolutional Neural Network},%
+descriptionplural={Convolutional Neural Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Convolutional Neural Network},%
+longplural={Convolutional Neural Networks},%
+short={CNN},%
+shortplural={CNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CR}%
+{%
+name={\acronymfont {\glsentryshort {CR}}},%
+sort={CR},%
+type={acronym},%
+first={CR},%
+firstplural={CRs},%
+text={CR},%
+plural={CRs},%
+description={control rod},%
+descriptionplural={control rod},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={control rod},%
+longplural={control rods},%
+short={CR},%
+shortplural={CRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CRAM}%
+{%
+name={\acronymfont {\glsentryshort {CRAM}}},%
+sort={CRAM},%
+type={acronym},%
+first={CRAM},%
+firstplural={CRAMs},%
+text={CRAM},%
+plural={CRAMs},%
+description={Chebyshev Rational Approximation Method},%
+descriptionplural={Chebyshev Rational Approximation Method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Chebyshev Rational Approximation Method},%
+longplural={Chebyshev Rational Approximation Methods},%
+short={CRAM},%
+shortplural={CRAMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CRP}%
+{%
+name={\acronymfont {\glsentryshort {CRP}}},%
+sort={CRP},%
+type={acronym},%
+first={CRP},%
+firstplural={CRPs},%
+text={CRP},%
+plural={CRPs},%
+description={Coordinated Research Project},%
+descriptionplural={Coordinated Research Project},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Coordinated Research Project},%
+longplural={Coordinated Research Projects},%
+short={CRP},%
+shortplural={CRPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CZP}%
+{%
+name={\acronymfont {\glsentryshort {CZP}}},%
+sort={CZP},%
+type={acronym},%
+first={CZP},%
+firstplural={CZPs},%
+text={CZP},%
+plural={CZPs},%
+description={Cold Zero Power},%
+descriptionplural={Cold Zero Power},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Cold Zero Power},%
+longplural={Cold Zero Powers},%
+short={CZP},%
+shortplural={CZPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DCC}%
+{%
+name={\acronymfont {\glsentryshort {DCC}}},%
+sort={DCC},%
+type={acronym},%
+first={DCC},%
+firstplural={DCCs},%
+text={DCC},%
+plural={DCCs},%
+description={depressurized conduction cool-down},%
+descriptionplural={depressurized conduction cool-down},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={depressurized conduction cool-down},%
+longplural={depressurized conduction cool-downs},%
+short={DCC},%
+shortplural={DCCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DOD}%
+{%
+name={\acronymfont {\glsentryshort {DOD}}},%
+sort={DOD},%
+type={acronym},%
+first={DOD},%
+firstplural={DODs},%
+text={DOD},%
+plural={DODs},%
+description={U.S. Department of Defense},%
+descriptionplural={U.S. Department of Defense},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={U.S. Department of Defense},%
+longplural={U.S. Department of Defenses},%
+short={DOD},%
+shortplural={DODs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DOE}%
+{%
+name={\acronymfont {\glsentryshort {DOE}}},%
+sort={DOE},%
+type={acronym},%
+first={DOE},%
+firstplural={DOEs},%
+text={DOE},%
+plural={DOEs},%
+description={Department of Energy},%
+descriptionplural={Department of Energy},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Department of Energy},%
+longplural={Department of Energys},%
+short={DOE},%
+shortplural={DOEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DoF}%
+{%
+name={\acronymfont {\glsentryshort {DoF}}},%
+sort={DoF},%
+type={acronym},%
+first={DoF},%
+firstplural={DoFs},%
+text={DoF},%
+plural={DoFs},%
+description={degree of freedom},%
+descriptionplural={degree of freedom},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={degree of freedom},%
+longplural={degrees of freedom},%
+short={DoF},%
+shortplural={DoFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DT}%
+{%
+name={\acronymfont {\glsentryshort {DT}}},%
+sort={DT},%
+type={acronym},%
+first={DT},%
+firstplural={DTs},%
+text={DT},%
+plural={DTs},%
+description={Decision Tree},%
+descriptionplural={Decision Tree},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Decision Tree},%
+longplural={Decision Trees},%
+short={DT},%
+shortplural={DTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DTR}%
+{%
+name={\acronymfont {\glsentryshort {DTR}}},%
+sort={DTR},%
+type={acronym},%
+first={DTR},%
+firstplural={DTRs},%
+text={DTR},%
+plural={DTRs},%
+description={Decision Tree Regression},%
+descriptionplural={Decision Tree Regression},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Decision Tree Regression},%
+longplural={Decision Tree Regressions},%
+short={DTR},%
+shortplural={DTRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{EOC}%
+{%
+name={\acronymfont {\glsentryshort {EOC}}},%
+sort={EOC},%
+type={acronym},%
+first={EOC},%
+firstplural={EOCs},%
+text={EOC},%
+plural={EOCs},%
+description={end of the equilibrium cycle},%
+descriptionplural={end of the equilibrium cycle},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={end of the equilibrium cycle},%
+longplural={end of the equilibrium cycles},%
+short={EOC},%
+shortplural={EOCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FCEV}%
+{%
+name={\acronymfont {\glsentryshort {FCEV}}},%
+sort={FCEV},%
+type={acronym},%
+first={FCEV},%
+firstplural={FCEVs},%
+text={FCEV},%
+plural={FCEVs},%
+description={Fuel Cell Electric Vehicle},%
+descriptionplural={Fuel Cell Electric Vehicle},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Fuel Cell Electric Vehicle},%
+longplural={Fuel Cell Electric Vehicles},%
+short={FCEV},%
+shortplural={FCEVs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FDM}%
+{%
+name={\acronymfont {\glsentryshort {FDM}}},%
+sort={FDM},%
+type={acronym},%
+first={FDM},%
+firstplural={FDMs},%
+text={FDM},%
+plural={FDMs},%
+description={Finite Difference Method},%
+descriptionplural={Finite Difference Method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Finite Difference Method},%
+longplural={Finite Difference Methods},%
+short={FDM},%
+shortplural={FDMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FEM}%
+{%
+name={\acronymfont {\glsentryshort {FEM}}},%
+sort={FEM},%
+type={acronym},%
+first={FEM},%
+firstplural={FEMs},%
+text={FEM},%
+plural={FEMs},%
+description={Finite Element Method},%
+descriptionplural={Finite Element Method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Finite Element Method},%
+longplural={Finite Element Methods},%
+short={FEM},%
+shortplural={FEMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FNN}%
+{%
+name={\acronymfont {\glsentryshort {FNN}}},%
+sort={FNN},%
+type={acronym},%
+first={FNN},%
+firstplural={FNNs},%
+text={FNN},%
+plural={FNNs},%
+description={Feedforward Neural Network},%
+descriptionplural={Feedforward Neural Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Feedforward Neural Network},%
+longplural={Feedforward Neural Networks},%
+short={FNN},%
+shortplural={FNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FVM}%
+{%
+name={\acronymfont {\glsentryshort {FVM}}},%
+sort={FVM},%
+type={acronym},%
+first={FVM},%
+firstplural={FVMs},%
+text={FVM},%
+plural={FVMs},%
+description={Finite Volume Method},%
+descriptionplural={Finite Volume Method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Finite Volume Method},%
+longplural={Finite Volume Methods},%
+short={FVM},%
+shortplural={FVMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GHG}%
+{%
+name={\acronymfont {\glsentryshort {GHG}}},%
+sort={GHG},%
+type={acronym},%
+first={GHG},%
+firstplural={GHGs},%
+text={GHG},%
+plural={GHGs},%
+description={greenhouse gas},%
+descriptionplural={greenhouse gas},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={greenhouse gas},%
+longplural={greenhouse gases},%
+short={GHG},%
+shortplural={GHGs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GP}%
+{%
+name={\acronymfont {\glsentryshort {GP}}},%
+sort={GP},%
+type={acronym},%
+first={GP},%
+firstplural={GPs},%
+text={GP},%
+plural={GPs},%
+description={Gaussian process},%
+descriptionplural={Gaussian process},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Gaussian process},%
+longplural={Gaussian processes},%
+short={GP},%
+shortplural={GPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GRS}%
+{%
+name={\acronymfont {\glsentryshort {GRS}}},%
+sort={GRS},%
+type={acronym},%
+first={GRS},%
+firstplural={GRSs},%
+text={GRS},%
+plural={GRSs},%
+description={Gesellschaft für Anlagen und Reaktorsicherheit},%
+descriptionplural={Gesellschaft für Anlagen und Reaktorsicherheit},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Gesellschaft für Anlagen und Reaktorsicherheit},%
+longplural={Gesellschaft für Anlagen und Reaktorsicherheits},%
+short={GRS},%
+shortplural={GRSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GT-MHR}%
+{%
+name={\acronymfont {\glsentryshort {GT-MHR}}},%
+sort={GT-MHR},%
+type={acronym},%
+first={GT-MHR},%
+firstplural={GT-MHRs},%
+text={GT-MHR},%
+plural={GT-MHRs},%
+description={Gas Turbine-Modular Helium Reactor},%
+descriptionplural={Gas Turbine-Modular Helium Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Gas Turbine-Modular Helium Reactor},%
+longplural={Gas Turbine-Modular Helium Reactors},%
+short={GT-MHR},%
+shortplural={GT-MHRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{H2}%
+{%
+name={\acronymfont {\glsentryshort {H2}}},%
+sort={H$_2$},%
+type={acronym},%
+first={H$_2$},%
+firstplural={H$_2$s},%
+text={H$_2$},%
+plural={H$_2$s},%
+description={hydrogen},%
+descriptionplural={hydrogen},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={hydrogen},%
+longplural={hydrogens},%
+short={H$_2$},%
+shortplural={H$_2$s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{He}%
+{%
+name={\acronymfont {\glsentryshort {He}}},%
+sort={He},%
+type={acronym},%
+first={He},%
+firstplural={Hes},%
+text={He},%
+plural={Hes},%
+description={helium},%
+descriptionplural={helium},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={helium},%
+longplural={heliums},%
+short={He},%
+shortplural={Hes},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HFIR}%
+{%
+name={\acronymfont {\glsentryshort {HFIR}}},%
+sort={HFIR},%
+type={acronym},%
+first={HFIR},%
+firstplural={HFIRs},%
+text={HFIR},%
+plural={HFIRs},%
+description={High Flux Isotope Reactor},%
+descriptionplural={High Flux Isotope Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={High Flux Isotope Reactor},%
+longplural={High Flux Isotope Reactors},%
+short={HFIR},%
+shortplural={HFIRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HFP}%
+{%
+name={\acronymfont {\glsentryshort {HFP}}},%
+sort={HFP},%
+type={acronym},%
+first={HFP},%
+firstplural={HFPs},%
+text={HFP},%
+plural={HFPs},%
+description={Hot Full Power},%
+descriptionplural={Hot Full Power},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Hot Full Power},%
+longplural={Hot Full Powers},%
+short={HFP},%
+shortplural={HFPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HPC}%
+{%
+name={\acronymfont {\glsentryshort {HPC}}},%
+sort={HPC},%
+type={acronym},%
+first={HPC},%
+firstplural={HPCs},%
+text={HPC},%
+plural={HPCs},%
+description={high-performance computing},%
+descriptionplural={high-performance computing},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={high-performance computing},%
+longplural={high-performance computings},%
+short={HPC},%
+shortplural={HPCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HPCC}%
+{%
+name={\acronymfont {\glsentryshort {HPCC}}},%
+sort={HPCC},%
+type={acronym},%
+first={HPCC},%
+firstplural={HPCCs},%
+text={HPCC},%
+plural={HPCCs},%
+description={high-pressure conduction cool-down},%
+descriptionplural={high-pressure conduction cool-down},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={high-pressure conduction cool-down},%
+longplural={high-pressure conduction cool-downs},%
+short={HPCC},%
+shortplural={HPCCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HTE}%
+{%
+name={\acronymfont {\glsentryshort {HTE}}},%
+sort={HTE},%
+type={acronym},%
+first={HTE},%
+firstplural={HTEs},%
+text={HTE},%
+plural={HTEs},%
+description={High-Temperature Electrolysis},%
+descriptionplural={High-Temperature Electrolysis},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={High-Temperature Electrolysis},%
+longplural={High-Temperature Electrolysiss},%
+short={HTE},%
+shortplural={HTEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HTGR}%
+{%
+name={\acronymfont {\glsentryshort {HTGR}}},%
+sort={HTGR},%
+type={acronym},%
+first={HTGR},%
+firstplural={HTGRs},%
+text={HTGR},%
+plural={HTGRs},%
+description={High-Temperature Gas-Cooled Reactor},%
+descriptionplural={High-Temperature Gas-Cooled Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={High-Temperature Gas-Cooled Reactor},%
+longplural={High-Temperature Gas-Cooled Reactors},%
+short={HTGR},%
+shortplural={HTGRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HTR}%
+{%
+name={\acronymfont {\glsentryshort {HTR}}},%
+sort={HTR},%
+type={acronym},%
+first={HTR},%
+firstplural={HTRs},%
+text={HTR},%
+plural={HTRs},%
+description={High Temperature Reactor},%
+descriptionplural={High Temperature Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={High Temperature Reactor},%
+longplural={High Temperature Reactors},%
+short={HTR},%
+shortplural={HTRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HTTR}%
+{%
+name={\acronymfont {\glsentryshort {HTTR}}},%
+sort={HTTR},%
+type={acronym},%
+first={HTTR},%
+firstplural={HTTRs},%
+text={HTTR},%
+plural={HTTRs},%
+description={High-Temperature engineering Test Reactor},%
+descriptionplural={High-Temperature engineering Test Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={High-Temperature engineering Test Reactor},%
+longplural={High-Temperature engineering Test Reactors},%
+short={HTTR},%
+shortplural={HTTRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HZDR}%
+{%
+name={\acronymfont {\glsentryshort {HZDR}}},%
+sort={HZDR},%
+type={acronym},%
+first={HZDR},%
+firstplural={HZDRs},%
+text={HZDR},%
+plural={HZDRs},%
+description={Helmholtz-Zentrum Dresden-Rossendorf},%
+descriptionplural={Helmholtz-Zentrum Dresden-Rossendorf},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Helmholtz-Zentrum Dresden-Rossendorf},%
+longplural={Helmholtz-Zentrum Dresden-Rossendorfs},%
+short={HZDR},%
+shortplural={HZDRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IAEA}%
+{%
+name={\acronymfont {\glsentryshort {IAEA}}},%
+sort={IAEA},%
+type={acronym},%
+first={IAEA},%
+firstplural={IAEAs},%
+text={IAEA},%
+plural={IAEAs},%
+description={International Atomic Energy Agency},%
+descriptionplural={International Atomic Energy Agency},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={International Atomic Energy Agency},%
+longplural={International Atomic Energy Agencys},%
+short={IAEA},%
+shortplural={IAEAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{icap}%
+{%
+name={\acronymfont {\glsentryshort {icap}}},%
+sort={iCAP},%
+type={acronym},%
+first={iCAP},%
+firstplural={iCAPs},%
+text={iCAP},%
+plural={iCAPs},%
+description={Illinois Climate Action Plan},%
+descriptionplural={Illinois Climate Action Plan},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Illinois Climate Action Plan},%
+longplural={Illinois Climate Action Plans},%
+short={iCAP},%
+shortplural={iCAPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{INL}%
+{%
+name={\acronymfont {\glsentryshort {INL}}},%
+sort={INL},%
+type={acronym},%
+first={INL},%
+firstplural={INLs},%
+text={INL},%
+plural={INLs},%
+description={Idaho National Laboratory},%
+descriptionplural={Idaho National Laboratory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Idaho National Laboratory},%
+longplural={Idaho National Laboratorys},%
+short={INL},%
+shortplural={INLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IPyC}%
+{%
+name={\acronymfont {\glsentryshort {IPyC}}},%
+sort={IPyC},%
+type={acronym},%
+first={IPyC},%
+firstplural={IPyCs},%
+text={IPyC},%
+plural={IPyCs},%
+description={inner pyrolytic carbon},%
+descriptionplural={inner pyrolytic carbon},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={inner pyrolytic carbon},%
+longplural={inner pyrolytic carbons},%
+short={IPyC},%
+shortplural={IPyCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IRIS}%
+{%
+name={\acronymfont {\glsentryshort {IRIS}}},%
+sort={IRIS},%
+type={acronym},%
+first={IRIS},%
+firstplural={IRISs},%
+text={IRIS},%
+plural={IRISs},%
+description={International Reactor Innovative and Secure},%
+descriptionplural={International Reactor Innovative and Secure},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={International Reactor Innovative and Secure},%
+longplural={International Reactor Innovative and Secures},%
+short={IRIS},%
+shortplural={IRISs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ITER}%
+{%
+name={\acronymfont {\glsentryshort {ITER}}},%
+sort={ITER},%
+type={acronym},%
+first={ITER},%
+firstplural={ITERs},%
+text={ITER},%
+plural={ITERs},%
+description={International Thermonuclear Experimental Reactor},%
+descriptionplural={International Thermonuclear Experimental Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={International Thermonuclear Experimental Reactor},%
+longplural={International Thermonuclear Experimental Reactors},%
+short={ITER},%
+shortplural={ITERs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{JFNK}%
+{%
+name={\acronymfont {\glsentryshort {JFNK}}},%
+sort={JFNK},%
+type={acronym},%
+first={JFNK},%
+firstplural={JFNKs},%
+text={JFNK},%
+plural={JFNKs},%
+description={Jacobian-Free Newton-Krylov},%
+descriptionplural={Jacobian-Free Newton-Krylov},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Jacobian-Free Newton-Krylov},%
+longplural={Jacobian-Free Newton-Krylovs},%
+short={JFNK},%
+shortplural={JFNKs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{KAERI}%
+{%
+name={\acronymfont {\glsentryshort {KAERI}}},%
+sort={KAERI},%
+type={acronym},%
+first={KAERI},%
+firstplural={KAERIs},%
+text={KAERI},%
+plural={KAERIs},%
+description={Korea Atomic Energy Research Institute},%
+descriptionplural={Korea Atomic Energy Research Institute},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Korea Atomic Energy Research Institute},%
+longplural={Korea Atomic Energy Research Institutes},%
+short={KAERI},%
+shortplural={KAERIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{Keff}%
+{%
+name={\acronymfont {\glsentryshort {Keff}}},%
+sort={k$_{eff}$},%
+type={acronym},%
+first={k$_{eff}$},%
+firstplural={k$_{eff}$s},%
+text={k$_{eff}$},%
+plural={k$_{eff}$s},%
+description={multiplication factor},%
+descriptionplural={multiplication factor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={multiplication factor},%
+longplural={multiplication factors},%
+short={k$_{eff}$},%
+shortplural={k$_{eff}$s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{KNN}%
+{%
+name={\acronymfont {\glsentryshort {KNN}}},%
+sort={KNN},%
+type={acronym},%
+first={KNN},%
+firstplural={KNNs},%
+text={KNN},%
+plural={KNNs},%
+description={K-Nearest Neighbors},%
+descriptionplural={K-Nearest Neighbors},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={K-Nearest Neighbors},%
+longplural={K-Nearest Neighborss},%
+short={KNN},%
+shortplural={KNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LANL}%
+{%
+name={\acronymfont {\glsentryshort {LANL}}},%
+sort={LANL},%
+type={acronym},%
+first={LANL},%
+firstplural={LANLs},%
+text={LANL},%
+plural={LANLs},%
+description={Los Alamos National Laboratory},%
+descriptionplural={Los Alamos National Laboratory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Los Alamos National Laboratory},%
+longplural={Los Alamos National Laboratorys},%
+short={LANL},%
+shortplural={LANLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LBP}%
+{%
+name={\acronymfont {\glsentryshort {LBP}}},%
+sort={LBP},%
+type={acronym},%
+first={LBP},%
+firstplural={LBPs},%
+text={LBP},%
+plural={LBPs},%
+description={Lumped Burnable Poison},%
+descriptionplural={Lumped Burnable Poison},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Lumped Burnable Poison},%
+longplural={Lumped Burnable Poisons},%
+short={LBP},%
+shortplural={LBPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LEU}%
+{%
+name={\acronymfont {\glsentryshort {LEU}}},%
+sort={LEU},%
+type={acronym},%
+first={LEU},%
+firstplural={LEUs},%
+text={LEU},%
+plural={LEUs},%
+description={low-enriched uranium},%
+descriptionplural={low-enriched uranium},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={low-enriched uranium},%
+longplural={low-enriched uraniums},%
+short={LEU},%
+shortplural={LEUs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{HEU}%
+{%
+name={\acronymfont {\glsentryshort {HEU}}},%
+sort={HEU},%
+type={acronym},%
+first={HEU},%
+firstplural={HEUs},%
+text={HEU},%
+plural={HEUs},%
+description={highly-enriched uranium},%
+descriptionplural={highly-enriched uranium},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={highly-enriched uranium},%
+longplural={highly-enriched uraniums},%
+short={HEU},%
+shortplural={HEUs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LGPL}%
+{%
+name={\acronymfont {\glsentryshort {LGPL}}},%
+sort={LGPL},%
+type={acronym},%
+first={LGPL},%
+firstplural={LGPLs},%
+text={LGPL},%
+plural={LGPLs},%
+description={Lesser GNU Public License},%
+descriptionplural={Lesser GNU Public License},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Lesser GNU Public License},%
+longplural={Lesser GNU Public Licenses},%
+short={LGPL},%
+shortplural={LGPLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LOCA}%
+{%
+name={\acronymfont {\glsentryshort {LOCA}}},%
+sort={LOCA},%
+type={acronym},%
+first={LOCA},%
+firstplural={LOCAs},%
+text={LOCA},%
+plural={LOCAs},%
+description={loss-of-coolant accident},%
+descriptionplural={loss-of-coolant accident},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={loss-of-coolant accident},%
+longplural={loss-of-coolant accidents},%
+short={LOCA},%
+shortplural={LOCAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LOFW}%
+{%
+name={\acronymfont {\glsentryshort {LOFW}}},%
+sort={LOFW},%
+type={acronym},%
+first={LOFW},%
+firstplural={LOFWs},%
+text={LOFW},%
+plural={LOFWs},%
+description={loss-of-feedwater},%
+descriptionplural={loss-of-feedwater},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={loss-of-feedwater},%
+longplural={loss-of-feedwaters},%
+short={LOFW},%
+shortplural={LOFWs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LOFA}%
+{%
+name={\acronymfont {\glsentryshort {LOFA}}},%
+sort={LOFA},%
+type={acronym},%
+first={LOFA},%
+firstplural={LOFAs},%
+text={LOFA},%
+plural={LOFAs},%
+description={loss-of-flow accident},%
+descriptionplural={loss-of-flow accident},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={loss-of-flow accident},%
+longplural={loss-of-flow accidents},%
+short={LOFA},%
+shortplural={LOFAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LogR}%
+{%
+name={\acronymfont {\glsentryshort {LogR}}},%
+sort={LogR},%
+type={acronym},%
+first={LogR},%
+firstplural={LogRs},%
+text={LogR},%
+plural={LogRs},%
+description={Logistic Regression},%
+descriptionplural={Logistic Regression},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Logistic Regression},%
+longplural={Logistic Regressions},%
+short={LogR},%
+shortplural={LogRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LPCC}%
+{%
+name={\acronymfont {\glsentryshort {LPCC}}},%
+sort={LPCC},%
+type={acronym},%
+first={LPCC},%
+firstplural={LPCCs},%
+text={LPCC},%
+plural={LPCCs},%
+description={low-pressure conduction cool-down},%
+descriptionplural={low-pressure conduction cool-down},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={low-pressure conduction cool-down},%
+longplural={low-pressure conduction cool-downs},%
+short={LPCC},%
+shortplural={LPCCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LR}%
+{%
+name={\acronymfont {\glsentryshort {LR}}},%
+sort={LR},%
+type={acronym},%
+first={LR},%
+firstplural={LRs},%
+text={LR},%
+plural={LRs},%
+description={Linear Regression},%
+descriptionplural={Linear Regression},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Linear Regression},%
+longplural={Linear Regressions},%
+short={LR},%
+shortplural={LRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LSTM}%
+{%
+name={\acronymfont {\glsentryshort {LSTM}}},%
+sort={LSTM},%
+type={acronym},%
+first={LSTM},%
+firstplural={LSTMs},%
+text={LSTM},%
+plural={LSTMs},%
+description={Long Short-Term Memory Network},%
+descriptionplural={Long Short-Term Memory Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Long Short-Term Memory Network},%
+longplural={Long Short-Term Memory Networks},%
+short={LSTM},%
+shortplural={LSTMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LTE}%
+{%
+name={\acronymfont {\glsentryshort {LTE}}},%
+sort={LTE},%
+type={acronym},%
+first={LTE},%
+firstplural={LTEs},%
+text={LTE},%
+plural={LTEs},%
+description={Low-Temperature Electrolysis},%
+descriptionplural={Low-Temperature Electrolysis},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Low-Temperature Electrolysis},%
+longplural={Low-Temperature Electrolysiss},%
+short={LTE},%
+shortplural={LTEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LWR}%
+{%
+name={\acronymfont {\glsentryshort {LWR}}},%
+sort={LWR},%
+type={acronym},%
+first={LWR},%
+firstplural={LWRs},%
+text={LWR},%
+plural={LWRs},%
+description={Light Water Reactor},%
+descriptionplural={Light Water Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Light Water Reactor},%
+longplural={Light Water Reactors},%
+short={LWR},%
+shortplural={LWRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MOAA}%
+{%
+name={\acronymfont {\glsentryshort {MOAA}}},%
+sort={MOAA},%
+type={acronym},%
+first={MOAA},%
+firstplural={MOAAs},%
+text={MOAA},%
+plural={MOAAs},%
+description={MCNP-ORIGEN Activation Automation},%
+descriptionplural={MCNP-ORIGEN Activation Automation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={MCNP-ORIGEN Activation Automation},%
+longplural={MCNP-ORIGEN Activation Automations},%
+short={MOAA},%
+shortplural={MOAAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MC}%
+{%
+name={\acronymfont {\glsentryshort {MC}}},%
+sort={MC},%
+type={acronym},%
+first={MC},%
+firstplural={MCs},%
+text={MC},%
+plural={MCs},%
+description={Monte Carlo},%
+descriptionplural={Monte Carlo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Monte Carlo},%
+longplural={Monte Carlos},%
+short={MC},%
+shortplural={MCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MHTGR}%
+{%
+name={\acronymfont {\glsentryshort {MHTGR}}},%
+sort={MHTGR},%
+type={acronym},%
+first={MHTGR},%
+firstplural={MHTGRs},%
+text={MHTGR},%
+plural={MHTGRs},%
+description={Modular High-Temperature Gas-Cooled Reactor},%
+descriptionplural={Modular High-Temperature Gas-Cooled Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Modular High-Temperature Gas-Cooled Reactor},%
+longplural={Modular High-Temperature Gas-Cooled Reactors},%
+short={MHTGR},%
+shortplural={MHTGRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ML}%
+{%
+name={\acronymfont {\glsentryshort {ML}}},%
+sort={ML},%
+type={acronym},%
+first={ML},%
+firstplural={MLs},%
+text={ML},%
+plural={MLs},%
+description={machine learning},%
+descriptionplural={machine learning},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={machine learning},%
+longplural={machine learnings},%
+short={ML},%
+shortplural={MLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MMR}%
+{%
+name={\acronymfont {\glsentryshort {MMR}}},%
+sort={MMR},%
+type={acronym},%
+first={MMR},%
+firstplural={MMRs},%
+text={MMR},%
+plural={MMRs},%
+description={Micro Modular Reactor},%
+descriptionplural={Micro Modular Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Micro Modular Reactor},%
+longplural={Micro Modular Reactors},%
+short={MMR},%
+shortplural={MMRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MOC}%
+{%
+name={\acronymfont {\glsentryshort {MOC}}},%
+sort={MOC},%
+type={acronym},%
+first={MOC},%
+firstplural={MOCs},%
+text={MOC},%
+plural={MOCs},%
+description={middle of the equilibrium cycle},%
+descriptionplural={middle of the equilibrium cycle},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={middle of the equilibrium cycle},%
+longplural={middle of the equilibrium cycles},%
+short={MOC},%
+shortplural={MOCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MOX}%
+{%
+name={\acronymfont {\glsentryshort {MOX}}},%
+sort={MOX},%
+type={acronym},%
+first={MOX},%
+firstplural={MOXs},%
+text={MOX},%
+plural={MOXs},%
+description={Mixed-Oxide},%
+descriptionplural={Mixed-Oxide},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Mixed-Oxide},%
+longplural={Mixed-Oxides},%
+short={MOX},%
+shortplural={MOXs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MOOSE}%
+{%
+name={\acronymfont {\glsentryshort {MOOSE}}},%
+sort={MOOSE},%
+type={acronym},%
+first={MOOSE},%
+firstplural={MOOSEs},%
+text={MOOSE},%
+plural={MOOSEs},%
+description={Multi-physics Object-Oriented Simulation Environment},%
+descriptionplural={Multi-physics Object-Oriented Simulation Environment},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Multi-physics Object-Oriented Simulation Environment},%
+longplural={Multi-physics Object-Oriented Simulation Environments},%
+short={MOOSE},%
+shortplural={MOOSEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MPI}%
+{%
+name={\acronymfont {\glsentryshort {MPI}}},%
+sort={MPI},%
+type={acronym},%
+first={MPI},%
+firstplural={MPIs},%
+text={MPI},%
+plural={MPIs},%
+description={Message Passing Interface},%
+descriptionplural={Message Passing Interface},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Message Passing Interface},%
+longplural={Message Passing Interfaces},%
+short={MPI},%
+shortplural={MPIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MAE}%
+{%
+name={\acronymfont {\glsentryshort {MAE}}},%
+sort={MAE},%
+type={acronym},%
+first={MAE},%
+firstplural={MAEs},%
+text={MAE},%
+plural={MAEs},%
+description={Mean Absolute Error},%
+descriptionplural={Mean Absolute Error},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Mean Absolute Error},%
+longplural={Mean Absolute Errors},%
+short={MAE},%
+shortplural={MAEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MSE}%
+{%
+name={\acronymfont {\glsentryshort {MSE}}},%
+sort={MSE},%
+type={acronym},%
+first={MSE},%
+firstplural={MSEs},%
+text={MSE},%
+plural={MSEs},%
+description={Mean Squared Error},%
+descriptionplural={Mean Squared Error},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Mean Squared Error},%
+longplural={Mean Squared Errors},%
+short={MSE},%
+shortplural={MSEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MSR}%
+{%
+name={\acronymfont {\glsentryshort {MSR}}},%
+sort={MSR},%
+type={acronym},%
+first={MSR},%
+firstplural={MSRs},%
+text={MSR},%
+plural={MSRs},%
+description={Molten Salt Reactor},%
+descriptionplural={Molten Salt Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Molten Salt Reactor},%
+longplural={Molten Salt Reactors},%
+short={MSR},%
+shortplural={MSRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MSRE}%
+{%
+name={\acronymfont {\glsentryshort {MSRE}}},%
+sort={MSRE},%
+type={acronym},%
+first={MSRE},%
+firstplural={MSREs},%
+text={MSRE},%
+plural={MSREs},%
+description={Molten Salt Reactor Experiment},%
+descriptionplural={Molten Salt Reactor Experiment},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Molten Salt Reactor Experiment},%
+longplural={Molten Salt Reactor Experiments},%
+short={MSRE},%
+shortplural={MSREs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MTR}%
+{%
+name={\acronymfont {\glsentryshort {MTR}}},%
+sort={MTR},%
+type={acronym},%
+first={MTR},%
+firstplural={MTRs},%
+text={MTR},%
+plural={MTRs},%
+description={material-testing reactor},%
+descriptionplural={material-testing reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={material-testing reactor},%
+longplural={material-testing reactors},%
+short={MTR},%
+shortplural={MTRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ND}%
+{%
+name={\acronymfont {\glsentryshort {ND}}},%
+sort={ND},%
+type={acronym},%
+first={ND},%
+firstplural={NDs},%
+text={ND},%
+plural={NDs},%
+description={net demand},%
+descriptionplural={net demand},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={net demand},%
+longplural={net demands},%
+short={ND},%
+shortplural={NDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NEA}%
+{%
+name={\acronymfont {\glsentryshort {NEA}}},%
+sort={NEA},%
+type={acronym},%
+first={NEA},%
+firstplural={NEAs},%
+text={NEA},%
+plural={NEAs},%
+description={Nuclear Energy Agency},%
+descriptionplural={Nuclear Energy Agency},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nuclear Energy Agency},%
+longplural={Nuclear Energy Agencys},%
+short={NEA},%
+shortplural={NEAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NEM}%
+{%
+name={\acronymfont {\glsentryshort {NEM}}},%
+sort={NEM},%
+type={acronym},%
+first={NEM},%
+firstplural={NEMs},%
+text={NEM},%
+plural={NEMs},%
+description={Nodal Expansion Method},%
+descriptionplural={Nodal Expansion Method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nodal Expansion Method},%
+longplural={Nodal Expansion Methods},%
+short={NEM},%
+shortplural={NEMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NGNP}%
+{%
+name={\acronymfont {\glsentryshort {NGNP}}},%
+sort={NGNP},%
+type={acronym},%
+first={NGNP},%
+firstplural={NGNPs},%
+text={NGNP},%
+plural={NGNPs},%
+description={Next Generation Nuclear Power},%
+descriptionplural={Next Generation Nuclear Power},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Next Generation Nuclear Power},%
+longplural={Next Generation Nuclear Powers},%
+short={NGNP},%
+shortplural={NGNPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NPP}%
+{%
+name={\acronymfont {\glsentryshort {NPP}}},%
+sort={NPP},%
+type={acronym},%
+first={NPP},%
+firstplural={NPPs},%
+text={NPP},%
+plural={NPPs},%
+description={Nuclear Power Plant},%
+descriptionplural={Nuclear Power Plant},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nuclear Power Plant},%
+longplural={Nuclear Power Plants},%
+short={NPP},%
+shortplural={NPPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NRC}%
+{%
+name={\acronymfont {\glsentryshort {NRC}}},%
+sort={NRC},%
+type={acronym},%
+first={NRC},%
+firstplural={NRCs},%
+text={NRC},%
+plural={NRCs},%
+description={Nuclear Regulatory Commission},%
+descriptionplural={Nuclear Regulatory Commission},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nuclear Regulatory Commission},%
+longplural={Nuclear Regulatory Commissions},%
+short={NRC},%
+shortplural={NRCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NSC}%
+{%
+name={\acronymfont {\glsentryshort {NSC}}},%
+sort={NSC},%
+type={acronym},%
+first={NSC},%
+firstplural={NSCs},%
+text={NSC},%
+plural={NSCs},%
+description={Nuclear Science Committee},%
+descriptionplural={Nuclear Science Committee},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nuclear Science Committee},%
+longplural={Nuclear Science Committees},%
+short={NSC},%
+shortplural={NSCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NSUF}%
+{%
+name={\acronymfont {\glsentryshort {NSUF}}},%
+sort={NSUF},%
+type={acronym},%
+first={NSUF},%
+firstplural={NSUFs},%
+text={NSUF},%
+plural={NSUFs},%
+description={Nuclear Science User Facility},%
+descriptionplural={Nuclear Science User Facility},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Nuclear Science User Facility},%
+longplural={Nuclear Science User Facilitys},%
+short={NSUF},%
+shortplural={NSUFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{OECD}%
+{%
+name={\acronymfont {\glsentryshort {OECD}}},%
+sort={OECD},%
+type={acronym},%
+first={OECD},%
+firstplural={OECDs},%
+text={OECD},%
+plural={OECDs},%
+description={Organisation for Economic Co-operation and Development},%
+descriptionplural={Organisation for Economic Co-operation and Development},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Organisation for Economic Co-operation and Development},%
+longplural={Organisation for Economic Co-operation and Developments},%
+short={OECD},%
+shortplural={OECDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{OPyC}%
+{%
+name={\acronymfont {\glsentryshort {OPyC}}},%
+sort={OPyC},%
+type={acronym},%
+first={OPyC},%
+firstplural={OPyCs},%
+text={OPyC},%
+plural={OPyCs},%
+description={outer pyrolytic carbon},%
+descriptionplural={outer pyrolytic carbon},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={outer pyrolytic carbon},%
+longplural={outer pyrolytic carbons},%
+short={OPyC},%
+shortplural={OPyCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ORNL}%
+{%
+name={\acronymfont {\glsentryshort {ORNL}}},%
+sort={ORNL},%
+type={acronym},%
+first={ORNL},%
+firstplural={ORNLs},%
+text={ORNL},%
+plural={ORNLs},%
+description={Oak Ridge National Laboratory},%
+descriptionplural={Oak Ridge National Laboratory},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Oak Ridge National Laboratory},%
+longplural={Oak Ridge National Laboratorys},%
+short={ORNL},%
+shortplural={ORNLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{OS}%
+{%
+name={\acronymfont {\glsentryshort {OS}}},%
+sort={OS},%
+type={acronym},%
+first={OS},%
+firstplural={OSs},%
+text={OS},%
+plural={OSs},%
+description={Operator-Splitting},%
+descriptionplural={Operator-Splitting},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Operator-Splitting},%
+longplural={Operator-Splittings},%
+short={OS},%
+shortplural={OSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PBMR}%
+{%
+name={\acronymfont {\glsentryshort {PBMR}}},%
+sort={PBMR},%
+type={acronym},%
+first={PBMR},%
+firstplural={PBMRs},%
+text={PBMR},%
+plural={PBMRs},%
+description={Pebble Bed Modular Reactor},%
+descriptionplural={Pebble Bed Modular Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Pebble Bed Modular Reactor},%
+longplural={Pebble Bed Modular Reactors},%
+short={PBMR},%
+shortplural={PBMRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PDE}%
+{%
+name={\acronymfont {\glsentryshort {PDE}}},%
+sort={PDE},%
+type={acronym},%
+first={PDE},%
+firstplural={PDEs},%
+text={PDE},%
+plural={PDEs},%
+description={Partial Differential Equation},%
+descriptionplural={Partial Differential Equation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Partial Differential Equation},%
+longplural={Partial Differential Equations},%
+short={PDE},%
+shortplural={PDEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PIE}%
+{%
+name={\acronymfont {\glsentryshort {PIE}}},%
+sort={PIE},%
+type={acronym},%
+first={PIE},%
+firstplural={PIEs},%
+text={PIE},%
+plural={PIEs},%
+description={post-irradiation examination},%
+descriptionplural={post-irradiation examination},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={post-irradiation examination},%
+longplural={post-irradiation examinations},%
+short={PIE},%
+shortplural={PIEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PMR}%
+{%
+name={\acronymfont {\glsentryshort {PMR}}},%
+sort={PMR},%
+type={acronym},%
+first={PMR},%
+firstplural={PMRs},%
+text={PMR},%
+plural={PMRs},%
+description={Prismatic Modular Reactor},%
+descriptionplural={Prismatic Modular Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Prismatic Modular Reactor},%
+longplural={Prismatic Modular Reactors},%
+short={PMR},%
+shortplural={PMRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PV}%
+{%
+name={\acronymfont {\glsentryshort {PV}}},%
+sort={PV},%
+type={acronym},%
+first={PV},%
+firstplural={PVs},%
+text={PV},%
+plural={PVs},%
+description={photovoltaics},%
+descriptionplural={photovoltaics},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={photovoltaics},%
+longplural={photovoltaicss},%
+short={PV},%
+shortplural={PVs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PWR}%
+{%
+name={\acronymfont {\glsentryshort {PWR}}},%
+sort={PWR},%
+type={acronym},%
+first={PWR},%
+firstplural={PWRs},%
+text={PWR},%
+plural={PWRs},%
+description={Pressurized Water Reactor},%
+descriptionplural={Pressurized Water Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Pressurized Water Reactor},%
+longplural={Pressurized Water Reactors},%
+short={PWR},%
+shortplural={PWRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RF}%
+{%
+name={\acronymfont {\glsentryshort {RF}}},%
+sort={RF},%
+type={acronym},%
+first={RF},%
+firstplural={RFs},%
+text={RF},%
+plural={RFs},%
+description={Random Forest},%
+descriptionplural={Random Forest},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Random Forest},%
+longplural={Random Forests},%
+short={RF},%
+shortplural={RFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RFR}%
+{%
+name={\acronymfont {\glsentryshort {RFR}}},%
+sort={RFR},%
+type={acronym},%
+first={RFR},%
+firstplural={RFRs},%
+text={RFR},%
+plural={RFRs},%
+description={Random Forest Regression},%
+descriptionplural={Random Forest Regression},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Random Forest Regression},%
+longplural={Random Forest Regressions},%
+short={RFR},%
+shortplural={RFRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RNN}%
+{%
+name={\acronymfont {\glsentryshort {RNN}}},%
+sort={RNN},%
+type={acronym},%
+first={RNN},%
+firstplural={RNNs},%
+text={RNN},%
+plural={RNNs},%
+description={Recurrent Neural Network},%
+descriptionplural={Recurrent Neural Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Recurrent Neural Network},%
+longplural={Recurrent Neural Networks},%
+short={RNN},%
+shortplural={RNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RPV}%
+{%
+name={\acronymfont {\glsentryshort {RPV}}},%
+sort={RPV},%
+type={acronym},%
+first={RPV},%
+firstplural={RPVs},%
+text={RPV},%
+plural={RPVs},%
+description={Reactor Pressure Vessel},%
+descriptionplural={Reactor Pressure Vessel},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Reactor Pressure Vessel},%
+longplural={Reactor Pressure Vessels},%
+short={RPV},%
+shortplural={RPVs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RSC}%
+{%
+name={\acronymfont {\glsentryshort {RSC}}},%
+sort={RSC},%
+type={acronym},%
+first={RSC},%
+firstplural={RSCs},%
+text={RSC},%
+plural={RSCs},%
+description={Reserve Shutdown Control},%
+descriptionplural={Reserve Shutdown Control},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Reserve Shutdown Control},%
+longplural={Reserve Shutdown Controls},%
+short={RSC},%
+shortplural={RSCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RSD}%
+{%
+name={\acronymfont {\glsentryshort {RSD}}},%
+sort={RSD},%
+type={acronym},%
+first={RSD},%
+firstplural={RSDs},%
+text={RSD},%
+plural={RSDs},%
+description={Relative Standard Deviation},%
+descriptionplural={Relative Standard Deviation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Relative Standard Deviation},%
+longplural={Relative Standard Deviations},%
+short={RSD},%
+shortplural={RSDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{R2S}%
+{%
+name={\acronymfont {\glsentryshort {R2S}}},%
+sort={R2S},%
+type={acronym},%
+first={R2S},%
+firstplural={R2Ss},%
+text={R2S},%
+plural={R2Ss},%
+description={Rigorous 2-Step},%
+descriptionplural={Rigorous 2-Step},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Rigorous 2-Step},%
+longplural={Rigorous 2-Steps},%
+short={R2S},%
+shortplural={R2Ss},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SD}%
+{%
+name={\acronymfont {\glsentryshort {SD}}},%
+sort={SD},%
+type={acronym},%
+first={SD},%
+firstplural={SDs},%
+text={SD},%
+plural={SDs},%
+description={Standard Deviation},%
+descriptionplural={Standard Deviation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Standard Deviation},%
+longplural={Standard Deviations},%
+short={SD},%
+shortplural={SDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SI}%
+{%
+name={\acronymfont {\glsentryshort {SI}}},%
+sort={SI},%
+type={acronym},%
+first={SI},%
+firstplural={SIs},%
+text={SI},%
+plural={SIs},%
+description={Sulfur-Iodine},%
+descriptionplural={Sulfur-Iodine},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Sulfur-Iodine},%
+longplural={Sulfur-Iodines},%
+short={SI},%
+shortplural={SIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SiC}%
+{%
+name={\acronymfont {\glsentryshort {SiC}}},%
+sort={SiC},%
+type={acronym},%
+first={SiC},%
+firstplural={SiCs},%
+text={SiC},%
+plural={SiCs},%
+description={silicon carbide},%
+descriptionplural={silicon carbide},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={silicon carbide},%
+longplural={silicon carbides},%
+short={SiC},%
+shortplural={SiCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SMR}%
+{%
+name={\acronymfont {\glsentryshort {SMR}}},%
+sort={SMR},%
+type={acronym},%
+first={SMR},%
+firstplural={SMRs},%
+text={SMR},%
+plural={SMRs},%
+description={Small Modular Reactor},%
+descriptionplural={Small Modular Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Small Modular Reactor},%
+longplural={Small Modular Reactors},%
+short={SMR},%
+shortplural={SMRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SNU}%
+{%
+name={\acronymfont {\glsentryshort {SNU}}},%
+sort={SNU},%
+type={acronym},%
+first={SNU},%
+firstplural={SNUs},%
+text={SNU},%
+plural={SNUs},%
+description={Seoul National University},%
+descriptionplural={Seoul National University},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Seoul National University},%
+longplural={Seoul National Universitys},%
+short={SNU},%
+shortplural={SNUs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SOEC}%
+{%
+name={\acronymfont {\glsentryshort {SOEC}}},%
+sort={SOEC},%
+type={acronym},%
+first={SOEC},%
+firstplural={SOECs},%
+text={SOEC},%
+plural={SOECs},%
+description={Solid Oxide Electrolysis Cells},%
+descriptionplural={Solid Oxide Electrolysis Cells},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Solid Oxide Electrolysis Cells},%
+longplural={Solid Oxide Electrolysis Cellss},%
+short={SOEC},%
+shortplural={SOECs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SP3}%
+{%
+name={\acronymfont {\glsentryshort {SP3}}},%
+sort={SP$_3$},%
+type={acronym},%
+first={SP$_3$},%
+firstplural={SP$_3$s},%
+text={SP$_3$},%
+plural={SP$_3$s},%
+description={Simplified P$_3$},%
+descriptionplural={Simplified P$_3$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Simplified P$_3$},%
+longplural={Simplified P$_3$s},%
+short={SP$_3$},%
+shortplural={SP$_3$s},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SVM}%
+{%
+name={\acronymfont {\glsentryshort {SVM}}},%
+sort={SVM},%
+type={acronym},%
+first={SVM},%
+firstplural={SVMs},%
+text={SVM},%
+plural={SVMs},%
+description={Support Vector Machine},%
+descriptionplural={Support Vector Machine},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Support Vector Machine},%
+longplural={Support Vector Machines},%
+short={SVM},%
+shortplural={SVMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SVR}%
+{%
+name={\acronymfont {\glsentryshort {SVR}}},%
+sort={SVR},%
+type={acronym},%
+first={SVR},%
+firstplural={SVRs},%
+text={SVR},%
+plural={SVRs},%
+description={Support Vector Regression},%
+descriptionplural={Support Vector Regression},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Support Vector Regression},%
+longplural={Support Vector Regressions},%
+short={SVR},%
+shortplural={SVRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TFHR}%
+{%
+name={\acronymfont {\glsentryshort {TFHR}}},%
+sort={TFHR},%
+type={acronym},%
+first={TFHR},%
+firstplural={TFHRs},%
+text={TFHR},%
+plural={TFHRs},%
+description={Transportable Fluoride-salt-cooled High-temperature Reactor},%
+descriptionplural={Transportable Fluoride-salt-cooled High-temperature Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Transportable Fluoride-salt-cooled High-temperature Reactor},%
+longplural={Transportable Fluoride-salt-cooled High-temperature Reactors},%
+short={TFHR},%
+shortplural={TFHRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TIP}%
+{%
+name={\acronymfont {\glsentryshort {TIP}}},%
+sort={TIP},%
+type={acronym},%
+first={TIP},%
+firstplural={TIPs},%
+text={TIP},%
+plural={TIPs},%
+description={transverse integration procedure},%
+descriptionplural={transverse integration procedure},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={transverse integration procedure},%
+longplural={transverse integration procedures},%
+short={TIP},%
+shortplural={TIPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TRISO}%
+{%
+name={\acronymfont {\glsentryshort {TRISO}}},%
+sort={TRISO},%
+type={acronym},%
+first={TRISO},%
+firstplural={TRISOs},%
+text={TRISO},%
+plural={TRISOs},%
+description={Tristructural Isotropic},%
+descriptionplural={Tristructural Isotropic},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Tristructural Isotropic},%
+longplural={Tristructural Isotropics},%
+short={TRISO},%
+shortplural={TRISOs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TREAT}%
+{%
+name={\acronymfont {\glsentryshort {TREAT}}},%
+sort={TREAT},%
+type={acronym},%
+first={TREAT},%
+firstplural={TREATs},%
+text={TREAT},%
+plural={TREATs},%
+description={Transient Reactor Test Facility},%
+descriptionplural={Transient Reactor Test Facility},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Transient Reactor Test Facility},%
+longplural={Transient Reactor Test Facilitys},%
+short={TREAT},%
+shortplural={TREATs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UIF}%
+{%
+name={\acronymfont {\glsentryshort {UIF}}},%
+sort={UIF},%
+type={acronym},%
+first={UIF},%
+firstplural={UIFs},%
+text={UIF},%
+plural={UIFs},%
+description={user input file},%
+descriptionplural={user input file},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={user input file},%
+longplural={user input files},%
+short={UIF},%
+shortplural={UIFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UIUC}%
+{%
+name={\acronymfont {\glsentryshort {UIUC}}},%
+sort={UIUC},%
+type={acronym},%
+first={UIUC},%
+firstplural={UIUCs},%
+text={UIUC},%
+plural={UIUCs},%
+description={University of Illinois Urbana-Champaign},%
+descriptionplural={University of Illinois Urbana-Champaign},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={University of Illinois Urbana-Champaign},%
+longplural={University of Illinois Urbana-Champaigns},%
+short={UIUC},%
+shortplural={UIUCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UNIST}%
+{%
+name={\acronymfont {\glsentryshort {UNIST}}},%
+sort={UNIST},%
+type={acronym},%
+first={UNIST},%
+firstplural={UNISTs},%
+text={UNIST},%
+plural={UNISTs},%
+description={Ulsan National Institute of Science and Technology},%
+descriptionplural={Ulsan National Institute of Science and Technology},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Ulsan National Institute of Science and Technology},%
+longplural={Ulsan National Institute of Science and Technologys},%
+short={UNIST},%
+shortplural={UNISTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UK}%
+{%
+name={\acronymfont {\glsentryshort {UK}}},%
+sort={UK},%
+type={acronym},%
+first={UK},%
+firstplural={UKs},%
+text={UK},%
+plural={UKs},%
+description={United Kingdom},%
+descriptionplural={United Kingdom},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={United Kingdom},%
+longplural={United Kingdoms},%
+short={UK},%
+shortplural={UKs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UMICH}%
+{%
+name={\acronymfont {\glsentryshort {UMICH}}},%
+sort={UMICH},%
+type={acronym},%
+first={UMICH},%
+firstplural={UMICHs},%
+text={UMICH},%
+plural={UMICHs},%
+description={University of Michigan},%
+descriptionplural={University of Michigan},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={University of Michigan},%
+longplural={University of Michigans},%
+short={UMICH},%
+shortplural={UMICHs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UQ}%
+{%
+name={\acronymfont {\glsentryshort {UQ}}},%
+sort={UQ},%
+type={acronym},%
+first={UQ},%
+firstplural={UQs},%
+text={UQ},%
+plural={UQs},%
+description={Uncertainty Quantification},%
+descriptionplural={Uncertainty Quantification},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Uncertainty Quantification},%
+longplural={Uncertainty Quantifications},%
+short={UQ},%
+shortplural={UQs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{US}%
+{%
+name={\acronymfont {\glsentryshort {US}}},%
+sort={US},%
+type={acronym},%
+first={US},%
+firstplural={USs},%
+text={US},%
+plural={USs},%
+description={United States},%
+descriptionplural={United States},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={United States},%
+longplural={United Statess},%
+short={US},%
+shortplural={USs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{USNC}%
+{%
+name={\acronymfont {\glsentryshort {USNC}}},%
+sort={USNC},%
+type={acronym},%
+first={USNC},%
+firstplural={USNCs},%
+text={USNC},%
+plural={USNCs},%
+description={Ultra Safe Nuclear Corporation},%
+descriptionplural={Ultra Safe Nuclear Corporation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Ultra Safe Nuclear Corporation},%
+longplural={Ultra Safe Nuclear Corporations},%
+short={USNC},%
+shortplural={USNCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{VHTR}%
+{%
+name={\acronymfont {\glsentryshort {VHTR}}},%
+sort={VHTR},%
+type={acronym},%
+first={VHTR},%
+firstplural={VHTRs},%
+text={VHTR},%
+plural={VHTRs},%
+description={Very High-Temperature Gas-Cooled Reactor},%
+descriptionplural={Very High-Temperature Gas-Cooled Reactor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Very High-Temperature Gas-Cooled Reactor},%
+longplural={Very High-Temperature Gas-Cooled Reactors},%
+short={VHTR},%
+shortplural={VHTRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{WRM}%
+{%
+name={\acronymfont {\glsentryshort {WRM}}},%
+sort={WRM},%
+type={acronym},%
+first={WRM},%
+firstplural={WRMs},%
+text={WRM},%
+plural={WRMs},%
+description={weighted residual method},%
+descriptionplural={weighted residual method},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={weighted residual method},%
+longplural={weighted residual methods},%
+short={WRM},%
+shortplural={WRMs},%
+counter={page},%
+parent={},%
+%
+}%
+
