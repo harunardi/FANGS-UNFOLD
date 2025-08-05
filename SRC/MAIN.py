@@ -74,9 +74,9 @@ from INPUTS.OBJECTIVES1_TEST08_2DTriMG_HTTR2G_VandV import *
 sys.path = original_sys_path
 
 #######################################################################################################
-#solver_type = 'forward'
+solver_type = 'forward'
 #solver_type = 'adjoint'
-solver_type = 'noise'
+#solver_type = 'noise'
 
 #######################################################################################################
 def main():
