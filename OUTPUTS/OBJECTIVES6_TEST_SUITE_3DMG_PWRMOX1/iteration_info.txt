@@ -1,2 +1,6 @@
 Iteration: 1, num_source: 1, loc_conv = [3085], loc = [4598], frequency: 2.8879284182483373, Real magnitude = [0.09], Imaginary magnitude = [0.0]
 Iteration: 2, num_source: 1, loc_conv = [1150], loc = [1695], frequency: 5.795154208255167, Real magnitude = [0.03], Imaginary magnitude = [0.0]
+Iteration: 3, num_source: 1, loc_conv = [4250], loc = [6383], frequency: 3.844342660036986, Real magnitude = [0.1], Imaginary magnitude = [0.0]
+Iteration: 4, num_source: 1, loc_conv = [2442], loc = [3645], frequency: 3.8639985500127474, Real magnitude = [0.07], Imaginary magnitude = [0.0]
+Iteration: 5, num_source: 1, loc_conv = [3107], loc = [4677], frequency: 5.06927807518887, Real magnitude = [0.01], Imaginary magnitude = [0.04]
+Iteration: 6, num_source: 2, loc_conv = [6354, 6599], loc = [9491, 9901], frequency: 2.8879284182483373, Real magnitude = [0.07, 0.08], Imaginary magnitude = [0.08, 0.0]
