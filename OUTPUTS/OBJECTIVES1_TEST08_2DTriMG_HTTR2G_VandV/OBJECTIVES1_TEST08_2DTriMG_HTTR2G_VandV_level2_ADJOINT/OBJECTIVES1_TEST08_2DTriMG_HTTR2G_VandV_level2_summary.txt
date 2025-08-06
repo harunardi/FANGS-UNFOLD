@@ -5,6 +5,6 @@
     Number of groups: 2
     Dimensions: 2D triangular
     Final keff: 1.004339+0.000000j
-    Elapsed Time: 3.819e+00 seconds
+    Elapsed Time: 1.074e+00 seconds
     Solver Used: LU
     
