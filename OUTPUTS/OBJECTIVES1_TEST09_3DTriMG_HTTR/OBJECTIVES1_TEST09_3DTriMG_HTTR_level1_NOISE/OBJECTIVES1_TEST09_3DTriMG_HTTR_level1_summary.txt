@@ -4,7 +4,7 @@
     Simulation Type: noise Simulation
     Number of groups: 2
     Dimensions: 3D triangular
-    Final keff: 1.050523
-    Elapsed Time: 2.869e+01 seconds
+    Final keff: 1.050390
+    Elapsed Time: 1.534e+01 seconds
     Solver Used: LU
     
