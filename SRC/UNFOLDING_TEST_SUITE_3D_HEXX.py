@@ -40,8 +40,8 @@ h = h_hexx / (2**(level-1))
 dz = 58.0
 
 # INITIALIZATION
-input_name = f"TASK3_TEST05e_3DTriMG_HTTR"
-case_name_base = f"{input_name}_TEST_SUITE"
+input_name = f"OBJECTIVES6_TEST_SUITE_3DTriMG_HTTR"
+case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 I_max = len(D1[0][0])
 J_max = len(D1[0])
