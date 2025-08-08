@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS
+    Simulation Type: forward Simulation
+    Number of groups: 2
+    Dimensions: 3D rectangular
+    Final keff: 1.005346+0.000000j
+    Elapsed Time: 2.789e+00 seconds
+    Solver Used: LU
+    

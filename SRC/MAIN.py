@@ -45,6 +45,7 @@ sys.path.append('../')
 #from INPUTS.TASK1_TEST19_2DTriMG_HTTR4G import * # No noise case
 #from INPUTS.TASK1_TEST20_2DTriMG_HTTR7G import * # No noise case
 #from INPUTS.TASK1_TEST21_2DTriMG_HTTR14G import * # No noise case
+#from INPUTS.TASK1_TEST22_3DMG_Langenbuch import *
 
 #from INPUTS.TASK1_TEST22_3DTriMG_3rings import * # No noise case
 #from INPUTS.TASK1_TEST23_3DTriMG_VVER400_VandV import * # No noise case
@@ -60,6 +61,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST08_2DTriMG_HTTR2G_VandV import *
 #from INPUTS.OBJECTIVES1_TEST09_3DTriMG_HTTR import *
+#from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
@@ -68,7 +70,8 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
-from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+#from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
 # Restore the original sys.path
 sys.path = original_sys_path

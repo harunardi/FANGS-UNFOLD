@@ -35,7 +35,9 @@ sys.path.append('../')
 
 #from INPUTS.OBJECTIVES45_TEST05_3DMG_PWRMOX1_AVS import *
 #from INPUTS.OBJECTIVES45_TEST06_3DMG_PWRMOX3_FAV import *
-from INPUTS.OBJECTIVES45_TEST11_3DMG_PWRMOX1_AVS3S import *
+#from INPUTS.OBJECTIVES45_TEST11_3DMG_PWRMOX1_AVS3S import *
+#from INPUTS.OBJECTIVES45_TEST13_3DMG_Langenbuch_AVS import *
+from INPUTS.OBJECTIVES45_TEST14_3DMG_Langenbuch_AVS3S import *
 
 # Restore the original sys.path
 sys.path = original_sys_path
