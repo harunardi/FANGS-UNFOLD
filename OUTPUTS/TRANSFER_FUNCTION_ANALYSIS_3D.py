@@ -23,6 +23,18 @@ G0_PWR = [complex(entry["real"], entry["imaginary"]) for entry in noise_output_P
 G0_PWR_array = np.array(G0_PWR)
 
 #######################################################################################################
+# 3DMG Langenbuch
+case_name_Langenbuch = 'OBJECTIVES2_TEST10_3DMG_Langenbuch'
+
+# Load data from JSON file
+with open(f'{case_name_Langenbuch}/{case_name_Langenbuch}_TRANSFER/{case_name_Langenbuch}_NOISE/{case_name_Langenbuch}_NOISE_G_0_output.json', 'r') as json_file:
+    noise_output_Langenbuch = json.load(json_file)
+
+# Access G0_Langenbuch numerical from the loaded data
+G0_Langenbuch = [complex(entry["real"], entry["imaginary"]) for entry in noise_output_Langenbuch["G_0"]]
+G0_Langenbuch_array = np.array(G0_Langenbuch)
+
+#######################################################################################################
 # 3DMG VVER-400
 case_name_VVER = 'OBJECTIVES2_TEST07_3DTriMG_VVER400_VandV'
 
@@ -53,8 +65,9 @@ freq = np.logspace(-4, 4, num=101)
 plt.clf()  # Clear the current figure
 plt.figure(figsize=(8, 6))  # Create a new figure
 plt.plot(freq, abs(G0_PWR_array), marker='o', label="PWR", color='blue')
-plt.plot(freq, abs(G0_VVER_array), marker='s', label="VVER", color='green')
-plt.plot(freq, abs(G0_HTTR_array), marker='d', label="HTTR", color='red')
+plt.plot(freq, abs(G0_Langenbuch_array), marker='s', label="Langenbuch", color='orange')
+plt.plot(freq, abs(G0_VVER_array), marker='d', label="VVER", color='green')
+plt.plot(freq, abs(G0_HTTR_array), marker='*', label="HTTR", color='red')
 plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency (Hz)')
@@ -67,8 +80,9 @@ plt.savefig(f'Transfer_Function_3D_Comparison_Magnitude.png')
 plt.clf()  # Clear the current figure
 plt.figure(figsize=(8, 6))  # Create a new figure
 plt.plot(freq, np.degrees(np.angle(G0_PWR_array)), marker='o', label="PWR", color='blue')
-plt.plot(freq, np.degrees(np.angle(G0_VVER_array)), marker='s', label="VVER", color='green')
-plt.plot(freq, np.degrees(np.angle(G0_HTTR_array)), marker='d', label="HTTR", color='red')
+plt.plot(freq, np.degrees(np.angle(G0_Langenbuch_array)), marker='s', label="Langenbuch", color='orange')
+plt.plot(freq, np.degrees(np.angle(G0_VVER_array)), marker='d', label="VVER", color='green')
+plt.plot(freq, np.degrees(np.angle(G0_HTTR_array)), marker='*', label="HTTR", color='red')
 plt.xscale('log')
 plt.ylim(-120, 0)
 plt.xlabel('Frequency (Hz)')
