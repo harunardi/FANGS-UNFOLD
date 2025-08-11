@@ -1,6 +1,6 @@
-INVERT no
-ZONE no
-SCAN yes
-BRUTE yes
+INVERT no, no, no
+ZONE no, no, no
+SCAN yes, yes, yes
+BRUTE yes, yes, yes
 BACK 
-GREEDY yes
+GREEDY yes, yes, yes
