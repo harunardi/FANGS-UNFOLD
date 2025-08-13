@@ -1,0 +1,2 @@
+Iteration: 1, num_source: 1, loc_conv = [1321], loc = [1366], frequency: 4.347649306363054, Real magnitude = [0.07], Imaginary magnitude = [0.0]
+Iteration: 2, num_source: 1, loc_conv = [911], loc = [940], frequency: 5.918088954365414, Real magnitude = [0.06], Imaginary magnitude = [0.0]
