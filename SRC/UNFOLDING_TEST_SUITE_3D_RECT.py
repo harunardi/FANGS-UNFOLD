@@ -4,6 +4,7 @@ import os
 import sys
 import random
 import logging
+import gc
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -279,6 +280,15 @@ while add_iter < additional_iter:
                 for category, lst in zip(methods, validity):
                     f.write(f"{category} " + ", ".join(lst) + "\n")
 
+            # Explicitly delete large objects no longer needed
+            del G_matrix, dPHI_temp, dPHI_temp_meas, S
+            del dPHI_temp_INVERT, dS_unfold_INVERT_temp
+            del dS_unfold_ZONE_temp, dS_unfold_SCAN_temp
+            del dPHI_temp_BRUTE, dS_unfold_BRUTE_temp
+            del dPHI_temp_GREEDY, dS_unfold_GREEDY_temp
+            
+            # Force garbage collection
+            gc.collect()
             iter += 1
     add_iter += 1
 
