@@ -1,0 +1,4 @@
+Iteration: 1, number of active detectors: 130
+Iteration: 2, number of active detectors: 129
+Iteration: 3, number of active detectors: 128
+Iteration: 4, number of active detectors: 127
