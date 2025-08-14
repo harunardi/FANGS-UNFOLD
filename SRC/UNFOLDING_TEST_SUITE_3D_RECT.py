@@ -200,7 +200,7 @@ for g in range(group):
             conv_new[m] = g * max(conv) + conv[n]
 
 while add_iter < additional_iter:
-    for num_source in range(max_num_source):
+    for num_source in range(0, max_num_source):
         for fo in range(len(freq)):
             dTOT = [row[:] for row in dTOT_OLD]
             source = num_source + 1
