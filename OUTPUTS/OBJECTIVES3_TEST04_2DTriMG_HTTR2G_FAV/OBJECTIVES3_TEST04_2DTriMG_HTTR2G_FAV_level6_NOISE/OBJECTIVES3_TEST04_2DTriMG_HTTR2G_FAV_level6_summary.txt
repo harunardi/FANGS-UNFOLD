@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV_level6
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 2D triangular
+    Final keff: 1.005785
+    Elapsed Time: 8.950e+02 seconds
+    Solver Used: LU
+    
