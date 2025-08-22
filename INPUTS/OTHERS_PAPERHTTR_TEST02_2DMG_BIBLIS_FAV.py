@@ -205,7 +205,7 @@ Beff = 0.0065
 l = 0.0784130
 
 ## INITIALIZATION
-case_name = "OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV"
+case_name = "OTHERS_PAPER-HTTR_TEST02_2DMG_BIBLIS_FAV"
 geom_type = '2D rectangular'
 precond = 2
 I_max = len(D[0][0]) # N row

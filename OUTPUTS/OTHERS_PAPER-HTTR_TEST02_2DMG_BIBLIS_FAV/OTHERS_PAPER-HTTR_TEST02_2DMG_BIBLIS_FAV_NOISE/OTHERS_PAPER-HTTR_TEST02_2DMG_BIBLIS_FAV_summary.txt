@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OTHERS_PAPER-HTTR_TEST02_2DMG_BIBLIS_FAV
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 2D rectangular
+    Final keff: 1.027126
+    Elapsed Time: 2.118e+01 seconds
+    Solver Used: LU
+    

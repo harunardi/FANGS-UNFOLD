@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OTHERS_PAPER-HTTR_TEST07_3DTriMG_HTTR_AVS_level3
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 3D triangular
+    Final keff: 1.055777
+    Elapsed Time: 1.496e+02 seconds
+    Solver Used: LU
+    
