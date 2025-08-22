@@ -341,4 +341,4 @@ for o, idx in enumerate(active_indices):
         for category, lst in zip(methods, validity):
             f.write(f"{category} " + ", ".join(lst) + "\n")
 
-    map_detector[idx] = 0
+    map_detector_hexx[idx] = 0
