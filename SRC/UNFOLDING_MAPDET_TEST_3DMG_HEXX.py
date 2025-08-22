@@ -113,21 +113,39 @@ noise_pos = 0
 type_noise = 'AVS'
 noise_section = 1
 
-map_detector = [
+map_detector1 = [
 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 
-9, 9, 9, 9, 9, 9, 9, 1, 0, 0, 1, 0, 0, 1, 9, 
+9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 9, 
 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
-9, 9, 9, 9, 9, 0, 0, 0, 0, 1, 0, 0, 0, 0, 9, 
-9, 9, 9, 9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 
-9, 9, 9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 9, 
+9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
-9, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 
-9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 9, 9, 9, 
-9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 9, 9, 9, 
-9, 0, 0, 0, 0, 1, 0, 0, 0, 0, 9, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 
 9, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 
-9, 1, 0, 0, 1, 0, 0, 1, 9, 9, 9, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 9, 
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 
+]
+
+map_detector2 = [
+9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 
+9, 9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 9, 
+9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 
+9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 
+9, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9, 9, 
 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 
 ]
 
@@ -150,7 +168,7 @@ map_zone = [
 ]
 
 map_zone = map_zone * 9 
-map_detector = map_detector * 9
+map_detector = map_detector1 + map_detector1 + map_detector1 + map_detector1 + map_detector2 + map_detector1 + map_detector1 + map_detector1 + map_detector1
 
 #######################################################################################################
 output_dir = f'../OUTPUTS/{case_name_base}'
@@ -254,6 +272,9 @@ map_detector_hexx2 = np.array(map_detector_hexx)
 active_indices = np.where(map_detector_hexx2 == 1)[0]
 np.random.shuffle(active_indices)  # randomize order of deactivation
 
+case_name = case_name2
+G_matrix = main_unfold_3D_hexx_green(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
+
 for o, idx in enumerate(active_indices):
     case_name = f'{case_name2}_iter{o}'
 
@@ -285,7 +306,6 @@ for o, idx in enumerate(active_indices):
         f_map.write("]\n")
 
     dPHI_temp = main_unfold_3D_hexx_noise(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
-    G_matrix = main_unfold_3D_hexx_green(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
 
     try:
