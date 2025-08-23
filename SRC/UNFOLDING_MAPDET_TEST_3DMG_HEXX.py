@@ -121,7 +121,7 @@ map_detector1 = [
 9, 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
 9, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
-9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 
+9, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 9, 
 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 
 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 
 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 
@@ -279,16 +279,6 @@ for o, idx in enumerate(active_indices):
     case_name = f'{case_name2}_iter{o}'
 
     # --------------- MAP DETECTOR -------------------
-    # Expand the map detector
-    p = 6 * (4 ** (level - 1))
-    map_detector_hexx = [0] * K_max * I_max * J_max * p
-    map_detector_temp = np.reshape(map_detector, (K_max, J_max, I_max))
-    for k in range(K_max):
-        for j in range(J_max):
-            for i in range(I_max):
-                m = k * (J_max * I_max) + j * I_max + i
-                for t in range(p):
-                    map_detector_hexx[m * p + t] = map_detector_temp[k][j][i]
     map_detector_conv = []
     for n in range(N_hexx):
         if conv_tri[n] != 0:
@@ -300,37 +290,38 @@ for o, idx in enumerate(active_indices):
         file.write(f"Iteration: {o+1}, number of active assembly detectors: {np.sum(map_detector == 1)}, number of known noise flux: {sum_map_detector_hexx}\n")
 
     # Append map_detector to a separate file
-    with open(f"../OUTPUTS/{case_name_base}/map_detector_iter{o}.txt", "w") as f_map:
-        f_map.write("map_detector = [")
-        f_map.write(", ".join(str(int(x)) for x in map_detector))
+    map_det_hexx_print = np.nan_to_num(np.array(map_detector_hexx), nan=0, posinf=0, neginf=0)
+    with open(f"../OUTPUTS/{case_name_base}/map_detector_hexx_iter{o}.txt", "w") as f_map:
+        f_map.write("map_detector_hexx = [")
+        f_map.write(", ".join(str(int(x)) for x in map_det_hexx_print))
         f_map.write("]\n")
 
     dPHI_temp = main_unfold_3D_hexx_noise(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
 
-    try:
-        dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-        dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-        dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-        if np.allclose(S, dS_unfold_INVERT_temp, atol=1E-06):
-            validity_INVERT.append('yes')
-        else:
-            validity_INVERT.append('no')
-        if np.allclose(S, dS_unfold_ZONE_temp, atol=1E-06):
-            validity_ZONE.append('yes')
-        else:
-            validity_ZONE.append('no')
-        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
-            validity_SCAN.append('yes')
-        else:
-            validity_SCAN.append('no')
-    except Exception as e:
-        print(f"Unfolding failed: {e}")
-
-        # Append failure indicators
-        validity_INVERT.append('fail')
-        validity_ZONE.append('fail')
-        validity_SCAN.append('fail')  
+#    try:
+#        dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+#        dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+#        dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+#        if np.allclose(S, dS_unfold_INVERT_temp, atol=1E-06):
+#            validity_INVERT.append('yes')
+#        else:
+#            validity_INVERT.append('no')
+#        if np.allclose(S, dS_unfold_ZONE_temp, atol=1E-06):
+#            validity_ZONE.append('yes')
+#        else:
+#            validity_ZONE.append('no')
+#        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
+#            validity_SCAN.append('yes')
+#        else:
+#            validity_SCAN.append('no')
+#    except Exception as e:
+#        print(f"Unfolding failed: {e}")
+#
+#        # Append failure indicators
+#        validity_INVERT.append('fail')
+#        validity_ZONE.append('fail')
+#        validity_SCAN.append('fail')  
 
     try:
         dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)

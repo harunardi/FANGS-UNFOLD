@@ -1,1 +1,3 @@
-Iteration: 1, number of active assembly detectors: 3, number of known noise flux: 18
+Iteration: 1, number of active assembly detectors: 11, number of known noise flux: 66
+Iteration: 2, number of active assembly detectors: 11, number of known noise flux: 65
+Iteration: 3, number of active assembly detectors: 11, number of known noise flux: 64
