@@ -78,17 +78,17 @@ sys.path.append('../')
 #from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST05_3DMG_CSTest09_AVS import *
-#from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
+from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST07_3DTriMG_HTTR_AVS import *
-from INPUTS.OTHERS_PAPERHTTR_TEST08_3DTriMG_HTTR_FAV import *
+#from INPUTS.OTHERS_PAPERHTTR_TEST08_3DTriMG_HTTR_FAV import *
 
 # Restore the original sys.path
 sys.path = original_sys_path
 
 #######################################################################################################
-solver_type = 'forward'
+#solver_type = 'forward'
 #solver_type = 'adjoint'
-#solver_type = 'noise'
+solver_type = 'noise'
 
 #######################################################################################################
 def main():

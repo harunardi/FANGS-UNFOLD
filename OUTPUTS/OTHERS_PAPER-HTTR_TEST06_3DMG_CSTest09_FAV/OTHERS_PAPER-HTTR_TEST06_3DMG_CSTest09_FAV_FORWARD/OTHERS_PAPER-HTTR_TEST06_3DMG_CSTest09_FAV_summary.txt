@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OTHERS_PAPER-HTTR_TEST06_3DMG_CSTest09_FAV
+    Simulation Type: forward Simulation
+    Number of groups: 2
+    Dimensions: 3D rectangular
+    Final keff: 1.000827+0.000000j
+    Elapsed Time: 2.336e+04 seconds
+    Solver Used: LU
+    
