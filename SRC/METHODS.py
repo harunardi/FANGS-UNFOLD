@@ -4,12 +4,12 @@ from scipy.integrate import trapezoid
 from petsc4py import PETSc
 
 class PowerMethodSolver1D:
-    def __init__(self, group, N, M, F, dx, precond, tol=1e-06):
+    def __init__(self, group, N, M, F, x, precond, tol=1e-06):
         self.group = group
         self.N = N
         self.M = M
         self.F = F
-        self.dx = dx
+        self.x = x
         self.precond = precond
         self.tol = tol
 
@@ -18,6 +18,7 @@ class PowerMethodSolver1D:
         keff = 1.0
         errflux = errkeff = self.tol + 1
         iter_count = 0
+        x_integrate = np.tile(self.x, self.group)
 
         if self.precond == 1:
             print(f'Solving using ILU')
@@ -45,8 +46,8 @@ class PowerMethodSolver1D:
                 phi = spsolve(self.M, S)
 
             # Update keff
-            keff = k_old * trapezoid(self.F @ phi, dx=self.dx, axis=0) / \
-                   trapezoid(self.F @ phi_old, dx=self.dx, axis=0)
+            keff = k_old * trapezoid(self.F @ phi, x=x_integrate, axis=0) / \
+                   trapezoid(self.F @ phi_old, x=x_integrate, axis=0)
 
             residual = S - self.M.dot(phi)
             residual_norm = np.linalg.norm(residual)
@@ -65,12 +66,11 @@ class PowerMethodSolver1D:
         return keff, phi
 
 class FixedSourceSolver1D:
-    def __init__(self, group, N, M, dS, dSOURCE, PHI, dx, precond, tol=1e-06):
+    def __init__(self, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-06):
         self.group = group
         self.N = N
         self.M = M
         self.dS = dS
-        self.dx = dx
         self.precond = precond
         self.tol = tol
         self.PHI = PHI

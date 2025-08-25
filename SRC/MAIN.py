@@ -22,7 +22,7 @@ original_sys_path = sys.path.copy()
 sys.path.append('../')
 
 #from INPUTS.TASK1_TEST01_1D1G_general import *
-#from INPUTS.TASK1_TEST02_1DMG_CSTest03 import *
+from INPUTS.TASK1_TEST02_1DMG_CSTest03_FAVtrial import *
 #from INPUTS.TASK1_TEST03_1DMG_CSTest05 import *
 #from INPUTS.TASK1_TEST04_1DMG_CSTest07 import * # No noise case
 
@@ -78,7 +78,7 @@ sys.path.append('../')
 #from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST05_3DMG_CSTest09_AVS import *
-from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
+#from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST07_3DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST08_3DTriMG_HTTR_FAV import *
 
@@ -110,13 +110,15 @@ def main():
         Utils.create_directories(solver_type, output_dir, case_name)
         if solver_type in ['forward', 'adjoint']:
             if solver_type == 'forward':
-                matrix_builder = MatrixBuilderForward1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
+                dx_list = [dx] * N
+                matrix_builder = MatrixBuilderForward1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS)
                 M, F = matrix_builder.build_forward_matrices()
             elif solver_type == 'adjoint':
-                matrix_builder = MatrixBuilderAdjoint1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
+                dx_list = [dx] * N
+                matrix_builder = MatrixBuilderAdjoint1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS)
                 M, F = matrix_builder.build_adjoint_matrices()
 
-            solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F, dx, precond, tol=1E-10)
+            solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F, x, precond, tol=1E-10)
             keff, PHI = solver.solve()
             PHI_reshaped = np.reshape(PHI, (group, N))
             PostProcessor.save_output_power1D(output_dir, case_name, keff, PHI_reshaped, solver_type)
@@ -142,11 +144,12 @@ def main():
                 phi_key = f"PHI{i+1}_FORWARD"
                 PHI.extend(forward_output[phi_key])
             dSOURCE_new = [item for sublist in dSOURCE for item in sublist]
+            dx_list = [dx] * N
 
-            matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
+            matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
             M, dS = matrix_builder.build_noise_matrices()
 
-            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, dx, precond, tol=1e-10)
+            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-10)
 
             dPHI = solver.solve()
             dPHI_reshaped = np.reshape(dPHI, (group, N))

@@ -11,16 +11,16 @@ from METHODS import FixedSourceSolver3DHexx
 
 class SolverFactory:
     @staticmethod
-    def get_solver_power1D(solver_type, group, N, M, F, dx, precond, tol):
+    def get_solver_power1D(solver_type, group, N, M, F, x, precond, tol):
         if solver_type in ['forward', 'adjoint']:
-            return PowerMethodSolver1D(group, N, M, F, dx, precond, tol)
+            return PowerMethodSolver1D(group, N, M, F, x, precond, tol)
         else:
             raise ValueError(f"Unknown solver type: {solver_type}")
 
     @staticmethod
-    def get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, dx, precond, tol):
+    def get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol):
         if solver_type == 'noise':
-            return FixedSourceSolver1D(group, N, M, dS, dSOURCE, PHI, dx, precond, tol)
+            return FixedSourceSolver1D(group, N, M, dS, dSOURCE, PHI, precond, tol)
         else:
             raise ValueError(f"Unknown solver type: {solver_type}")    
 
