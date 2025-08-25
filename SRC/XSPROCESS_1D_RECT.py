@@ -64,20 +64,20 @@ def FORWARD_D_1D_matrix(group, BC, N, dx, D):
         for n in range(N):
             if n == 0:
                 if BC_left == 1:  # Zero Flux
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) / (dx[0]**2))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) / (dx[0]**2))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 2:  # Reflective
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1])))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 3:  # Vacuum
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) /((4*D[g][0]*dx[0])+(dx[0]**2)))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) /((4*D[g][0]*dx[0])+(dx[0]**2)))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 else:
                     raise ValueError("Invalid BC")
             elif n == N - 1:
                 if BC_right == 1:  # Zero Flux
                     matrix[g*N+n, g*N+n - 1] += -((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
-                    matrix[g*N+n, g*N+n] += ((2 * D[g][n]) / (dx[n]**2)) +((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n] += ((2 * D[g][n]) / (dx[n]**2)) +((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
                 elif BC_right == 2:  # Reflective
                     matrix[g*N+n, g*N+n - 1] += -((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
                     matrix[g*N+n, g*N+n] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
@@ -143,20 +143,20 @@ def ADJOINT_D_1D_matrix(group, BC, N, dx, D):
         for n in range(N):
             if n == 0:
                 if BC_left == 1:  # Zero Flux
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) / (dx[0]**2))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) / (dx[0]**2))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 2:  # Reflective
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1])))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 3:  # Vacuum
-                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) /((4*D[g][0]*dx[0])+(dx[0]**2)))
+                    matrix[g*N, g*N] += ((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) +((2 * D[g][0]) /((4*D[g][0]*dx[0])+(dx[0]**2)))
                     matrix[g*N, g*N+1] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 else:
                     raise ValueError("Invalid BC")
             elif n == N - 1:
                 if BC_right == 1:  # Zero Flux
                     matrix[g*N+n, g*N+n - 1] += -((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
-                    matrix[g*N+n, g*N+n] += ((2 * D[g][n]) / (dx[n]**2)) +((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n] += ((2 * D[g][n]) / (dx[n]**2)) +((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
                 elif BC_right == 2:  # Reflective
                     matrix[g*N+n, g*N+n - 1] += -((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
                     matrix[g*N+n, g*N+n] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
@@ -222,32 +222,32 @@ def NOISE_D_1D_matrix(group, BC, N, dx, D):
         for n in range(N):
             if n == 0:
                 if BC_left == 1:  # Zero Flux
-                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1]))) -((2 * D[g][0]) / (dx**2))
-                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) -((2 * D[g][0]) / (dx[0]**2))
+                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 2:  # Reflective
-                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx**2) * (D[g][0]+D[g][1])))
-                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 elif BC_left == 3:  # Vacuum
-                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx**2) * (D[g][0]+D[g][1]))) -((2 * D[g][0]) /((4*D[g][0]*dx)+(dx**2)))
-                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx**2) * (D[g][0]+D[g][1])))
+                    matrix[g*N, g*N] += -((2 * D[g][0]*D[g][1]) / ((dx[0]**2) * (D[g][0]+D[g][1]))) -((2 * D[g][0]) /((4*D[g][0]*dx[0])+(dx[0]**2)))
+                    matrix[g*N, g*N+1] += ((2 * D[g][0]*D[g][1]) / ((dx[1]**2) * (D[g][0]+D[g][1])))
                 else:
                     raise ValueError("Invalid BC")
             elif n == N - 1:
                 if BC_right == 1:  # Zero Flux
-                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
-                    matrix[g*N+n, g*N+n] += -((2 * D[g][n]) / (dx**2)) -((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n] += -((2 * D[g][n]) / (dx[n]**2)) -((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
                 elif BC_right == 2:  # Reflective
-                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
-                    matrix[g*N+n, g*N+n] += -((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n] += -((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
                 elif BC_right == 3:  # Vacuum
-                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
-                    matrix[g*N+n, g*N+n] += -((2 * D[g][n]) /((4*D[g][n]*dx)+(dx**2))) -((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                    matrix[g*N+n, g*N+n] += -((2 * D[g][n]) /((4*D[g][n]*dx[n])+(dx[n]**2))) -((2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n])))
                 else:
                     raise ValueError("Invalid BC")
             else:
-                matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n])))
-                matrix[g*N+n, g*N+n] += -(((2 * D[g][n+1]*D[g][n] / ((dx**2) * (D[g][n + 1]+D[g][n]))) + (2 * D[g][n - 1]*D[g][n]) / ((dx**2) * (D[g][n - 1]+D[g][n]))))
-                matrix[g*N+n, g*N+n + 1] += ((2 * D[g][n + 1]*D[g][n]) / ((dx**2) * (D[g][n + 1]+D[g][n])))
+                matrix[g*N+n, g*N+n - 1] += ((2 * D[g][n - 1]*D[g][n]) / ((dx[n-1]**2) * (D[g][n - 1]+D[g][n])))
+                matrix[g*N+n, g*N+n] += -(((2 * D[g][n+1]*D[g][n] / ((dx[n]**2) * (D[g][n + 1]+D[g][n]))) + (2 * D[g][n - 1]*D[g][n]) / ((dx[n]**2) * (D[g][n - 1]+D[g][n]))))
+                matrix[g*N+n, g*N+n + 1] += ((2 * D[g][n + 1]*D[g][n]) / ((dx[n+1]**2) * (D[g][n + 1]+D[g][n])))
 
     return matrix
 
