@@ -22,7 +22,7 @@ original_sys_path = sys.path.copy()
 sys.path.append('../')
 
 #from INPUTS.TASK1_TEST01_1D1G_general import *
-from INPUTS.TASK1_TEST02_1DMG_CSTest03_FAVtrial import *
+#from INPUTS.TASK1_TEST02_1DMG_CSTest03_FAVtrial import *
 #from INPUTS.TASK1_TEST03_1DMG_CSTest05 import *
 #from INPUTS.TASK1_TEST04_1DMG_CSTest07 import * # No noise case
 
@@ -78,7 +78,7 @@ from INPUTS.TASK1_TEST02_1DMG_CSTest03_FAVtrial import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST05_3DMG_CSTest09_AVS import *
-#from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
+from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST07_3DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST08_3DTriMG_HTTR_FAV import *
 
@@ -86,9 +86,9 @@ from INPUTS.TASK1_TEST02_1DMG_CSTest03_FAVtrial import *
 sys.path = original_sys_path
 
 #######################################################################################################
-#solver_type = 'forward'
+solver_type = 'forward'
 #solver_type = 'adjoint'
-solver_type = 'noise'
+#solver_type = 'noise'
 
 #######################################################################################################
 def main():
