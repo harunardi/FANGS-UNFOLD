@@ -484,6 +484,12 @@ class FixedSourceSolver2DHexx:
         M_petsc.assemble()
         dS_petsc.assemble()
 
+        PHI_vec = PETSc.Vec().createSeq(self.dS.shape[1])
+        PHI_vec.setArray(self.PHI)
+
+        S = PETSc.Vec().createSeq(self.dS.shape[0])
+        dS_petsc.mult(PHI_vec, S)
+
         # PETSc Solver (KSP) and Preconditioner (PC)
         ksp = PETSc.KSP().create()
         ksp.setOperators(M_petsc)
@@ -704,6 +710,12 @@ class FixedSourceSolver3DRect:
         M_petsc.assemble()
         dS_petsc.assemble()
 
+        PHI_vec = PETSc.Vec().createSeq(self.dS.shape[1])
+        PHI_vec.setArray(self.PHI)
+
+        S = PETSc.Vec().createSeq(self.dS.shape[0])
+        dS_petsc.mult(PHI_vec, S)
+
         # PETSc Solver (KSP) and Preconditioner (PC)
         ksp = PETSc.KSP().create()
         ksp.setOperators(M_petsc)
@@ -917,6 +929,12 @@ class FixedSourceSolver3DHexx:
         dS_petsc = PETSc.Mat().createAIJ(size=self.dS.shape, csr=(self.dS.indptr, self.dS.indices, self.dS.data), comm=PETSc.COMM_WORLD)
         M_petsc.assemble()
         dS_petsc.assemble()
+
+        PHI_vec = PETSc.Vec().createSeq(self.dS.shape[1])
+        PHI_vec.setArray(self.PHI)
+
+        S = PETSc.Vec().createSeq(self.dS.shape[0])
+        dS_petsc.mult(PHI_vec, S)
 
         # PETSc Solver (KSP) and Preconditioner (PC)
         ksp = PETSc.KSP().create()
