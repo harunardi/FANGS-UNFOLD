@@ -33,7 +33,7 @@ class PostProcessor:
         for g in range(group):
             phi_temp_start = g * max(conv)
             phi[g * N + non_zero_indices] = phi_temp[
-                phi_temp_start + phi_temp_indices
+            (phi_temp_start + phi_temp_indices).astype(np.intc)
             ].real
 
             for n in range(N):
@@ -65,7 +65,7 @@ class PostProcessor:
         for g in range(group):
             dPHI_temp_start = g * max(conv)
             dPHI[g * N + non_zero_indices] = dPHI_temp[
-                dPHI_temp_start + phi_temp_indices
+                (dPHI_temp_start + phi_temp_indices).astype(np.intc)
             ]
 
             for n in range(N):
@@ -98,7 +98,7 @@ class PostProcessor:
         for g in range(group):
             phi_temp_start = g * max(conv_tri)
             phi[g * N_hexx + non_zero_indices] = phi_temp[
-                phi_temp_start + phi_temp_indices
+                (phi_temp_start + phi_temp_indices).astype(np.intc)
             ].real
 
             for n in range(N_hexx):
@@ -130,7 +130,7 @@ class PostProcessor:
         for g in range(group):
             dPHI_temp_start = g * max(conv_tri)
             dPHI[g * N_hexx + non_zero_indices] = dPHI_temp[
-                dPHI_temp_start + phi_temp_indices
+                (dPHI_temp_start + phi_temp_indices).astype(np.intc)
             ]
 
             for n in range(N_hexx):
@@ -163,7 +163,7 @@ class PostProcessor:
         for g in range(group):
             phi_temp_start = g * max(conv)
             phi[g * N + non_zero_indices] = phi_temp[
-                phi_temp_start + phi_temp_indices
+                (phi_temp_start + phi_temp_indices).astype(np.intc)
             ].real
 
             for n in range(N):
@@ -195,7 +195,7 @@ class PostProcessor:
         for g in range(group):
             dPHI_temp_start = g * max(conv)
             dPHI[g * N + non_zero_indices] = dPHI_temp[
-                dPHI_temp_start + phi_temp_indices
+                (dPHI_temp_start + phi_temp_indices).astype(np.intc)
             ]
 
             for n in range(N):
@@ -228,7 +228,7 @@ class PostProcessor:
         for g in range(group):
             phi_temp_start = g * max(conv_tri)
             phi[g * N_hexx + non_zero_indices] = phi_temp[
-                phi_temp_start + phi_temp_indices
+                (phi_temp_start + phi_temp_indices).astype(np.intc)
             ].real
 
             for n in range(N_hexx):
@@ -260,7 +260,7 @@ class PostProcessor:
         for g in range(group):
             dPHI_temp_start = g * max(conv_tri)
             dPHI[g * N_hexx + non_zero_indices] = dPHI_temp[
-                dPHI_temp_start + phi_temp_indices
+                (dPHI_temp_start + phi_temp_indices).astype(np.intc)
             ]
 
             for n in range(N_hexx):
