@@ -954,9 +954,96 @@ def XS3D_FXV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff
     hex_boundary_triangles, hex_vert_boundary_triangles = find_boundary_for_each_hex(level, triangle_neighbors_global, triangle_ownership)
     hex_vert_boundaries_key, hex_vert_boundaries = next(iter(hex_vert_boundary_triangles.items()))
 
-    midpoint = len(hex_vert_boundaries) // 2
-    west_boundary = hex_vert_boundaries[:midpoint]
-    east_boundary = hex_vert_boundaries[midpoint:]
+#    # expand them: every 2 entries, add (higher+2)
+    expanded_vert_boundaries = []
+    if level == 2:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+    elif level == 3:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 4:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 11)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 5:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 7)
+        for i in range(0, len(hex_vert_boundaries), 16):
+            pair = hex_vert_boundaries[i:i+16]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 16:
+                expanded_vert_boundaries.append(max(pair) + 41)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 6:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 7)
+        for i in range(0, len(hex_vert_boundaries), 16):
+            pair = hex_vert_boundaries[i:i+16]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 16:
+                expanded_vert_boundaries.append(max(pair) + 41)
+        for i in range(0, len(hex_vert_boundaries), 32):
+            pair = hex_vert_boundaries[i:i+32]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 32:
+                expanded_vert_boundaries.append(max(pair) + 171)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+
+    midpoint = len(expanded_vert_boundaries) // 2
+    west_boundary = expanded_vert_boundaries[:midpoint]
+    east_boundary = expanded_vert_boundaries[midpoint:]
 
     # Note: the commented part will be useful is epsilon/d model is used
     for g in range(group):
@@ -988,16 +1075,103 @@ def XS3D_FAV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff
     hex_boundary_triangles, hex_vert_boundary_triangles = find_boundary_for_each_hex(level, triangle_neighbors_global, triangle_ownership)
     hex_vert_boundaries_key, hex_vert_boundaries = next(iter(hex_boundary_triangles.items()))
 
+#    # expand them: every 2 entries, add (higher+2)
+    expanded_vert_boundaries = []
+    if level == 2:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+    elif level == 3:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 4:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 11)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 5:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 7)
+        for i in range(0, len(hex_vert_boundaries), 16):
+            pair = hex_vert_boundaries[i:i+16]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 16:
+                expanded_vert_boundaries.append(max(pair) + 41)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    elif level == 6:
+        for i in range(0, len(hex_vert_boundaries), 2):
+            pair = hex_vert_boundaries[i:i+2]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 2:
+                expanded_vert_boundaries.append(max(pair) + 1)
+        for i in range(0, len(hex_vert_boundaries), 4):
+            pair = hex_vert_boundaries[i:i+4]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 4:
+                expanded_vert_boundaries.append(max(pair) + 3)
+        for i in range(0, len(hex_vert_boundaries), 8):
+            pair = hex_vert_boundaries[i:i+8]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 8:
+                expanded_vert_boundaries.append(max(pair) + 7)
+        for i in range(0, len(hex_vert_boundaries), 16):
+            pair = hex_vert_boundaries[i:i+16]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 16:
+                expanded_vert_boundaries.append(max(pair) + 41)
+        for i in range(0, len(hex_vert_boundaries), 32):
+            pair = hex_vert_boundaries[i:i+32]
+            expanded_vert_boundaries.extend(pair)
+            if len(pair) == 32:
+                expanded_vert_boundaries.append(max(pair) + 171)
+        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+
     # Calculate the size of each region (assuming the length is divisible by 6)
-    region_size = len(hex_vert_boundaries) // 6
+    region_size = len(expanded_vert_boundaries) // 6
 
     # Define the 6 regions
-    northeast_hexx_boundary = hex_vert_boundaries[:region_size]
-    northwest_hexx_boundary = hex_vert_boundaries[region_size:2*region_size]
-    west_hexx_boundary = hex_vert_boundaries[2*region_size:3*region_size]
-    southwest_hexx_boundary = hex_vert_boundaries[3*region_size:4*region_size]
-    southeast_hexx_boundary = hex_vert_boundaries[4*region_size:5*region_size]
-    east_hexx_boundary = hex_vert_boundaries[5*region_size:]
+    northeast_hexx_boundary = expanded_vert_boundaries[:region_size]
+    northwest_hexx_boundary = expanded_vert_boundaries[region_size:2*region_size]
+    west_hexx_boundary = expanded_vert_boundaries[2*region_size:3*region_size]
+    southwest_hexx_boundary = expanded_vert_boundaries[3*region_size:4*region_size]
+    southeast_hexx_boundary = expanded_vert_boundaries[4*region_size:5*region_size]
+    east_hexx_boundary = expanded_vert_boundaries[5*region_size:]
 
     # Note: the commented part will be useful is epsilon/d model is used
     for g in range(group):
