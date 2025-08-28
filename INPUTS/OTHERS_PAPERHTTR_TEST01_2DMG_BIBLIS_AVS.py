@@ -95,11 +95,7 @@ dSIGS22 = [[0] * I_max for _ in range(J_max)]
 
 for j in range(8 * 5, 9 * 5):
     for i in range(8 * 5, 9 * 5):
-        dSIGS12[j][i] = 0.005
-        dABS1[j][i] = 0.005
-        dABS2[j][i] = 0.005
-        dNUFIS1[j][i] = 0.005
-        dNUFIS2[j][i] = 0.005
+        dABS2[j][i] = 0.05
 
 # Perform element-wise addition
 for j in range(J_max):  # Iterate over columns
