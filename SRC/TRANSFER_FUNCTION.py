@@ -211,7 +211,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {}
+        output = {"Lambda": Lamda}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -460,7 +460,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {}
+        output = {"Lambda": Lamda}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -734,7 +734,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {}
+        output = {"Lambda": Lamda}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -986,7 +986,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {}
+        output = {"Lambda": Lamda}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -1274,7 +1274,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {}
+        output = {"Lambda": Lamda}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
