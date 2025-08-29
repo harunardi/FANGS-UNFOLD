@@ -55,8 +55,8 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
-from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
-#from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
+#from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
+from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST07_3DTriMG_HTTR_AVS import *
 
@@ -211,7 +211,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {"Lambda": Lamda}
+        output = {"Lambda": Lamda.real}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -460,7 +460,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {"Lambda": Lamda}
+        output = {"Lambda": Lamda.real}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -734,7 +734,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {"Lambda": Lamda}
+        output = {"Lambda": Lamda.real}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -986,7 +986,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {"Lambda": Lamda}
+        output = {"Lambda": Lamda.real}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
@@ -1274,7 +1274,7 @@ def main():
 
         # OUTPUT
         print(f'Generating JSON output')
-        output = {"Lambda": Lamda}
+        output = {"Lambda": Lamda.real}
         G_0_groupname = f'G_0'
         G_0_list = [{"real": x.real, "imaginary": x.imag} for x in G_0]
         output[G_0_groupname] = G_0_list
