@@ -22,32 +22,6 @@ with open(f'{case_name_C3}/{case_name_C3}_TRANSFER/{case_name_C3}_NOISE/{case_na
 G0_C3 = [complex(entry["real"], entry["imaginary"]) for entry in noise_output_C3["G_0"]]
 G0_C3_array = np.array(G0_C3)
 
-# Calculate the Mean Generation Time
-# Load data from JSON file
-with open(f'{case_name_C3}/{case_name_C3}_TRANSFER/{case_name_C3}_FORWARD/{case_name_C3}_FORWARD_output.json', 'r') as json_file:
-    forward_output_C3 = json.load(json_file)
-
-# Load data from JSON file
-with open(f'{case_name_C3}/{case_name_C3}_TRANSFER/{case_name_C3}_ADJOINT/{case_name_C3}_ADJOINT_output.json', 'r') as json_file:
-    adjoint_output_C3 = json.load(json_file)
-
-N = I_max * J_max
-PHI_all = []
-for i in range(group):
-    phi_key = f"PHI{i+1}"
-    PHI_all.append(forward_output[phi_key])
-PHI_array = np.array(PHI_all)
-PHI_array = np.nan_to_num(PHI_array, nan=0)
-PHI_reshaped = PHI_array.reshape(group, N)
-
-PHI_ADJ_all = []
-for i in range(group):
-    phi_adj_key = f"PHI{i+1}_ADJ"
-    PHI_ADJ_all.append(adjoint_output[phi_adj_key])
-PHI_ADJ_array = np.array(PHI_ADJ_all)
-PHI_ADJ_array = np.nan_to_num(PHI_ADJ_array, nan=0)
-PHI_ADJ_reshaped = PHI_ADJ_array.reshape(group, N)
-
 #######################################################################################################
 # 2DMG BIBLIS
 case_name_BIBLIS = 'OBJECTIVES2_TEST03_2DMG_BIBLIS_VandV'
@@ -97,7 +71,7 @@ plt.plot(freq, abs(G0_HTTR_array), marker='*', label="HTTR", color='red')
 plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Frequency (Hz)')
-plt.ylabel('Magnitude of Neutron Noise')
+plt.ylabel('Magnitude of Transfer Function')
 plt.title('Plot of Transfer Function (Magnitude)')
 plt.legend()
 plt.savefig(f'Transfer_Function_2D_Comparison_Magnitude.png')
@@ -112,7 +86,7 @@ plt.plot(freq, np.degrees(np.angle(G0_HTTR_array)), marker='*', label="HTTR", co
 plt.xscale('log')
 plt.ylim(-120, 0)
 plt.xlabel('Frequency (Hz)')
-plt.ylabel('Phase of Neutron Noise')
+plt.ylabel('Phase of Transfer Function')
 plt.title('Plot of Transfer Function (Phase)')
 plt.legend()
 plt.savefig(f'Transfer_Function_2D_Comparison_Phase.png')

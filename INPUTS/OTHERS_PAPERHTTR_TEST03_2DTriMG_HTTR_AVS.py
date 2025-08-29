@@ -70,4 +70,4 @@ dSIGS_reshaped = [[dSIGS11, dSIGS21],
                   [dSIGS12, dSIGS22]]
 
 type_noise = 'AVS'
-noise_section = 1
+noise_section = 0

@@ -5,6 +5,6 @@
     Number of groups: 2
     Dimensions: 2D rectangular
     Final keff: 1.027480
-    Elapsed Time: 6.204e+00 seconds
+    Elapsed Time: 4.649e+00 seconds
     Solver Used: Sparse Direct Solver
     
