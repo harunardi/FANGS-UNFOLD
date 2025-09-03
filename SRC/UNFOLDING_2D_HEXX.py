@@ -132,7 +132,8 @@ def main():
         for i in range(I_max):
             m = j * I_max + i
             for k in range(p):
-                map_detector_hexx[m * p + k] = map_detector_temp[j][i]
+                if k == 3:
+                    map_detector_hexx[m * p + k] = map_detector_temp[j][i]
 
 ##### BASE (Noise, Green's function, and solve)
     dPHI_temp = main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
