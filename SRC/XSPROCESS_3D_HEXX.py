@@ -6,6 +6,7 @@ import sys
 import h5py
 from scipy.interpolate import RBFInterpolator
 from scipy.interpolate import griddata
+from shapely.geometry import Polygon, Point
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -945,272 +946,158 @@ def find_boundary_for_each_hex(level, triangle_neighbors, ownership):
 
     return hex_boundaries, hex_vert_boundaries
 
-def XS3D_FXV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global):
+def triangle_indices_within_boundary_fixed(triangles, hex_vertices, threshold=1.0):
+    """
+    Get indices of triangles whose any vertex is within `threshold`
+    distance from the hexagon boundary.
+    """
+    hex_poly = Polygon(hex_vertices)
+    boundary_indices = []
+
+    for idx, tri in enumerate(triangles):
+        # Check distance of each vertex to hexagon boundary
+        for vertex in tri:
+            point = Point(vertex)
+            distance = hex_poly.exterior.distance(point)
+            if distance <= threshold:
+                boundary_indices.append(idx)
+                break  # No need to check other vertices
+    
+    return boundary_indices
+
+def reference_hex_boundary_triangles(flat_to_flat_distance, level, threshold=1.0):
+    """
+    Generate triangles for a single reference hexagon at (0,0) 
+    and return indices of triangles near the boundary.
+    
+    Parameters:
+        flat_to_flat_distance : float
+            Flat-to-flat distance of the hexagon
+        level : int
+            Subdivision level for triangles
+        threshold : float
+            Distance threshold for boundary detection
+    
+    Returns:
+        triangles : list of tuples
+            All triangles of the hexagon
+        boundary_indices : list of int
+            Indices of triangles near the boundary
+    """
+    # Step 1: Create reference hexagon at (0,0)
+    radius = flat_to_flat_distance / np.sqrt(3)
+    hex_vertices = [
+        (radius * np.cos(np.pi/6 + 2 * np.pi * k / 6), 
+         radius * np.sin(np.pi/6 + 2 * np.pi * k / 6))
+        for k in range(6)
+    ]
+    center = (0, 0)
+
+    # Step 2: Subdivide hexagon into triangles
+    triangles = subdivide_pointy_hexagon(center, hex_vertices, level)
+
+    # Step 3: Find boundary triangles
+    boundary_indices = triangle_indices_within_boundary_fixed(triangles, hex_vertices, threshold)
+
+    return triangles, boundary_indices
+
+def XS3D_FXV(level, group, s, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS):
     dTOT_hexx = expand_XS_hexx_3D(group, K_max, J_max, I_max, dTOT, level)
     dNUFIS_hexx = expand_XS_hexx_3D(group, K_max, J_max, I_max, dNUFIS, level)
 
     p = 6 * (4 ** (level - 1))
-    triangle_ownership = find_triangle_ownership(all_triangles, hex_centers)
-    hex_boundary_triangles, hex_vert_boundary_triangles = find_boundary_for_each_hex(level, triangle_neighbors_global, triangle_ownership)
-    hex_vert_boundaries_key, hex_vert_boundaries = next(iter(hex_vert_boundary_triangles.items()))
+    boundary_tris_new = reference_hex_boundary_triangles(s, level, threshold=1.0)[1]
 
-#    # expand them: every 2 entries, add (higher+2)
-    expanded_vert_boundaries = []
-    if level == 2:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-    elif level == 3:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 4:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 11)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 5:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 7)
-        for i in range(0, len(hex_vert_boundaries), 16):
-            pair = hex_vert_boundaries[i:i+16]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 16:
-                expanded_vert_boundaries.append(max(pair) + 41)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 6:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 7)
-        for i in range(0, len(hex_vert_boundaries), 16):
-            pair = hex_vert_boundaries[i:i+16]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 16:
-                expanded_vert_boundaries.append(max(pair) + 41)
-        for i in range(0, len(hex_vert_boundaries), 32):
-            pair = hex_vert_boundaries[i:i+32]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 32:
-                expanded_vert_boundaries.append(max(pair) + 171)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    # Calculate the size of each region (assuming the length is divisible by 6)
+    region_size = len(boundary_tris_new) // 6
 
-    midpoint = len(expanded_vert_boundaries) // 2
-    west_boundary = expanded_vert_boundaries[:midpoint]
-    east_boundary = expanded_vert_boundaries[midpoint:]
+    # Define the 6 regions
+    northeast_hexx_boundary = boundary_tris_new[:region_size]
+    northwest_hexx_boundary = boundary_tris_new[region_size:2*region_size]
+    west_hexx_boundary = boundary_tris_new[2*region_size:3*region_size]
+    southwest_hexx_boundary = boundary_tris_new[3*region_size:4*region_size]
+    southeast_hexx_boundary = boundary_tris_new[4*region_size:5*region_size]
+    east_hexx_boundary = boundary_tris_new[5*region_size:]
 
     # Note: the commented part will be useful is epsilon/d model is used
     for g in range(group):
         for m in range(K_max * J_max * I_max):
+            k = m // (J_max * I_max)
             if dTOT[g][m] != 0:
                 for t in range(p):
-                    if t not in east_boundary and t not in west_boundary:
+                    if t not in east_hexx_boundary and t not in west_hexx_boundary:
                         dTOT_hexx[g][m * p + t] = 0
                         dNUFIS_hexx[g][m * p + t] = 0
-                    for t_idx, t in enumerate(east_boundary):
-                        dTOT_hexx[g][m * p + t] = fav_strength * diff_X_ABS[g][0]
-                        dTOT_hexx[g][(m+1) * p + west_boundary[t_idx]] = fav_strength * diff_X_ABS[g][0]
-                        dNUFIS_hexx[g][m * p + t] = fav_strength * diff_X_NUFIS[g][0]
-                        dNUFIS_hexx[g][(m+1) * p + west_boundary[t_idx]] = fav_strength * diff_X_NUFIS[g][0]
-                    for t_idx, t in enumerate(west_boundary):
-                        dTOT_hexx[g][m * p + t] = fav_strength * diff_X_ABS[g][1]
-                        dTOT_hexx[g][(m-1) * p + east_boundary[t_idx]] = fav_strength * diff_X_ABS[g][1]
-                        dNUFIS_hexx[g][m * p + t] = fav_strength * diff_X_NUFIS[g][1]
-                        dNUFIS_hexx[g][(m-1) * p + east_boundary[t_idx]] = fav_strength * diff_X_NUFIS[g][1]
+                    for t_idx, t in enumerate(east_hexx_boundary):
+                        dTOT_hexx[g][m * p + t] = fav_strength * diff_X_ABS[g][0][k]
+                        dTOT_hexx[g][(m+1) * p + west_hexx_boundary[t_idx]] = fav_strength * diff_X_ABS[g][0][k]
+                        dNUFIS_hexx[g][m * p + t] = fav_strength * diff_X_NUFIS[g][0][k]
+                        dNUFIS_hexx[g][(m+1) * p + west_hexx_boundary[t_idx]] = fav_strength * diff_X_NUFIS[g][0][k]
+                    for t_idx, t in enumerate(west_hexx_boundary):
+                        dTOT_hexx[g][m * p + t] = fav_strength * diff_X_ABS[g][1][k]
+                        dTOT_hexx[g][(m-1) * p + east_hexx_boundary[t_idx]] = fav_strength * diff_X_ABS[g][1][k]
+                        dNUFIS_hexx[g][m * p + t] = fav_strength * diff_X_NUFIS[g][1][k]
+                        dNUFIS_hexx[g][(m-1) * p + east_hexx_boundary[t_idx]] = fav_strength * diff_X_NUFIS[g][1][k]
 
     return dTOT_hexx, dNUFIS_hexx
 
-def XS3D_FAV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global):
+def XS3D_FAV(level, group, s, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS):
     dTOT_hexx = expand_XS_hexx_3D(group, J_max, I_max, K_max, dTOT, level)
     dNUFIS_hexx = expand_XS_hexx_3D(group, J_max, I_max, K_max, dNUFIS, level)
 
     p = 6 * (4 ** (level - 1))
-    triangle_ownership = find_triangle_ownership(all_triangles, hex_centers)
-    hex_boundary_triangles, hex_vert_boundary_triangles = find_boundary_for_each_hex(level, triangle_neighbors_global, triangle_ownership)
-    hex_vert_boundaries_key, hex_vert_boundaries = next(iter(hex_boundary_triangles.items()))
-
-#    # expand them: every 2 entries, add (higher+2)
-    expanded_vert_boundaries = []
-    if level == 2:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-    elif level == 3:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 4:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 11)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 5:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 7)
-        for i in range(0, len(hex_vert_boundaries), 16):
-            pair = hex_vert_boundaries[i:i+16]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 16:
-                expanded_vert_boundaries.append(max(pair) + 41)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
-    elif level == 6:
-        for i in range(0, len(hex_vert_boundaries), 2):
-            pair = hex_vert_boundaries[i:i+2]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 2:
-                expanded_vert_boundaries.append(max(pair) + 1)
-        for i in range(0, len(hex_vert_boundaries), 4):
-            pair = hex_vert_boundaries[i:i+4]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 4:
-                expanded_vert_boundaries.append(max(pair) + 3)
-        for i in range(0, len(hex_vert_boundaries), 8):
-            pair = hex_vert_boundaries[i:i+8]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 8:
-                expanded_vert_boundaries.append(max(pair) + 7)
-        for i in range(0, len(hex_vert_boundaries), 16):
-            pair = hex_vert_boundaries[i:i+16]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 16:
-                expanded_vert_boundaries.append(max(pair) + 41)
-        for i in range(0, len(hex_vert_boundaries), 32):
-            pair = hex_vert_boundaries[i:i+32]
-            expanded_vert_boundaries.extend(pair)
-            if len(pair) == 32:
-                expanded_vert_boundaries.append(max(pair) + 171)
-        expanded_vert_boundaries = sorted(set(expanded_vert_boundaries))
+    boundary_tris_new = reference_hex_boundary_triangles(s, level, threshold=1.0)[1]
 
     # Calculate the size of each region (assuming the length is divisible by 6)
-    region_size = len(expanded_vert_boundaries) // 6
+    region_size = len(boundary_tris_new) // 6
 
     # Define the 6 regions
-    northeast_hexx_boundary = expanded_vert_boundaries[:region_size]
-    northwest_hexx_boundary = expanded_vert_boundaries[region_size:2*region_size]
-    west_hexx_boundary = expanded_vert_boundaries[2*region_size:3*region_size]
-    southwest_hexx_boundary = expanded_vert_boundaries[3*region_size:4*region_size]
-    southeast_hexx_boundary = expanded_vert_boundaries[4*region_size:5*region_size]
-    east_hexx_boundary = expanded_vert_boundaries[5*region_size:]
+    northeast_hexx_boundary = boundary_tris_new[:region_size]
+    northwest_hexx_boundary = boundary_tris_new[region_size:2*region_size]
+    west_hexx_boundary = boundary_tris_new[2*region_size:3*region_size]
+    southwest_hexx_boundary = boundary_tris_new[3*region_size:4*region_size]
+    southeast_hexx_boundary = boundary_tris_new[4*region_size:5*region_size]
+    east_hexx_boundary = boundary_tris_new[5*region_size:]
 
     # Note: the commented part will be useful is epsilon/d model is used
     for g in range(group):
         for m in range(K_max * J_max * I_max):
+            k = m // (J_max * I_max)
             if dTOT[g][m] != 0:
                 for t in range(p):
                     if t not in east_hexx_boundary and t not in west_hexx_boundary and t not in northeast_hexx_boundary and t not in northwest_hexx_boundary and t not in southeast_hexx_boundary and t not in southwest_hexx_boundary:
                         dTOT_hexx[g][m * p + t] = 0
                         dNUFIS_hexx[g][m * p + t] = 0
                     for t_idx, t in enumerate(east_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][0]
-                        dTOT_hexx[g][(m+1) * p + (west_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][0]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][0]
-                        dNUFIS_hexx[g][(m+1) * p + (west_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][0]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][0][k]
+                        dTOT_hexx[g][(m+1) * p + (west_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][0][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][0][k]
+                        dNUFIS_hexx[g][(m+1) * p + (west_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][0][k]
                     for t_idx, t in enumerate(west_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][1]
-                        dTOT_hexx[g][(m-1) * p + (east_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][1]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][1]
-                        dNUFIS_hexx[g][(m-1) * p + (east_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][1]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][1][k]
+                        dTOT_hexx[g][(m-1) * p + (east_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][1][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][1][k]
+                        dNUFIS_hexx[g][(m-1) * p + (east_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][1][k]
                     for t_idx, t in enumerate(northeast_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][2]
-                        dTOT_hexx[g][(m+1) * p + (southwest_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][2]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][2]
-                        dNUFIS_hexx[g][(m+1) * p + (southwest_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][2]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][2][k]
+                        dTOT_hexx[g][(m + I_max) * p + (southwest_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][2][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][2][k]
+                        dNUFIS_hexx[g][(m + I_max) * p + (southwest_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][2][k]
                     for t_idx, t in enumerate(northwest_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][3]
-                        dTOT_hexx[g][(m-1) * p + (southeast_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][3]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][3]
-                        dNUFIS_hexx[g][(m-1) * p + (southeast_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][3]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][3][k]
+                        dTOT_hexx[g][(m + I_max - 1) * p + (southeast_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][3][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][3][k]
+                        dNUFIS_hexx[g][(m + I_max - 1) * p + (southeast_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][3][k]
                     for t_idx, t in enumerate(southeast_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][4]
-                        dTOT_hexx[g][(m+1) * p + (northwest_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][4]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][4]
-                        dNUFIS_hexx[g][(m+1) * p + (northwest_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][4]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][4][k]
+                        dTOT_hexx[g][(m - I_max + 1) * p + (northwest_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][4][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][4][k]
+                        dNUFIS_hexx[g][(m - I_max + 1) * p + (northwest_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][4][k]
                     for t_idx, t in enumerate(southwest_hexx_boundary):
-                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][5]
-                        dTOT_hexx[g][(m-1) * p + (northeast_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][5]
-                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][5]
-                        dNUFIS_hexx[g][(m-1) * p + (northeast_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][5]
+                        dTOT_hexx[g][m * p + (t)] = fav_strength * diff_X_ABS[g][5][k]
+                        dTOT_hexx[g][(m - I_max) * p + (northeast_hexx_boundary[t_idx])] = fav_strength * diff_X_ABS[g][5][k]
+                        dNUFIS_hexx[g][m * p + (t)] = fav_strength * diff_X_NUFIS[g][5][k]
+                        dNUFIS_hexx[g][(m - I_max) * p + (northeast_hexx_boundary[t_idx])] = fav_strength * diff_X_NUFIS[g][5][k]
 
     return dTOT_hexx, dNUFIS_hexx
 

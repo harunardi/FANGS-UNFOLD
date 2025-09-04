@@ -70,13 +70,28 @@ diff_west_g1_ABS = (ABS[0][69 - 1] - ABS[0][69])
 diff_west_g2_ABS = (ABS[1][69 - 1] - ABS[1][69])
 diff_east_g1_ABS = (ABS[0][69] - ABS[0][69 + 1])
 diff_east_g2_ABS = (ABS[1][69] - ABS[1][69 + 1])
-diff_X_ABS = [[diff_east_g1_ABS, diff_west_g1_ABS],[diff_east_g2_ABS, diff_west_g2_ABS]]
+diff_northwest_g1_ABS = (ABS[0][69 - 1 + (I_max - 1)] - ABS[0][69])
+diff_northwest_g2_ABS = (ABS[1][69 - 1 + (I_max - 1)] - ABS[1][69])
+diff_northeast_g1_ABS = (ABS[0][69] - ABS[0][69 + 1 + I_max])
+diff_northeast_g2_ABS = (ABS[1][69] - ABS[1][69 + 1 + I_max])
+diff_southwest_g1_ABS = (ABS[0][69 - 1 - (I_max - 1)] - ABS[0][69])
+diff_southwest_g2_ABS = (ABS[1][69 - 1 - (I_max - 1)] - ABS[1][69])
+diff_southeast_g1_ABS = (ABS[0][69] - ABS[0][69 + 1 - I_max])
+diff_southeast_g2_ABS = (ABS[1][69] - ABS[1][69 + 1 - I_max])
+diff_X_ABS = [[diff_east_g1_ABS, diff_west_g1_ABS, diff_northeast_g1_ABS, diff_northwest_g1_ABS, diff_southeast_g1_ABS, diff_southwest_g1_ABS],[diff_east_g2_ABS, diff_west_g2_ABS, diff_northeast_g2_ABS, diff_northwest_g2_ABS, diff_southeast_g2_ABS, diff_southwest_g2_ABS]]
 diff_west_g1_NUFIS = 0
 diff_west_g2_NUFIS = 0
 diff_east_g1_NUFIS = 0
 diff_east_g2_NUFIS = 0
-diff_X_NUFIS = [[diff_east_g1_NUFIS, diff_west_g1_NUFIS],[diff_east_g2_NUFIS, diff_west_g2_NUFIS]]
-
+diff_northwest_g1_NUFIS = 0
+diff_northwest_g2_NUFIS = 0
+diff_northeast_g1_NUFIS = 0
+diff_northeast_g2_NUFIS = 0
+diff_southwest_g1_NUFIS = 0
+diff_southwest_g2_NUFIS = 0
+diff_southeast_g1_NUFIS = 0
+diff_southeast_g2_NUFIS = 0
+diff_X_NUFIS = [[diff_east_g1_NUFIS, diff_west_g1_NUFIS, diff_northeast_g1_NUFIS, diff_northwest_g1_NUFIS, diff_southeast_g1_NUFIS, diff_southwest_g1_NUFIS],[diff_east_g2_NUFIS, diff_west_g2_NUFIS, diff_northeast_g2_NUFIS, diff_northwest_g2_NUFIS, diff_southeast_g2_NUFIS, diff_southwest_g2_NUFIS]]
 
 
 dTOT = [dTOT1, dTOT2]
@@ -89,5 +104,5 @@ dSIGS22 = [0] * I_max * J_max
 dSIGS_reshaped = [[dSIGS11, dSIGS21], 
                   [dSIGS12, dSIGS22]]
 
-type_noise = 'FXV'
+type_noise = 'FAV'
 noise_section = 0

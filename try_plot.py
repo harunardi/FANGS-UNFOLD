@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 import os
 import sys
+from shapely.geometry import Polygon, Point
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -163,10 +163,11 @@ def find_boundary_for_each_hex(triangle_neighbors, ownership):
 # Parameters
 s = 50
 I_max, J_max = 2, 2
-level = 6
+level = 3
+#conv_hexx = [1,1,1,1]
 conv_hexx = [1,1,1,1]
 
-########################################################################################################
+#######################################################################################################
 # Generate grid
 hex_centers, hex_vertices = generate_pointy_hex_grid(s, I_max, J_max)
 
@@ -201,17 +202,13 @@ plt.triplot(x, y, tri_indices, color='blue', linewidth=0.5)
 for idx, triangle in enumerate(all_triangles):
     centroid_x = np.mean([v[0] for v in triangle])
     centroid_y = np.mean([v[1] for v in triangle])
-    plt.text(centroid_x, centroid_y, str(idx), fontsize=0.5, ha='center', va='center')
+    plt.text(centroid_x, centroid_y, str(idx), fontsize=4, ha='center', va='center')
 
 plt.axis('equal')
 plt.axis('off')
-#plt.title(f"Pointy Hexagons Divided into {len(all_triangles)} Triangles")
-#plt.legend()
 plt.savefig("trial_triangulation_new.png", dpi=800)
 plt.clf()
 
-#boundary_triangles = find_boundary_triangles(triangle_neighbors_global)
-#print("Boundary Triangle Indices:", boundary_triangles)
 triangle_ownership = find_triangle_ownership(all_triangles, hex_centers)
 hex_boundary_triangles, hex_vert_boundary_triangles = find_boundary_for_each_hex(triangle_neighbors_global, triangle_ownership)
 
@@ -220,30 +217,129 @@ for hex_idx, boundary in hex_boundary_triangles.items():
 
 for hex_idx, boundary in hex_vert_boundary_triangles.items():
     print(f"Hexagon {hex_idx}: Vertical Boundary Triangles -> {boundary}")
-#    for i in range(len(boundary)):
-#        print(i, i//level, boundary[i])
 
-#hex_vertical_boundaries = extract_vertical_boundary_from_hex_boundaries(hex_boundary_triangles)
+#def triangles_within_boundary(triangles, hex_vertices, threshold=1.0):
+#    """
+#    Find triangles within `threshold` distance of the hexagon boundary.
+#    
+#    Parameters:
+#        triangles : list of tuples
+#            Each triangle is ((x1,y1),(x2,y2),(x3,y3))
+#        hex_vertices : list of tuples
+#            Vertices of the hexagon
+#        threshold : float
+#            Distance in same units as coordinates (default = 1.0)
+#    
+#    Returns:
+#        boundary_tris : list of triangles within threshold distance of boundary
+#    """
+#    hex_poly = Polygon(hex_vertices)
+#    shrunk_hex = hex_poly.buffer(-threshold)
 #
-#for hex_idx, boundary in hex_vertical_boundaries.items():
-#    print(f"Hexagon {hex_idx}: Vertical Boundary Triangles -> {boundary}")
+#    boundary_tris = []
+#    for tri in triangles:
+#        tri_poly = Polygon(tri)
+#        # Check if inside hexagon but not inside shrunk region
+#        if hex_poly.contains(tri_poly) and not shrunk_hex.contains(tri_poly):
+#            boundary_tris.append(tri)
+#    return boundary_tris
 
-#hex_vertical_boundaries = find_vertical_boundary_for_each_hex(all_triangles, hex_centers, s)
-#
-#for hex_idx, boundary in hex_vertical_boundaries.items():
-#    print(f"Hexagon {hex_idx}: Vertical Boundary Triangles -> {boundary}")
-#
-#plt.figure(figsize=(8, 8))
-#plt.triplot(x, y, tri_indices, color='blue')
-#plt.scatter(*zip(*hex_centers), color='red', s=10, label='Hex Centers')
-#
-#for hex_idx, boundary in hex_vertical_boundaries.items():
-#    for idx in boundary:
-#        triangle = all_triangles[idx]
-#        plt.fill(*zip(*triangle), color='orange', alpha=0.5)
-#
-#plt.axis('equal')
-#plt.axis('off')
-#plt.title("Vertical Boundary Triangles Highlighted")
-#plt.savefig("vertical_boundaries.png")
-#
+def triangle_indices_within_boundary(triangles, hex_vertices, threshold=1.0):
+    """
+    Get local indices of triangles within `threshold` distance 
+    of the hexagon boundary.
+    
+    Parameters:
+        triangles : list of tuples
+            Each triangle is ((x1,y1),(x2,y2),(x3,y3))
+        hex_vertices : list of tuples
+            Vertices of the hexagon
+        threshold : float
+            Distance in same units as coordinates (default = 1.0)
+    
+    Returns:
+        boundary_indices : list of int
+            Local indices of boundary triangles
+    """
+    hex_poly = Polygon(hex_vertices)
+    shrunk_hex = hex_poly.buffer(-threshold)
+
+    boundary_indices = []
+    for idx, tri in enumerate(triangles):  # local index
+        tri_poly = Polygon(tri)
+        if hex_poly.contains(tri_poly) and not shrunk_hex.contains(tri_poly):
+            boundary_indices.append(idx)
+    return boundary_indices
+
+# Example usage
+# Get triangles near the boundary (1 mm inside)
+boundary_tris = triangle_indices_within_boundary(all_triangles, 
+                                          [(vx+center[0], vy+center[1]) for vx,vy in hex_vertices],
+                                          threshold=1.0)
+
+
+print("Total triangles:", len(all_triangles))
+print("Boundary triangles:", len(boundary_tris))
+print("Boundary triangles indices:")
+print(boundary_tris)
+
+
+def triangle_indices_within_boundary_fixed(triangles, hex_vertices, threshold=1.0):
+    """
+    Get indices of triangles whose any vertex is within `threshold`
+    distance from the hexagon boundary.
+    """
+    hex_poly = Polygon(hex_vertices)
+    boundary_indices = []
+
+    for idx, tri in enumerate(triangles):
+        # Check distance of each vertex to hexagon boundary
+        for vertex in tri:
+            point = Point(vertex)
+            distance = hex_poly.exterior.distance(point)
+            if distance <= threshold:
+                boundary_indices.append(idx)
+                break  # No need to check other vertices
+    
+    return boundary_indices
+
+def reference_hex_boundary_triangles(flat_to_flat_distance, level, threshold=1.0):
+    """
+    Generate triangles for a single reference hexagon at (0,0) 
+    and return indices of triangles near the boundary.
+    
+    Parameters:
+        flat_to_flat_distance : float
+            Flat-to-flat distance of the hexagon
+        level : int
+            Subdivision level for triangles
+        threshold : float
+            Distance threshold for boundary detection
+    
+    Returns:
+        triangles : list of tuples
+            All triangles of the hexagon
+        boundary_indices : list of int
+            Indices of triangles near the boundary
+    """
+    # Step 1: Create reference hexagon at (0,0)
+    radius = flat_to_flat_distance / np.sqrt(3)
+    hex_vertices = [
+        (radius * np.cos(np.pi/6 + 2 * np.pi * k / 6), 
+         radius * np.sin(np.pi/6 + 2 * np.pi * k / 6))
+        for k in range(6)
+    ]
+    center = (0, 0)
+
+    # Step 2: Subdivide hexagon into triangles
+    triangles = subdivide_pointy_hexagon(center, hex_vertices, level)
+
+    # Step 3: Find boundary triangles
+    boundary_indices = triangle_indices_within_boundary_fixed(triangles, hex_vertices, threshold)
+
+    return triangles, boundary_indices
+
+print("hex_vertices:", hex_vertices[0])
+boundary_tris_new = reference_hex_boundary_triangles(s, level, threshold=1.0)
+print("Reference hexagon boundary triangles indices:")
+print(boundary_tris_new[1])  # Print only the indices

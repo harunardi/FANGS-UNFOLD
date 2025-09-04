@@ -214,7 +214,8 @@ for j in range(J_max):
     for i in range(I_max):
         m = j * I_max + i
         for k in range(p):
-            map_detector_hexx[m * p + k] = map_detector_temp[j][i]
+            if k == 3:
+                map_detector_hexx[m * p + k] = map_detector_temp[j][i]
 
 map_detector_hexx2 = np.array(map_detector_hexx)
 active_indices = np.where(map_detector_hexx2 == 1)[0]

@@ -168,7 +168,8 @@ for j in range(J_max):
     for i in range(I_max):
         m = j * I_max + i
         for k in range(p):
-            map_detector_hexx[m * p + k] = map_detector_temp[j][i]
+            if k == 3:
+                map_detector_hexx[m * p + k] = map_detector_temp[j][i]
 map_detector_conv = []
 for n in range(N_hexx):
     if conv_tri[n] != 0:

@@ -66,7 +66,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
-from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
+#from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
@@ -76,7 +76,7 @@ from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
-#from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
+from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST07_3DTriMG_HTTR_AVS import *
@@ -346,9 +346,9 @@ def main():
             triangle_neighbors_global = find_triangle_neighbors_2D(all_triangles, precision=6)
 
             if type_noise == 'FXV':
-                dTOT_hexx, dNUFIS_hexx = XS2D_FXV(level, group, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global)
+                dTOT_hexx, dNUFIS_hexx = XS2D_FXV(level, group, s, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS)
             elif type_noise == 'FAV':
-                dTOT_hexx, dNUFIS_hexx = XS2D_FAV(level, group, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global)
+                dTOT_hexx, dNUFIS_hexx = XS2D_FAV(level, group, s, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS)
 
             matrix_builder = MatrixBuilderNoise2DHexx(group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise)
             M, dS = matrix_builder.build_noise_matrices()
@@ -613,9 +613,9 @@ def main():
             triangle_neighbors_global = find_triangle_neighbors_2D(all_triangles, precision=6)
 
             if type_noise == 'FXV':
-                dTOT_hexx, dNUFIS_hexx = XS3D_FXV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global)
+                dTOT_hexx, dNUFIS_hexx = XS3D_FXV(level, group, s, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS)
             elif type_noise == 'FAV':
-                dTOT_hexx, dNUFIS_hexx = XS3D_FAV(level, group, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS, all_triangles, hex_centers, triangle_neighbors_global)
+                dTOT_hexx, dNUFIS_hexx = XS3D_FAV(level, group, s, K_max, J_max, I_max, dTOT, dNUFIS, fav_strength, diff_X_ABS, diff_X_NUFIS)
 
             matrix_builder = MatrixBuilderNoise3DHexx(group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise)
             M, dS = matrix_builder.build_noise_matrices()
