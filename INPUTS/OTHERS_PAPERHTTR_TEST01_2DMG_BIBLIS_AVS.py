@@ -282,8 +282,8 @@ dSIGS21 = [[0] * I_max for _ in range(J_max)]
 dSIGS11 = [[0] * I_max for _ in range(J_max)]
 dSIGS22 = [[0] * I_max for _ in range(J_max)]
 
-for j in range(8 * 5, 9 * 5):
-    for i in range(8 * 5, 9 * 5):
+for j in range(8 * expandXS, 9 * expandXS):
+    for i in range(8 * expandXS, 9 * expandXS):
         dABS2[j][i] = 0.05
 
 # Perform element-wise addition

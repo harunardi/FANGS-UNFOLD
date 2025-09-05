@@ -88,8 +88,8 @@ from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
 sys.path = original_sys_path
 
 #######################################################################################################
-solver_type = 'forward'
-#solver_type = 'adjoint'
+#solver_type = 'forward'
+solver_type = 'adjoint'
 #solver_type = 'noise'
 
 #######################################################################################################
