@@ -4,7 +4,7 @@
     Simulation Type: adjoint Simulation
     Number of groups: 2
     Dimensions: 2D rectangular
-    Final keff: 1.027480+0.000000j
-    Elapsed Time: 9.491e+01 seconds
-    Solver Used: Sparse Direct Solver
+    Final keff: 1.027179+0.000000j
+    Elapsed Time: 9.383e+01 seconds
+    Solver Used: LU
     
