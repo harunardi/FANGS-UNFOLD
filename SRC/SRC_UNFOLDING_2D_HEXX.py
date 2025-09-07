@@ -1992,47 +1992,6 @@ def main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, grou
                 print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
                 break
 
-
-#            residuals = {}
-#            for k in combinations(G_dictionary_sampled.keys(), comb_first_atom):
-#                # Skip this combination if any atom is already selected
-#                if any(atom in selected_atoms for atom in k):
-#                    continue
-#                try:
-#                    temp_atoms = selected_atoms + list(k) #[k]
-#                    A_temp = np.array([G_dictionary_sampled[a] for a in temp_atoms]).T
-#                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
-#                    residuals[k] = np.linalg.norm(dPHI_temp_meas - A_temp @ coeffs_temp)
-#                except np.linalg.LinAlgError:
-#                    print("SVD did not converge, skipping this iteration.")
-#                    residuals[k] = 1.0
-#            chosen_atom = min(residuals, key=residuals.get)
-#
-#            residual = residuals[chosen_atom]
-#            residual_norm = np.linalg.norm(residual)
-#
-#            if isinstance(chosen_atom, tuple):  # If chosen_atom is a tuple, extend the list
-#                for atom in chosen_atom:
-#                    if atom not in selected_atoms:
-#                        selected_atoms.append(atom)
-#            else:  # If chosen_atom is a single key, append it
-#                if chosen_atom not in selected_atoms:
-#                    selected_atoms.append(chosen_atom)
-#
-#            print(f'   Chosen atom = {chosen_atom}, length of selected atoms = {len(selected_atoms)}, current residual norm = {residual_norm:.6e}')
-#
-#            # Check if the length of selected_atoms remains constant
-#            if len(selected_atoms) == prev_selected_atoms_len:
-#                constant_len_counter += 1
-#            else:
-#                constant_len_counter = 0  # Reset counter if length changes
-#
-#            prev_selected_atoms_len = len(selected_atoms)
-#
-#            if constant_len_counter >= 10:
-#                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
-#                break
-
         for atom in selected_atoms:
             if atom not in selected_atoms_first_loop:
                 selected_atoms_first_loop.append(atom)
