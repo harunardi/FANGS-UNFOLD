@@ -1784,7 +1784,9 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
     print(f"\nLength of valid solutions = {len(valid_solutions_GREEDY)}")
 
     # Calculate coefficients for each valid solution
+    iter_fa = 0
     for first_atom in valid_solutions_GREEDY:
+        iter_fa += 1
         selected_atoms = valid_solutions_GREEDY[first_atom]
         A = np.array([G_dictionary_sampled[k] for k in selected_atoms]).T
         coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
@@ -1801,7 +1803,7 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
                 if atom in selected_atoms:
                     selected_atoms.remove(atom)
         valid_solutions_reduced_GREEDY[first_atom] = selected_atoms
-        print(f"   New selected atoms = {selected_atoms}")
+        print(f"   New selected atoms from second loop, {(iter_fa)}/{len(valid_solutions_GREEDY)} = {valid_solutions_reduced_GREEDY[first_atom]}")
 
     # Final check for the best solution
     if valid_solutions_reduced_GREEDY:
