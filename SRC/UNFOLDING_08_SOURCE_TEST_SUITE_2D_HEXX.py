@@ -198,23 +198,22 @@ if os.path.exists(iter_file):
     os.remove(iter_file)
     print(f"Existing file '{iter_file}' deleted.")
 
+loc_conv = []
+loc = []
+
 for num_source in range(0, max_num_source):
     dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
     source = num_source + 1
     f = np.random.choice(freq)
     print(f"Frequency: {f} Hz, Number of Sources: {source}")
 
-    loc_conv = []
-    loc = []
-
-    for s in range(source):
-        loc_conv.append(random.randint(1, group * max(conv_tri)))
-    for l, lo in enumerate(loc_conv):
-        for g in range(group):
-            for n in range(N_hexx):
-                m = g * N_hexx + n
-                if lo == conv_new[m]:
-                    loc.append(m)
+    loc_rand = random.randint(1, group * max(conv_tri))
+    loc_conv.append(loc_rand)
+    for g in range(group):
+        for n in range(N_hexx):
+            m = g * N_hexx + n
+            if loc_rand == conv_new[m]:
+                loc.append(m)
 
     mag_real_loc = []
     mag_imag_loc = []
