@@ -60,7 +60,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES1_TEST06_3DMG_CSTest09_VandV_new import *
 #from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST08_2DTriMG_HTTR2G_VandV import *
-#from INPUTS.OBJECTIVES1_TEST09_3DTriMG_HTTR import *
+from INPUTS.OBJECTIVES1_TEST09_3DTriMG_HTTR import *
 #from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
@@ -73,7 +73,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
-from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
+#from INPUTS.OTHERS_PAPERHTTR_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OTHERS_PAPERHTTR_TEST04_2DTriMG_HTTR_FAV import *
@@ -89,8 +89,8 @@ sys.path = original_sys_path
 
 #######################################################################################################
 #solver_type = 'forward'
-#solver_type = 'adjoint'
-solver_type = 'noise'
+solver_type = 'adjoint'
+#solver_type = 'noise'
 
 #######################################################################################################
 def main():
@@ -552,7 +552,7 @@ def main():
             for g in range(group):
                 image_files = []
                 for k in range(K_max):
-                    filename_PHI = plot_triangular_3D(PHI_temp_reshaped[g][k], x, y, k+1, tri_indices, g+1, cmap='viridis', varname='PHI', title=f'2D Plot of PHI{g+1} Hexx', case_name=case_name, output_dir=output_dir, solve=solver_type.upper(), process_data="magnitude")
+                    filename_PHI = plot_triangular_3D(PHI_temp_reshaped[g][k], x, y, k+1, tri_indices, g+1, cmap='viridis', varname='PHI', title=f'2D Plot of PHI{g+1} Hexx, Z = {k+1}', case_name=case_name, output_dir=output_dir, solve=solver_type.upper(), process_data="magnitude")
                     image_files.append(filename_PHI)
 
                 # Create a GIF from the saved images
