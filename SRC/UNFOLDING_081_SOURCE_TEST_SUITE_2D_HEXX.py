@@ -39,7 +39,7 @@ h_hexx = s / np.sqrt(3) # Triangle side or hexagon radius
 h = h_hexx / (2**(level-1))
 
 # INITIALIZATION
-input_name = f"OBJECTIVES82_SOURCE_TEST_SUITE_2DTriMG_HTTR" 
+input_name = f"OBJECTIVES83_SOURCE_TEST_SUITE_2DTriMG_HTTR" 
 case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 
@@ -179,7 +179,7 @@ for g in range(group):
             conv_new[m] = g * max(conv_tri) + conv_tri[n]
 
 # define the exact source counts you want
-source_counts = [1, 3, 5, 10, 13, 15, 20, 23, 25]
+source_counts = [4, 5, 6, 7, 8, 9, 10]
 
 iter = 0
 validity_INVERT = []
