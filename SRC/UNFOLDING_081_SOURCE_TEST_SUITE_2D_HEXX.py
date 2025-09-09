@@ -178,9 +178,9 @@ for g in range(group):
         if conv_tri[n] > 0:
             conv_new[m] = g * max(conv_tri) + conv_tri[n]
 
-max_num_source = 25
-freq = np.logspace(-2, 1, 10)
-add_iter = 0
+# define the exact source counts you want
+source_counts = [1, 3, 5, 10, 13, 15, 20, 23, 25]
+
 iter = 0
 validity_INVERT = []
 validity_ZONE = []
@@ -190,7 +190,6 @@ validity_BACK = []
 validity_GREEDY = []
 methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY"]
 
-iter = 0
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
 # Check if the file exists, if yes, delete it
@@ -198,22 +197,22 @@ if os.path.exists(iter_file):
     os.remove(iter_file)
     print(f"Existing file '{iter_file}' deleted.")
 
-loc_conv = []
-loc = []
-
-for num_source in range(0, max_num_source):
+for source in source_counts:
     dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
-    source = num_source + 1
-    f = np.random.choice(freq)
     print(f"Frequency: {f} Hz, Number of Sources: {source}")
 
-    loc_rand = random.randint(1, group * max(conv_tri))
-    loc_conv.append(loc_rand)
-    for g in range(group):
-        for n in range(N_hexx):
-            m = g * N_hexx + n
-            if loc_rand == conv_new[m]:
-                loc.append(m)
+    loc_conv = []
+    loc = []
+
+    for s in range(source):
+        loc_conv.append(random.randint(1, group * max(conv_tri)))
+
+    for l, lo in enumerate(loc_conv):
+        for g in range(group):
+            for n in range(N_hexx):
+                m = g * N_hexx + n
+                if lo == conv_new[m]:
+                    loc.append(m)
 
     mag_real_loc = []
     mag_imag_loc = []
@@ -243,7 +242,7 @@ for num_source in range(0, max_num_source):
     G_matrix = main_unfold_2D_hexx_green(keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, output_dir, case_name, precond)
     S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
         
-    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
     if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
         validity_GREEDY.append('yes')
     else:
