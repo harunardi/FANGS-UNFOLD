@@ -119,8 +119,8 @@ for k in range(K_max):
     dNUFIS2[k*(J_max * I_max) + 99] = 1
     diff_west_g1_ABS.append(ABS[0][k][99 - 1] - ABS[0][k][99])
     diff_west_g2_ABS.append(ABS[1][k][99 - 1] - ABS[1][k][99])
-    diff_east_g1_ABS.append(ABS[0][k][99] - ABS[0][4][99 + 1])
-    diff_east_g2_ABS.append(ABS[1][k][99] - ABS[1][4][99 + 1])
+    diff_east_g1_ABS.append(ABS[0][k][99] - ABS[0][k][99 + 1])
+    diff_east_g2_ABS.append(ABS[1][k][99] - ABS[1][k][99 + 1])
     diff_west_g1_NUFIS.append(0)
     diff_west_g2_NUFIS.append(0)
     diff_east_g1_NUFIS.append(0)
