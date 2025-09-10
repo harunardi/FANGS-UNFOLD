@@ -440,7 +440,6 @@ class MatrixBuilderNoise3DHexx:
         chi_p_hexx = self.chi_hexx
         chi_d_hexx = self.chi_hexx
         k_complex = 1/self.keff* ((self.l * self.Beff) / (self.l + 1j * self.omega))
-        print(k_complex)
         D_hexx_mat = NOISE_D_3D_hexx_matrix(self.group, self.BC, self.conv_tri, self.conv_neighbor_3D, self.h, self.dz, self.D, self.level)
         TOT_mat = NOISE_TOT_3D_hexx_matrix(self.group, self.K_max, self.J_max, self.I_max, self.conv_tri, self.TOT, self.level)
         FREQ_mat = NOISE_FREQ_3D_hexx_matrix(self.group, self.K_max, self.J_max, self.I_max, self.conv_tri, self.omega, self.v, self.level)

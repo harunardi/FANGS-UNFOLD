@@ -93,8 +93,6 @@ diff_southeast_g1_NUFIS = 0
 diff_southeast_g2_NUFIS = 0
 diff_X_NUFIS = [[diff_east_g1_NUFIS, diff_west_g1_NUFIS, diff_northeast_g1_NUFIS, diff_northwest_g1_NUFIS, diff_southeast_g1_NUFIS, diff_southwest_g1_NUFIS],[diff_east_g2_NUFIS, diff_west_g2_NUFIS, diff_northeast_g2_NUFIS, diff_northwest_g2_NUFIS, diff_southeast_g2_NUFIS, diff_southwest_g2_NUFIS]]
 
-
-
 dTOT = [dTOT1, dTOT2]
 dNUFIS = [dNUFIS1, dNUFIS2]
 
