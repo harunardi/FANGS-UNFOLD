@@ -227,7 +227,7 @@ for g in range(group):
 
 additional_iter = 1
 max_num_source = 2
-freq = np.logspace(-2, 1, 5)
+freq = np.logspace(-2, 1, 3)
 add_iter = 0
 iter = 0
 validity_INVERT = []
@@ -238,7 +238,6 @@ validity_BACK = []
 validity_GREEDY = []
 methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY"]
 
-iter = 5
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
 # Check if the file exists, if yes, delete it
@@ -247,7 +246,7 @@ if os.path.exists(iter_file):
     print(f"Existing file '{iter_file}' deleted.")
 
 while add_iter < additional_iter:
-    for num_source in range(1, max_num_source):
+    for num_source in range(0, max_num_source):
         for fo in range(len(freq)):
             dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
             source = num_source + 1
