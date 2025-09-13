@@ -124,25 +124,40 @@ map_zone = [
 #######################################################################################################
 output_dir = f'../OUTPUTS/{case_name_base}'
 
-###### Forward Simulation
-#solver_type = 'forward'
-#os.makedirs(f'{output_dir}/{case_name2}_{solver_type.upper()}', exist_ok=True)
+##### Forward Simulation
+solver_type = 'forward'
+os.makedirs(f'{output_dir}/{case_name2}_{solver_type.upper()}', exist_ok=True)
 conv_hexx = convert_2D_hexx(I_max, J_max, D)
 conv_tri, conv_hexx_ext = convert_2D_tri(I_max, J_max, conv_hexx, level)
 conv_tri_array = np.array(conv_tri)
 max_conv = max(conv_tri)
 conv_neighbor, tri_indices, x, y, all_triangles = calculate_neighbors_2D(s, I_max, J_max, conv_hexx, level)
-#matrix_builder = MatrixBuilderForward2DHexx(group, I_max, J_max, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS)
-#M, F_FORWARD = matrix_builder.build_forward_matrices()
-#solver = SolverFactory.get_solver_power2DHexx(solver_type, group, conv_tri, M, F_FORWARD, h, precond, tol=1E-10)
-#keff, PHI_temp = solver.solve()
-#PHI, PHI_reshaped, PHI_temp_reshaped = PostProcessor.postprocess_power2DHexx(PHI_temp, conv_tri, group, N_hexx)
-#output = {"keff": keff.real}
-#for g in range(len(PHI_reshaped)):
-#    phi_groupname = f'PHI{g + 1}_{solver_type.upper()}'
-#    output[phi_groupname] = [val.real for val in PHI_reshaped[g]]
-#with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver_type.upper()}_output.json', 'w') as json_file:
-#    json.dump(output, json_file, indent=4)
+matrix_builder = MatrixBuilderForward2DHexx(group, I_max, J_max, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS)
+M, F_FORWARD = matrix_builder.build_forward_matrices()
+solver = SolverFactory.get_solver_power2DHexx(solver_type, group, conv_tri, M, F_FORWARD, h, precond, tol=1E-10)
+keff, PHI_temp = solver.solve()
+PHI, PHI_reshaped, PHI_temp_reshaped = PostProcessor.postprocess_power2DHexx(PHI_temp, conv_tri, group, N_hexx)
+output = {"keff": keff.real}
+for g in range(len(PHI_reshaped)):
+    phi_groupname = f'PHI{g + 1}_{solver_type.upper()}'
+    output[phi_groupname] = [val.real for val in PHI_reshaped[g]]
+with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver_type.upper()}_output.json', 'w') as json_file:
+    json.dump(output, json_file, indent=4)
+
+##### Adjoint Simulation
+solver_type = 'adjoint'
+os.makedirs(f'{output_dir}/{case_name2}_{solver_type.upper()}', exist_ok=True)
+matrix_builder = MatrixBuilderAdjoint2DHexx(group, I_max, J_max, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS)
+M, F_ADJOINT = matrix_builder.build_adjoint_matrices()
+solver = SolverFactory.get_solver_power2DHexx(solver_type, group, conv_tri, M, F_ADJOINT, h, precond, tol=1E-10)
+keff, PHI_ADJ_temp = solver.solve()
+PHI_ADJ, PHI_ADJ_reshaped, PHI_ADJ_temp_reshaped = PostProcessor.postprocess_power2DHexx(PHI_ADJ_temp, conv_tri, group, N_hexx)
+output = {"keff": keff.real}
+for g in range(len(PHI_ADJ_reshaped)):
+    phi_groupname = f'PHI{g + 1}_{solver_type.upper()}'
+    output[phi_groupname] = [val.real for val in PHI_ADJ_reshaped[g]]
+with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver_type.upper()}_output.json', 'w') as json_file:
+    json.dump(output, json_file, indent=4)
 
 # --------------- MAP DETECTOR -------------------
 # Expand the map detector
@@ -178,31 +193,10 @@ for g in range(group):
         if conv_tri[n] > 0:
             conv_new[m] = g * max(conv_tri) + conv_tri[n]
 
-# define the exact source counts you want
-loc_conv_all = [
-    [458, 589, 237, 577, 1062 1197, 1208, 1050], # 8 source, all in fuel
-    [458, 758, 413, 1430, 1506, 1197, 1208, 1050], # 8 source, 4 in fuel, 4 in reflector
-    [3], # 8 source, all in reflector
-    [4], # 8 source, 6 in fuel, 2 in reflector
-    [5], # 8 source, 7 in fuel, 1 in reflector
-    [6], # 8 source, 2 in fuel, 6 in reflector
-    [7], # 8 source, 1 in fuel, 7 in reflector
-    [8], # 9 source, all in fuel
-    [9], # 9 source, 5 in fuel, 4 in reflector
-    [10], # 9 source, all in reflector
-    [11], # 9 source, 6 in fuel, 3 in reflector
-    [12], # 9 source, 8 in fuel, 1 in reflector
-    [13], # 9 source, 3 in fuel, 6 in reflector
-    [14], # 9 source, 1 in fuel, 8 in reflector
-    [15], # 10 source, all in fuel
-    [16], # 10 source, 5 in fuel, 5 in reflector
-    [17], # 10 source, all in reflector
-    [18], # 10 source, 8 in fuel, 2 in reflector
-    [19], # 10 source, 9 in fuel, 1 in reflector
-    [20], # 10 source, 2 in fuel, 8 in reflector
-    [21], # 10 source, 1 in fuel, 9 in reflector
-]
-
+additional_iter = 2
+max_num_source = 8
+freq = np.logspace(-2, 1, 10)
+add_iter = 0
 iter = 0
 validity_INVERT = []
 validity_ZONE = []
@@ -212,6 +206,7 @@ validity_BACK = []
 validity_GREEDY = []
 methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY"]
 
+iter = 0
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
 # Check if the file exists, if yes, delete it
@@ -219,78 +214,63 @@ if os.path.exists(iter_file):
     os.remove(iter_file)
     print(f"Existing file '{iter_file}' deleted.")
 
-for iter_conv in range(len(loc_conv_all)):
-    dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
-    print(f"Frequency: {f} Hz, Iteration: {iter_conv+1}, Number of Sources: {len(loc_conv_all[iter_conv])}")
+while add_iter < additional_iter:
+    for num_source in range(7, max_num_source):
+        for fo in range(len(freq)):
+            dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
+            source = num_source + 1
+            f = freq[fo]
 
-    loc_conv = loc_conv_all[iter_conv]
-    loc = []
+            loc_conv = []
+            loc = []
+            for s in range(source):
+                loc_conv.append(random.randint(1, group * max(conv_tri)))
 
-    for l, lo in enumerate(loc_conv):
-        for g in range(group):
-            for n in range(N_hexx):
-                m = g * N_hexx + n
-                if lo == conv_new[m]:
-                    loc.append(m)
+            for l, lo in enumerate(loc_conv):
+                for g in range(group):
+                    for n in range(N_hexx):
+                        m = g * N_hexx + n
+                        if lo == conv_new[m]:
+                            loc.append(m)
 
-#    mag_real_loc = []
-#    mag_imag_loc = []
-#    for g in range(group):
-#        for n in range(N_hexx):
-#            for l in range(len(loc)):
-#                if g * N_hexx + n == loc[l]:
-#                    mag_real = random.randint(1, 10)/100
-#                    imag_random = random.randint(0,1)
-#                    if imag_random == 0:
-#                        dTOT_hexx[g][n] = mag_real * TOT_hexx2[g][n]
-#                        mag_real_loc.append(dTOT_hexx[g][n].real)
-#                        mag_imag_loc.append(0.0)
-#                    elif imag_random == 1:
-#                        mag_imag = random.randint(1, 10)/100
-#                        dTOT_hexx[g][n] = mag_real * TOT_hexx2[g][n] + (1j * mag_imag * TOT_hexx2[g][n])
-#                        mag_real_loc.append(dTOT_hexx[g][n].real)
-#                        mag_imag_loc.append(dTOT_hexx[g][n].imag)
-#    
-#    case_name = f'{case_name2}_iter{iter_conv}_source{len(loc_conv_all[iter_conv])}'
-#        
-#    # Append to file without changing loop structure
-#    with open(iter_file, "a") as file:
-#        file.write(f"Iteration: {iter+1}, num_source: {len(loc)}, loc_conv = {loc_conv}, loc = {loc}, frequency: {f}, Real magnitude = {mag_real_loc}, Imaginary magnitude = {mag_imag_loc}\n")
-#        
-#    dPHI_temp = main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
-#    G_matrix = main_unfold_2D_hexx_green(keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, output_dir, case_name, precond)
-#    S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
-#        
-#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-#    if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
-#        validity_GREEDY.append('yes')
-#    else:
-#        validity_GREEDY.append('no')
-#        
-#    validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
-#    with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
-#        for category, lst in zip(methods, validity):
-#            f.write(f"{category} " + ", ".join(lst) + "\n")
+            mag_real_loc = []
+            mag_imag_loc = []
+            for g in range(group):
+                for n in range(N_hexx):
+                    for l in range(len(loc)):
+                        if g * N_hexx + n == loc[l]:
+                            mag_real = random.randint(1, 10)/100
+                            imag_random = random.randint(0,1)
+                            if imag_random == 0:
+                                dTOT_hexx[g][n] = mag_real * TOT_hexx2[g][n]
+                                mag_real_loc.append(mag_real)
+                                mag_imag_loc.append(0.0)
+                            elif imag_random == 1:
+                                mag_imag = random.randint(1, 10)/100
+                                dTOT_hexx[g][n] = mag_real * TOT_hexx2[g][n] + (1j * mag_imag * TOT_hexx2[g][n])
+                                mag_real_loc.append(mag_real)
+                                mag_imag_loc.append(mag_imag)
 
-print(f"\nRandom Conv Generator\n")
-source_num = 8
-pos_conv = []
-for _ in range(source_num):
-    pos_conv.append(random.randint(1, group * max(conv_tri)))
+            case_name = f'{case_name2}_iter{iter}_source{source}'
 
-pos_conv_fast = []
-pos_conv_thermal = []
-print(f"Position conv: {pos_conv}\n")
-for i in range(len(pos_conv)):
-    if pos_conv[i] > max(conv_tri):
-        pos_conv_thermal.append(pos_conv[i])
-    else:
-        pos_conv_fast.append(pos_conv[i])
-print(f"Fast positions: {pos_conv_fast}\n")
+            # Append to file without changing loop structure
+            with open(iter_file, "a") as file:
+                file.write(f"Iteration: {iter+1}, num_source: {len(loc)}, loc_conv = {loc_conv}, loc = {loc}, frequency: {f}, Real magnitude = {mag_real_loc}, Imaginary magnitude = {mag_imag_loc}\n")
 
-pos_conv_thermal_new = []
-for i in range(len(pos_conv_thermal)):
-    pos_conv_thermal_new.append(pos_conv_thermal[i] - max(conv_tri))
+            dPHI_temp = main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
+            G_matrix = main_unfold_2D_hexx_green(keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, output_dir, case_name, precond)
+            S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
 
-print(f"Thermal positions: {pos_conv_thermal}\n")
-print(f"Thermal positions_new: {pos_conv_thermal_new}\n")
+            dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+            if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
+                validity_GREEDY.append('yes')
+            else:
+                validity_GREEDY.append('no')
+
+            validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
+            with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
+                for category, lst in zip(methods, validity):
+                    f.write(f"{category} " + ", ".join(lst) + "\n")
+
+            iter += 1
+    add_iter += 1
