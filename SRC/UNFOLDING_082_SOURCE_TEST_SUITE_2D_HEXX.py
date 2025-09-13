@@ -39,7 +39,7 @@ h_hexx = s / np.sqrt(3) # Triangle side or hexagon radius
 h = h_hexx / (2**(level-1))
 
 # INITIALIZATION
-input_name = f"OBJECTIVES83_SOURCE_TEST_SUITE_2DTriMG_HTTR" 
+input_name = f"OBJECTIVES84_SOURCE_TEST_SUITE_2DTriMG_HTTR" 
 case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 
