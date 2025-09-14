@@ -205,7 +205,6 @@ validity_BACK = []
 validity_GREEDY = []
 methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY"]
 
-iter = 0
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
 # Check if the file exists, if yes, delete it
