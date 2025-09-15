@@ -1266,7 +1266,7 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
         print(f"Existing file '{residual_file}' deleted.")
     
     # Iterate over subsets of atoms
-    for num_source in range(1, num_atoms + 1):
+    for num_source in range(3, num_atoms + 1):
         print(f"Trying number of source mesh = {num_source}")
         iter_BRUTE = 0
 

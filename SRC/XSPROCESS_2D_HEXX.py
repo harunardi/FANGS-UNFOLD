@@ -731,7 +731,10 @@ def plot_triangular(PHIg, x_coords, y_coords, tri_indices, g, cmap='viridis', va
     # "ADJOINT", 
     # "NOISE", "NOISE_GREEN", "NOISE_UNFOLD", "NOISE_dPOWER", 
     # "NOISE_{position_noise}_{type_noise_str}", "NOISE_GREEN_{position_noise}_{type_noise_str}", "NOISE_UNFOLD_{position_noise}_{type_noise_str}", "NOISE_dPOWER_{position_noise}_{type_noise_str}", 
-    plt.savefig(f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_{varname}_{process_data}_G{g}.png')
+    plt.savefig(
+        f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_{varname}_{process_data}_G{g}.png',
+        bbox_inches='tight',
+        pad_inches=0.05)
     plt.close(fig)
 
 def plot_triangular_general(PHIg, x_coords, y_coords, tri_indices, g, cmap='viridis', varname=None, title=None, case_name=None, output_dir=None, process_data=None):
@@ -776,7 +779,9 @@ def plot_triangular_general(PHIg, x_coords, y_coords, tri_indices, g, cmap='viri
     # "ADJOINT", 
     # "NOISE", "NOISE_GREEN", "NOISE_UNFOLD", "NOISE_dPOWER", 
     # "NOISE_{position_noise}_{type_noise_str}", "NOISE_GREEN_{position_noise}_{type_noise_str}", "NOISE_UNFOLD_{position_noise}_{type_noise_str}", "NOISE_dPOWER_{position_noise}_{type_noise_str}", 
-    plt.savefig(f'{output_dir}_{varname}_{process_data}_G{g}.png')
+    plt.savefig(f'{output_dir}_{varname}_{process_data}_G{g}.png',
+        bbox_inches='tight',
+        pad_inches=0.05)
     plt.close(fig)
 
 ##############################################################################
