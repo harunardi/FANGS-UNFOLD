@@ -4,7 +4,7 @@ import time
 import os
 import sys
 import scipy.linalg
-from itertools import combinations, islice
+from itertools import combinations, islice, dropwhile
 from math import comb
 from petsc4py import PETSc
 
@@ -332,7 +332,7 @@ def main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max,
     for k in range(K_max):
         filename_map_detector = plot_triangular_3D_general(map_detector_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_detector', title=f'2D Plot of map_detector, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_SOLVE, process_data="magnitude")
         image_files_mag.append(filename_map_detector)
-    gif_filename_map_detector = f'{output_SOLVE}_magnitude_map_detector_animation_G{g+1}.gif'
+    gif_filename_map_detector = f'{output_SOLVE}_magnitude_map_detector_animation.gif'
     images_map_detector_mag = [Image.open(img) for img in image_files_mag]
     images_map_detector_mag[0].save(gif_filename_map_detector, save_all=True, append_images=images_map_detector_mag[1:], duration=300, loop=0)
     print(f"GIF saved as {gif_filename_map_detector}")
@@ -1265,14 +1265,39 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
         os.remove(residual_file)
         print(f"Existing file '{residual_file}' deleted.")
     
+    start_subset = ('G_g1_n104', 'G_g2_n1000', 'G_g2_n1000')  # Example starting subset
+    resume_enabled = True   # toggle checkpointing/resume
+    def combination_rank(subset_indices, n, k):
+        """
+        Compute lexicographic rank of a combination.
+
+        subset_indices: list of indices (0-based) of the subset
+        n: total number of items
+        k: size of combination
+        """
+        rank = 0
+        for i, idx in enumerate(subset_indices, start=1):  # i = 1..k
+            rank += comb(idx, i)
+        return rank
+
     # Iterate over subsets of atoms
     for num_source in range(3, num_atoms + 1):
         print(f"Trying number of source mesh = {num_source}")
         iter_BRUTE = 0
 
         total_combinations = comb(num_atoms, num_source)
-
         subset_iter = combinations(atom_keys, num_source)
+
+        # 🔹 Resume logic
+        if resume_enabled and len(start_subset) == num_source:
+            # Convert subset into indices w.r.t. atom_keys
+            subset_indices = [atom_keys.index(k) for k in start_subset]
+
+            # Compute its rank (position)
+            start_index = combination_rank(subset_indices, num_atoms, num_source)
+
+            print(f"Resuming from subset {start_subset} at index {start_index} / {total_combinations}")
+            subset_iter = islice(subset_iter, start_index, None)
 
         while True:
             chunk = list(islice(subset_iter, chunk_size))

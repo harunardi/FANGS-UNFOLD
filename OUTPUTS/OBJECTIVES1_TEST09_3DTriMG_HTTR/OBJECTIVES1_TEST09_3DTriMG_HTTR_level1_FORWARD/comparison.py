@@ -291,7 +291,7 @@ def plot_triangular_3D(PHIg, x_coords, y_coords, k, tri_indices, g, cmap='viridi
     # "NOISE_{position_noise}_{type_noise_str}", "NOISE_GREEN_{position_noise}_{type_noise_str}", "NOISE_UNFOLD_{position_noise}_{type_noise_str}", "NOISE_dPOWER_{position_noise}_{type_noise_str}", 
 #    filename = f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_{varname}_{process_data}_G{g}_Z{k}.png'
     filename = f'{case_name}_{solve}_{varname}_{process_data}_G{g}_Z{k}.png'
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
     plt.close(fig)
 
     return filename

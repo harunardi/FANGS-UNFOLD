@@ -139,10 +139,10 @@ def main():
 #    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
 #    dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
 #    dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-
-#### GREEDY METHOD
-#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
-    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+#
+##### GREEDY METHOD
+##    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
 
 ##### BRUTE FORCE METHOD
     if type_noise == 'FVX' or type_noise == 'FAV':
