@@ -27,11 +27,6 @@ from SRC_UNFOLDING_3D_HEXX import *
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-#from INPUTS.TASK3_TEST05a_3DTriMG_HTTR_LVL1_1SRC_AVS import *
-#from INPUTS.TASK3_TEST05b_2DTriMG_HTTR_LVL1_2SRC_AVS import *
-#from INPUTS.TASK3_TEST05c_2DTriMG_HTTR_LVL2_1SRC_AVS import *
-#from INPUTS.TASK3_TEST05d_2DTriMG_HTTR_LVL2_FAV import *
-
 #from INPUTS.OBJECTIVES45_TEST07_3DTriMG_HTTR_AVS import * # take 8.175611e+04 seconds
 #from INPUTS.OBJECTIVES45_TEST08_3DTriMG_HTTR_FAV import *
 from INPUTS.OBJECTIVES45_TEST12_3DTriMG_HTTR_AVS3S import * # take 
@@ -135,14 +130,10 @@ def main():
     G_matrix = main_unfold_3D_hexx_green(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
 
-###### OLD METHODS (INVERSION, ZONING, and SCANNING)
-#    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#    dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#    dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#
-##### GREEDY METHOD
-##    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
-#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+##### OLD METHODS (INVERSION, ZONING, and SCANNING)
+    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+    dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+    dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
 
 ##### BRUTE FORCE METHOD
     if type_noise == 'FVX' or type_noise == 'FAV':
@@ -150,6 +141,10 @@ def main():
         pass
     else:
         dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+
+#### GREEDY METHOD
+#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
 
     ####################################################################################################
     end_time = time.time()

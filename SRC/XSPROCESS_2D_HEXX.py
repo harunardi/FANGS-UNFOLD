@@ -299,7 +299,6 @@ def FORWARD_D_2D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, D, level):
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
     
     n = 6 * (4 ** (level - 1))
@@ -414,7 +413,6 @@ def ADJOINT_D_2D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, D, level):
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
     
     n = 6 * (4 ** (level - 1))
@@ -529,7 +527,6 @@ def NOISE_D_2D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, D, level):
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
     
     n = 6 * (4 ** (level - 1))

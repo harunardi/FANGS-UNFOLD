@@ -783,7 +783,7 @@ def plot_heatmap_3D(data, g, z, x, y, cmap='viridis', varname=None, title=None, 
     plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
 
     filename = f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_{varname}_{process_data}_G{g}_Z{z}.png'
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
     plt.close()
 
     return filename
@@ -816,7 +816,7 @@ def plot_heatmap_3D_general(data, g, z, x, y, cmap='viridis', title=None, output
     plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
 
     filename = f'{output}_{varname}_{process_data}_G{g}_Z{z}.png'
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
     plt.close()
 
     return filename

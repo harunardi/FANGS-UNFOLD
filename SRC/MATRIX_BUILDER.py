@@ -1,8 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.sparse import lil_matrix, csc_matrix
-import h5py
-
 from XSPROCESS_1D_RECT import *
 from XSPROCESS_2D_RECT import *
 from XSPROCESS_2D_HEXX import *

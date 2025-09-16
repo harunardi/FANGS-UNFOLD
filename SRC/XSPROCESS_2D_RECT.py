@@ -650,7 +650,7 @@ def generate_dPHI_gif(dPHI, f, group, N, I_max, J_max, output_dir, case_name, so
 
             # Save frame for each group
             frame_filename = f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_time_G{g+1}_t{i:03}.png'
-            plt.savefig(frame_filename)
+            plt.savefig(frame_filename, bbox_inches='tight', pad_inches=0.05)
             group_filenames[g].append(frame_filename)
             plt.close(fig)  # Close figure to save memory
 
@@ -698,7 +698,7 @@ def plot_heatmap(data, g, x, y, cmap='viridis', varname=None, title=None, output
     plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
 
     filename = f'{output_dir}/{case_name}_{solve}/{case_name}_{solve}_{varname}_{process_data}_G{g}.png'
-    plt.savefig(filename)
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
     plt.close()
 
     return filename
@@ -711,7 +711,6 @@ def interpolate_dPHI_rbf_2D_rect(dPHI_zero, group, J_max, I_max, conv, map_detec
             for n in range(I_max * J_max):
                 if conv[n] != 0:
                     dPHI_zero_new[g * (I_max * J_max) + n] = dPHI_zero[g * max(conv) + (conv[n] - 1)]
-#        dPHI_zero = dPHI_zero_new
     else:
         dPHI_zero_new = dPHI_zero
 
@@ -730,9 +729,6 @@ def interpolate_dPHI_rbf_2D_rect(dPHI_zero, group, J_max, I_max, conv, map_detec
                                 if map_detector[j * I_max + i] == 1 ])
         values_imag = np.array([dPHI_zero_array_imag[j, i] for j, i in coords_imag])
         
-#        print("coords_real shape:", coords_real.shape)
-#        print("values_real shape:", values_real.shape)
-
         # Calculate the pairwise distances between points to determine epsilon
         pairwise_distances = pdist(coords_real, metric='euclidean')
         avg_distance = np.mean(pairwise_distances)  # You can also use np.median or another method

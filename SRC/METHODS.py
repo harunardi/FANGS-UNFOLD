@@ -205,45 +205,6 @@ class PowerMethodSolver2DRect:
             print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
                   f'errflux = {errflux:.5e}')
 
-#        # Iteration for Power Method
-#        phi_temp = np.ones(self.group * max(self.conv))
-#        keff = 1.0
-#        errflux = errkeff = 1.0
-#        iter_count = 0
-#
-#        while errflux > self.tol and errkeff > self.tol:
-#            phi_temp_old = phi_temp.copy()
-#            k_old = keff
-#
-#            S = 1 / k_old * (self.F @ phi_temp_old)
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            phi_temp_petsc = PETSc.Vec().createWithArray(phi_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, phi_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            phi_temp = phi_temp_petsc.getArray()
-#
-#            # Update keff
-#            keff = k_old * trapezoid(self.F @ phi_temp, dx=self.dx * self.dy, axis=0) / \
-#                   trapezoid(self.F @ phi_temp_old, dx=self.dx * self.dy, axis=0)
-#
-#            residual = S - self.M.dot(phi_temp)
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Normalization
-#            phi_temp /= np.max(phi_temp)
-#
-#            # Calculate errors
-#            errkeff = np.abs((keff - k_old) / k_old)
-#            errflux = np.max(np.abs(phi_temp - phi_temp_old) / (np.abs(phi_temp) + 1E-20))
-#
-#            iter_count += 1
-#            print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
-#                  f'errflux = {errflux:.5e}, residual = {residual_norm:.5e}')
-
         return keff, phi_temp.getArray().copy()
 
 class FixedSourceSolver2DRect:
@@ -312,32 +273,6 @@ class FixedSourceSolver2DRect:
 
             iter_count += 1
             print(f'Iteration: {iter_count}, errflux = {errdPHI:.5e}')
-
-#        dPHI_temp = np.ones(self.group*max(self.conv), dtype=complex)
-#        errdPHI = 1
-#        iter = 0
-#
-#        while errdPHI > self.tol:
-#            dPHI_tempold = dPHI_temp.copy()
-#
-#            # Set up RHS
-#            S = self.dS.dot(self.PHI)
-#
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            dPHI_temp_petsc = PETSc.Vec().createWithArray(dPHI_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, dPHI_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            dPHI_temp = dPHI_temp_petsc.getArray()
-#
-#            # Calculate errors
-#            errdPHI = np.max(np.abs(dPHI_temp - dPHI_tempold) / (np.abs(dPHI_temp) + 1E-20))
-#
-#            iter += 1
-#            print(f'Iteration: {iter}, errflux = {errdPHI:.6e}')
 
         return dPHI_temp.getArray().copy()
 
@@ -427,45 +362,6 @@ class PowerMethodSolver2DHexx:
             print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
                   f'errflux = {errflux:.5e}')
 
-#        # Iteration for Power Method
-#        phi_temp = np.ones(self.group * max(self.conv_tri))
-#        keff = 1.0
-#        errflux = errkeff = 1.0
-#        iter_count = 0
-#
-#        while errflux > self.tol and errkeff > self.tol:
-#            phi_temp_old = phi_temp.copy()
-#            k_old = keff
-#
-#            S = 1 / k_old * (self.F @ phi_temp_old)
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            phi_temp_petsc = PETSc.Vec().createWithArray(phi_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, phi_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            phi_temp = phi_temp_petsc.getArray()
-#
-#            # Update keff
-#            keff = k_old * trapezoid(self.F @ phi_temp, dx=self.h**2/4*np.sqrt(3), axis=0) / \
-#                   trapezoid(self.F @ phi_temp_old, dx=self.h**2/4*np.sqrt(3), axis=0)
-#
-#            residual = S - self.M.dot(phi_temp)
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Normalization
-#            phi_temp /= np.max(phi_temp)
-#
-#            # Calculate errors
-#            errkeff = np.abs((keff - k_old) / k_old)
-#            errflux = np.max(np.abs(phi_temp - phi_temp_old) / (np.abs(phi_temp) + 1E-20))
-#
-#            iter_count += 1
-#            print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
-#                  f'errflux = {errflux:.5e}, residual = {residual_norm:.5e}')
-
         return keff, phi_temp.getArray().copy()
 
 class FixedSourceSolver2DHexx:
@@ -531,32 +427,6 @@ class FixedSourceSolver2DHexx:
 
             iter_count += 1
             print(f'Iteration: {iter_count}, errflux = {errdPHI:.5e}')
-
-#        dPHI_temp = np.ones(self.group*max(self.conv_tri), dtype=complex)
-#        errdPHI = 1
-#        iter = 0
-#
-#        while errdPHI > self.tol:
-#            dPHI_tempold = dPHI_temp.copy()
-#
-#            # Set up RHS
-#            S = self.dS.dot(self.PHI)
-#
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            dPHI_temp_petsc = PETSc.Vec().createWithArray(dPHI_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, dPHI_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            dPHI_temp = dPHI_temp_petsc.getArray()
-#
-#            # Calculate errors
-#            errdPHI = np.max(np.abs(dPHI_temp - dPHI_tempold) / (np.abs(dPHI_temp) + 1E-20))
-#
-#            iter += 1
-#            print(f'Iteration: {iter}, errflux = {errdPHI:.6e}')
 
         return dPHI_temp.getArray().copy()
 
@@ -649,45 +519,6 @@ class PowerMethodSolver3DRect:
             print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
                   f'errflux = {errflux:.5e}')
 
-#        # Iteration for Power Method
-#        phi_temp = np.ones(self.group * max(self.conv))
-#        keff = 1.0
-#        errflux = errkeff = 1.0
-#        iter_count = 0
-#
-#        while errflux > self.tol and errkeff > self.tol:
-#            phi_temp_old = phi_temp.copy()
-#            k_old = keff
-#
-#            S = 1 / k_old * (self.F @ phi_temp_old)
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            phi_temp_petsc = PETSc.Vec().createWithArray(phi_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, phi_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            phi_temp = phi_temp_petsc.getArray()
-#
-#            # Update keff
-#            keff = k_old * trapezoid(self.F @ phi_temp, dx=self.dx * self.dy * self.dz, axis=0) / \
-#                   trapezoid(self.F @ phi_temp_old, dx=self.dx * self.dy * self.dz, axis=0)
-#
-#            residual = S - self.M.dot(phi_temp)
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Normalization
-#            phi_temp /= np.max(phi_temp)
-#
-#            # Calculate errors
-#            errkeff = np.abs((keff - k_old) / k_old)
-#            errflux = np.max(np.abs(phi_temp - phi_temp_old) / (np.abs(phi_temp) + 1E-20))
-#
-#            iter_count += 1
-#            print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
-#                  f'errflux = {errflux:.5e}, residual = {residual_norm:.5e}')
-
         return keff, phi_temp.getArray().copy()
 
 class FixedSourceSolver3DRect:
@@ -757,32 +588,6 @@ class FixedSourceSolver3DRect:
 
             iter_count += 1
             print(f'Iteration: {iter_count}, errflux = {errdPHI:.5e}')
-
-#        dPHI_temp = np.ones(self.group*max(self.conv), dtype=complex)
-#        errdPHI = 1
-#        iter = 0
-#
-#        while errdPHI > self.tol:
-#            dPHI_tempold = dPHI_temp.copy()
-#
-#            # Set up RHS
-#            S = self.dS.dot(self.PHI)
-#
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            dPHI_temp_petsc = PETSc.Vec().createWithArray(dPHI_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, dPHI_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            dPHI_temp = dPHI_temp_petsc.getArray()
-#
-#            # Calculate errors
-#            errdPHI = np.max(np.abs(dPHI_temp - dPHI_tempold) / (np.abs(dPHI_temp) + 1E-20))
-#
-#            iter += 1
-#            print(f'Iteration: {iter}, errflux = {errdPHI:.6e}')
 
         return dPHI_temp.getArray().copy()
 
@@ -873,45 +678,6 @@ class PowerMethodSolver3DHexx:
             print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
                   f'errflux = {errflux:.5e}')
 
-#        # Iteration for Power Method
-#        phi_temp = np.ones(self.group * max(self.conv_tri))
-#        keff = 1.0
-#        errflux = errkeff = 1.0
-#        iter_count = 0
-#
-#        while errflux > self.tol and errkeff > self.tol:
-#            phi_temp_old = phi_temp.copy()
-#            k_old = keff
-#
-#            S = 1 / k_old * (self.F @ phi_temp_old)
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            phi_temp_petsc = PETSc.Vec().createWithArray(phi_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, phi_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            phi_temp = phi_temp_petsc.getArray()
-#
-#            # Update keff
-#            keff = k_old * trapezoid(self.F @ phi_temp, dx=self.h**2/4*np.sqrt(3)*self.dz, axis=0) / \
-#                   trapezoid(self.F @ phi_temp_old, dx=self.h**2/4*np.sqrt(3)*self.dz, axis=0)
-#
-#            residual = S - self.M.dot(phi_temp)
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Normalization
-#            phi_temp /= np.max(phi_temp)
-#
-#            # Calculate errors
-#            errkeff = np.abs((keff - k_old) / k_old)
-#            errflux = np.max(np.abs(phi_temp - phi_temp_old) / (np.abs(phi_temp) + 1E-20))
-#
-#            iter_count += 1
-#            print(f'Iteration: {iter_count}, keff = {keff:.5f}, errkeff = {errkeff:.6e}, '
-#                  f'errflux = {errflux:.5e}, residual = {residual_norm:.5e}')
-
         return keff, phi_temp.getArray().copy()
 
 class FixedSourceSolver3DHexx:
@@ -977,31 +743,5 @@ class FixedSourceSolver3DHexx:
 
             iter_count += 1
             print(f'Iteration: {iter_count}, errflux = {errdPHI:.5e}')
-
-#        dPHI_temp = np.ones(self.group*max(self.conv_tri), dtype=complex)
-#        errdPHI = 1
-#        iter = 0
-#
-#        while errdPHI > self.tol:
-#            dPHI_tempold = dPHI_temp.copy()
-#
-#            # Set up RHS
-#            S = self.dS.dot(self.PHI)
-#
-#            # PETSc Vectors for RHS and solution
-#            S_petsc = PETSc.Vec().createWithArray(S)
-#            dPHI_temp_petsc = PETSc.Vec().createWithArray(dPHI_temp)
-#
-#            # Solve the linear system using PETSc KSP
-#            ksp.solve(S_petsc, dPHI_temp_petsc)
-#
-#            # Get result back into NumPy array
-#            dPHI_temp = dPHI_temp_petsc.getArray()
-#
-#            # Calculate errors
-#            errdPHI = np.max(np.abs(dPHI_temp - dPHI_tempold) / (np.abs(dPHI_temp) + 1E-20))
-#
-#            iter += 1
-#            print(f'Iteration: {iter}, errflux = {errdPHI:.6e}')
 
         return dPHI_temp.getArray().copy()

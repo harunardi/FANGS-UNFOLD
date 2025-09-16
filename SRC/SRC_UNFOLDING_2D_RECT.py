@@ -1026,43 +1026,6 @@ def main_unfold_2D_rect_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, 
     if not valid_solution_BRUTE:
         print("No valid solution found with brute force.")
 
-
-
-#        for subset in combinations(atom_keys, num_source):
-#            if iter_BRUTE % (20 * num_atoms) == 0:
-#                print(f"Iteration = {iter_BRUTE}, subset progress = {(iter_BRUTE/len(list(combinations(atom_keys, num_source)))*100):.2f}%, subsets = {subset}")
-#
-#            # Form the initial matrix with the subset
-#            A = np.array([G_dictionary_sampled[k] for k in subset]).T #np.column_stack([G_dictionary_sampled[k] for k in subset])
-#            coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
-#            coefficients = dict(zip(subset, coeffs))
-#            residual = dPHI_temp_meas - A @ coeffs
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Append to file without changing loop structure
-#            with open(residual_file, "a") as file:
-#                file.write(f"{subset}, {residual_norm:.6e}\n")
-#
-#            # Check if residual norm meets tolerance
-#            if residual_norm < tol_BRUTE:
-#                print(f'Subsets {subset} pass the residual tolerance')
-#                valid_solution_BRUTE = True  # Criterion satisfied
-#                print(f"Valid solution found with number of sources = {num_source} and atoms = {subset}.")
-#                coefficients = dict(zip(subset, coeffs))
-#                dPHI_temp_BRUTE = sum(c * G_dictionary[k] for k, c in coefficients.items())
-#                break  # Exit the outer loop
-#
-#            if valid_solution_BRUTE:
-#                break  # Exit the subset loop
-#
-#            iter_BRUTE += 1
-#
-#        if valid_solution_BRUTE:
-#            break  # Exit the outer loop
-#    
-#    if not valid_solution_BRUTE:
-#        print("No valid solution found with brute force.")
-
     ###################################################################################################
     if valid_solution_BRUTE:
         # Reshape reconstructed signal
@@ -1748,11 +1711,8 @@ def main_unfold_2D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
         if first_atom_counter >= total_first_atom_counter:
             break
 
-#    valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
-
     print(f"\nThe selected atoms for second loop are {selected_atoms_first_loop}\n")
     first_loop_selected_atoms = selected_atoms_first_loop.copy()
-#    first_loop_residual_norm = residual_norm
 
     second_atom_list = list(combinations(first_loop_selected_atoms, comb_first_atom))
     second_atom_iter_length = len(second_atom_list)

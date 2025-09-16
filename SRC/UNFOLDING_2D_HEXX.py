@@ -4,7 +4,6 @@ import time
 import os
 import sys
 from scipy.integrate import trapezoid
-import scipy.linalg
 from itertools import combinations
 from petsc4py import PETSc
 from scipy.linalg import lstsq
@@ -26,17 +25,6 @@ from SRC_UNFOLDING_2D_HEXX import *
 # INPUTS
 original_sys_path = sys.path.copy()
 sys.path.append('../')
-
-#from INPUTS.TASK3_TEST03a_2DTriMG_HTTR_1SRC_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST03b_2DTriMG_HTTR_2SRC_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST03c_2DTriMG_HTTR_3SRC_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST03d_2DTriMG_HTTR_4SRC_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST03e_2DTriMG_HTTR_1SRC_21DET_AVS import *
-#from INPUTS.TASK3_TEST03f_2DTriMG_HTTR_1SRC_10DET_AVS import *
-#from INPUTS.TASK3_TEST03g_2DTriMG_HTTR_1SRC_5DET_AVS import *
-#from INPUTS.TASK3_TEST03h_2DTriMG_HTTR_1SRC_1DET_AVS import *
-#from INPUTS.TASK3_TEST03i_2DTriMG_HTTR_LVL2_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST03j_2DTriMG_HTTR_LVL2_FVX import *
 
 #from INPUTS.OBJECTIVES45_TEST03_2DTriMG_HTTR_AVS import *
 #from INPUTS.OBJECTIVES45_TEST04_2DTriMG_HTTR_FAV import *

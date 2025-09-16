@@ -4,7 +4,7 @@ import time
 import os
 import sys
 import scipy.linalg
-from itertools import combinations, islice, dropwhile
+from itertools import combinations, islice
 from math import comb
 from petsc4py import PETSc
 
@@ -731,14 +731,14 @@ def main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_ma
 
     map_zone_hexx_plot = np.array(map_zone_hexx)
     map_zone_conv_plot = np.array(map_zone_conv)
-#    image_files_mag = []
-#    for k in range(K_max):
-#        filename_map_zone = plot_triangular_3D_general(map_zone_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_zone', title=f'2D Plot of map_zone, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
-#        image_files_mag.append(filename_map_zone)
-#    gif_filename_map_zone = f'{output_ZONE}_magnitude_map_zone_animation.gif'
-#    images_map_zone_mag = [Image.open(img) for img in image_files_mag]
-#    images_map_zone_mag[0].save(gif_filename_map_zone, save_all=True, append_images=images_map_zone_mag[1:], duration=300, loop=0)
-#    print(f"GIF saved as {gif_filename_map_zone}")
+    image_files_mag = []
+    for k in range(K_max):
+        filename_map_zone = plot_triangular_3D_general(map_zone_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_zone', title=f'2D Plot of map_zone, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
+        image_files_mag.append(filename_map_zone)
+    gif_filename_map_zone = f'{output_ZONE}_magnitude_map_zone_animation.gif'
+    images_map_zone_mag = [Image.open(img) for img in image_files_mag]
+    images_map_zone_mag[0].save(gif_filename_map_zone, save_all=True, append_images=images_map_zone_mag[1:], duration=300, loop=0)
+    print(f"GIF saved as {gif_filename_map_zone}")
 
     zone_length = np.zeros(int(max(map_zone_conv)))
     for u in range(int(max(map_zone_conv))):
@@ -1264,44 +1264,10 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
     if os.path.exists(residual_file):
         os.remove(residual_file)
         print(f"Existing file '{residual_file}' deleted.")
-    
-    start_subset = ()  # Example starting subset
-    start_prefix = ('G_g1_n104','G_g2_n3300')  # Example starting prefix
-    resume_enabled = True   # toggle checkpointing/resume
-    def combination_rank(indices, n):
-        """
-        Compute lexicographic rank of a combination in itertools.combinations order.
-        indices: strictly increasing list of indices (0-based).
-        n: total number of items.
-        """
-        k = len(indices)
-        rank = 0
-        for i in range(k):
-            rank += comb(indices[i], i + 1)
-        return rank
 
-    def resume_from_subset(atom_keys, num_source, start_subset):
-        """
-        Resume combinations(num_source) from the given start_subset (exclusive).
-        If start_subset is invalid, move to the next valid combination.
-        """
-        # Precompute mapping key -> index
-        key_to_idx = {k: i for i, k in enumerate(atom_keys)}
-
-        try:
-            subset_indices = [key_to_idx[k] for k in start_subset]
-        except KeyError as e:
-            raise ValueError(f"Start subset contains key not in atom_keys: {e}")
-
-        # Ensure strictly increasing
-        if not all(subset_indices[i] < subset_indices[i+1] for i in range(len(subset_indices)-1)):
-            raise ValueError(f"start_subset is not a valid combination: {start_subset}")
-
-        # Compute its rank
-        start_index = combination_rank(subset_indices, len(atom_keys))
-
-        # Skip *after* this one
-        return islice(combinations(atom_keys, num_source), start_index + 1, None), start_index
+    #start_prefix = ('G_g1_n104','G_g2_n3300')  # Example starting prefix
+    start_prefix = ()
+    resume_enabled = False   # toggle checkpointing/resume
 
     def combinations_skip_count(n, k, prefix_indices):
         """
@@ -1356,7 +1322,7 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
         yield from subset_iter
 
     # Iterate over subsets of atoms
-    for num_source in range(3, num_atoms + 1):
+    for num_source in range(1, num_atoms + 1):
         print(f"Trying number of source mesh = {num_source}")
         iter_BRUTE = 0
 
@@ -1414,45 +1380,6 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
     
     if not valid_solution_BRUTE:
         print("No valid solution found with brute force.")
-
-#    # Iterate over subsets of atoms
-#    for num_source in range(1, num_atoms + 1):
-#        print(f"Trying number of source mesh = {num_source}")
-#        iter_BRUTE = 0
-#        for subset in combinations(atom_keys, num_source):
-#            if iter_BRUTE % (20 * num_atoms) == 0:
-#                print(f"Iteration = {iter_BRUTE}, subset progress = {(iter_BRUTE/len(list(combinations(atom_keys, num_source)))*100):.2f}%, subsets = {subset}")
-#
-#            # Form the initial matrix with the subset
-#            A = np.array([G_dictionary_sampled[k] for k in subset]).T #np.column_stack([G_dictionary_sampled[k] for k in subset])
-#            coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
-#            coefficients = dict(zip(subset, coeffs))
-#            residual = dPHI_temp_meas - A @ coeffs
-#            residual_norm = np.linalg.norm(residual)
-#
-#            # Append to file without changing loop structure
-#            with open(residual_file, "a") as file:
-#                file.write(f"{subset}, {residual_norm:.6e}\n")
-#
-#            # Check if residual norm meets tolerance
-#            if residual_norm < tol_BRUTE:
-#                print(f'Subsets {subset} pass the residual tolerance')
-#                valid_solution_BRUTE = True  # Criterion satisfied
-#                print(f"Valid solution found with number of sources = {num_source} and atoms = {subset}.")
-#                coefficients = dict(zip(subset, coeffs))
-#                dPHI_temp_BRUTE = sum(c * G_dictionary[k] for k, c in coefficients.items())
-#                break  # Exit the outer loop
-#
-#            if valid_solution_BRUTE:
-#                break  # Exit the subset loop
-#
-#            iter_BRUTE += 1
-#
-#        if valid_solution_BRUTE:
-#            break  # Exit the outer loop
-#    
-#    if not valid_solution_BRUTE:
-#        print("No valid solution found with brute force.")
 
     ###################################################################################################
     if valid_solution_BRUTE:
@@ -1955,9 +1882,6 @@ def main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_
 
             outer_iter += 1
 
-    #    prev_comb_first_atom = comb_first_atom
-    #    comb_first_atom += 1
-
     # Final check for the best solution
     if valid_solutions_GREEDY:
         best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
@@ -2215,11 +2139,8 @@ def main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
         if first_atom_counter >= total_first_atom_counter:
             break
 
-#    valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
-
     print(f"\nThe selected atoms for second loop are {selected_atoms_first_loop}\n")
     first_loop_selected_atoms = selected_atoms_first_loop.copy()
-#    first_loop_residual_norm = residual_norm
 
     second_atom_list = list(combinations(first_loop_selected_atoms, comb_first_atom))
     second_atom_iter_length = len(second_atom_list)

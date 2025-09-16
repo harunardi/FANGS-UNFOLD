@@ -12,13 +12,6 @@ from shapely.geometry import Polygon, Point
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
 sys.dont_write_bytecode = True
 
-#from SRC_ALL.CONVERT_TRI_NEIGHBOR_3D import *
-
-#from SRC_ALL.CONVERT_TRI_NEIGHBOR_3D_level1 import *
-#from SRC_ALL.CONVERT_TRI_NEIGHBOR_3D_level2 import *
-#from SRC_ALL.CONVERT_TRI_NEIGHBOR_3D_level3 import *
-#from SRC_ALL.CONVERT_TRI_NEIGHBOR_3D_level4 import *
-
 ##############################################################################
 # Function to save sparse matrix to file
 def save_sparse_matrix(A, filename):
@@ -474,7 +467,6 @@ def ADJOINT_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
 
     def DIFCOEFF_TRI_INTERIOR_axial(D_i, D_next, dz):
@@ -486,7 +478,6 @@ def ADJOINT_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (2 * D_i) / ((2 * D_i * dz) + (dz**2))
             return (2 * D_i) / ((4 * D_i * dz) + (dz**2))
 
     n = 6 * (4 ** (level - 1))
@@ -620,7 +611,6 @@ def NOISE_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level):
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (6 * D_i) / ((2 * D_i * h * np.sqrt(3)) + (h**2))
             return (8 * D_i) / ((4 * D_i * h * np.sqrt(3)) + (h**2))
 
     def DIFCOEFF_TRI_INTERIOR_axial(D_i, D_next, dz):
@@ -632,7 +622,6 @@ def NOISE_D_3D_hexx_matrix(group, BC, conv_tri, conv_neighbor, h, dz, D, level):
         if BC == 2:  # Reflective
             return 0
         if BC == 3:  # Vacuum
-#            return (2 * D_i) / ((2 * D_i * dz) + (dz**2))
             return (2 * D_i) / ((4 * D_i * dz) + (dz**2))
 
     n = 6 * (4 ** (level - 1))
@@ -1122,9 +1111,6 @@ def interpolate_3D_hexx_rbf(dPHI_zero, group, K_max, conv_tri, known_coords, kno
 
     for g in range(group):
         for k in range(K_max):
-#            print(np.array(known_coords[k]).shape)
-#            print(np.array(known_values_group[g][k]).shape)
-#            print(np.array(zero_coords[k]).shape)
             PHIg_temp = np.zeros(len(all_triangles), dtype=complex)
             if zero_coords:
                 try:
