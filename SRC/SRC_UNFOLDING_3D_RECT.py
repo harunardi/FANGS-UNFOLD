@@ -1908,7 +1908,7 @@ def main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
     valid_solutions_reduced_GREEDY = {}
 
     first_atom_counter = 0
-    total_first_atom_counter = 10
+    total_first_atom_counter = int(0.01 * len(list(G_dictionary_sampled.keys())))
     first_atom_iter = combinations(G_dictionary_sampled.keys(), comb_first_atom)
     for first_atom in first_atom_iter:
         first_atom_counter += 1

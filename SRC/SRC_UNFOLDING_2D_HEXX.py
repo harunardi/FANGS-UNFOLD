@@ -1649,6 +1649,9 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
             if atom not in selected_atoms_first_loop:
                 selected_atoms_first_loop.append(atom)
 
+        if first_atom_counter >= total_first_atom_counter:
+            break
+
     print(f"\nThe selected atoms for second loop are {selected_atoms_first_loop}\n")
     first_loop_selected_atoms = selected_atoms_first_loop.copy()
 
