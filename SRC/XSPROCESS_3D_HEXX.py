@@ -784,6 +784,14 @@ def NOISE_dTOT_3D_hexx_matrix(group, K_max, J_max, I_max, conv_tri, dTOT_hexx, l
             if dTOT_hexx[g][n] != 0:
                 matrix[g*max_conv+(conv_tri[n]-1), g*max_conv+(conv_tri[n]-1)] += dTOT_hexx[g][n]
     print("dTOT_mat generated")
+
+    dTOT_hex_temp = [[0] * max_conv for _ in range(group)]
+    for g in range(group):
+        for n in range(len(dTOT_hexx[0])):
+            dTOT_hex_temp[g][conv_tri[n]-1] = dTOT_hexx[g][n]
+            if dTOT_hexx[g][n] != 0:
+                print(f"dTOT_hexx_temp[{g}][{conv_tri[n]-1}] = {dTOT_hexx[g][n]}")
+
     return matrix
 
 def NOISE_dSCAT_3D_hexx_matrix(group, K_max, J_max, I_max, conv_tri, dSIGS_hexx, level):

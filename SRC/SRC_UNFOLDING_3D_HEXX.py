@@ -1265,20 +1265,95 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
         os.remove(residual_file)
         print(f"Existing file '{residual_file}' deleted.")
     
-    start_subset = ('G_g1_n104', 'G_g2_n1000', 'G_g2_n1000')  # Example starting subset
+    start_subset = ()  # Example starting subset
+    start_prefix = ('G_g1_n104','G_g2_n3300')  # Example starting prefix
     resume_enabled = True   # toggle checkpointing/resume
-    def combination_rank(subset_indices, n, k):
+    def combination_rank(indices, n):
         """
-        Compute lexicographic rank of a combination.
-
-        subset_indices: list of indices (0-based) of the subset
-        n: total number of items
-        k: size of combination
+        Compute lexicographic rank of a combination in itertools.combinations order.
+        indices: strictly increasing list of indices (0-based).
+        n: total number of items.
         """
+        k = len(indices)
         rank = 0
-        for i, idx in enumerate(subset_indices, start=1):  # i = 1..k
-            rank += comb(idx, i)
+        for i in range(k):
+            rank += comb(indices[i], i + 1)
         return rank
+
+    def resume_from_subset(atom_keys, num_source, start_subset):
+        """
+        Resume combinations(num_source) from the given start_subset (exclusive).
+        If start_subset is invalid, move to the next valid combination.
+        """
+        # Precompute mapping key -> index
+        key_to_idx = {k: i for i, k in enumerate(atom_keys)}
+
+        try:
+            subset_indices = [key_to_idx[k] for k in start_subset]
+        except KeyError as e:
+            raise ValueError(f"Start subset contains key not in atom_keys: {e}")
+
+        # Ensure strictly increasing
+        if not all(subset_indices[i] < subset_indices[i+1] for i in range(len(subset_indices)-1)):
+            raise ValueError(f"start_subset is not a valid combination: {start_subset}")
+
+        # Compute its rank
+        start_index = combination_rank(subset_indices, len(atom_keys))
+
+        # Skip *after* this one
+        return islice(combinations(atom_keys, num_source), start_index + 1, None), start_index
+
+    def combinations_skip_count(n, k, prefix_indices):
+        """
+        Compute how many k-combinations of n items come BEFORE the given prefix.
+        prefix_indices: list of indices (0-based) for the prefix in atom_keys.
+        """
+        skip = 0
+        m = len(prefix_indices)
+
+        # Go element by element
+        last = -1
+        for i, idx in enumerate(prefix_indices):
+            # Count all choices for this position that are smaller than idx
+            for j in range(last + 1, idx):
+                skip += comb(n - j - 1, k - (i + 1))
+            last = idx
+
+        return skip
+
+    def resume_from_prefix(atom_keys, num_source, prefix_keys):
+        """
+        Resume iteration of combinations(num_source) when the subset starts with prefix_keys.
+        prefix_keys: tuple or list of actual keys from atom_keys (must be increasing order).
+        """
+        key_to_idx = {k: i for i, k in enumerate(atom_keys)}
+
+        try:
+            prefix_indices = [key_to_idx[k] for k in prefix_keys]
+        except KeyError as e:
+            raise ValueError(f"{e} not found in atom_keys")
+
+        # Validate prefix is strictly increasing
+        if not all(prefix_indices[i] < prefix_indices[i+1] for i in range(len(prefix_indices)-1)):
+            raise ValueError(f"Prefix {prefix_keys} is not valid (must be increasing).")
+
+        n = len(atom_keys)
+        k = num_source
+
+        # How many combinations to skip
+        skip_count = combinations_skip_count(n, k, prefix_indices)
+
+        # Now slice
+        subset_iter = islice(combinations(atom_keys, k), skip_count, None)
+
+        # Fast-forward until prefix actually matches (since skip_count only guarantees we’re *at or before* it)
+        for subset in subset_iter:
+            if subset[:len(prefix_indices)] == tuple(prefix_keys):
+                yield subset
+                break
+
+        # Yield the rest normally
+        yield from subset_iter
 
     # Iterate over subsets of atoms
     for num_source in range(3, num_atoms + 1):
@@ -1288,16 +1363,13 @@ def main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_m
         total_combinations = comb(num_atoms, num_source)
         subset_iter = combinations(atom_keys, num_source)
 
-        # 🔹 Resume logic
-        if resume_enabled and len(start_subset) == num_source:
-            # Convert subset into indices w.r.t. atom_keys
-            subset_indices = [atom_keys.index(k) for k in start_subset]
+        if resume_enabled and start_prefix is not None:
+            # Case: resume by prefix (e.g., 'G_g1_n104')
+            subset_iter = resume_from_prefix(atom_keys, num_source, start_prefix)
+            print(f"Resuming from first subsets starting with {start_prefix} / {total_combinations}")
 
-            # Compute its rank (position)
-            start_index = combination_rank(subset_indices, num_atoms, num_source)
-
-            print(f"Resuming from subset {start_subset} at index {start_index} / {total_combinations}")
-            subset_iter = islice(subset_iter, start_index, None)
+        else:
+            subset_iter = combinations(atom_keys, num_source)
 
         while True:
             chunk = list(islice(subset_iter, chunk_size))
