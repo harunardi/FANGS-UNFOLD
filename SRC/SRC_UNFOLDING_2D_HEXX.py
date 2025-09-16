@@ -8,6 +8,7 @@ from itertools import combinations, islice
 from math import comb
 from petsc4py import PETSc
 from scipy.linalg import qr, solve_triangular
+from scipy.linalg import lstsq
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -1623,7 +1624,8 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
                 try:
                     temp_atoms = selected_atoms + list(k) #[k]
                     A_temp = np.array([G_dictionary_sampled[a] for a in temp_atoms]).T
-                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
+#                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
+                    coeffs_temp, _, rank, s = lstsq(A_temp, dPHI_temp_meas, lapack_driver='gelsy')
                     residuals[k] = np.linalg.norm(dPHI_temp_meas - A_temp @ coeffs_temp)
                 except np.linalg.LinAlgError:
                     print("SVD did not converge, skipping this iteration.")
@@ -1643,24 +1645,9 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
 
             print(f'   Chosen atom = {chosen_atom}, length of selected atoms = {len(selected_atoms)}, current residual norm = {residual_norm:.6e}')
 
-            # Check if the length of selected_atoms remains constant
-            if len(selected_atoms) == prev_selected_atoms_len:
-                constant_len_counter += 1
-            else:
-                constant_len_counter = 0  # Reset counter if length changes
-
-            prev_selected_atoms_len = len(selected_atoms)
-
-            if constant_len_counter >= 10:
-                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
-                break
-
         for atom in selected_atoms:
             if atom not in selected_atoms_first_loop:
                 selected_atoms_first_loop.append(atom)
-
-        if first_atom_counter >= total_first_atom_counter:
-            break
 
     print(f"\nThe selected atoms for second loop are {selected_atoms_first_loop}\n")
     first_loop_selected_atoms = selected_atoms_first_loop.copy()
@@ -1690,7 +1677,8 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
                 try:
                     temp_atoms = selected_atoms + list(k) #[k]
                     A_temp = np.array([G_dictionary_sampled[a] for a in temp_atoms]).T
-                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
+#                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
+                    coeffs_temp, _, rank, s = lstsq(A_temp, dPHI_temp_meas, lapack_driver='gelsy')
                     residuals[k] = np.linalg.norm(dPHI_temp_meas - A_temp @ coeffs_temp)
                 except np.linalg.LinAlgError:
                     print("SVD did not converge, skipping this iteration.")
@@ -1710,18 +1698,6 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
 
             print(f'   Chosen atom = {chosen_atom}, length of selected atoms = {len(selected_atoms)}, current residual norm = {residual_norm:.6e}')
 
-            # Check if the length of selected_atoms remains constant
-            if len(selected_atoms) == prev_selected_atoms_len:
-                constant_len_counter += 1
-            else:
-                constant_len_counter = 0  # Reset counter if length changes
-
-            prev_selected_atoms_len = len(selected_atoms)
-
-            if constant_len_counter >= 10:
-                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
-                break
-
         valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
 
     print(f"\nLength of valid solutions = {len(valid_solutions_GREEDY)}")
@@ -1732,7 +1708,8 @@ def main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
         iter_fa += 1
         selected_atoms = valid_solutions_GREEDY[first_atom]
         A = np.array([G_dictionary_sampled[k] for k in selected_atoms]).T
-        coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+#        coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+        coeffs, _, rank, s = lstsq(A, dPHI_temp_meas, lapack_driver='gelsy')
 
         # Update residual
         residual = dPHI_temp_meas - A @ coeffs
