@@ -163,7 +163,7 @@ def find_boundary_for_each_hex(triangle_neighbors, ownership):
 # Parameters
 s = 50
 I_max, J_max = 2, 2
-level = 3
+level = 2
 #conv_hexx = [1,1,1,1]
 conv_hexx = [1,1,1,1]
 
@@ -202,7 +202,7 @@ plt.triplot(x, y, tri_indices, color='blue', linewidth=0.5)
 for idx, triangle in enumerate(all_triangles):
     centroid_x = np.mean([v[0] for v in triangle])
     centroid_y = np.mean([v[1] for v in triangle])
-    plt.text(centroid_x, centroid_y, str(idx), fontsize=4, ha='center', va='center')
+    plt.text(centroid_x, centroid_y, str(idx), fontsize=8, ha='center', va='center')
 
 plt.axis('equal')
 plt.axis('off')
