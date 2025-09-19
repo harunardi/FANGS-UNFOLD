@@ -7,6 +7,7 @@ import sys
 from scipy.interpolate import RBFInterpolator
 from scipy.interpolate import griddata
 from shapely.geometry import Polygon, Point
+import matplotlib.colors as mcolors
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -781,6 +782,45 @@ def plot_triangular_general(PHIg, x_coords, y_coords, tri_indices, g, cmap='viri
         pad_inches=0.05)
     plt.close(fig)
 
+def plot_triangular_general_categorical(PHIg, x_coords, y_coords, tri_indices, g,
+                                        varname=None, title=None, case_name=None,
+                                        output_dir=None):
+    # Center the coordinates
+    x_min, x_max = min(x_coords), max(x_coords)
+    y_min, y_max = min(y_coords), max(y_coords)
+    x_center = (x_min + x_max) / 2
+    y_center = (y_min + y_max) / 2
+    x = [xi - x_center for xi in x_coords]
+    y = [yi - y_center for yi in y_coords]
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+    ax.set_aspect('equal')
+
+    # Define categories and corresponding colors
+    categories = [0, 0.5, 1, 1.5]
+    colors = ['lightgray', 'blue', 'red', 'purple']
+    labels = ['Empty', 'Detector', 'Source', 'Detector + Source']
+
+    # Create a colormap for discrete values
+    cmap = mcolors.ListedColormap(colors)
+    norm = mcolors.BoundaryNorm([c-0.25 for c in categories] + [categories[-1]+0.25], cmap.N)
+
+    # Create triangular plot
+    tri_plot = ax.tripcolor(x, y, tri_indices, facecolors=PHIg, cmap=cmap, norm=norm)
+
+    # Create a legend manually
+    from matplotlib.patches import Patch
+    legend_elements = [Patch(facecolor=colors[i], edgecolor='k', label=labels[i]) for i in range(len(categories))]
+    ax.legend(handles=legend_elements, loc='upper right')
+
+    if title:
+        plt.title(title)
+
+    plt.savefig(f'{output_dir}_{varname}_categorical_G{g}.png',
+                bbox_inches='tight',
+                pad_inches=0.05)
+    plt.close(fig)
+    
 ##############################################################################
 def find_triangle_ownership(triangles, hex_centers):
     """

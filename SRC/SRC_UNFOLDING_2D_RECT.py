@@ -259,6 +259,26 @@ def main_unfold_2D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_m
             if map_detector[n] == 0:
                 idx = g * max_conv + (conv[n]-1)
                 dPHI_temp_meas[idx] = 0
+    
+    map_det_S = np.zeros((group * max_conv))
+    for g in range(group):
+        for n in range(max_conv):
+            if S[g * max_conv + n] > 0:
+                map_det_S[g * max_conv + n] = 1
+            if map_detector[n] == 1:
+                map_det_S[g * max_conv + n] = 0.5
+
+    map_det_S_new = np.zeros((group * N), dtype=complex)
+    for g in range(group):
+        dS_unfold_temp_start = g * max(conv)
+        map_det_S_new[g * N + non_zero_indices] = map_det_S[dS_unfold_temp_start + dS_unfold_temp_indices]
+        for n in range(N):
+            if conv[n] == 0:
+                map_det_S_new[g*N+n] = np.nan
+    map_det_S_new_plot = np.reshape(map_det_S_new, (group, J_max, I_max))
+
+    for g in range(group):
+        Utils.plot_2D_rect_fixed_general(solver_type, map_det_S_new_plot[g], x, y, g+1, cmap='viridis', output=output_SOLVE, varname=f'closeness_det_S', case_name=case_name, title=f'2D Plot of Closeness between Detector and Source', process_data='magnitude')
 
     return S, dPHI_temp_meas
 

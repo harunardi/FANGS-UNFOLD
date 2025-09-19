@@ -144,21 +144,6 @@ for g in range(len(PHI_reshaped)):
 with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver_type.upper()}_output.json', 'w') as json_file:
     json.dump(output, json_file, indent=4)
 
-##### Adjoint Simulation
-solver_type = 'adjoint'
-os.makedirs(f'{output_dir}/{case_name2}_{solver_type.upper()}', exist_ok=True)
-matrix_builder = MatrixBuilderAdjoint2DHexx(group, I_max, J_max, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS)
-M, F_ADJOINT = matrix_builder.build_adjoint_matrices()
-solver = SolverFactory.get_solver_power2DHexx(solver_type, group, conv_tri, M, F_ADJOINT, h, precond, tol=1E-10)
-keff, PHI_ADJ_temp = solver.solve()
-PHI_ADJ, PHI_ADJ_reshaped, PHI_ADJ_temp_reshaped = PostProcessor.postprocess_power2DHexx(PHI_ADJ_temp, conv_tri, group, N_hexx)
-output = {"keff": keff.real}
-for g in range(len(PHI_ADJ_reshaped)):
-    phi_groupname = f'PHI{g + 1}_{solver_type.upper()}'
-    output[phi_groupname] = [val.real for val in PHI_ADJ_reshaped[g]]
-with open(f'{output_dir}/{case_name2}_{solver_type.upper()}/{case_name2}_{solver_type.upper()}_output.json', 'w') as json_file:
-    json.dump(output, json_file, indent=4)
-
 # --------------- MAP DETECTOR -------------------
 # Expand the map detector
 p = 6 * (4 ** (level - 1))
@@ -196,7 +181,7 @@ for g in range(group):
 freq = np.logspace(-2, 1, 10)
 add_iter = 0
 iter = 0
-additional_iter = 2
+additional_iter = 1
 validity_INVERT = []
 validity_ZONE = []
 validity_SCAN = []
@@ -261,6 +246,17 @@ while add_iter < additional_iter:
             validity_GREEDY.append('yes')
         else:
             validity_GREEDY.append('no')
+
+        with open(f'{output_dir}/{case_name}_08_GREEDY_NEW/detector_source_greedy_final.txt', 'w') as f:
+            for g in range(group):
+                for n in range(max_conv):
+                    if S[g * max_conv + n] != 0:
+                        if np.allclose(S[g * max_conv + n], dS_unfold_GREEDY_temp[g * max_conv + n], atol=1E-06):
+                            line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_greedy = {dS_unfold_GREEDY_temp[g * max_conv + n]}. Result = Match\n"
+                            f.write(line)
+                        else:
+                            line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_greedy = {dS_unfold_GREEDY_temp[g * max_conv + n]}. Result = No Match\n"
+                            f.write(line)
 
         validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
         with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:

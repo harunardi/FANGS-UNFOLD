@@ -299,6 +299,21 @@ def main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max,
                 idx = g * max_conv + (conv_tri[n]-1)
                 dPHI_temp_meas[idx] = 0
 
+    map_det_S = np.zeros((group * max_conv))
+    with open(f'{output_dir}/{case_name}_02_SOLVE/detector_source_report.txt', 'w') as f:
+        for g in range(group):
+            for n in range(max_conv):
+                if S[g * max_conv + n] != 0:
+                    line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}\n"
+                    f.write(line)
+                    map_det_S[g * max_conv + n] += 1
+                if map_detector_conv[n] == 1:
+                    map_det_S[g * max_conv + n] += 0.5
+
+    map_det_S_plot = np.reshape(map_det_S, (group, max(conv_tri)))
+
+    for g in range(group):
+        plot_triangular_general_categorical(map_det_S_plot[g], x, y, tri_indices, g+1, varname='closeness_det_S', title=f'2D Plot of Closeness between Detector and Source Group {g+1}', case_name=case_name, output_dir=output_SOLVE)
     return S, dPHI_temp_meas
 
 #######################################################################################################
