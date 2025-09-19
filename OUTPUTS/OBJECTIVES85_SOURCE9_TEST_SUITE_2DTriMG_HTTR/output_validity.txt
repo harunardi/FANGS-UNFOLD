@@ -3,4 +3,4 @@ ZONE
 SCAN 
 BRUTE 
 BACK 
-GREEDY no, no, yes, no, no, no, yes
+GREEDY no, no, yes, no, no, no, yes, yes, yes, yes
