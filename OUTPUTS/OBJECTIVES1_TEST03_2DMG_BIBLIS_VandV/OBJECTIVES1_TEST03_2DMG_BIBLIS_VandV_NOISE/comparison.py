@@ -135,3 +135,4 @@ for g in range(group):
     plot_heatmap(dPHI_reshaped[g], g+1, cmap='viridis', varname='dPHI_NORMALIZED', title=f'2D Plot of dPHI{g+1}_NORMALIZED Magnitude', process_data='magnitude')
     plot_heatmap(dPHI_reshaped[g], g+1, cmap='viridis', varname='dPHI_NORMALIZED', title=f'2D Plot of dPHI{g+1}_NORMALIZED Phase', process_data='phase')
     plot_heatmap(diff_flx_reshaped[g], g+1, cmap='viridis', varname='diff_dFLX', title=f'2D Plot of Relative Difference group {g+1} in %\n Simulator vs FEMFFUSION Magnitude', process_data='magnitude')
+    plot_heatmap(diff_flx_reshaped[g], g+1, cmap='viridis', varname='diff_dFLX', title=f'2D Plot of Relative Difference group {g+1} in %\n Simulator vs FEMFFUSION Phase', process_data='phase')
