@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 Iteration: 1, num_source: 5, loc_conv = [47, 855, 1103, 129, 537], loc = [220, 1652, 1972, 338, 860], frequency: 0.01, Real magnitude = [0.08, 0.03, 0.03, 0.07, 0.02], Imaginary magnitude = [0.0, 0.02, 0.0, 0.0, 0.0]
 Iteration: 2, num_source: 5, loc_conv = [885, 1122, 718, 1153, 1223], loc = [1682, 2003, 1131, 2034, 2116], frequency: 0.021544346900318832, Real magnitude = [0.04, 0.03, 0.07, 0.07, 0.07], Imaginary magnitude = [0.1, 0.0, 0.0, 0.09, 0.08]
 Iteration: 3, num_source: 5, loc_conv = [607, 886, 1296, 1365, 286], loc = [954, 1683, 2207, 2300, 567], frequency: 0.046415888336127774, Real magnitude = [0.04, 0.07, 0.06, 0.09, 0.05], Imaginary magnitude = [0.06, 0.0, 0.0, 0.0, 0.0]
 Iteration: 4, num_source: 5, loc_conv = [1355, 737, 805, 485, 540], loc = [2290, 1192, 1566, 790, 863], frequency: 0.1, Real magnitude = [0.04, 0.03, 0.08, 0.02, 0.08], Imaginary magnitude = [0.06, 0.08, 0.0, 0.05, 0.0]
 Iteration: 5, num_source: 5, loc_conv = [774, 914, 1145, 908, 1218], loc = [1493, 1741, 2026, 1735, 2111], frequency: 0.21544346900318834, Real magnitude = [0.03, 0.07, 0.09, 0.1, 0.1], Imaginary magnitude = [0.01, 0.0, 0.01, 0.1, 0.06]
 Iteration: 6, num_source: 5, loc_conv = [409, 1272, 579, 592, 1337], loc = [702, 2183, 926, 939, 2272], frequency: 0.46415888336127775, Real magnitude = [0.01, 0.06, 0.03, 0.05, 0.02], Imaginary magnitude = [0.01, 0.0, 0.0, 0.0, 0.05]
+=======
+Iteration: 1, num_source: 5, loc_conv = [1420, 1057, 713, 1115, 590], loc = [2385, 1926, 1126, 1996, 937], frequency: 0.01, Real magnitude = [0.05, 0.09, 0.1, 0.04, 0.07], Imaginary magnitude = [0.05, 0.08, 0.01, 0.04, 0.04]
+>>>>>>> 3f6acc4300ee92be5e5a19e72f06446e16911a8a
