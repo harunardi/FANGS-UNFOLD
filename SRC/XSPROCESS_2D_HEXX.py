@@ -8,6 +8,7 @@ from scipy.interpolate import RBFInterpolator
 from scipy.interpolate import griddata
 from shapely.geometry import Polygon, Point
 import matplotlib.colors as mcolors
+from matplotlib.patches import Patch
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -809,9 +810,12 @@ def plot_triangular_general_categorical(PHIg, x_coords, y_coords, tri_indices, g
     tri_plot = ax.tripcolor(x, y, tri_indices, facecolors=PHIg, cmap=cmap, norm=norm)
 
     # Create a legend manually
-    from matplotlib.patches import Patch
     legend_elements = [Patch(facecolor=colors[i], edgecolor='k', label=labels[i]) for i in range(len(categories))]
-    ax.legend(handles=legend_elements, loc='upper right')
+    ax.legend(handles=legend_elements,
+               loc='upper center',          # center it
+               bbox_to_anchor=(0.5, -0.12), # shift below the plot
+               ncol=len(categories),        # put all items in one row
+               frameon=False)               # remove box around legend
 
     if title:
         plt.title(title)

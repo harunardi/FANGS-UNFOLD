@@ -346,6 +346,29 @@ def main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max,
                 idx = g * max_conv + (conv_tri[n]-1)
                 dPHI_temp_meas[idx] = 0
 
+    map_det_S = np.zeros((group * max_conv))
+    with open(f'{output_dir}/{case_name}_02_SOLVE/detector_source_report.txt', 'w') as f:
+        for g in range(group):
+            for n in range(max_conv):
+                if S[g * max_conv + n] != 0:
+                    line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}\n"
+                    f.write(line)
+                    map_det_S[g * max_conv + n] += 1
+                if map_detector_conv[n] == 1:
+                    map_det_S[g * max_conv + n] += 0.5
+
+    map_det_S_reshaped = map_det_S.reshape(group, K_max, len(tri_indices))
+
+    for g in range(group):
+        image_files_mag = []
+        for k in range(K_max):
+            filename_det_S_mag = plot_triangular_3D_categorical(map_det_S_reshaped[g][k], x, y, k+1, tri_indices, g+1, varname='closeness_det_S', title=f'2D Plot of Closeness Detector-Source Group {g+1}, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_SOLVE)
+            image_files_mag.append(filename_det_S_mag)
+        gif_filename_det_S_mag = f'{output_SOLVE}_closeness_det_S_animation_G{g+1}.gif'
+        images_det_S_mag = [Image.open(img) for img in image_files_mag]
+        images_det_S_mag[0].save(gif_filename_det_S_mag, save_all=True, append_images=images_det_S_mag[1:], duration=300, loop=0)
+        print(f"GIF saved as {gif_filename_det_S_mag}")
+
     return S, dPHI_temp_meas
 
 #######################################################################################################

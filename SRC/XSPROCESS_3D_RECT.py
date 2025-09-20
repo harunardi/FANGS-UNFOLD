@@ -10,6 +10,8 @@ from matplotlib.colors import Normalize
 from matplotlib import cm
 from PIL import Image
 from scipy.spatial.distance import pdist, squareform
+import matplotlib.colors as mcolors
+from matplotlib.patches import Patch
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -816,6 +818,47 @@ def plot_heatmap_3D_general(data, g, z, x, y, cmap='viridis', title=None, output
     plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
 
     filename = f'{output}_{varname}_{process_data}_G{g}_Z{z}.png'
+    plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
+    plt.close()
+
+    return filename
+
+def plot_heatmap_3D_categorical(data, g, z, x, y, output=None, varname=None, case_name=None, title=None):
+    plt.clf()
+
+    # Define categories and corresponding colors
+    categories = [0, 0.5, 1, 1.5]
+    colors = ['lightgray', 'blue', 'red', 'purple']
+    labels = ['Empty', 'Detector', 'Source', 'Detector + Source']
+
+    # Create a discrete colormap
+    cmap = mcolors.ListedColormap(colors)
+    bounds = [-0.25, 0.25, 0.75, 1.25, 1.75]  # boundaries between categories
+    norm = mcolors.BoundaryNorm(bounds, cmap.N)
+
+    extent = [x.min(), x.max(), y.min(), y.max()]
+    plt.imshow(data, cmap=cmap, norm=norm, interpolation='nearest', extent=extent, origin='lower')
+
+    # Build legend manually (instead of colorbar)
+    legend_elements = [Patch(facecolor=colors[i], edgecolor='k', label=labels[i]) for i in range(len(categories))]
+    plt.legend(handles=legend_elements,
+           loc='upper center',          # center it
+           bbox_to_anchor=(0.5, -0.12), # shift below the plot
+           ncol=len(categories),        # put all items in one row
+           frameon=False)               # remove box around legend
+
+    if title:
+        plt.title(title)
+    plt.xlabel('X (cm)')
+    plt.ylabel('Y (cm)')
+    
+    # Define ticks every 10 cm
+    x_ticks = np.linspace(x.min(), x.max(), num=10)
+    y_ticks = np.linspace(y.min(), y.max(), num=10)
+    plt.xticks(x_ticks, labels=[f'{val:.1f}' for val in x_ticks])
+    plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
+
+    filename = f'{output}_{varname}_categorical_G{g}_Z{z}.png'
     plt.savefig(filename, bbox_inches='tight', pad_inches=0.05)
     plt.close()
 

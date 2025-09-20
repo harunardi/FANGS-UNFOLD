@@ -260,15 +260,23 @@ def main_unfold_2D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_m
                 idx = g * max_conv + (conv[n]-1)
                 dPHI_temp_meas[idx] = 0
     
-    map_det_S = np.zeros((group * max_conv))
-    for g in range(group):
-        for n in range(max_conv):
-            if S[g * max_conv + n] > 0:
-                map_det_S[g * max_conv + n] = 1
-            if map_detector[n] == 1:
-                map_det_S[g * max_conv + n] = 0.5
+    map_detector_conv = np.zeros((group * max_conv))
+    for n in range(N):
+        if conv[n] != 0:
+            map_detector_conv[conv[n] - 1] = map_detector[n]
 
-    map_det_S_new = np.zeros((group * N), dtype=complex)
+    map_det_S = np.zeros((group * max_conv))
+    with open(f'{output_dir}/{case_name}_02_SOLVE/detector_source_report.txt', 'w') as f:
+        for g in range(group):
+            for n in range(max_conv):
+                if S[g * max_conv + n] != 0:
+                    line = f"For group {g+1}, mesh {n+1}, S = {S[g * max_conv + n]}\n"
+                    f.write(line)
+                    map_det_S[g * max_conv + n] += 1
+                if map_detector_conv[n] == 1:
+                    map_det_S[g * max_conv + n] += 0.5
+
+    map_det_S_new = np.zeros((group * N))
     for g in range(group):
         dS_unfold_temp_start = g * max(conv)
         map_det_S_new[g * N + non_zero_indices] = map_det_S[dS_unfold_temp_start + dS_unfold_temp_indices]
@@ -278,8 +286,8 @@ def main_unfold_2D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_m
     map_det_S_new_plot = np.reshape(map_det_S_new, (group, J_max, I_max))
 
     for g in range(group):
-        Utils.plot_2D_rect_fixed_general(solver_type, map_det_S_new_plot[g], x, y, g+1, cmap='viridis', output=output_SOLVE, varname=f'closeness_det_S', case_name=case_name, title=f'2D Plot of Closeness between Detector and Source', process_data='magnitude')
-
+        Utils.plot_2D_rect_fixed_categorical(solver_type, map_det_S_new_plot[g], x, y, g+1, output=output_SOLVE, varname=f'closeness_det_S{g+1}', case_name=case_name, title=f'2D Plot of Closeness between Detector and Source Group {g+1}')
+        
     return S, dPHI_temp_meas
 
 #######################################################################################################

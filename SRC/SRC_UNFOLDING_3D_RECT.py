@@ -317,6 +317,46 @@ def main_unfold_3D_rect_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, N, I_m
                 idx = g * max_conv + (conv[n]-1)
                 dPHI_temp_meas[idx] = 0
 
+    map_detector_conv = np.zeros((group * max_conv))
+    for n in range(N):
+        if conv[n] != 0:
+            map_detector_conv[conv[n] - 1] = map_detector[n]
+
+    map_det_S = np.zeros((group * max_conv))
+    with open(f'{output_dir}/{case_name}_02_SOLVE/detector_source_report.txt', 'w') as f:
+        for g in range(group):
+            for n in range(max_conv):
+                if S[g * max_conv + n] != 0:
+                    line = f"For group {g+1}, mesh {n+1}, S = {S[g * max_conv + n]}\n"
+                    f.write(line)
+                    map_det_S[g * max_conv + n] += 1
+                if map_detector_conv[n] == 1:
+                    map_det_S[g * max_conv + n] += 0.5
+
+#    map_det_S_new = np.zeros((group * N))
+#    for g in range(group):
+#        dS_unfold_temp_start = g * max(conv)
+#        map_det_S_new[g * N + non_zero_indices] = map_det_S[dS_unfold_temp_start + dS_unfold_temp_indices]
+#        for n in range(N):
+#            if conv[n] == 0:
+#                map_det_S_new[g*N+n] = np.nan
+    map_det_S_new = np.full((group * N), np.nan)  # start with nan
+
+    for g in range(group):
+        for n in range(N):
+            if conv[n] != 0:
+                map_det_S_new[g*N + n] = map_det_S[g*max_conv + conv[n] - 1]
+    map_det_S_new_plot = np.reshape(map_det_S_new, (group, K_max, J_max, I_max))
+
+    for g in range(group):
+        image_files_mag = []
+        for k in range(K_max):
+            filename_mag_dS_SOLVE = plot_heatmap_3D_categorical(map_det_S_new_plot[g, k, :, :], g+1, k+1, x, y, output=output_SOLVE, varname='closeness_det_S', case_name=case_name, title=f'2D Plot of Closeness Detector-Source Group {g+1}, Z={k+1}')
+            image_files_mag.append(filename_mag_dS_SOLVE)
+        gif_filename_mag_dS_SOLVE = f'{output_SOLVE}_closeness_det_S_animation_G{g+1}.gif'
+        images_mag_dS_SOLVE = [Image.open(img) for img in image_files_mag]
+        images_mag_dS_SOLVE[0].save(gif_filename_mag_dS_SOLVE, save_all=True, append_images=images_mag_dS_SOLVE[1:], duration=300, loop=0)
+
     return S, dPHI_temp_meas
 
 #######################################################################################################

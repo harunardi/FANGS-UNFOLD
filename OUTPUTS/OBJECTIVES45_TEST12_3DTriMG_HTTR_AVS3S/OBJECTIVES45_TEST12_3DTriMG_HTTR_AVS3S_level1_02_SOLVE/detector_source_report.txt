@@ -1,0 +1,3 @@
+For group 1, triangle 104, S = (-3.696025090604032e-10+0j)
+For group 2, triangle 3440, S = (-4.91223119807762e-06+0j)
+For group 2, triangle 6416, S = (-3.151721046035283e-08+0j)

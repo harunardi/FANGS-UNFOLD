@@ -7,6 +7,8 @@ import h5py
 from scipy.interpolate import RBFInterpolator
 from scipy.interpolate import griddata
 from shapely.geometry import Polygon, Point
+import matplotlib.colors as mcolors
+from matplotlib.patches import Patch
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -905,6 +907,59 @@ def plot_triangular_3D_general(PHIg, x_coords, y_coords, k, tri_indices, g, cmap
     # "NOISE", "NOISE_GREEN", "NOISE_UNFOLD", "NOISE_dPOWER", 
     # "NOISE_{position_noise}_{type_noise_str}", "NOISE_GREEN_{position_noise}_{type_noise_str}", "NOISE_UNFOLD_{position_noise}_{type_noise_str}", "NOISE_dPOWER_{position_noise}_{type_noise_str}", 
     filename = f'{output_dir}_{varname}_{process_data}_G{g}_Z{k}.png'
+    plt.savefig(filename,
+        bbox_inches='tight',
+        pad_inches=0.05)
+    plt.close(fig)
+
+    return filename
+
+def plot_triangular_3D_categorical(PHIg, x_coords, y_coords, k, tri_indices, g, varname=None, title=None, case_name=None, output_dir=None):
+   
+    x_min, x_max = min(x_coords), max(x_coords)
+    y_min, y_max = min(y_coords), max(y_coords)
+    x_center = (x_min + x_max) / 2
+    y_center = (y_min + y_max) / 2
+    x = []
+    y = []
+
+    for i in range(len(x_coords)):
+        x.append(x_coords[i]-x_center)
+        y.append(y_coords[i]-y_center)
+
+    fig, ax = plt.subplots(figsize=(12, 8))
+    ax.set_aspect('equal')
+
+    # Define categories and corresponding colors
+    categories = [0, 0.5, 1, 1.5]
+    colors = ['lightgray', 'blue', 'red', 'purple']
+    labels = ['Empty', 'Detector', 'Source', 'Detector + Source']
+
+    # Create a colormap for discrete values
+    cmap = mcolors.ListedColormap(colors)
+    norm = mcolors.BoundaryNorm([c-0.25 for c in categories] + [categories[-1]+0.25], cmap.N)
+
+    # Create the triangular color plot
+    tri_plot = ax.tripcolor(x, y, tri_indices, facecolors=PHIg, cmap=cmap, norm=norm)
+
+    # Create a legend manually
+    legend_elements = [Patch(facecolor=colors[i], edgecolor='k', label=labels[i]) for i in range(len(categories))]
+    ax.legend(handles=legend_elements,
+               loc='upper center',          # center it
+               bbox_to_anchor=(0.5, -0.12), # shift below the plot
+               ncol=len(categories),        # put all items in one row
+               frameon=False)               # remove box around legend
+    
+    if title:
+        plt.title(title)
+
+    # Note: 
+    # solve could be:
+    # "FORWARD", 
+    # "ADJOINT", 
+    # "NOISE", "NOISE_GREEN", "NOISE_UNFOLD", "NOISE_dPOWER", 
+    # "NOISE_{position_noise}_{type_noise_str}", "NOISE_GREEN_{position_noise}_{type_noise_str}", "NOISE_UNFOLD_{position_noise}_{type_noise_str}", "NOISE_dPOWER_{position_noise}_{type_noise_str}", 
+    filename = f'{output_dir}_{varname}_categorical_G{g}_Z{k}.png'
     plt.savefig(filename,
         bbox_inches='tight',
         pad_inches=0.05)
