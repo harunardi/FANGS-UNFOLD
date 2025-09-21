@@ -262,32 +262,91 @@ while add_iter < additional_iter:
             S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
 
             dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_2D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
-            dS_unfold_ZONE_temp = main_unfold_2D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
-            dS_unfold_SCAN_temp = main_unfold_2D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
             if np.allclose(S, dS_unfold_INVERT_temp, atol=1E-06):
                 validity_INVERT.append('yes')
             else:
                 validity_INVERT.append('no')
+
+            with open(f'{output_dir}/{case_name}_03_INVERT/detector_source_invert_final.txt', 'w') as f:
+                for g in range(group):
+                    for n in range(max_conv):
+                        if S[g * max_conv + n] != 0:
+                            if np.allclose(S[g * max_conv + n], dS_unfold_INVERT_temp[g * max_conv + n], atol=1E-06):
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_invert = {dS_unfold_INVERT_temp[g * max_conv + n]}. Result = Match\n"
+                                f.write(line)
+                            else:
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_invert = {dS_unfold_INVERT_temp[g * max_conv + n]}. Result = No Match\n"
+                                f.write(line)
+
+            dS_unfold_ZONE_temp = main_unfold_2D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
             if np.allclose(S, dS_unfold_ZONE_temp, atol=1E-06):
                 validity_ZONE.append('yes')
             else:
                 validity_ZONE.append('no')
+
+            with open(f'{output_dir}/{case_name}_04_ZONE/detector_source_zone_final.txt', 'w') as f:
+                for g in range(group):
+                    for n in range(max_conv):
+                        if S[g * max_conv + n] != 0:
+                            if np.allclose(S[g * max_conv + n], dS_unfold_ZONE_temp[g * max_conv + n], atol=1E-06):
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_zone = {dS_unfold_ZONE_temp[g * max_conv + n]}. Result = Match\n"
+                                f.write(line)
+                            else:
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_zone = {dS_unfold_ZONE_temp[g * max_conv + n]}. Result = No Match\n"
+                                f.write(line)
+
+            dS_unfold_SCAN_temp = main_unfold_2D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
             if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
                 validity_SCAN.append('yes')
             else:
                 validity_SCAN.append('no')
 
+            with open(f'{output_dir}/{case_name}_05_SCAN/detector_source_scan_final.txt', 'w') as f:
+                for g in range(group):
+                    for n in range(max_conv):
+                        if S[g * max_conv + n] != 0:
+                            if np.allclose(S[g * max_conv + n], dS_unfold_SCAN_temp[g * max_conv + n], atol=1E-06):
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_scan = {dS_unfold_SCAN_temp[g * max_conv + n]}. Result = Match\n"
+                                f.write(line)
+                            else:
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_scan = {dS_unfold_SCAN_temp[g * max_conv + n]}. Result = No Match\n"
+                                f.write(line)
+
+##############################################################################################
             dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_2D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
             if np.allclose(S, dS_unfold_BRUTE_temp, atol=1E-06):
                 validity_BRUTE.append('yes')
             else:
                 validity_BRUTE.append('no')
 
+            with open(f'{output_dir}/{case_name}_06_BRUTE/detector_source_brute_final.txt', 'w') as f:
+                for g in range(group):
+                    for n in range(max_conv):
+                        if S[g * max_conv + n] != 0:
+                            if np.allclose(S[g * max_conv + n], dS_unfold_BRUTE_temp[g * max_conv + n], atol=1E-06):
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_brute = {dS_unfold_BRUTE_temp[g * max_conv + n]}. Result = Match\n"
+                                f.write(line)
+                            else:
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_brute = {dS_unfold_BRUTE_temp[g * max_conv + n]}. Result = No Match\n"
+                                f.write(line)
+
+##############################################################################################
             dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
             if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
                 validity_GREEDY.append('yes')
             else:
                 validity_GREEDY.append('no')
+
+            with open(f'{output_dir}/{case_name}_08_GREEDY_NEW/detector_source_greedy_final.txt', 'w') as f:
+                for g in range(group):
+                    for n in range(max_conv):
+                        if S[g * max_conv + n] != 0:
+                            if np.allclose(S[g * max_conv + n], dS_unfold_GREEDY_temp[g * max_conv + n], atol=1E-06):
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_greedy = {dS_unfold_GREEDY_temp[g * max_conv + n]}. Result = Match\n"
+                                f.write(line)
+                            else:
+                                line = f"For group {g+1}, triangle {n+1}, S = {S[g * max_conv + n]}, dS_greedy = {dS_unfold_GREEDY_temp[g * max_conv + n]}. Result = No Match\n"
+                                f.write(line)
 
             validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
             with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
