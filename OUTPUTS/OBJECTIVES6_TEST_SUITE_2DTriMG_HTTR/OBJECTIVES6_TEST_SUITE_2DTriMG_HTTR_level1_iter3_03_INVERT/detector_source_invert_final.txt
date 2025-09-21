@@ -1,0 +1,1 @@
+For group 2, triangle 177, S = (-0.0063072630276714186+0j), dS_invert = 0j. Result = No Match

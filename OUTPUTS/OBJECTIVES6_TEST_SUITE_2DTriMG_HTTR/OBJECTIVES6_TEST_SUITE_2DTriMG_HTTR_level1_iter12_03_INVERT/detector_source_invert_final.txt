@@ -1,0 +1,1 @@
+For group 1, triangle 613, S = (-7.971464986844834e-06-9.964331233556042e-07j), dS_invert = 0j. Result = No Match

@@ -1,0 +1,1 @@
+For group 1, triangle 759, S = (-8.777066713516631e-07+0j), dS_greedy = (-8.777066713516649e-07+5.297853524299893e-23j). Result = Match

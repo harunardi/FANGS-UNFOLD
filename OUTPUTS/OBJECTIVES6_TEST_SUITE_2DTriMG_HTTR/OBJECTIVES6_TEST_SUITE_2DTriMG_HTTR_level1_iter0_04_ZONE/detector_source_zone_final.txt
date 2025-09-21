@@ -1,0 +1,1 @@
+For group 1, triangle 669, S = (-7.814155234277691e-05+0j), dS_zone = (4.062226604241098e-08-2.3849623578672264e-08j). Result = No Match
