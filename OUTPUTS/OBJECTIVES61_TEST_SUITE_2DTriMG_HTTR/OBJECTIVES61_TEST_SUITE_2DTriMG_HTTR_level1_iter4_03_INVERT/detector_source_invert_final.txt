@@ -1,0 +1,1 @@
+For group 2, triangle 492, S = (-0.0009187127466659496-0.0002041583881479888j), dS_invert = 0j. Result = No Match

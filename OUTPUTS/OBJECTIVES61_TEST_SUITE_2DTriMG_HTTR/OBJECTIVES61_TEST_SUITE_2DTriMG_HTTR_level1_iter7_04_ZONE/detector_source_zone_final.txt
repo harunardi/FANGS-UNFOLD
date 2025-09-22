@@ -1,0 +1,2 @@
+For group 1, triangle 380, S = (-0.004348037854879115+0j), dS_zone = (-0.00010121259769279607+2.6068536508674054e-05j). Result = No Match
+For group 2, triangle 625, S = (-0.008620595476796767+0j), dS_zone = (8.269884915086231e-08+1.1624113406876973e-08j). Result = No Match
