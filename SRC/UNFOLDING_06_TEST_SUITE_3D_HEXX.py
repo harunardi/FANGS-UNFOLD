@@ -227,7 +227,7 @@ for g in range(group):
 
 additional_iter = 1
 max_num_source = 2
-freq = np.logspace(-2, 1, 3)
+freq = np.logspace(-1, 1, 2)
 add_iter = 0
 iter = 0
 validity_INVERT = []
@@ -308,17 +308,17 @@ while add_iter < additional_iter:
             else:
                 validity_SCAN.append('no')
 
-            dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
-            if np.allclose(S, dS_unfold_BRUTE_temp, atol=1E-06):
-                validity_BRUTE.append('yes')
-            else:
-                validity_BRUTE.append('no')
-
             dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
             if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
                 validity_GREEDY.append('yes')
             else:
                 validity_GREEDY.append('no')
+
+            dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+            if np.allclose(S, dS_unfold_BRUTE_temp, atol=1E-06):
+                validity_BRUTE.append('yes')
+            else:
+                validity_BRUTE.append('no')
 
             validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
             with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:

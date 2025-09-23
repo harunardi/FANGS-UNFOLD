@@ -1,4 +1,1 @@
-Iteration: 1, num_source: 1, loc_conv = [217], loc = [480], frequency: 0.01, Real magnitude = [0.1], Imaginary magnitude = [0.0]
-Iteration: 2, num_source: 1, loc_conv = [8770], loc = [15531], frequency: 0.31622776601683794, Real magnitude = [0.08], Imaginary magnitude = [0.1]
-Iteration: 3, num_source: 1, loc_conv = [8087], loc = [14272], frequency: 10.0, Real magnitude = [0.04], Imaginary magnitude = [0.04]
-Iteration: 4, num_source: 2, loc_conv = [11784, 307], loc = [20897, 588], frequency: 0.01, Real magnitude = [0.08, 0.07], Imaginary magnitude = [0.0, 0.0]
+Iteration: 1, num_source: 1, loc_conv = [1006], loc = [1857], frequency: 0.1, Real magnitude = [0.02], Imaginary magnitude = [0.05]

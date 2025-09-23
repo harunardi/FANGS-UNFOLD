@@ -29,7 +29,8 @@ sys.path.append('../')
 
 #from INPUTS.OBJECTIVES45_TEST07_3DTriMG_HTTR_AVS import * # take 8.175611e+04 seconds
 #from INPUTS.OBJECTIVES45_TEST08_3DTriMG_HTTR_FAV import *
-from INPUTS.OBJECTIVES45_TEST12_3DTriMG_HTTR_AVS3S import * # take 
+#from INPUTS.OBJECTIVES45_TEST12_3DTriMG_HTTR_AVS3S import * # take 
+from INPUTS.OBJECTIVES45_TEST15_3DTriMG_HTTR_AVS2S import * # take 
 
 # Restore the original sys.path
 sys.path = original_sys_path
