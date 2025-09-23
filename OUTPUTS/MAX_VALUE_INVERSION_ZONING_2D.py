@@ -103,7 +103,7 @@ k = 3  # change to 1, 2, or 3
 
 #######################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter2_03_INVERT/{case_name}_level1_iter2_dS_unfold_INVERT_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_iter18_03_INVERT/{case_name}_level1_iter18_dS_unfold_INVERT_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_invert = []
@@ -141,7 +141,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter2_04_ZONE/{case_name}_level1_iter2_dS_unfold_ZONE_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_iter18_04_ZONE/{case_name}_level1_iter18_dS_unfold_ZONE_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_zone = []
@@ -179,7 +179,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter2_05_SCAN/{case_name}_level1_iter2_dS_SCAN_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_iter18_05_SCAN/{case_name}_level1_iter18_dS_SCAN_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_scan = []
