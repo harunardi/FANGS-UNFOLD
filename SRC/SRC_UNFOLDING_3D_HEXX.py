@@ -754,6 +754,7 @@ def main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_ma
 
     map_zone_hexx_plot = np.array(map_zone_hexx)
     map_zone_conv_plot = np.array(map_zone_conv)
+    map_zone_conv_plot = np.reshape(map_zone_conv_plot, (K_max, len(tri_indices)))
     image_files_mag = []
     for k in range(K_max):
         filename_map_zone = plot_triangular_3D_general(map_zone_conv_plot[k], x, y, k+1, tri_indices, 1, cmap='viridis', varname='map_zone', title=f'2D Plot of map_zone, Z{k+1} Hexx Magnitude', case_name=case_name, output_dir=output_ZONE, process_data="magnitude")
