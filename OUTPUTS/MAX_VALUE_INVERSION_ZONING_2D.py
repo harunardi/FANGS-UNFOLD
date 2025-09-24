@@ -376,3 +376,48 @@ for rank, idx in enumerate(top_indices, start=1):
     print(f"  Top {rank}: {value}, Group: {group_num}, Index: {local_index}")
 
 ########################################################################################################
+#######################################################################################################
+# 2DMG C3 V&V
+case_name = 'OBJECTIVES61_TEST_SUITE_2DTriMG_HTTR'
+group = 2
+k = 2  # change to 1, 2, or 3
+
+########################################################################################################
+# Load data from JSON file
+with open(f'{case_name}/{case_name}_level1_iter9_07_BACK/{case_name}_level1_iter9_dS_unfold_BACK_output.json', 'r') as json_file:
+    noise_output_C3 = json.load(json_file)
+
+all_values_back = []
+index_map_back = []   # (group_number, local_index)
+
+for i in range(group):  # loop over groups
+    back_key = f"dS_unfold{i+1}"
+    for j, entry in enumerate(noise_output_C3[back_key]):
+        real_val = entry["real"]
+        imag_val = entry["imaginary"]
+
+        if math.isnan(real_val):
+            real_val = 0.0  
+
+        value = complex(real_val, imag_val)
+
+        all_values_back.append(value)
+        index_map_back.append((i+1, j+1))  # store group number (1-based) and index (1-based)
+
+# Convert to numpy array
+all_values_array_back = np.array(all_values_back)
+
+# Find maximum by magnitude
+magnitudes = np.abs(all_values_array_back)
+sorted_indices = np.argsort(magnitudes)[::-1]  # biggest first
+
+# Pick top-k
+top_indices = sorted_indices[:k]
+
+print(f"Top k values by magnitude (backward elimination) for {case_name}:")
+for rank, idx in enumerate(top_indices, start=1):
+    value = all_values_array_back[idx]
+    group_num, local_index = index_map_back[idx]
+    print(f"  Top {rank}: {value}, Group: {group_num}, Index: {local_index}")
+
+########################################################################################################

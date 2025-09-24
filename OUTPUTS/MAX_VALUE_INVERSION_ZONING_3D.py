@@ -19,7 +19,7 @@ k = 3  # change to 1, 2, or 3
 
 #######################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_UNFOLDING/{case_name}_level1_03_INVERT/{case_name}_level1_dS_unfold_INVERT_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_03_INVERT/{case_name}_level1_dS_unfold_INVERT_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_invert = []
@@ -57,7 +57,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_UNFOLDING/{case_name}_level1_04_ZONE/{case_name}_level1_dS_unfold_ZONE_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_04_ZONE/{case_name}_level1_dS_unfold_ZONE_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_zone = []
@@ -97,13 +97,13 @@ for rank, idx in enumerate(top_indices, start=1):
 
 #######################################################################################################
 # 2DMG C3 V&V
-case_name = 'OBJECTIVES6_TEST_SUITE_3DTriMG_HTTR'
+case_name = 'OBJECTIVES45_TEST15_3DTriMG_HTTR_AVS2S'
 group = 2
 k = 3  # change to 1, 2, or 3
 
 #######################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter6_03_INVERT/{case_name}_level1_iter6_dS_unfold_INVERT_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_03_INVERT/{case_name}_level1_dS_unfold_INVERT_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_invert = []
@@ -141,7 +141,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter6_04_ZONE/{case_name}_level1_iter6_dS_unfold_ZONE_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_04_ZONE/{case_name}_level1_dS_unfold_ZONE_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_zone = []
@@ -179,7 +179,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_iter6_05_SCAN/{case_name}_level1_iter6_dS_SCAN_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_05_SCAN/{case_name}_level1_dS_SCAN_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_scan = []
@@ -225,7 +225,7 @@ k = 3  # change to 1, 2, or 3
 
 #######################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_UNFOLDING/{case_name}_level1_03_INVERT/{case_name}_level1_dS_unfold_INVERT_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_03_INVERT/{case_name}_level1_dS_unfold_INVERT_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_invert = []
@@ -263,7 +263,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_UNFOLDING/{case_name}_level1_04_ZONE/{case_name}_level1_dS_unfold_ZONE_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_04_ZONE/{case_name}_level1_dS_unfold_ZONE_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_zone = []
@@ -301,7 +301,7 @@ for rank, idx in enumerate(top_indices, start=1):
 
 ########################################################################################################
 # Load data from JSON file
-with open(f'{case_name}/{case_name}_level1_UNFOLDING/{case_name}_level1_05_SCAN/{case_name}_level1_dS_SCAN_output.json', 'r') as json_file:
+with open(f'{case_name}/{case_name}_level1_05_SCAN/{case_name}_level1_dS_SCAN_output.json', 'r') as json_file:
     noise_output_C3 = json.load(json_file)
 
 all_values_scan = []
