@@ -179,7 +179,7 @@ for g in range(group):
             conv_new[m] = g * max(conv_tri) + conv_tri[n]
 
 # define the exact source counts you want
-source_counts = [1]#[4, 5, 6, 7, 8, 9, 10]
+source_counts = [1, 2, 3]#[4, 5, 6, 7, 8, 9, 10]
 
 iter = 0
 validity_INVERT = []

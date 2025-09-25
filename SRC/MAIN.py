@@ -73,12 +73,10 @@ def main():
         Utils.create_directories(solver_type, output_dir, case_name)
         if solver_type in ['forward', 'adjoint']:
             if solver_type == 'forward':
-                dx_list = [dx] * N
-                matrix_builder = MatrixBuilderForward1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS)
+                matrix_builder = MatrixBuilderForward1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
                 M, F = matrix_builder.build_forward_matrices()
             elif solver_type == 'adjoint':
-                dx_list = [dx] * N
-                matrix_builder = MatrixBuilderAdjoint1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS)
+                matrix_builder = MatrixBuilderAdjoint1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
                 M, F = matrix_builder.build_adjoint_matrices()
 
             solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F, x, precond, tol=1E-10)

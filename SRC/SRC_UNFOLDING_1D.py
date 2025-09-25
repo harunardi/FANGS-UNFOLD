@@ -29,7 +29,7 @@ def main_unfold_1D_noise(PHI, keff, group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, 
 
     matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
     M, dS = matrix_builder.build_noise_matrices()
-    solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, dx, precond, tol=1e-06)
+    solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-06)
     dPHI = solver.solve()
     dPHI_reshaped = np.reshape(dPHI, (group, N))
     output = {}

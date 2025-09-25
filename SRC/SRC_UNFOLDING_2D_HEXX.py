@@ -1917,23 +1917,18 @@ def main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, grou
 
             print(f'   Chosen atom = {chosen_atom}, length of selected atoms = {len(selected_atoms)}, current residual norm = {residual_norm:.6e}')
 
-        selected_atoms_filtered = selected_atoms.copy()
-        A = np.array([G_dictionary_sampled[k] for k in selected_atoms_filtered]).T
+        A = np.array([G_dictionary_sampled[k] for k in selected_atoms]).T
         coeffs, _, rank, s = lstsq(A, dPHI_temp_meas, lapack_driver='gelsy')
 
-        # Update residual
-        residual = dPHI_temp_meas - A @ coeffs
-        residual_norm = np.linalg.norm(residual)
-
         # Check for low contribution atoms
-        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_atoms_filtered, coeffs)}
+        selected_atoms_filtered = []
+        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_atoms, coeffs)}
         high_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution > contribution_threshold]
         if high_contribution_atoms:
             for atom in high_contribution_atoms:
-                if atom in selected_atoms_filtered:
-                    selected_atoms_filtered.remove(atom)
-        valid_solutions_reduced_GREEDY[first_atom] = selected_atoms_filtered
-        print(f"   New selected atoms from second loop, {(iter_fa)}/{len(valid_solutions_GREEDY)} = {valid_solutions_reduced_GREEDY[first_atom]}")
+                if atom not in selected_atoms_filtered:
+                    selected_atoms_filtered.append(atom)
+        print(f"   New selected atoms from contributions = {selected_atoms_filtered}")
 
         for atom in selected_atoms_filtered:
             if atom not in selected_atoms_first_loop:
@@ -2083,7 +2078,7 @@ def main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, grou
             output_direct1[dS_unfold_direct_groupname] = dS_unfold_direct_list
 
         # Save data to JSON file
-        with open(f'{output_dir}/{case_name}_08_GREEDY_NEW/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
+        with open(f'{output_dir}/{case_name}_08_GREEDY_NEW2/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
             json.dump(output_direct1, json_file, indent=4)
 
         # Calculate error and compare
