@@ -206,17 +206,17 @@ for source in source_counts:
 
         loc_conv = []
         loc = []
-    
+
         for s in range(source):
             loc_conv.append(random.randint(1, group * max(conv_tri)))
-    
+
         for l, lo in enumerate(loc_conv):
             for g in range(group):
                 for n in range(N_hexx):
                     m = g * N_hexx + n
                     if lo == conv_new[m]:
                         loc.append(m)
-    
+
         mag_real_loc = []
         mag_imag_loc = []
         for g in range(group):
@@ -234,23 +234,23 @@ for source in source_counts:
                             dTOT_hexx[g][n] = mag_real * TOT_hexx2[g][n] + (1j * mag_imag * TOT_hexx2[g][n])
                             mag_real_loc.append(dTOT_hexx[g][n].real)
                             mag_imag_loc.append(dTOT_hexx[g][n].imag)
-        
-        case_name = f'{case_name2}_source{source}'
-            
+
+        case_name = f'{case_name2}_iter{iter}_source{source}'
+
         # Append to file without changing loop structure
         with open(iter_file, "a") as file:
             file.write(f"Iteration: {iter+1}, num_source: {len(loc)}, loc_conv = {loc_conv}, loc = {loc}, frequency: {f}, Real magnitude = {mag_real_loc}, Imaginary magnitude = {mag_imag_loc}\n")
-            
+
         dPHI_temp = main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
         G_matrix = main_unfold_2D_hexx_green(keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, output_dir, case_name, precond)
         S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
-            
+
         dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
         if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
             validity_GREEDY.append('yes')
         else:
             validity_GREEDY.append('no')
-            
+
         validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
         with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
             for category, lst in zip(methods, validity):
