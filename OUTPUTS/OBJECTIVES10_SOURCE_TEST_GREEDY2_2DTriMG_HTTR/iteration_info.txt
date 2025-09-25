@@ -1,0 +1,1 @@
+Iteration: 1, num_source: 1, loc_conv = [1042], loc = [1911], frequency: 1.0, Real magnitude = [np.float64(0.01245516)], Imaginary magnitude = [np.float64(0.00830344)]
