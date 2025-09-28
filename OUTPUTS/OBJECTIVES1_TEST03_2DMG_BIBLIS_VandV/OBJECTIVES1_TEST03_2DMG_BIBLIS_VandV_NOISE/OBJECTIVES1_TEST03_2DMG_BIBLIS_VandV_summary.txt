@@ -4,7 +4,7 @@
     Simulation Type: noise Simulation
     Number of groups: 2
     Dimensions: 2D rectangular
-    Final keff: 1.027480
-    Elapsed Time: 7.819e+00 seconds
-    Solver Used: Sparse Direct Solver
+    Final keff: 1.025187
+    Elapsed Time: 5.440e+00 seconds
+    Solver Used: LU
     

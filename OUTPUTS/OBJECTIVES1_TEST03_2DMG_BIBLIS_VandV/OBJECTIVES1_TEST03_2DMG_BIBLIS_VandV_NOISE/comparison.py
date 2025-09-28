@@ -93,7 +93,7 @@ for g in range(group):
         POWER[g][n] = dPHI[g][n] * 1.0 * (dx*dy)
 
 new_size = 17
-cells_per_block = 5
+cells_per_block = 10
 
 # Reshape POWER to (2, 17, 17, 5, 5) for easier summing
 POWER_reshaped = POWER.reshape(group, J_max, I_max)

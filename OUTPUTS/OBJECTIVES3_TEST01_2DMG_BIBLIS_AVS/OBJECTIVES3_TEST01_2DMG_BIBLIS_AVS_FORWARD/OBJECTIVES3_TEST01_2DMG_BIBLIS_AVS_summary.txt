@@ -4,7 +4,7 @@
     Simulation Type: forward Simulation
     Number of groups: 2
     Dimensions: 2D rectangular
-    Final keff: 1.027179+0.000000j
-    Elapsed Time: 4.395e+01 seconds
+    Final keff: 1.025187+0.000000j
+    Elapsed Time: 1.442e+01 seconds
     Solver Used: LU
     

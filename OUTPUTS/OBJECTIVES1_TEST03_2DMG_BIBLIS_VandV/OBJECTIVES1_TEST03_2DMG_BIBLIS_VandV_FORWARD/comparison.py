@@ -80,12 +80,12 @@ for g in range(group):
         POWER[g][n] = PHI[g][n] * 1.0
 
 new_size = 17
-cells_per_block = 5
+cells_per_block = 10
 
 # Reshape POWER to (2, 17, 17, 5, 5) for easier summing
 POWER_reshaped = POWER.reshape(group, J_max, I_max)
 
-# Sum over each 5x5 block
+# Sum over each 10x10 block
 POWER_collapsed = np.zeros((group, J_max_FLX, I_max_FLX))
 for g in range(2):
     for j in range(new_size):
