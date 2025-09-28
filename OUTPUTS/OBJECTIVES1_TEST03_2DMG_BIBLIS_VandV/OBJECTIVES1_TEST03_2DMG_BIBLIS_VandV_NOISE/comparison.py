@@ -99,7 +99,7 @@ cells_per_block = 10
 POWER_reshaped = POWER.reshape(group, J_max, I_max)
 
 # Sum over each 5x5 block
-POWER_collapsed = np.zeros((group, J_max_FLX, I_max_FLX))
+POWER_collapsed = np.zeros((group, J_max_FLX, I_max_FLX), dtype=complex)
 for g in range(2):
     for j in range(new_size):
         for i in range(new_size):
