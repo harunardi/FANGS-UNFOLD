@@ -23,14 +23,14 @@ sys.path.append('../')
 
 #from INPUTS.OBJECTIVES1_TEST01_1DMG_CSTest03 import *
 #from INPUTS.OBJECTIVES1_TEST02_2DMG_C3_VandV import *
-from INPUTS.OBJECTIVES1_TEST03_2DMG_BIBLIS_VandV import *
+#from INPUTS.OBJECTIVES1_TEST03_2DMG_BIBLIS_VandV import *
 #from INPUTS.OBJECTIVES1_TEST04_2DTriMG_HOMOG_VandV import *
 #from INPUTS.OBJECTIVES1_TEST05_2DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST06_3DMG_CSTest09_VandV_new import *
 #from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST08_2DTriMG_HTTR2G_VandV import *
 #from INPUTS.OBJECTIVES1_TEST09_3DTriMG_HTTR import *
-#from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
+from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
@@ -49,9 +49,9 @@ from INPUTS.OBJECTIVES1_TEST03_2DMG_BIBLIS_VandV import *
 sys.path = original_sys_path
 
 #######################################################################################################
-#solver_type = 'forward'
+solver_type = 'forward'
 #solver_type = 'adjoint'
-solver_type = 'noise'
+#solver_type = 'noise'
 
 #######################################################################################################
 def main():
