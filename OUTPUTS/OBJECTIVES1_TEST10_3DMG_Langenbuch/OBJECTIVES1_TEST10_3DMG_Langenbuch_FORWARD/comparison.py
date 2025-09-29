@@ -115,7 +115,7 @@ for g in range(2):
                 block = POWER_reshaped[g, k, j*cells_per_block:(j+1)*cells_per_block,
                                             i*cells_per_block:(i+1)*cells_per_block]
                 POWER_collapsed[g, k, j, i] = np.sum(block)
-dV_asmb = 23.1226*23.1226
+dV_asmb = 20*20
 
 PHI_reshaped = POWER_collapsed / dV_asmb
 max_PHI = np.nanmax(PHI_reshaped)
