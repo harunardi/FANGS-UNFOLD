@@ -1,0 +1,5 @@
+For group 1, triangle 150, S = (-7.931275646534536e-05-6.798236268458172e-05j)
+For group 1, triangle 153, S = (-0.00022084802977223453+0j)
+For group 1, triangle 313, S = (-0.010570293372812468+0j)
+For group 1, triangle 745, S = (-7.871245164778451e-07-3.1484980659113804e-06j)
+For group 2, triangle 320, S = (-0.009086585135838984+0j)

@@ -1,0 +1,4 @@
+For group 1, triangle 446, S = (-0.019376103031656555-0.008304044156424236j)
+For group 2, triangle 285, S = (-0.009912764195987099+0j)
+For group 2, triangle 633, S = (-0.009132920582796841+0j)
+For group 2, triangle 704, S = (-0.0005383980605676443+0j)
