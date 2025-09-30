@@ -417,7 +417,7 @@ type3 = [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
          9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,]
 
 #pattern_all_full = [type3, type1, type1, type1, type1, type1, type2, type2, type2, type2, type2, type3]
-pattern_all_full = [type3, type1, type1, type1, type1, type1, type1, type1, type1, type1, type1, type3]
+pattern_all_full = [type3, type1, type1, type2, type2, type2, type2, type2, type2, type2, type2, type3]
 pattern_all_full_D = np.reshape(pattern_all_full, (axial, J_max, I_max))
 
 D_values = [
