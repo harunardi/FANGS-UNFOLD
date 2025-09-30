@@ -320,6 +320,7 @@ for g in range(group):
             FLX_temp[g][conv_tri[m]-1] = FLX_hexx[g][m]
 
 max_FLX = np.max(FLX_temp)
+print("Max FLX =", np.max(FLX_temp))
 FLX_temp = FLX_temp / max_FLX
 FLX_temp_reshaped = np.reshape(FLX_temp, (group, K_max, len(tri_indices)))
 
@@ -365,7 +366,7 @@ for g in range(group):
                 block = POWER[g][k][m*n:(m+1)*n]
                 POWER_asmb[g][k][m] = np.sum(block)
 
-dV_asmb = 1 #h**2/4*np.sqrt(3)
+dV_asmb = h**2/4*np.sqrt(3)
 PHI_norm_reshaped = POWER_asmb / dV_asmb
 PHI_norm_hexx = expand_XS_hexx_3D(group, K_max, J_max, I_max, PHI_norm_reshaped, level)
 
@@ -403,7 +404,7 @@ for g in range(group):
     image_files = []
     for k in range(K_max):
         filename_diff_PHI = plot_triangular_3D(diff_PHI_temp[g][k], x, y, k+1, tri_indices, g+1, cmap='viridis', varname='diff_PHI', title=f'2D Plot of diff_PHI{g+1} Hexx, Z = {k+1}', case_name=case_name, output_dir=output_dir, solve='FORWARD', process_data="magnitude")
-        image_files.append(filename_PHI)
+        image_files.append(filename_diff_PHI)
     # Create a GIF from the saved images
     gif_filename_diff_PHI = f'{case_name}_FORWARD_diff_PHI_animation_G{g+1}.gif'
     # Open images and save as GIF
