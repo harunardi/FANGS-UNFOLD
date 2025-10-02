@@ -30,7 +30,9 @@ sys.path.append('../')
 
 #from INPUTS.OBJECTIVES45_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES45_TEST02_2DMG_BIBLIS3_FAV import *
-from INPUTS.OBJECTIVES45_TEST09_2DMG_BIBLIS_AVS3S import *
+#from INPUTS.OBJECTIVES45_TEST09_2DMG_BIBLIS_AVS3S import *
+
+from INPUTS.TASK3_TEST02a_2DMG_PWRMOX1_1SRC_AVS_NONCENTER import *
 
 # Restore the original sys.path
 sys.path = original_sys_path

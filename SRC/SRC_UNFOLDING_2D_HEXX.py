@@ -21,6 +21,7 @@ from MATRIX_BUILDER import *
 from METHODS import *
 from POSTPROCESS import PostProcessor
 from SOLVERFACTORY import SolverFactory
+from XSPROCESS_2D_HEXX import *
 
 #######################################################################################################
 def main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y):
@@ -106,6 +107,24 @@ def main_unfold_2D_hexx_green(keff, group, I_max, J_max, N_hexx, conv_tri, conv_
     for g in range(group):
         for n in range(N_hexx):
             if conv_tri[n] != 0:
+                i = n % I_max
+                j = n // I_max
+                hdf5_filename = f'{output_dir}/{case_name}_01_GENERATE//Green_g{g+1}_n{n+1}.h5'
+
+                # ==== Check if already exists ====
+                if os.path.exists(hdf5_filename):
+                    G_sol_temp_filtered = np.zeros((group * max_conv), dtype=complex)
+                    G_sol_temp = load_output_hdf5(hdf5_filename)
+                    for gk in range(group):
+                        for nk in range(N_hexx):
+                            if conv_tri[nk] != 0:
+                                G_sol_temp_filtered[gk*max_conv + conv_tri[nk] - 1] = G_sol_temp[gk*N_hexx+nk]  # Assuming G_sol_temp is indexed correctly
+                    G_matrix[:, g*max_conv + (conv_tri[n]-1)] = G_sol_temp_filtered
+                    print(f'Loaded Green Function for group = {g + 1}, J = {j+1}, I = {i+1}')
+                    continue
+                # ==================================
+
+                # If not exists, calculate
                 dS = [0] * (group * max_conv)
                 dS[g*max_conv+(conv_tri[n]-1)] = 1  # Set the relevant entry to 1
                 dS_petsc = PETSc.Vec().createWithArray(dS)

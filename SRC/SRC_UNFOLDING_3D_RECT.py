@@ -19,6 +19,7 @@ from MATRIX_BUILDER import *
 from METHODS import *
 from POSTPROCESS import PostProcessor
 from SOLVERFACTORY import SolverFactory
+from XSPROCESS_3D_RECT import *
 
 #######################################################################################################
 def main_unfold_3D_rect_noise(PHI_temp, keff, group, N, I_max, J_max, K_max, TOT, SIGS_reshaped, BC, dx, dy, dz, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y, z):

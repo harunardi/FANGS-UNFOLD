@@ -19,6 +19,7 @@ from MATRIX_BUILDER import *
 from METHODS import *
 from POSTPROCESS import PostProcessor
 from SOLVERFACTORY import SolverFactory
+from XSPROCESS_3D_HEXX import *
 
 #######################################################################################################
 def main_unfold_3D_hexx_noise(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z):

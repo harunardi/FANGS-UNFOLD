@@ -19,6 +19,7 @@ from MATRIX_BUILDER import *
 from METHODS import *
 from POSTPROCESS import PostProcessor
 from SOLVERFACTORY import SolverFactory
+from XSPROCESS_2D_RECT import *
 
 #######################################################################################################
 def main_unfold_2D_rect_noise(PHI_temp, keff, group, N, I_max, J_max, TOT, SIGS_reshaped, BC, dx, dy, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y):
@@ -91,6 +92,25 @@ def main_unfold_2D_rect_green(PHI_temp, keff, group, N, I_max, J_max, TOT, SIGS_
     for g in range(group):
         for n in range(N):
             if conv[n] != 0:
+                i = n % I_max
+                j = n // I_max
+                hdf5_filename = f'{output_dir}/{case_name}_01_GENERATE/Green_g{g+1}_j{j+1}_i{i+1}.h5'
+
+                # ==== Check if already exists ====
+                if os.path.exists(hdf5_filename):
+                    G_sol_temp_filtered = np.zeros((group * max_conv), dtype=complex)
+                    G_sol_temp = load_output_hdf5(hdf5_filename)
+                    print(len(G_sol_temp), group*max_conv, group*N)
+                    for gk in range(group):
+                        for nk in range(N):
+                            if conv[nk] != 0:
+                                G_sol_temp_filtered[gk*max_conv + conv[nk] - 1] = G_sol_temp[gk*N+nk]  # Assuming G_sol_temp is indexed correctly
+                    G_matrix[:, g*max_conv + (conv[n]-1)] = G_sol_temp_filtered
+                    print(f'Loaded Green Function for group = {g + 1}, J = {j+1}, I = {i+1}')
+                    continue
+                # ==================================
+
+                # If not exists, calculate
                 dS = [0] * (group * max_conv)
                 dS[g*max_conv+(conv[n]-1)] = 1  # Set the relevant entry to 1
                 dS_petsc = PETSc.Vec().createWithArray(dS)
@@ -125,11 +145,7 @@ def main_unfold_2D_rect_green(PHI_temp, keff, group, N, I_max, J_max, TOT, SIGS_
                     G_sol_list = [{"real": x.real, "imaginary": x.imag} for x in G_sol_reshape[gp]]
                     output[G_sol_groupname] = G_sol_list
 
-                i = n % I_max
-                j = n // I_max
-
                # Save output to HDF5 file
-                hdf5_filename = f'{output_dir}/{case_name}_01_GENERATE/Green_g{g+1}_j{j+1}_i{i+1}.h5'
                 save_output_hdf5(hdf5_filename, output)
                 print(f'Generated Green Function for group = {g + 1}, J = {j+1}, I = {i+1}')
 
