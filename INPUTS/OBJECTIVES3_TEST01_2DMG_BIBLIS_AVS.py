@@ -290,3 +290,5 @@ dSIGS_reshaped = [[dSIGS11_reshaped, dSIGS21_reshaped], [dSIGS12_reshaped, dSIGS
 v = v_reshaped
 dTOT = dTOT_reshaped
 dNUFIS = dNUFIS_reshaped
+
+type_noise = 'AVS'

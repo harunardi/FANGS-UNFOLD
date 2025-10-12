@@ -22,14 +22,14 @@ from SOLVERFACTORY import SolverFactory
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-#from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
+from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
-from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+#from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
 # Restore the original sys.path
@@ -155,6 +155,17 @@ def main():
             Utils.plot_1D_fixed(solver_type, dPHI_reshaped[g], x, g, output_dir=output_dir, varname=f'dPHI', case_name=case_name, title=f'1D Plot of dPHI{g+1}')
             Utils.plot_1D_fixed(solver_type, ABS_dPHI_pk_plot[g], x, g, output_dir=output_dir, varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk')
             Utils.plot_1D_fixed(solver_type, ABS_dPHI_spatial_plot[g], x, g, output_dir=output_dir, varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial')
+
+        time_step = np.linspace(0,10, 1001)
+        dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) / Beff  # in $
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(time_step, dRHO_time)
+        plt.title("dRHO vs. Time")
+        plt.xlabel("Time (s)")
+        plt.ylabel(r"$\delta \rho$ (\$)")
+        plt.grid(True)
+        plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}dRHO_time.png')
 
     elif geom_type =='2D rectangular':
         output_dir = f'../OUTPUTS/{case_name}'
@@ -319,6 +330,17 @@ def main():
             Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='magnitude')
             Utils.plot_2D_rect_fixed(solver_type, dPHI_pk_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk', process_data='phase')
             Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='phase')
+
+        time_step = np.linspace(0,10, 1001)
+        dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) / Beff  # in $
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(time_step, dRHO_time)
+        plt.title("dRHO vs. Time")
+        plt.xlabel("Time (s)")
+        plt.ylabel(r"$\delta \rho$ (\$)")
+        plt.grid(True)
+        plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}dRHO_time.png')
 
     elif geom_type =='2D triangular':
         h = globals().get("h")
@@ -487,6 +509,17 @@ def main():
             plot_triangular(dPHI_pk_plot[g], x, y, tri_indices, g+1, cmap='viridis', varname='dPHI_pk', title=f'2D Plot of dPHI{g+1}_pk Hexx Phase', case_name=case_name, output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', solve=solver_type.upper(), process_data="phase")
             plot_triangular(dPHI_spatial_plot[g], x, y, tri_indices, g+1, cmap='viridis', varname='dPHI_spatial', title=f'2D Plot of dPHI{g+1}_spatial Hexx Magnitude', case_name=case_name, output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', solve=solver_type.upper(), process_data="magnitude")
             plot_triangular(dPHI_spatial_plot[g], x, y, tri_indices, g+1, cmap='viridis', varname='dPHI_spatial', title=f'2D Plot of dPHI{g+1}_spatial Hexx Phase', case_name=case_name, output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', solve=solver_type.upper(), process_data="phase")
+
+        time_step = np.linspace(0,10, 1001)
+        dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) / Beff  # in $
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(time_step, dRHO_time)
+        plt.title("dRHO vs. Time")
+        plt.xlabel("Time (s)")
+        plt.ylabel(r"$\delta \rho$ (\$)")
+        plt.grid(True)
+        plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}dRHO_time.png')
 
     elif geom_type =='3D rectangular':
         output_dir = f'../OUTPUTS/{case_name}'
@@ -713,6 +746,17 @@ def main():
             images_phase = [Image.open(img) for img in image_phase_files]
             images_phase[0].save(gif_filename_phase, save_all=True, append_images=images_phase[1:], duration=300, loop=0)
             print(f"GIF saved as {gif_filename_phase}")
+
+        time_step = np.linspace(0,10, 1001)
+        dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) / Beff  # in $
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(time_step, dRHO_time)
+        plt.title("dRHO vs. Time")
+        plt.xlabel("Time (s)")
+        plt.ylabel(r"$\delta \rho$ (\$)")
+        plt.grid(True)
+        plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}dRHO_time.png')
 
     elif geom_type =='3D triangular':
         h = globals().get("h")
@@ -945,6 +989,17 @@ def main():
             images_dPHI_phase[0].save(gif_filename_dPHI_phase, save_all=True, append_images=images_dPHI_phase[1:], duration=300, loop=0)
             print(f"GIF saved as {gif_filename_dPHI_mag}")
             print(f"GIF saved as {gif_filename_dPHI_phase}")
+
+        time_step = np.linspace(0,10, 1001)
+        dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) / Beff  # in $
+
+        plt.figure(figsize=(8, 4))
+        plt.plot(time_step, dRHO_time)
+        plt.title("dRHO vs. Time")
+        plt.xlabel("Time (s)")
+        plt.ylabel(r"$\delta \rho$ (\$)")
+        plt.grid(True)
+        plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}dRHO_time.png')
 
 
 
