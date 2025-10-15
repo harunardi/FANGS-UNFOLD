@@ -61,7 +61,8 @@ dTOT2 = [0] * I_max * J_max
 dNUFIS1 = [0] * I_max * J_max
 dNUFIS2 = [0] * I_max * J_max
 
-fav_strength = (-1j * np.pi / 2)
+varepsilon = 0.2 # cm
+fav_strength = (-1j * np.pi * varepsilon)
 dTOT1[99] = 1
 dTOT2[99] = 1
 dNUFIS1[99] = 1

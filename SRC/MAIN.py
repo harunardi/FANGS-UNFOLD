@@ -27,7 +27,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES1_TEST04_2DTriMG_HOMOG_VandV import *
 #from INPUTS.OBJECTIVES1_TEST05_2DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST06_3DMG_CSTest09_VandV_new import *
-from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
+#from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES1_TEST08_2DTriMG_HTTR2G_VandV import *
 #from INPUTS.OBJECTIVES1_TEST09_3DTriMG_HTTR import *
 #from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
@@ -39,7 +39,7 @@ from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
-#from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
 #from INPUTS.TASK3_TEST04_2DTriMG_HTTR2G_FAV import *
@@ -49,9 +49,9 @@ from INPUTS.OBJECTIVES1_TEST07_3DTriMG_VVER400_VandV import *
 sys.path = original_sys_path
 
 #######################################################################################################
-solver_type = 'forward'
+#solver_type = 'forward'
 #solver_type = 'adjoint'
-#solver_type = 'noise'
+solver_type = 'noise'
 
 #######################################################################################################
 def main():
