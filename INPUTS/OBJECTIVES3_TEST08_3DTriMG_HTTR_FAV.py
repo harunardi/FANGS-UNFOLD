@@ -111,7 +111,7 @@ diff_west_g2_ABS = []
 diff_east_g1_ABS = []
 diff_east_g2_ABS = []
 
-varepsilon = 0.2 # cm
+varepsilon = 0.5 # cm
 fav_strength = (-1j * np.pi * varepsilon)
 for k in range(K_max):
     dTOT1[k*(J_max * I_max) + 99] = 1
