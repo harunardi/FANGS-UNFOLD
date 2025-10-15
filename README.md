@@ -63,7 +63,7 @@ This repository is the code to perform all analysis done in Harun Ardiansyah's D
 - TEST12: HTTR FAV, 2D 2-group, Noise Center/Non-center, Fuel Assembly Vibration (FAV)
 
 ## NOTE: Required libraries to run the codes
-    conda create --name noise numpy scipy matplotlib shapely petsc4py -c conda-forge
+    conda create --name noise numpy scipy matplotlib shapely h5py petsc4py -c conda-forge
     conda install -c conda-forge 'petsc=*=complex*' petsc4py
 
 ## End Goals
