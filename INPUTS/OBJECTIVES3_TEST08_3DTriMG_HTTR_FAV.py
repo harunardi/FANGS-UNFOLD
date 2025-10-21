@@ -114,27 +114,27 @@ diff_east_g2_ABS = []
 varepsilon = 0.5 # cm
 fav_strength = (-1j * np.pi * varepsilon)
 for k in range(K_max):
-    dTOT1[k*(J_max * I_max) + 99] = 1
-    dTOT2[k*(J_max * I_max) + 99] = 1
-    dNUFIS1[k*(J_max * I_max) + 99] = 1
-    dNUFIS2[k*(J_max * I_max) + 99] = 1
-    diff_west_g1_ABS.append(ABS[0][k][99 - 1] - ABS[0][k][99])
-    diff_west_g2_ABS.append(ABS[1][k][99 - 1] - ABS[1][k][99])
-    diff_east_g1_ABS.append(ABS[0][k][99] - ABS[0][k][99 + 1])
-    diff_east_g2_ABS.append(ABS[1][k][99] - ABS[1][k][99 + 1])
+    dTOT1[k*(J_max * I_max) + 113] = 1
+    dTOT2[k*(J_max * I_max) + 113] = 1
+    dNUFIS1[k*(J_max * I_max) + 113] = 1
+    dNUFIS2[k*(J_max * I_max) + 113] = 1
+    diff_west_g1_ABS.append(ABS[0][k][113 - 1] - ABS[0][k][113])
+    diff_west_g2_ABS.append(ABS[1][k][113 - 1] - ABS[1][k][113])
+    diff_east_g1_ABS.append(ABS[0][k][113] - ABS[0][k][113 + 1])
+    diff_east_g2_ABS.append(ABS[1][k][113] - ABS[1][k][113 + 1])
     diff_west_g1_NUFIS.append(0)
     diff_west_g2_NUFIS.append(0)
     diff_east_g1_NUFIS.append(0)
     diff_east_g2_NUFIS.append(0)
 
-    diff_northwest_g1_ABS.append(ABS[0][k][99 + (I_max - 1)] - ABS[0][k][99])
-    diff_northwest_g2_ABS.append(ABS[1][k][99 + (I_max - 1)] - ABS[1][k][99])
-    diff_northeast_g1_ABS.append(ABS[0][k][99] - ABS[0][k][99 + I_max])
-    diff_northeast_g2_ABS.append(ABS[1][k][99] - ABS[1][k][99 + I_max])
-    diff_southwest_g1_ABS.append(ABS[0][k][99 - I_max] - ABS[0][k][99])
-    diff_southwest_g2_ABS.append(ABS[1][k][99 - I_max] - ABS[1][k][99])
-    diff_southeast_g1_ABS.append(ABS[0][k][99] - ABS[0][k][99 + 1 - I_max])
-    diff_southeast_g2_ABS.append(ABS[1][k][99] - ABS[1][k][99 + 1 - I_max])
+    diff_northwest_g1_ABS.append(ABS[0][k][113 + (I_max - 1)] - ABS[0][k][113])
+    diff_northwest_g2_ABS.append(ABS[1][k][113 + (I_max - 1)] - ABS[1][k][113])
+    diff_northeast_g1_ABS.append(ABS[0][k][113] - ABS[0][k][113 + I_max])
+    diff_northeast_g2_ABS.append(ABS[1][k][113] - ABS[1][k][113 + I_max])
+    diff_southwest_g1_ABS.append(ABS[0][k][113 - I_max] - ABS[0][k][113])
+    diff_southwest_g2_ABS.append(ABS[1][k][113 - I_max] - ABS[1][k][113])
+    diff_southeast_g1_ABS.append(ABS[0][k][113] - ABS[0][k][113 + 1 - I_max])
+    diff_southeast_g2_ABS.append(ABS[1][k][113] - ABS[1][k][113 + 1 - I_max])
     diff_northwest_g1_NUFIS.append(0)
     diff_northwest_g2_NUFIS.append(0)
     diff_northeast_g1_NUFIS.append(0)

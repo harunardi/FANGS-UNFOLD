@@ -39,8 +39,8 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
-#from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
-from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
+#from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
 #from INPUTS.TASK1_TEST22_3DTriMG_3rings import *
@@ -626,7 +626,7 @@ def main():
                 for g in range(group):
                     for n in range(N_hexx):
                         if dTOT_hexx[g][n] != 0:
-                            noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 3
+                            noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 2
                             if n != noise_tri_index:
                                 dTOT_hexx[g][n] = 0
             else:
@@ -1176,7 +1176,7 @@ def main():
                 for g in range(group):
                     for n in range(N_hexx):
                         if dTOT_hexx[g][n] != 0:
-                            noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 3
+                            noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 2
                             if n != noise_tri_index:
                                 dTOT_hexx[g][n] = 0
             else:

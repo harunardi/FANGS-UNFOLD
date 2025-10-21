@@ -203,7 +203,7 @@ if noise_section == 1:
     for g in range(group):
         for n in range(N_hexx):
             if dTOT_hexx[g][n] != 0:
-                noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 3
+                noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 2
                 if n != noise_tri_index:
                     dTOT_hexx[g][n] = 0
 else:

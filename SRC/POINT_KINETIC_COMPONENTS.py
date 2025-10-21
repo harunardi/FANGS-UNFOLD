@@ -28,8 +28,8 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
-#from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
-from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
+from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
+#from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
 
 # Restore the original sys.path
@@ -438,7 +438,7 @@ def main():
             for g in range(group):
                 for n in range(N_hexx):
                     if dTOT_hexx[g][n] != 0:
-                        noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 3
+                        noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 2
                         if n != noise_tri_index:
                             dTOT_hexx[g][n] = 0
         else:
@@ -498,6 +498,26 @@ def main():
 
         dPHI_pk_temp = dPOWER * PHI
         dPHI_spatial_temp = dPHI_temp - dPHI_pk_temp
+
+        dPHI_pk, dPHI_pk_reshaped, dPHI_pk_temp_reshaped = PostProcessor.postprocess_fixed2DHexx(dPHI_pk_temp, conv_tri, group, N_hexx)
+        output = {}
+        for g in range(len(dPHI_pk_reshaped)):
+            dPHI_pk_groupname = f'dPHI{g + 1}_pk'
+            dPHI_pk_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_pk_reshaped[g]]
+            output[dPHI_pk_groupname] = dPHI_pk_list
+
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_pk_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
+
+        dPHI_spatial, dPHI_spatial_reshaped, dPHI_spatial_temp_reshaped = PostProcessor.postprocess_fixed2DHexx(dPHI_spatial_temp, conv_tri, group, N_hexx)
+        output = {}
+        for g in range(len(dPHI_spatial_reshaped)):
+            dPHI_spatial_groupname = f'dPHI{g + 1}_spatial'
+            dPHI_spatial_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_spatial_reshaped[g]]
+            output[dPHI_spatial_groupname] = dPHI_spatial_list
+
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_spatial_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
         dPHI_pk_plot = dPHI_pk_temp.reshape(group, max(conv_tri))
         dPHI_spatial_plot = dPHI_spatial_temp.reshape(group, max(conv_tri))
@@ -861,7 +881,7 @@ def main():
             for g in range(group):
                 for n in range(N_hexx):
                     if dTOT_hexx[g][n] != 0:
-                        noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 3
+                        noise_tri_index = n//(6 * (4 ** (level - 1))) * (6 * (4 ** (level - 1))) + 2
                         if n != noise_tri_index:
                             dTOT_hexx[g][n] = 0
         else:
@@ -891,7 +911,7 @@ def main():
             dPHI_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_reshaped[g]]
             output[dPHI_groupname] = dPHI_list
     
-        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_freq{f}_output.json', 'w') as json_file:
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_output.json', 'w') as json_file:
             json.dump(output, json_file, indent=4)
 
         v1_PP = v1
@@ -923,6 +943,26 @@ def main():
 
         dPHI_pk_temp = dPOWER * PHI
         dPHI_spatial_temp = dPHI_temp - dPHI_pk_temp
+
+        dPHI_pk, dPHI_pk_reshaped, dPHI_pk_temp_reshaped = PostProcessor.postprocess_fixed3DHexx(dPHI_pk_temp, conv_tri, group, N_hexx, K_max, tri_indices)
+        output = {}
+        for g in range(len(dPHI_pk_reshaped)):
+            dPHI_pk_groupname = f'dPHI{g + 1}_pk'
+            dPHI_pk_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_pk_reshaped[g]]
+            output[dPHI_pk_groupname] = dPHI_pk_list
+
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_pk_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
+
+        dPHI_spatial, dPHI_spatial_reshaped, dPHI_spatial_temp_reshaped = PostProcessor.postprocess_fixed3DHexx(dPHI_spatial_temp, conv_tri, group, N_hexx, K_max, tri_indices)
+        output = {}
+        for g in range(len(dPHI_spatial_reshaped)):
+            dPHI_spatial_groupname = f'dPHI{g + 1}_spatial'
+            dPHI_spatial_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_spatial_reshaped[g]]
+            output[dPHI_spatial_groupname] = dPHI_spatial_list
+
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_spatial_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
         dPHI_pk_plot = dPHI_pk_temp.reshape(group, K_max, len(tri_indices))
         dPHI_spatial_plot = dPHI_spatial_temp.reshape(group, K_max, len(tri_indices))

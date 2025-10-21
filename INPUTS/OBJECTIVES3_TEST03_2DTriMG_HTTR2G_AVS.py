@@ -58,7 +58,7 @@ v = [v1_hexx, v2_hexx]
 # Noise Sources
 dTOT1 = [0] * I_max * J_max
 dTOT2 = [0] * I_max * J_max
-dTOT2[99] = 0.05 * ABS[1][99]
+dTOT2[113] = 0.05 * ABS[1][113]
 dTOT = [dTOT1, dTOT2]
 
 dNUFIS = [[0] * I_max * J_max for _ in range(group)]
