@@ -202,114 +202,6 @@ def calculate_neighbors_2D(s, I_max, J_max, conv_hexx, level):
 
     return conv_neighbor, tri_indices, x, y, all_triangles
 
-def plot_1D_centerline_y0(PHI1g, PHI2g, h, I_max, J_max, g, level, varname=None, process_data=None):
-
-    if process_data == 'magnitude':
-        PHI1g = np.abs(PHI1g)  # Compute magnitude
-        PHI2g = np.abs(PHI2g)  # Compute magnitude
-    elif process_data == 'phase':
-        PHI1g = np.degrees(np.angle(PHI1g))  # Convert rad to deg
-        PHI2g = np.degrees(np.angle(PHI2g))  # Convert rad to deg
-    else:
-        pass
-
-    l = 6 * (4 ** (level - 1))
-    N_hexx = I_max * J_max * l
-    distance_flux1_map = defaultdict(list)
-    distance_flux2_map = defaultdict(list)
-
-    x_center = 0
-    y_center = 0
-    tolerance = 1e-5  # Define a small tolerance for floating point comparisons
-
-    # Collect all x_base and y_base coordinates to find the centroid
-    all_x_coords = []
-    all_y_coords = []
-
-    for n in range(N_hexx):
-        current_hexx_row = (n // (I_max * l))
-        j = n // (I_max * l)
-        i = n % (I_max * l)
-
-        if n % 6 == 1 or n % 6 == 2:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h
-        elif n % 6 == 3 or n % 6 == 4:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h + h/2
-        elif n % 6 == 5 or n % 6 == 0:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h + h
-
-        # Add the x_base and y_base to the lists
-        all_x_coords.append(x_base)
-        all_y_coords.append(y_base)
-
-    # Compute the centroid
-    x_centroid = sum(all_x_coords) / len(all_x_coords)
-    y_centroid = sum(all_y_coords) / len(all_y_coords)
-    print(f"Computed centroid: ({x_centroid}, {y_centroid})")
-
-    # Track the maximum distance to calculate the radius
-    max_distance = 0
-
-    # Now loop through again and translate the coordinates by subtracting the centroid
-    for n in range(N_hexx):
-        current_hexx_row = (n // (I_max * l))
-        j = n // (I_max * l)
-        i = n % (I_max * l)
-
-        if n % 6 == 1 or n % 6 == 2:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h
-        elif n % 6 == 3 or n % 6 == 4:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h + h/2
-        elif n % 6 == 5 or n % 6 == 0:
-            x_base = (i // 6) * h * np.sqrt(3) + (current_hexx_row * h * np.sqrt(3)/2)
-            y_base = j * (3/2) * h + h
-
-        # Translate the coordinates by subtracting the centroid
-        x_base_translated = x_base - x_centroid
-        y_base_translated = y_base - y_centroid
-
-        # Filter out points where PHI1g == 0 and restrict to centerline (y_base_translated near 0)
-        if PHI1g[n] != 0 and np.abs(y_base_translated) < tolerance:
-            signed_distance = x_base_translated
-            max_distance = max(max_distance, abs(signed_distance))  # Track the max distance (radius)
-            distance_flux1_map[signed_distance].append(PHI1g[n])
-
-        if PHI2g[n] != 0 and np.abs(y_base_translated) < tolerance:
-            signed_distance = x_base_translated
-            max_distance = max(max_distance, abs(signed_distance))  # Track the max distance (radius)
-            distance_flux2_map[signed_distance].append(PHI2g[n])
-
-    # Extract maximum flux at each signed distance
-    unique_distances = sorted(distance_flux1_map.keys())
-    flux1_values = [max(distance_flux1_map[d]) for d in unique_distances]
-    flux2_values = [max(distance_flux2_map[d]) for d in unique_distances]
-
-    # Initialize empty lists to store distances and flux values within the range [-150, 150]
-    filtered_distances = []
-    filtered_flux1_values = []
-    filtered_flux2_values = []
-
-    # Plot distance vs max flux values
-    fig, ax1 = plt.subplots(figsize=(8, 6))
-
-    # Plot primary y-axis (left)
-    ax1.plot(unique_distances, flux1_values, 'b', markersize=5, label='dPHI_pk at Centerline')
-    ax1.plot(unique_distances, flux2_values, 'r', markersize=5, label='dPHI_spatial at Centerline')
-    ax1.set_xlabel('Distance to Core Center')
-    ax1.set_ylabel(f'{process_data} dPHI Group {g} Values (normalized)')
-    ax1.set_title(f'Group {g} {process_data} dPHI Values vs. Distance to Core Center')
-    ax1.set_xlim(unique_distances[0], unique_distances[-1])
-    ax1.grid(True)
-    ax1.legend(loc='best')
-
-    # Save the figure
-    plt.savefig(f'Centerline_y0_{varname}_{process_data}_G{g}.png')
-
 def plot_1D_centerline_y0_2(PHI1g, PHI2g, x_coords, y_coords, conv_tri, I_max, J_max, g, level, varname=None, process_data=None):
 
     if process_data == 'magnitude':
@@ -375,8 +267,8 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, x_coords, y_coords, conv_tri, I_max, J
     fig, ax1 = plt.subplots(figsize=(8, 6))
 
     # Plot primary y-axis (left)
-    ax1.plot(unique_distances, flux1_values, 'b', markersize=5, label=f'dPHI{g}_pk at Centerline')
-    ax1.plot(unique_distances, flux2_values, 'r', markersize=5, label=f'dPHI{g}_spatial at Centerline')
+    ax1.plot(unique_distances, flux1_values, 'b', markersize=5, label=f'dPHI{g}_pk')
+    ax1.plot(unique_distances, flux2_values, 'r', markersize=5, label=f'dPHI{g}_spatial')
 
     # Find the peak of flux2
     peak_index = 14
@@ -391,9 +283,9 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, x_coords, y_coords, conv_tri, I_max, J
              arrowprops=dict(arrowstyle='->', color='g'),
              color='g')
 
-    ax1.set_xlabel('Distance to Core Center')
-    ax1.set_ylabel(f'{process_data} dPHI{g}')
-    ax1.set_title(f'Group {g} {process_data} dPHI Values vs. Distance to Core Center')
+    ax1.set_xlabel('Distance to Core Center (cm)')
+    ax1.set_ylabel(f'{process_data.capitalize()} dPHI{g}')
+    ax1.set_title(fr'{process_data.capitalize()} $\delta \phi_{{{g}}}^{{\text{{pk}}}}$ and $\delta \phi_{{{g}}}^{{\text{{spatial}}}}$ at Centerline (y=0)')
     ax1.set_xlim(unique_distances[0], unique_distances[-1])
     ax1.grid(True)
     ax1.legend(loc='best')
