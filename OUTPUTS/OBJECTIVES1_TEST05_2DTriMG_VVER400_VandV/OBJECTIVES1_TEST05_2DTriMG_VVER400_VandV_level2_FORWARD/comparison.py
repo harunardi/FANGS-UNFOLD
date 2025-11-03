@@ -331,11 +331,38 @@ PHI_norm_temp = PHI_norm_temp / max_PHI
 diff_PHI_temp = np.zeros((group, max(conv_tri)))
 for g in range(group):
     for m in range(max(conv_tri)):
-        if conv_tri[m] != 0:
-            diff_PHI_temp[g][m] = np.abs((FLX_temp[g][m] - PHI_norm_temp[g][m]) / FLX_temp[g][m]) * 100
+        diff_PHI_temp[g][m] = np.abs((FLX_temp[g][m] - PHI_norm_temp[g][m]) / FLX_temp[g][m]) * 100
 
 ##################################################################
 for g in range(group):
     plot_triangular(FLX_temp[g], x, y, tri_indices, g+1, cmap='viridis', varname='FLX', title=f'2D Plot of FLX{g+1} Hexx Magnitude', case_name=case_name, output_dir=output_dir, solve='FORWARD', process_data="magnitude")
     plot_triangular(PHI_norm_temp[g], x, y, tri_indices, g+1, cmap='viridis', varname='PHI_normalized', title=f'2D Plot of PHI{g+1}_normalized Hexx Magnitude', case_name=case_name, output_dir=output_dir, solve='FORWARD', process_data="magnitude")
     plot_triangular(diff_PHI_temp[g], x, y, tri_indices, g+1, cmap='viridis', varname='diff_PHI', title=f'2D Plot of diff_PHI{g+1} Hexx Magnitude', case_name=case_name, output_dir=output_dir, solve='FORWARD', process_data="magnitude")
+
+##################################################################
+import pandas as pd
+
+# Assuming all have the same shape
+group, n_cells = FLX_temp.shape
+
+# Loop over energy groups
+for g in range(group):
+    # Combine columns side-by-side
+    data_combined = np.column_stack((
+        FLX_temp[g],
+        PHI_norm_temp[g],
+        diff_PHI_temp[g]
+    ))
+
+    # Create a DataFrame with nice headers
+    df = pd.DataFrame(
+        data_combined,
+        columns=["FLX_temp", "PHI_norm_temp", "diff_PHI_temp"]
+    )
+
+    # Save to CSV
+    df.to_csv(f"comparison_group{g+1}.csv", index=False)
+
+    # Optionally print first few rows to screen
+    print(f"\n=== Group {g+1} ===")
+    print(df.head())
