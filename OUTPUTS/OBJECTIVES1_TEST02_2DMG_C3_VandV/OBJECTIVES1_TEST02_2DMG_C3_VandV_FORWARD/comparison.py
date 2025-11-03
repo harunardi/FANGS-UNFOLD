@@ -89,3 +89,30 @@ for g in range(group):
     plot_heatmap(FLX_SN_reshaped[g], g+1, cmap='viridis', varname='FLX_SN', title=f'2D Plot of FLX{g+1}_SN')
     plot_heatmap(diff_flx_CS_reshaped[g], g+1, cmap='viridis', varname='diff_flx_CS', title=f'2D Plot of Relative Difference group {g+1} in %\n Simulator vs CORE SIM+')
     plot_heatmap(diff_flx_SN_reshaped[g], g+1, cmap='viridis', varname='diff_flx_SN', title=f'2D Plot of Relative Difference group {g+1} in %\n Simulator vs S8')
+
+#*************************************************************************************
+def plot_heatmap_TOT(data, g, cmap='viridis', varname=None, title=None):
+    plt.clf()
+
+    extent = [x.min(), x.max(), y.min(), y.max()]
+    plt.imshow(data, cmap=cmap, interpolation='nearest', extent=extent, origin='lower')
+
+    plt.xlabel('X (cm)')
+    plt.ylabel('Y (cm)')
+    
+    x_ticks = np.linspace(x.min(), x.max(), num=10)
+    y_ticks = np.linspace(y.min(), y.max(), num=10)
+    plt.xticks(x_ticks, labels=[f'{val:.1f}' for val in x_ticks])
+    plt.yticks(y_ticks, labels=[f'{val:.1f}' for val in y_ticks])
+
+    filename = f'{case_name}_FORWARD_{varname}_G{g}.png'
+    plt.savefig(filename)
+    plt.close()
+
+    return filename
+
+TOT1_flat = np.array(TOT1).flatten()
+TOT2_flat = np.array(TOT2).flatten()
+TOT = [TOT1, TOT2]
+for g in range(group):
+    plot_heatmap_TOT(TOT[g], g+1, cmap='viridis', varname='TOT', title=f'2D Plot of TOT{g+1}')

@@ -397,8 +397,7 @@ diff_PHI_temp = np.zeros((group, K_max, len(tri_indices)))
 for g in range(group):
     for k in range(K_max):
         for m in range(len(tri_indices)):
-            if conv_tri[m] != 0:
-                diff_PHI_temp[g][k][m] = np.abs((FLX_temp_reshaped[g][k][m] - PHI_norm_temp[g][k][m]) / FLX_temp_reshaped[g][k][m]) * 100
+            diff_PHI_temp[g][k][m] = np.abs((FLX_temp_reshaped[g][k][m] - PHI_norm_temp[g][k][m]) / FLX_temp_reshaped[g][k][m]) * 100
 
 for g in range(group):
     image_files = []
