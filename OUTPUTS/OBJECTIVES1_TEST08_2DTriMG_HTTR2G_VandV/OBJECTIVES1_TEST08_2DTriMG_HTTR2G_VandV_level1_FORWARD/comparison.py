@@ -332,8 +332,7 @@ PHI_norm_temp = PHI_norm_temp / max_PHI
 diff_PHI_temp = np.zeros((group, max(conv_tri)))
 for g in range(group):
     for m in range(max(conv_tri)):
-        if conv_tri[m] != 0:
-            diff_PHI_temp[g][m] = np.abs((FLX_temp[g][m] - PHI_norm_temp[g][m]) / FLX_temp[g][m]) * 100
+        diff_PHI_temp[g][m] = np.abs((FLX_temp[g][m] - PHI_norm_temp[g][m]) / FLX_temp[g][m]) * 100
 
 ##################################################################
 for g in range(group):
