@@ -1,1 +1,1 @@
-For group 2, triangle 36, S = (-0.0007548014658839292+0j)
+For group 2, triangle 288, S = (-0.005637141476337777+0j)
