@@ -50,6 +50,8 @@ with open(data_file, 'r') as f:
         # Extract loc_conv as a list of integers
         loc_section = re.search(r"loc\s*=\s*\[(.*?)\]", line)
         loc = [int(x) for x in loc_section.group(1).split(",")] if loc_section else []
+        loc_conv_section = re.search(r"loc_conv\s*=\s*\[(.*?)\]", line)
+        loc_conv = [int(x) for x in loc_conv_section.group(1).split(",")] if loc_conv_section else []
 
         # --- Extract Real and Imaginary magnitudes ---
         real_section = re.search(r"Real magnitude\s*=\s*\[(.*?)\]", line)
@@ -80,6 +82,7 @@ with open(data_file, 'r') as f:
             "num_source": num_source,
             "frequency": frequency,
             "loc": loc,
+            "loc_conv": loc_conv,
             "real": real_vals,
             "imag": imag_vals,
             "sum": combined,
@@ -91,6 +94,7 @@ with open(data_file, 'r') as f:
 #    print(f"Iter {r['iteration']:2d} | freq={r['frequency']:8.5f} | loc={r['loc']} | real={r['real']} | imag={r['imag']}")
 
 all_locs = [r['loc'] for r in results]
+all_locs_conv = [r['loc_conv'] for r in results]
 all_reals = [r['real'] for r in results]
 all_imags = [r['imag'] for r in results]
 
@@ -111,10 +115,11 @@ for l in range(len(all_locs)):
 # Open a text file to save the output
 with open("output.txt", "w") as f:
     # Optional: write header
-    f.write("Iter\tGroup\tLoc\tReal/Imag Ratio\n")
+    f.write("Iter\tGroup\tLoc_conv\tReal_Ratio\tImag_Ratio\n")
     
     for l in range(len(all_locs)):
         locs_new = all_locs[l]
+        locs_conv_new = all_locs_conv[l]
         for lo in range(len(locs_new)):
             for g in range(group):
                 for n in range(N_hexx):
@@ -122,14 +127,13 @@ with open("output.txt", "w") as f:
                         val_real = all_reals[l][lo]
                         val_imag = all_imags[l][lo]
                         xs_tot = TOT_hexx2[g][n]
-                        
-                        # Compute ratios safely
                         real_ratio = min(val_real / xs_tot if xs_tot != 0 else float('inf'), 0.1)
                         imag_ratio = min(val_imag / xs_tot if xs_tot != 0 else float('inf'), 0.1)
                         
-                        # Format as a pair
-                        ratio_pair = f"({real_ratio:.2f}, {imag_ratio:.2f})"
-                        
+                        if g == 1:
+                            loc_conv_output = locs_conv_new[lo] - 762
                         # Tab-delimited line
-                        line = f"{l}\t{g+1}\t{n}\t{ratio_pair}\n"
+                        line = (f"{l}\t{g+1}\t"
+                                f"{loc_conv_output}\t{real_ratio:.2f}\t{imag_ratio:.2f}\n")
+                        
                         f.write(line)

@@ -236,6 +236,7 @@ FLX2 = c_mu * J0_values
 
 FLX = [FLX1, FLX2]
 
+print(np.max(conv_tri))
 #################################################################
 for g in range(group):
     plot_1D_distance_to_core(PHI_reshaped[g], FLX[g], h, I_max, J_max, g+1, level, varname='PHI', process_data='magnitude')
