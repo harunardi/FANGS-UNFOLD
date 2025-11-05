@@ -1,5 +1,1 @@
-Iteration: 1, num_source: 1, loc_conv = [943], loc = [1770], frequency: 0.01, Real magnitude = [np.float64(0.007337360000000001)], Imaginary magnitude = [np.float64(0.025680760000000004)]
-Iteration: 2, num_source: 1, loc_conv = [354], loc = [647], frequency: 0.021544346900318832, Real magnitude = [np.float64(0.03139488)], Imaginary magnitude = [np.float64(0.019621800000000002)]
-Iteration: 3, num_source: 1, loc_conv = [619], loc = [996], frequency: 0.046415888336127774, Real magnitude = [np.float64(0.00392169)], Imaginary magnitude = [0.0]
-Iteration: 4, num_source: 1, loc_conv = [582], loc = [929], frequency: 0.1, Real magnitude = [np.float64(0.0030531000000000004)], Imaginary magnitude = [np.float64(0.024424800000000003)]
-Iteration: 5, num_source: 1, loc_conv = [155], loc = [394], frequency: 0.21544346900318834, Real magnitude = [np.float64(0.03531573)], Imaginary magnitude = [np.float64(0.02354382)]
+Iteration: 1, num_source: 1, loc_conv = [1471], loc = [2472], frequency: 0.01, Real magnitude = [np.float64(0.008301079999999999)], Imaginary magnitude = [np.float64(0.0207527)]
