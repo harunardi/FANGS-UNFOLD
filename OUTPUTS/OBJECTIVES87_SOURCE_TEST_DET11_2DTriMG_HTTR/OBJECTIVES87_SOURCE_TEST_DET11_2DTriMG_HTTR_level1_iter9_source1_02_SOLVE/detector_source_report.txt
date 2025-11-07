@@ -1,1 +1,1 @@
-For group 1, triangle 714, S = (-9.117354335466615e-05+0j)
+For group 2, triangle 720, S = (-0.0002058905749330007+0j)

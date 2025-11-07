@@ -1,1 +1,1 @@
-For group 2, triangle 203, S = (-0.0003419316324017767+0j)
+For group 2, triangle 755, S = (-0.0007490839855870718+0j)
