@@ -64,9 +64,9 @@ freq = np.logspace(-4, 4, num=101)
 # Plotting magnitude
 plt.clf()  # Clear the current figure
 plt.figure(figsize=(8, 6))  # Create a new figure
-plt.plot(freq, abs(G0_PWR_array), marker='o', label="PWR", color='blue')
-plt.plot(freq, abs(G0_Langenbuch_array), marker='s', label="Langenbuch", color='orange')
-plt.plot(freq, abs(G0_VVER_array), marker='d', label="VVER", color='green')
+plt.plot(freq, abs(G0_PWR_array), marker='o', label="PWR (LWR)", color='blue')
+plt.plot(freq, abs(G0_Langenbuch_array), marker='s', label="Langenbuch (LWR)", color='orange')
+plt.plot(freq, abs(G0_VVER_array), marker='d', label="VVER (LWR)", color='green')
 plt.plot(freq, abs(G0_HTTR_array), marker='*', label="HTTR", color='red')
 plt.xscale('log')
 plt.yscale('log')
@@ -79,9 +79,9 @@ plt.savefig(f'Transfer_Function_3D_Comparison_Magnitude.png')
 # Plotting magnitude
 plt.clf()  # Clear the current figure
 plt.figure(figsize=(8, 6))  # Create a new figure
-plt.plot(freq, np.degrees(np.angle(G0_PWR_array)), marker='o', label="PWR", color='blue')
-plt.plot(freq, np.degrees(np.angle(G0_Langenbuch_array)), marker='s', label="Langenbuch", color='orange')
-plt.plot(freq, np.degrees(np.angle(G0_VVER_array)), marker='d', label="VVER", color='green')
+plt.plot(freq, np.degrees(np.angle(G0_PWR_array)), marker='o', label="PWR (LWR)", color='blue')
+plt.plot(freq, np.degrees(np.angle(G0_Langenbuch_array)), marker='s', label="Langenbuch (LWR)", color='orange')
+plt.plot(freq, np.degrees(np.angle(G0_VVER_array)), marker='d', label="VVER (LWR)", color='green')
 plt.plot(freq, np.degrees(np.angle(G0_HTTR_array)), marker='*', label="HTTR", color='red')
 plt.xscale('log')
 plt.ylim(-120, 0)
