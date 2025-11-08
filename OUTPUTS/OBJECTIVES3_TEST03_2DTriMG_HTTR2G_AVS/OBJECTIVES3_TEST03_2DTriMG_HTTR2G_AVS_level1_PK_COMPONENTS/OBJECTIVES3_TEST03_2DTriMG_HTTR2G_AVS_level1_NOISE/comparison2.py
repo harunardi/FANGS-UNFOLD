@@ -287,6 +287,14 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, x_coords, y_coords, conv_tri, I_max, J
     ax1.set_ylabel(f'{process_data.capitalize()} dPHI{g}')
     ax1.set_title(fr'{process_data.capitalize()} $\delta \phi_{{{g}}}^{{\text{{pk}}}}$ and $\delta \phi_{{{g}}}^{{\text{{spatial}}}}$ at Centerline (y=0)')
     ax1.set_xlim(unique_distances[0], unique_distances[-1])
+
+    if process_data == 'magnitude':
+        ymax = max(max(flux1_values), max(flux2_values))
+        ymax *= 1.05
+        PHI2g = np.abs(PHI2g)  # Compute magnitude
+        ax1.set_ylim(0, ymax)
+    elif process_data == 'phase':
+        ax1.set_ylim(-180, 180)
     ax1.grid(True)
     ax1.legend(loc='best')
 
