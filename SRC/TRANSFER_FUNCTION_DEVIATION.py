@@ -136,7 +136,7 @@ def main():
             matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
             M, dS = matrix_builder.build_noise_matrices()
 
-            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, dx, precond, tol=1e-06)
+            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-10)
 
             dPHI = solver.solve()
             dPHI_reshaped = np.reshape(dPHI, (group, N))
@@ -159,16 +159,18 @@ def main():
             dPOWER.append(dPOWER_omega)
 
             # Calculate Deviation to PK
-            NUMER1 = trapezoid((dPHI_reshaped[g]), dx=dx, axis = 0)
-            NUMER2 = trapezoid((PHI_reshaped[g]), dx=dx, axis = 0)
-            DENOM = NUMER2
+            NUMER1 = 0
+            NUMER2 = 0
+            for g in range(group):
+                NUMER1 += trapezoid((dPHI_reshaped[g]), dx=dx, axis = 0)
+                NUMER2 += trapezoid((PHI_reshaped[g]), dx=dx, axis = 0)
 
-            G_0_deviation_omega = (NUMER1 + dPOWER_omega * NUMER2) / DENOM
+            G_0_deviation_omega = (NUMER1 - dPOWER_omega * NUMER2) / (dPOWER_omega * NUMER2)
             G_0_deviation.append(G_0_deviation_omega)
 
-        mag_G_0_deviation.append(abs(G_0_deviation))
-        phase_G_0_deviation.append(np.degrees(np.angle(G_0_deviation)))
-
+            mag_G_0_deviation.append(abs(G_0_deviation_omega))
+            phase_G_0_deviation.append(np.degrees(np.angle(G_0_deviation_omega)))
+            
         # OUTPUT
         print(f'Generating JSON output')
         G_0_deviation_groupname = f'G_0_deviation'
@@ -194,7 +196,6 @@ def main():
         plt.plot(freq, phase_G_0_deviation, marker='o')
         plt.xscale('log')
         plt.xlabel('Frequency (Hz)')
-        plt.ylim(-120, 0)
         plt.ylabel('Phase of Deviation to Point Kinetics')
         plt.title('Plot of Deviation to Point Kinetics (Phase)')
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER_DEVIATION/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Phase_freq.png')
@@ -214,7 +215,6 @@ def main():
         plt.plot(omega_plot, phase_G_0_deviation, marker='o')
         plt.xscale('log')
         plt.xlabel('Omega (Rad/s)')
-        plt.ylim(-120, 0)
         plt.ylabel('Phase of Deviation to Point Kinetics')
         plt.title('Plot of Deviation to Point Kinetics (Phase)')
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER_DEVIATION/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Phase_omega.png')

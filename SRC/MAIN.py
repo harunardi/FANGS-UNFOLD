@@ -49,9 +49,9 @@ from INPUTS.OBJECTIVES1_TEST01_1DMG_CSTest03 import *
 sys.path = original_sys_path
 
 #######################################################################################################
-solver_type = 'forward'
+#solver_type = 'forward'
 #solver_type = 'adjoint'
-#solver_type = 'noise'
+solver_type = 'noise'
 
 #######################################################################################################
 def main():
@@ -105,9 +105,8 @@ def main():
                 phi_key = f"PHI{i+1}_FORWARD"
                 PHI.extend(forward_output[phi_key])
             dSOURCE_new = [item for sublist in dSOURCE for item in sublist]
-            dx_list = [dx] * N
 
-            matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx_list, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
+            matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
             M, dS = matrix_builder.build_noise_matrices()
 
             solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-10)
