@@ -23,14 +23,15 @@ original_sys_path = sys.path.copy()
 sys.path.append('../')
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
+from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
-from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
+#from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
-#from INPUTS.OBJECTIVES3_TEST09_3DMG_Langenbuch_AVS import *
+#from INPUTS.OBJECTIVES3_TEST09_3DMG_LangenOBJECTIbuch_AVS import *
 
 # Restore the original sys.path
 sys.path = original_sys_path
@@ -304,32 +305,31 @@ def main():
         dPHI_pk_temp = dPOWER * PHI
         dPHI_spatial_temp = dPHI_temp - dPHI_pk_temp
 
-        dPHI_pk = np.zeros(group * N, dtype=complex)
-        dPHI_spatial = np.zeros(group * N, dtype=complex)
-        conv_array = np.array(conv)
-        non_zero_indices = np.nonzero(conv)[0]
-        phi_temp_indices = conv_array[non_zero_indices] - 1
+        dPHI_pk, dPHI_pk_reshaped, dPHI_pk_reshaped_plot = PostProcessor.postprocess_fixed2DRect(dPHI_pk_temp, conv, group, N, I_max, J_max)
+        output = {}
+        for g in range(len(dPHI_pk_reshaped)):
+            dPHI_pk_groupname = f'dPHI{g + 1}_pk'
+            dPHI_pk_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_pk_reshaped[g]]
+            output[dPHI_pk_groupname] = dPHI_pk_list
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_pk_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
-        for g in range(group):
-            dPHI_temp_start = g * max(conv)
-            dPHI_pk[g * N + non_zero_indices] = dPHI_pk_temp[dPHI_temp_start + phi_temp_indices]
-            dPHI_spatial[g * N + non_zero_indices] = dPHI_spatial_temp[dPHI_temp_start + phi_temp_indices]
-
-            for n in range(N):
-                if conv[n] == 0:
-                    dPHI_pk[g * N + n] = np.nan
-                    dPHI_spatial[g * N + n] = np.nan
-
-        dPHI_pk_plot = dPHI_pk.reshape(group, J_max, I_max)
-        dPHI_spatial_plot = dPHI_spatial.reshape(group, J_max, I_max)
+        dPHI_spatial, dPHI_spatial_reshaped, dPHI_spatial_reshaped_plot = PostProcessor.postprocess_fixed2DRect(dPHI_spatial_temp, conv, group, N, I_max, J_max)
+        output = {}
+        for g in range(len(dPHI_spatial_reshaped)):
+            dPHI_spatial_groupname = f'dPHI{g + 1}_spatial'
+            dPHI_spatial_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_spatial_reshaped[g]]
+            output[dPHI_spatial_groupname] = dPHI_spatial_list
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_spatial_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
         for g in range(group):
             Utils.plot_2D_rect_fixed(solver_type, dPHI_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI', case_name=case_name, title=f'1D Plot of dPHI{g+1}', process_data='magnitude')
             Utils.plot_2D_rect_fixed(solver_type, dPHI_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI', case_name=case_name, title=f'1D Plot of dPHI{g+1}', process_data='phase')
-            Utils.plot_2D_rect_fixed(solver_type, dPHI_pk_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk', process_data='magnitude')
-            Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='magnitude')
-            Utils.plot_2D_rect_fixed(solver_type, dPHI_pk_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk', process_data='phase')
-            Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='phase')
+            Utils.plot_2D_rect_fixed(solver_type, dPHI_pk_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk', process_data='magnitude')
+            Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='magnitude')
+            Utils.plot_2D_rect_fixed(solver_type, dPHI_pk_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_pk', case_name=case_name, title=f'1D Plot of dPHI{g+1}_pk', process_data='phase')
+            Utils.plot_2D_rect_fixed(solver_type, dPHI_spatial_reshaped_plot[g], x, y, g+1, cmap='viridis', output_dir=f'{output_dir}/{case_name}_PK_COMPONENTS', varname=f'dPHI_spatial', case_name=case_name, title=f'1D Plot of dPHI{g+1}_spatial', process_data='phase')
 
         time_step = np.linspace(0,10, 1001)
         dRHO_time = np.abs(dRHO) * np.cos(2 * np.pi * f * time_step + np.angle(dRHO)) * 1E+5  # in pcm

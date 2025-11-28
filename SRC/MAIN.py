@@ -33,6 +33,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
+from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
@@ -45,15 +46,15 @@ sys.path.append('../')
 #from INPUTS.TASK3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST04a_2DTriMG_HTTR2G_FAV_TRIAL import *
 
-from INPUTS.NPRE555C1_recreate import *
+#from INPUTS.NPRE555C1_recreate import *
 
 # Restore the original sys.path
 sys.path = original_sys_path
 
 #######################################################################################################
-solver_type = 'forward'
+#solver_type = 'forward'
 #solver_type = 'adjoint'
-#solver_type = 'noise'
+solver_type = 'noise'
 
 #######################################################################################################
 def main():
