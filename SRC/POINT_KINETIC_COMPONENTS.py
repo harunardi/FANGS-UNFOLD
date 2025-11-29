@@ -25,10 +25,11 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
-from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_CENTER_FAV import *
+#from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_CENTER_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
+from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
@@ -682,6 +683,24 @@ def main():
 
         dPHI_pk_temp = dPOWER * PHI
         dPHI_spatial_temp = dPHI_temp - dPHI_pk_temp
+
+        dPHI_pk, dPHI_pk_reshaped, dPHI_pk_reshaped_plot = PostProcessor.postprocess_fixed3DRect(dPHI_pk_temp, conv, group, N, I_max, J_max, K_max)
+        output = {}
+        for g in range(len(dPHI_pk_reshaped)):
+            dPHI_pk_groupname = f'dPHI{g + 1}_pk'
+            dPHI_pk_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_pk_reshaped[g]]
+            output[dPHI_pk_groupname] = dPHI_pk_list
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_pk_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
+
+        dPHI_spatial, dPHI_spatial_reshaped, dPHI_spatial_reshaped_plot = PostProcessor.postprocess_fixed3DRect(dPHI_spatial_temp, conv, group, N, I_max, J_max, K_max)
+        output = {}
+        for g in range(len(dPHI_spatial_reshaped)):
+            dPHI_spatial_groupname = f'dPHI{g + 1}_spatial'
+            dPHI_spatial_list = [{"real": x.real, "imaginary": x.imag} for x in dPHI_spatial_reshaped[g]]
+            output[dPHI_spatial_groupname] = dPHI_spatial_list
+        with open(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_spatial_output.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
         dPHI_pk = np.zeros(group * N, dtype=complex)
         dPHI_spatial = np.zeros(group * N, dtype=complex)
