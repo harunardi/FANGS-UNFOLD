@@ -60,7 +60,6 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, conv, I_max, J_max, dx, dy, g, varname
         PHI1g_temp[PHI1_indices] = PHI1g
         PHI2g_temp[PHI1_indices] = PHI2g
     
-    print(np.nanmax(PHI1g_temp), np.nanmax(PHI2g_temp))
     tolerance = 1.5e-0  # Define a small tolerance for floating point comparisons
     distance_flux1_map = defaultdict(list)
     distance_flux2_map = defaultdict(list)
@@ -86,15 +85,27 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, conv, I_max, J_max, dx, dy, g, varname
     ax1.plot(unique_distances, flux2_values, 'r', markersize=5, label=f'dPHI{g}_spatial')
 
     # Find the peak of flux2
-    peak_index = 119
-    peak_distance = 92.0
-    peak_value = flux2_values[peak_index]
+    peak_index1 = 300
+    peak_distance1 = 81.0
+    peak_value1 = flux2_values[peak_index1]
 
     # Add a vertical dashed line at the peak
-    ax1.axvline(x=peak_distance, color='g', linestyle='--', linewidth=1.5)
-    ax1.annotate(f'AVS Source', 
-             xy=(peak_distance, peak_value),
-             xytext=(peak_distance + 5, peak_value+0.002),
+    ax1.axvline(x=peak_distance1, color='g', linestyle='--', linewidth=1.5)
+    ax1.annotate(f'FAV1 Source', 
+             xy=(peak_distance1, peak_value1),
+             xytext=(peak_distance1 + 5, peak_value1 + 0.002),
+             arrowprops=dict(arrowstyle='->', color='g'),
+             color='g')
+
+    peak_index2 = 500
+    peak_distance2 = 105.0
+    peak_value2 = flux2_values[peak_index2]
+
+    # Add a vertical dashed line at the peak
+    ax1.axvline(x=peak_distance2, color='g', linestyle='--', linewidth=1.5)
+    ax1.annotate(f'FAV2 Source', 
+             xy=(peak_distance2, peak_value2),
+             xytext=(peak_distance2 + 5, peak_value2 + 0.002),
              arrowprops=dict(arrowstyle='->', color='g'),
              color='g')
 
@@ -120,7 +131,7 @@ def plot_1D_centerline_y0_2(PHI1g, PHI2g, conv, I_max, J_max, dx, dy, g, varname
 inputs_dir = os.path.abspath(os.path.join(os.getcwd(), '..', '..', '..', '..', 'INPUTS'))
 print("Inputs directory added to sys.path:", inputs_dir)
 sys.path.append(inputs_dir)
-from OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
+from OBJECTIVES3_TEST02_2DMG_BIBLIS_CENTER_FAV import *
 
 output_dir = f'OUTPUTS/{case_name}/{case_name}_PK_COMPONENTS/{case_name}_NOISE'
 
