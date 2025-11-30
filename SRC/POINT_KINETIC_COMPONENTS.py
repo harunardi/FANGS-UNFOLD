@@ -29,8 +29,9 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
 #from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_AVS import *
-from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_CENTER_AVS import *
+#from INPUTS.OBJECTIVES3_TEST05_3DMG_CSTest09_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_FAV import *
+from INPUTS.OBJECTIVES3_TEST06_3DMG_CSTest09_CENTER_FAV import *
 #from INPUTS.OBJECTIVES3_TEST07_3DTriMG_HTTR_AVS import *
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_LangenOBJECTIbuch_AVS import *
@@ -731,8 +732,8 @@ def main():
                 image_phase_files.append(filename_phase)
 
             # Create a GIF from the saved images
-            gif_filename_mag = f'{output_dir}/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_animation_magnitude_G{g+1}.gif'
-            gif_filename_phase = f'{output_dir}/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_animation_phase_G{g+1}.gif'
+            gif_filename_mag = f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_animation_magnitude_G{g+1}.gif'
+            gif_filename_phase = f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_animation_phase_G{g+1}.gif'
 
             # Open images and save as GIF
             images_mag = [Image.open(img) for img in image_mag_files]
@@ -753,8 +754,8 @@ def main():
                 image_phase_files.append(filename_phase)
 
             # Create a GIF from the saved images
-            gif_filename_mag = f'{output_dir}/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_pk_animation_magnitude_G{g+1}.gif'
-            gif_filename_phase = f'{output_dir}/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_pk_animation_phase_G{g+1}.gif'
+            gif_filename_mag = f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_pk_animation_magnitude_G{g+1}.gif'
+            gif_filename_phase = f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dPHI_pk_animation_phase_G{g+1}.gif'
 
             # Open images and save as GIF
             images_mag = [Image.open(img) for img in image_mag_files]
