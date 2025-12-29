@@ -23,8 +23,8 @@ original_sys_path = sys.path.copy()
 sys.path.append('../')
 
 #from INPUTS.OBJECTIVES2_TEST01_1DMG_CSTest03 import *
-#from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
-from INPUTS.OBJECTIVES2_TEST03_2DMG_BIBLIS_VandV import *
+from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
+#from INPUTS.OBJECTIVES2_TEST03_2DMG_BIBLIS_VandV import *
 #from INPUTS.OBJECTIVES2_TEST04_2DTriMG_HOMOG_VandV import *
 #from INPUTS.OBJECTIVES2_TEST05_2DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES2_TEST06_3DMG_CSTest09_VandV_new import *
@@ -517,6 +517,26 @@ def main():
         plt.ylabel('Difference of Phase of Transfer Function (%)')
         plt.title('Plot of Difference Transfer Function (Phase) in %')
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Diff_Phase_freq.png')
+
+        # Plotting magnitude
+        plt.figure(figsize=(8, 6))  # Create a new figure
+        plt.plot(freq, abs(G0_analytical))
+        plt.xscale('log')
+        plt.yscale('log')
+        plt.xlabel('Frequency (Hz)')
+        plt.ylabel('Magnitude of Transfer Function (AU)')
+        plt.title('Plot of Transfer Function (Magnitude)')
+        plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Magnitude_freq_ANA_ONLY.png')
+
+        # Plotting phase
+        plt.figure(figsize=(8, 6))  # Create another new figure
+        plt.plot(freq, np.degrees(np.angle(G0_analytical)))
+        plt.xscale('log')
+        plt.xlabel('Frequency (Hz)')
+        plt.ylim(-120, 0)
+        plt.ylabel('Phase of Transfer Function (Degrees)')
+        plt.title('Plot of Transfer Function (Phase)')
+        plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Phase_freq_ANA_ONLY.png')
 
     elif geom_type =='2D triangular':
         h = globals().get("h")
