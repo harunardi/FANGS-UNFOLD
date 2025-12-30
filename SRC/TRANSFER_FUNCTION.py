@@ -525,7 +525,6 @@ def main():
         plt.yscale('log')
         plt.xlabel('Frequency (Hz)')
         plt.ylabel('Magnitude of Transfer Function (AU)')
-        plt.title('Plot of Transfer Function (Magnitude)')
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Magnitude_freq_ANA_ONLY.png')
 
         # Plotting phase
@@ -535,7 +534,6 @@ def main():
         plt.xlabel('Frequency (Hz)')
         plt.ylim(-120, 0)
         plt.ylabel('Phase of Transfer Function (Degrees)')
-        plt.title('Plot of Transfer Function (Phase)')
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Phase_freq_ANA_ONLY.png')
 
     elif geom_type =='2D triangular':
