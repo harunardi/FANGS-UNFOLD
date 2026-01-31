@@ -1,0 +1,5 @@
+Iteration: 1, num_source: 3, loc_conv = [961, 73, 886], loc = [1788, 246, 1683], frequency: 0.01, Real magnitude = [0.02, 0.08, 0.02], Imaginary magnitude = [0.0, 0.0, 0.0]
+	Timing: Green=10.369142s, SCAN=5.027625s, GREEDY=56354.432428s, Total_iter=56398.689111s
+Iteration: 2, num_source: 3, loc_conv = [757, 351, 34], loc = [1212, 644, 165], frequency: 0.056234132519034905, Real magnitude = [0.06, 0.06, 0.08], Imaginary magnitude = [0.0, 0.07, 0.01]
+	Timing: Green=8.296636s, SCAN=2.602947s, GREEDY=2117.131761s, Total_iter=2131.951198s
+Iteration: 3, num_source: 3, loc_conv = [952, 163, 892], loc = [1779, 402, 1689], frequency: 0.31622776601683794, Real magnitude = [0.04, 0.05, 0.08], Imaginary magnitude = [0.06, 0.0, 0.05]
