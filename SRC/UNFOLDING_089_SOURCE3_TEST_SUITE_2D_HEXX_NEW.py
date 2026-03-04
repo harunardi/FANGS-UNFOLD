@@ -193,7 +193,8 @@ validity_SCAN = []
 validity_BRUTE = []
 validity_BACK = []
 validity_GREEDY = []
-methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY"]
+validity_GREEDY_NEW = []
+methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY", "GREEDY_NEW"]
 
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
@@ -209,6 +210,7 @@ while add_iter < additional_iter:
         total_time_green = 0.0
         total_time_scan = 0.0
         total_time_greedy = 0.0
+        total_time_greedy_new = 0.0
 
         dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
         source = 3
@@ -266,7 +268,6 @@ while add_iter < additional_iter:
         else:
             validity_SCAN.append('no')
 
-#        dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
         t0_greedy = time.perf_counter()
         dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
         t1_greedy = time.perf_counter()
@@ -276,11 +277,21 @@ while add_iter < additional_iter:
         else:
             validity_GREEDY.append('no')
 
+        t0_greedy_new = time.perf_counter()
+        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+        t1_greedy_new = time.perf_counter()
+        time_greedy_new = t1_greedy_new - t0_greedy_new
+        if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
+            validity_GREEDY.append('yes')
+        else:
+            validity_GREEDY.append('no')
+
         total_time_green += time_green
         total_time_scan += time_scan
         total_time_greedy += time_greedy
-        
-        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY]
+        total_time_greedy_new += time_greedy_new
+
+        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_NEW]
         with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
             for category, lst in zip(methods, validity):
                 f.write(f"{category} " + ", ".join(lst) + "\n")
@@ -293,6 +304,7 @@ while add_iter < additional_iter:
                 f"\tTiming: Green={time_green:.6f}s, "
                 f"SCAN={time_scan:.6f}s, "
                 f"GREEDY={time_greedy:.6f}s, "
+                f"GREEDY_NEW={time_greedy_new:.6f}s, "
                 f"Total_iter={time_iter:.6f}s\n"
             )
 
