@@ -1,2 +1,0 @@
-For group 1, triangle 40, S = (-7.582962373934333e-07+0j)
-For group 1, triangle 181, S = (-0.0020256174379683326+0j)

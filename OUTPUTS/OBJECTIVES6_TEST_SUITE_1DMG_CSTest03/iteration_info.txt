@@ -1,3 +1,0 @@
-Iteration: 1, num_source: 1, frequency: 5.581686153924561, Real magnitude = [0.08], Imaginary magnitude = [0.03]
-Iteration: 2, num_source: 2, frequency: 2.734021248737704, Real magnitude = [0.04, 0.07], Imaginary magnitude = [0.02, 0.05]
-Iteration: 3, num_source: 3, frequency: 5.313014641777477, Real magnitude = [0.02, 0.1, 0.06], Imaginary magnitude = [0.06, 0.0, 0.09]

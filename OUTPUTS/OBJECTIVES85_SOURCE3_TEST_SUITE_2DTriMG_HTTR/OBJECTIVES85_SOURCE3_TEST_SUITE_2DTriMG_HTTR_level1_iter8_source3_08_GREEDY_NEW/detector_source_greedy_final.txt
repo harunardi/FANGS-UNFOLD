@@ -1,3 +1,0 @@
-For group 2, triangle 386, S = (-0.014147408119530974+0j), dS_greedy = (-0.014147408119531102+7.58309926656171e-17j). Result = Match
-For group 2, triangle 491, S = (-0.0022930493734853075+0j), dS_greedy = (-0.002293049373485285+5.678222447448287e-17j). Result = Match
-For group 2, triangle 530, S = (-0.0034498742843581134+0j), dS_greedy = (-0.0034498742843580557+7.750812601784636e-17j). Result = Match

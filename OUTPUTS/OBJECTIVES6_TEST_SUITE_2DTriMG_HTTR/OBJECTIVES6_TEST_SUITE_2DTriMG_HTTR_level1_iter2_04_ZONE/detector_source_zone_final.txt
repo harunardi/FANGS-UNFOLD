@@ -1,1 +1,0 @@
-For group 1, triangle 82, S = (-4.892966847537116e-05+0j), dS_zone = (-9.288725682015781e-09-5.414556819549475e-09j). Result = No Match

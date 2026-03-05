@@ -1,2 +1,0 @@
-For group 1, triangle 278, S = (-8.590295589106676e-05-0.0002147573897276669j), dS_scan = 0.0. Result = No Match
-For group 1, triangle 406, S = (-0.0013119378844271266-0.003498501025139004j), dS_scan = 0.0. Result = No Match

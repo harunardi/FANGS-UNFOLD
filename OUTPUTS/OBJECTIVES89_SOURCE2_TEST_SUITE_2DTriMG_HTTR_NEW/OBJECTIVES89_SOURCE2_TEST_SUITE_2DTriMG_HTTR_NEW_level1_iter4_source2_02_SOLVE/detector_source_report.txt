@@ -1,2 +1,0 @@
-For group 2, triangle 252, S = (-0.0019091774507999828+0j)
-For group 2, triangle 626, S = (-0.0032452306898864873+0j)

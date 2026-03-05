@@ -1,1 +1,0 @@
-For group 2, triangle 35, S = (-0.0005647087548776456+0j), dS_invert = 0j. Result = No Match

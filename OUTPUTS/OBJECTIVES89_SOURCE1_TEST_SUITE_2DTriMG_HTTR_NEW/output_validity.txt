@@ -1,7 +1,0 @@
-INVERT 
-ZONE 
-SCAN yes, yes, yes, yes, yes
-BRUTE 
-BACK 
-GREEDY yes, yes, yes, yes, yes, yes, yes, yes, yes, yes
-GREEDY_NEW 

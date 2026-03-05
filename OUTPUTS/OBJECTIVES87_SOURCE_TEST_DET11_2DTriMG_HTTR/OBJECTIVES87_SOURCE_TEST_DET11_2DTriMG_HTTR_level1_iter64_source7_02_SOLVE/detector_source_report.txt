@@ -1,7 +1,0 @@
-For group 1, triangle 368, S = (-0.010968300922297936-0.001828050153716323j)
-For group 1, triangle 378, S = (-0.014653864286741633+0j)
-For group 1, triangle 405, S = (-0.007246788263561998+0j)
-For group 1, triangle 497, S = (-8.519947882392441e-05-8.519947882392441e-05j)
-For group 1, triangle 595, S = (-0.0026234627311169448+0j)
-For group 2, triangle 411, S = (-0.004653816519198813+0j)
-For group 2, triangle 528, S = (-0.009430068824871261+0j)

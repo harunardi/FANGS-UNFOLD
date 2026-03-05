@@ -1,2 +1,0 @@
-For group 2, triangle 586, S = (-0.0105449746783824-0.0093733108252288j), dS_invert = 0j. Result = No Match
-For group 2, triangle 667, S = (-0.000173916416832684+0j), dS_invert = 0j. Result = No Match
