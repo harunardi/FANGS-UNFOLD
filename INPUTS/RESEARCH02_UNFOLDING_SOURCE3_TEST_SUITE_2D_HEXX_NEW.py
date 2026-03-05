@@ -16,7 +16,7 @@ os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
 start_time = time.time()
 
-from SRC_UNFOLDING_2D_HEXX import *
+from SRC.SRC_UNFOLDING_2D_HEXX import *
 
 #######################################################################################################
 v1 = 9617897.764585359
@@ -45,7 +45,7 @@ h_hexx = s / np.sqrt(3) # Triangle side or hexagon radius
 h = h_hexx / (2**(level-1))
 
 # INITIALIZATION
-input_name = f"OBJECTIVES89_SOURCE1_TEST_SUITE_2DTriMG_HTTR_NEW" 
+input_name = f"OBJECTIVES89_SOURCE3_TEST_SUITE_2DTriMG_HTTR_NEW" 
 case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 
@@ -193,9 +193,8 @@ validity_SCAN = []
 validity_BRUTE = []
 validity_BACK = []
 validity_GREEDY = []
-validity_GREEDY_new = []
-validity_GREEDY_new2 = []
-methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY", "GREEDY_new", "GREEDY_new2"]
+validity_GREEDY_NEW = []
+methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY", "GREEDY_NEW"]
 
 iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
 
@@ -212,10 +211,9 @@ while add_iter < additional_iter:
         total_time_scan = 0.0
         total_time_greedy = 0.0
         total_time_greedy_new = 0.0
-        total_time_greedy_new2 = 0.0
 
         dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
-        source = 1
+        source = 3
         f = freq[fo]
         loc_conv = []
         loc = []
@@ -284,26 +282,16 @@ while add_iter < additional_iter:
         t1_greedy_new = time.perf_counter()
         time_greedy_new = t1_greedy_new - t0_greedy_new
         if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
-            validity_GREEDY_new.append('yes')
+            validity_GREEDY.append('yes')
         else:
-            validity_GREEDY_new.append('no')
-
-        t0_greedy_new2 = time.perf_counter()
-        dPHI_temp_GREEDY_new2, dS_unfold_GREEDY_new2_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy_new2 = time.perf_counter()
-        time_greedy_new2 = t1_greedy_new2 - t0_greedy_new2
-        if np.allclose(S, dS_unfold_GREEDY_new2_temp, atol=1E-06):
-            validity_GREEDY_new2.append('yes')
-        else:
-            validity_GREEDY_new2.append('no')
+            validity_GREEDY.append('no')
 
         total_time_green += time_green
         total_time_scan += time_scan
         total_time_greedy += time_greedy
         total_time_greedy_new += time_greedy_new
-        total_time_greedy_new2 += time_greedy_new2
 
-        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_new, validity_GREEDY_new2]
+        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_NEW]
         with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
             for category, lst in zip(methods, validity):
                 f.write(f"{category} " + ", ".join(lst) + "\n")
@@ -317,7 +305,6 @@ while add_iter < additional_iter:
                 f"SCAN={time_scan:.6f}s, "
                 f"GREEDY={time_greedy:.6f}s, "
                 f"GREEDY_NEW={time_greedy_new:.6f}s, "
-                f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
                 f"Total_iter={time_iter:.6f}s\n"
             )
 

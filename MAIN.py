@@ -10,18 +10,18 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from UTILS import Utils
-from MATRIX_BUILDER import *
-from METHODS import *
-from POSTPROCESS import PostProcessor
-from SOLVERFACTORY import SolverFactory
+from SRC.UTILS import Utils
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.POSTPROCESS import PostProcessor
+from SRC.SOLVERFACTORY import SolverFactory
 
 #######################################################################################################
 # INPUTS
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-#from INPUTS.OBJECTIVES1_TEST01_1DMG_CSTest03 import *
+from INPUTS.OBJECTIVES1_TEST01_1DMG_CSTest03 import *
 #from INPUTS.OBJECTIVES1_TEST02_2DMG_C3_VandV import *
 #from INPUTS.OBJECTIVES1_TEST03_2DMG_BIBLIS_VandV import *
 #from INPUTS.OBJECTIVES1_TEST04_2DTriMG_HOMOG_VandV import *
@@ -33,7 +33,7 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES1_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
-from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
+#from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST03_2DTriMG_HTTR2G_AVS import *
 #from INPUTS.OBJECTIVES3_TEST04_2DTriMG_HTTR2G_FAV import *
@@ -48,20 +48,17 @@ from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 
 #from INPUTS.NPRE555C1_recreate import *
 
-# Restore the original sys.path
-sys.path = original_sys_path
-
 #######################################################################################################
 #solver_type = 'forward'
-#solver_type = 'adjoint'
-solver_type = 'noise'
+solver_type = 'adjoint'
+#solver_type = 'noise'
 
 #######################################################################################################
 def main():
     start_time = time.time()
 
     if geom_type =='1D':
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         x = globals().get("x")
         dx = globals().get("dx")
         N = globals().get("N")
@@ -141,7 +138,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
 
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         Utils.create_directories(solver_type, output_dir, case_name)
         conv = convert_index_2D_rect(D, I_max, J_max)
         conv_array = np.array(conv)
@@ -234,7 +231,7 @@ def main():
         BC = globals().get("BC")
         input_name = globals().get("input_name")
 
-        output_dir = f'../OUTPUTS/{input_name}'
+        output_dir = f'OUTPUTS/{input_name}'
         Utils.create_directories(solver_type, output_dir, case_name)
         conv_hexx = convert_2D_hexx(I_max, J_max, D)
         conv_tri, conv_hexx_ext = convert_2D_tri(I_max, J_max, conv_hexx, level)
@@ -347,7 +344,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
 
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         Utils.create_directories(solver_type, output_dir, case_name)
         conv = convert_index_3D_rect(D, I_max, J_max, K_max)
         conv_array = np.array(conv)
@@ -490,7 +487,7 @@ def main():
         BC = globals().get("BC")
         input_name = globals().get("input_name")
 
-        output_dir = f'../OUTPUTS/{input_name}'
+        output_dir = f'OUTPUTS/{input_name}'
         Utils.create_directories(solver_type, output_dir, case_name)
         conv_hexx = convert_3D_hexx(K_max, J_max, I_max, D)
         conv_tri, conv_hexx_ext = convert_3D_tri(K_max, J_max, I_max, conv_hexx, level)

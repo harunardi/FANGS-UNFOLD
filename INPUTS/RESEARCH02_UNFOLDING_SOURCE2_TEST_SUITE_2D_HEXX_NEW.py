@@ -16,7 +16,7 @@ os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
 start_time = time.time()
 
-from SRC_UNFOLDING_2D_HEXX import *
+from SRC.SRC_UNFOLDING_2D_HEXX import *
 
 #######################################################################################################
 v1 = 9617897.764585359
@@ -45,7 +45,7 @@ h_hexx = s / np.sqrt(3) # Triangle side or hexagon radius
 h = h_hexx / (2**(level-1))
 
 # INITIALIZATION
-input_name = f"OBJECTIVES89_SOURCE3_TEST_SUITE_2DTriMG_HTTR_NEW" 
+input_name = f"OBJECTIVES89_SOURCE2_TEST_SUITE_2DTriMG_HTTR_NEW" 
 case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 
@@ -213,7 +213,7 @@ while add_iter < additional_iter:
         total_time_greedy_new = 0.0
 
         dTOT_hexx = [row[:] for row in dTOT_hexx_OLD]
-        source = 3
+        source = 2
         f = freq[fo]
         loc_conv = []
         loc = []
