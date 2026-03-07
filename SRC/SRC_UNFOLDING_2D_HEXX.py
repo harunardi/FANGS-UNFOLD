@@ -16,12 +16,12 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from UTILS import Utils
-from MATRIX_BUILDER import *
-from METHODS import *
-from POSTPROCESS import PostProcessor
-from SOLVERFACTORY import SolverFactory
-from XSPROCESS_2D_HEXX import *
+from SRC.UTILS import Utils
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.POSTPROCESS import PostProcessor
+from SRC.SOLVERFACTORY import SolverFactory
+from SRC.XSPROCESS_2D_HEXX import *
 
 #######################################################################################################
 def main_unfold_2D_hexx_noise(PHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y):

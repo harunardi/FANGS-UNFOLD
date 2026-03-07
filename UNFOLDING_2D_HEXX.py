@@ -14,12 +14,12 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from UTILS import Utils
-from MATRIX_BUILDER import *
-from METHODS import *
-from POSTPROCESS import PostProcessor
-from SOLVERFACTORY import SolverFactory
-from SRC_UNFOLDING_2D_HEXX import *
+from SRC.UTILS import Utils
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.POSTPROCESS import PostProcessor
+from SRC.SOLVERFACTORY import SolverFactory
+from SRC.SRC_UNFOLDING_2D_HEXX import *
 
 #######################################################################################################
 # INPUTS

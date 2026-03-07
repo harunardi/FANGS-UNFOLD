@@ -10,10 +10,10 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from MATRIX_BUILDER import *
-from METHODS import *
-from SOLVERFACTORY import SolverFactory
-from SRC_UNFOLDING_1D import *
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.SOLVERFACTORY import SolverFactory
+from SRC.SRC_UNFOLDING_1D import *
 
 #######################################################################################################
 # INPUTS
@@ -33,7 +33,7 @@ sys.path = original_sys_path
 def main():
     start_time = time.time()
 
-    output_dir = f'../OUTPUTS/{case_name}/{case_name}_UNFOLDING'
+    output_dir = f'OUTPUTS/{case_name}/{case_name}_UNFOLDING'
 
 ##### Forward Simulation
     solver_type = 'forward'

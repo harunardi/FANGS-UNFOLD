@@ -14,11 +14,11 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from UTILS import Utils
-from MATRIX_BUILDER import *
-from METHODS import *
-from POSTPROCESS import PostProcessor
-from SOLVERFACTORY import SolverFactory
+from SRC.UTILS import Utils
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.POSTPROCESS import PostProcessor
+from SRC.SOLVERFACTORY import SolverFactory
 
 #######################################################################################################
 def main_unfold_1D_noise(PHI, keff, group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS, dNUFIS, dSOURCE, output_dir, case_name, x):

@@ -22,16 +22,20 @@ from SRC.SOLVERFACTORY import SolverFactory
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
+#######################################################################################################
+# FOR TEST PURPOSES
 #from INPUTS.OBJECTIVES2_TEST01_1DMG_CSTest03 import *
-from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
+#from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
+from INPUTS.OBJECTIVES2_TEST04_2DTriMG_HOMOG_VandV import *
+#from INPUTS.OBJECTIVES2_TEST09_3DTriMG_HTTR import *
+#from INPUTS.OBJECTIVES2_TEST10_3DMG_Langenbuch import *
+
+#######################################################################################################
 #from INPUTS.OBJECTIVES2_TEST03_2DMG_BIBLIS_VandV import *
-#from INPUTS.OBJECTIVES2_TEST04_2DTriMG_HOMOG_VandV import *
 #from INPUTS.OBJECTIVES2_TEST05_2DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES2_TEST06_3DMG_CSTest09_VandV_new import *
 #from INPUTS.OBJECTIVES2_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES2_TEST08_2DTriMG_HTTR2G_VandV import *
-#from INPUTS.OBJECTIVES2_TEST09_3DTriMG_HTTR import *
-#from INPUTS.OBJECTIVES2_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
@@ -53,7 +57,7 @@ def main():
     start_time = time.time()
 
     if geom_type =='1D':
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         x = globals().get("x")
         dx = globals().get("dx")
         N = globals().get("N")
@@ -70,7 +74,7 @@ def main():
         os.makedirs(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}', exist_ok=True)
         matrix_builder = MatrixBuilderForward1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
         M, F_FORWARD = matrix_builder.build_forward_matrices()
-        solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F_FORWARD, dx, precond, tol=1E-6)
+        solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F_FORWARD, x, precond, tol=1E-6)
         keff, PHI = solver.solve()
         PHI_reshaped = np.reshape(PHI, (group, N))
 
@@ -87,7 +91,7 @@ def main():
         os.makedirs(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}', exist_ok=True)
         matrix_builder = MatrixBuilderAdjoint1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS)
         M, F_ADJOINT = matrix_builder.build_adjoint_matrices()
-        solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F_ADJOINT, dx, precond, tol=1E-6)
+        solver = SolverFactory.get_solver_power1D(solver_type, group, N, M, F_ADJOINT, x, precond, tol=1E-6)
         keff, PHI_ADJ = solver.solve()
         PHI_ADJ_reshaped = np.reshape(PHI_ADJ, (group, N))
 
@@ -133,7 +137,7 @@ def main():
             matrix_builder = MatrixBuilderNoise1D(group, N, TOT, SIGS, BC, dx, D, chi, NUFIS, keff, v, Beff, omega, l, dTOT, dSIGS, dNUFIS)
             M, dS = matrix_builder.build_noise_matrices()
 
-            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, dx, precond, tol=1e-06)
+            solver = SolverFactory.get_solver_fixed1D(solver_type, group, N, M, dS, dSOURCE, PHI, precond, tol=1e-06)
 
             dPHI = solver.solve()
             dPHI_reshaped = np.reshape(dPHI, (group, N))
@@ -270,7 +274,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Diff_Phase_freq.png')
 
     elif geom_type =='2D rectangular':
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         dx = globals().get("dx")
@@ -552,7 +556,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'../OUTPUTS/{input_name}'
+        output_dir = f'OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'
@@ -811,7 +815,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Diff_Phase_freq.png')
 
     elif geom_type =='3D rectangular':
-        output_dir = f'../OUTPUTS/{case_name}'
+        output_dir = f'OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         z = globals().get("z")
@@ -1080,7 +1084,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'../OUTPUTS/{input_name}'
+        output_dir = f'OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'

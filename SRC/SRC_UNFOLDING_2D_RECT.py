@@ -14,12 +14,12 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from UTILS import Utils
-from MATRIX_BUILDER import *
-from METHODS import *
-from POSTPROCESS import PostProcessor
-from SOLVERFACTORY import SolverFactory
-from XSPROCESS_2D_RECT import *
+from SRC.UTILS import Utils
+from SRC.MATRIX_BUILDER import *
+from SRC.METHODS import *
+from SRC.POSTPROCESS import PostProcessor
+from SRC.SOLVERFACTORY import SolverFactory
+from SRC.XSPROCESS_2D_RECT import *
 
 #######################################################################################################
 def main_unfold_2D_rect_noise(PHI_temp, keff, group, N, I_max, J_max, TOT, SIGS_reshaped, BC, dx, dy, D, chi, NUFIS, precond, v, Beff, omega, l, dTOT, dSIGS_reshaped, dNUFIS, map_detector, output_dir, case_name, x, y):
