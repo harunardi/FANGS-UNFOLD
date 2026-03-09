@@ -45,7 +45,7 @@ h_hexx = s / np.sqrt(3) # Triangle side or hexagon radius
 h = h_hexx / (2**(level-1))
 
 # INITIALIZATION
-input_name = f"OBJECTIVES89_SOURCE1_TEST_SUITE_2DTriMG_HTTR_NEW" 
+input_name = f"RESEARCH_UNHAN2_SOURCE1_TEST_SUITE_2DTriMG_HTTR" 
 case_name_base = f"{input_name}"
 case_name2 = f"{input_name}_level{level}"
 
@@ -127,7 +127,7 @@ map_zone = [
 ]
 
 #######################################################################################################
-output_dir = f'../OUTPUTS/{case_name_base}'
+output_dir = f'OUTPUTS/{case_name_base}'
 
 ##### Forward Simulation
 solver_type = 'forward'
@@ -195,9 +195,10 @@ validity_BACK = []
 validity_GREEDY = []
 validity_GREEDY_new = []
 validity_GREEDY_new2 = []
-methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY", "GREEDY_new", "GREEDY_new2"]
+validity_GREEDY_optimized = []
+methods = ["INVERT", "ZONE", "SCAN", "BRUTE", "BACK", "GREEDY", "GREEDY_new", "GREEDY_new2", "GREEDY_optimized"]
 
-iter_file = f"../OUTPUTS/{case_name_base}/iteration_info.txt"
+iter_file = f"OUTPUTS/{case_name_base}/iteration_info.txt"
 
 # Check if the file exists, if yes, delete it
 if os.path.exists(iter_file):
@@ -261,50 +262,60 @@ while add_iter < additional_iter:
 
         S, dPHI_temp_meas = main_unfold_2D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, N_hexx, conv_tri, conv_neighbor, TOT, SIGS_reshaped, BC, h, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, dNUFIS_hexx, chi_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y)
 
-        t0_scan = time.perf_counter()
-        dS_unfold_SCAN_temp = main_unfold_2D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
-        t1_scan = time.perf_counter()
-        time_scan = t1_scan - t0_scan
-        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
-            validity_SCAN.append('yes')
-        else:
-            validity_SCAN.append('no')
+#        t0_scan = time.perf_counter()
+#        dS_unfold_SCAN_temp = main_unfold_2D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, all_triangles)
+#        t1_scan = time.perf_counter()
+#        time_scan = t1_scan - t0_scan
+#        if np.allclose(S, dS_unfold_SCAN_temp, atol=1E-06):
+#            validity_SCAN.append('yes')
+#        else:
+#            validity_SCAN.append('no')
+#
+#        t0_greedy = time.perf_counter()
+#        dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy = time.perf_counter()
+#        time_greedy = t1_greedy - t0_greedy
+#        if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
+#            validity_GREEDY.append('yes')
+#        else:
+#            validity_GREEDY.append('no')
+#
+#        t0_greedy_new = time.perf_counter()
+#        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy_new = time.perf_counter()
+#        time_greedy_new = t1_greedy_new - t0_greedy_new
+#        if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
+#            validity_GREEDY_new.append('yes')
+#        else:
+#            validity_GREEDY_new.append('no')
+#
+#        t0_greedy_new2 = time.perf_counter()
+#        dPHI_temp_GREEDY_new2, dS_unfold_GREEDY_new2_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy_new2 = time.perf_counter()
+#        time_greedy_new2 = t1_greedy_new2 - t0_greedy_new2
+#        if np.allclose(S, dS_unfold_GREEDY_new2_temp, atol=1E-06):
+#            validity_GREEDY_new2.append('yes')
+#        else:
+#            validity_GREEDY_new2.append('no')
 
-        t0_greedy = time.perf_counter()
-        dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy = time.perf_counter()
-        time_greedy = t1_greedy - t0_greedy
-        if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
-            validity_GREEDY.append('yes')
+        t0_greedy_optimized = time.perf_counter()
+        dPHI_temp_GREEDY_optimized, dS_unfold_GREEDY_optimized_temp = main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+        t1_greedy_optimized = time.perf_counter()
+        time_greedy_optimized = t1_greedy_optimized - t0_greedy_optimized
+        if np.allclose(S, dS_unfold_GREEDY_optimized_temp, atol=1E-06):
+            validity_GREEDY_optimized.append('yes')
         else:
-            validity_GREEDY.append('no')
-
-        t0_greedy_new = time.perf_counter()
-        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy_new = time.perf_counter()
-        time_greedy_new = t1_greedy_new - t0_greedy_new
-        if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
-            validity_GREEDY_new.append('yes')
-        else:
-            validity_GREEDY_new.append('no')
-
-        t0_greedy_new2 = time.perf_counter()
-        dPHI_temp_GREEDY_new2, dS_unfold_GREEDY_new2_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy_new2 = time.perf_counter()
-        time_greedy_new2 = t1_greedy_new2 - t0_greedy_new2
-        if np.allclose(S, dS_unfold_GREEDY_new2_temp, atol=1E-06):
-            validity_GREEDY_new2.append('yes')
-        else:
-            validity_GREEDY_new2.append('no')
+            validity_GREEDY_optimized.append('no')
 
         total_time_green += time_green
-        total_time_scan += time_scan
-        total_time_greedy += time_greedy
-        total_time_greedy_new += time_greedy_new
-        total_time_greedy_new2 += time_greedy_new2
+#        total_time_scan += time_scan
+#        total_time_greedy += time_greedy
+#        total_time_greedy_new += time_greedy_new
+#        total_time_greedy_new2 += time_greedy_new2
+        total_time_greedy_optimized += time_greedy_optimized
 
-        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_new, validity_GREEDY_new2]
-        with open(f"../OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
+        validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_new, validity_GREEDY_new2, validity_GREEDY_optimized]
+        with open(f"OUTPUTS/{case_name_base}/output_validity.txt", "w") as f:
             for category, lst in zip(methods, validity):
                 f.write(f"{category} " + ", ".join(lst) + "\n")
 
@@ -314,10 +325,11 @@ while add_iter < additional_iter:
         with open(iter_file, "a") as file:
             file.write(
                 f"\tTiming: Green={time_green:.6f}s, "
-                f"SCAN={time_scan:.6f}s, "
-                f"GREEDY={time_greedy:.6f}s, "
-                f"GREEDY_NEW={time_greedy_new:.6f}s, "
-                f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
+#                f"SCAN={time_scan:.6f}s, "
+#                f"GREEDY={time_greedy:.6f}s, "
+#                f"GREEDY_NEW={time_greedy_new:.6f}s, "
+#                f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
+                f"GREEDY_OPTIMIZED={time_greedy_optimized:.6f}s, "
                 f"Total_iter={time_iter:.6f}s\n"
             )
 
