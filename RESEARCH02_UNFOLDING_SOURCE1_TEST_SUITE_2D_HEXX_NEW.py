@@ -272,14 +272,14 @@ while add_iter < additional_iter:
 #        else:
 #            validity_SCAN.append('no')
 #
-        t0_greedy = time.perf_counter()
-        dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy = time.perf_counter()
-        time_greedy = t1_greedy - t0_greedy
-        if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
-            validity_GREEDY.append('yes')
-        else:
-            validity_GREEDY.append('no')
+#        t0_greedy = time.perf_counter()
+#        dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy = time.perf_counter()
+#        time_greedy = t1_greedy - t0_greedy
+#        if np.allclose(S, dS_unfold_GREEDY_temp, atol=1E-06):
+#            validity_GREEDY.append('yes')
+#        else:
+#            validity_GREEDY.append('no')
 #
 #        t0_greedy_new = time.perf_counter()
 #        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
@@ -310,7 +310,7 @@ while add_iter < additional_iter:
 
         total_time_green += time_green
 #        total_time_scan += time_scan
-        total_time_greedy += time_greedy
+#        total_time_greedy += time_greedy
 #        total_time_greedy_new += time_greedy_new
 #        total_time_greedy_new2 += time_greedy_new2
         total_time_greedy_optimized += time_greedy_optimized
@@ -327,7 +327,7 @@ while add_iter < additional_iter:
             file.write(
                 f"\tTiming: Green={time_green:.6f}s, "
 #                f"SCAN={time_scan:.6f}s, "
-                f"GREEDY={time_greedy:.6f}s, "
+#                f"GREEDY={time_greedy:.6f}s, "
 #                f"GREEDY_NEW={time_greedy_new:.6f}s, "
 #                f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
                 f"GREEDY_OPTIMIZED={time_greedy_optimized:.6f}s, "

@@ -9,6 +9,7 @@ from math import comb
 from petsc4py import PETSc
 from scipy.linalg import qr, solve_triangular
 from scipy.linalg import lstsq
+from scipy.linalg import lu_factor, lu_solve
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -2119,10 +2120,7 @@ def main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, grou
 def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y):
     conv_tri_array = np.array(conv_tri)
     max_conv = max(conv_tri)
-
     S_reshaped = np.reshape(S, (group, max(conv_tri)))
-    dPHI_temp_reshaped = np.reshape(dPHI_temp, (group, max(conv_tri)))
-    dPHI_temp_meas_reshaped = np.reshape(dPHI_temp_meas, (group, max(conv_tri)))
 
     non_zero_indices = np.nonzero(dPHI_temp_meas)[0]
     dPHI_temp_meas = np.array(dPHI_temp_meas)
@@ -2140,13 +2138,13 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
         G_dictionary_sampled[k][non_zero_indices] = o[non_zero_indices]
 
     keys = list(G_dictionary_sampled.keys())
+    key_to_idx = {k: i for i, k in enumerate(keys)}
     G_full = np.column_stack([G_dictionary[k] for k in keys]).astype(complex, copy=False)#  (full, non‑sampled dictionary)
     X_full = np.column_stack([G_dictionary_sampled[k] for k in keys]).astype(complex, copy=False)
     y_full = np.asarray(dPHI_temp_meas, dtype=complex)   
     obs = np.asarray(non_zero_indices)
     X = X_full[obs, :]          # shape (M_obs, N)
     y_dPHI = y_full[obs]             # shape (M_obs,)
-
     num_atoms = X.shape[1]      # N
 
 ##### 08. GREEDY
@@ -2156,19 +2154,18 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
     # Initialize variables for the higher loop
     valid_solution_GREEDY = False  # Flag to indicate a valid solution
     outer_iter = 0
-    inner_iter = 0
     tol_GREEDY = 1E-10  # Stopping tolerance
     comb_first_atom = 1
-    selected_atoms = []
     contribution_threshold = 1e-6  # Define the contribution threshold
 
     # Build all possible "first atom" combinations once
     first_atom_indices_iter = list(combinations(range(num_atoms), comb_first_atom))
-    all_outer_iter_len = len(first_atom_indices_iter)
-    print(f"Total number of outer iterations = {all_outer_iter_len}")
 
     # Dictionary to store valid solutions with term counts
     valid_solutions_GREEDY = {}
+
+    # Precompute column norms once outside all loops:
+    col_norm_sq = np.einsum('ij,ij->j', X.conj(), X).real  # shape (N,)
 
     # ---------- Outer loop over first atom(s) ----------
     for outer_iter, first_atom_idx_tuple in enumerate(first_atom_indices_iter, start=1):
@@ -2189,53 +2186,73 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
         prev_selected_len = 0
         constant_len_counter = 0
 
-        # ---------- Inner greedy loop ----------
+        # ---------- Inner greedy loop (QR-based exact scoring, no per-candidate LS) ----------
         while residual_norm > tol_GREEDY:
-            # Generate candidate tuples from remaining indices only
-            remaining = [j for j in range(num_atoms) if j not in selected_idx]
-            if len(remaining) < comb_first_atom:
-                # No more candidates to add
+            # Build boolean mask / remaining indices
+            selected_mask = np.zeros(num_atoms, dtype=bool)
+            selected_mask[selected_idx] = True
+            remaining = np.flatnonzero(~selected_mask)
+            if remaining.size < comb_first_atom:
                 break
+            if comb_first_atom != 1:
+                raise NotImplementedError("QR shortcut shown here assumes comb_first_atom == 1")
 
-            best_tuple = None
-            best_residual_norm = np.inf
+            # Economy QR of current A (once per iteration)
+            if len(selected_idx) == 0:
+                # No columns selected yet: Q is empty, so QQ^H = 0
+                Q = None
+                # Current residual r is y_dPHI itself
+                r = residual  # already y_dPHI in your first step
+                rn_sq = residual_norm**2
+                # For scoring: denom_j = ‖x_j‖², u = X_remᴴ @ r
+                X_rem = X[:, remaining]  # view
+                u = X_rem.conj().T @ r                         # (R,)
+                denom = col_norm_sq[remaining].copy()          # (R,)
+            else:
+                # Compute Q of A = X[:, selected_idx]
+                Q, _ = np.linalg.qr(X[:, selected_idx], mode='reduced')  # Q: (M_obs, k)
+                r = residual - Q @ (Q.conj().T @ residual)
+                rn_sq = float(np.vdot(r, r).real)
 
-            # Try adding each candidate tuple
-            for cand_tuple in combinations(remaining, comb_first_atom):
-                temp_idx = selected_idx + list(cand_tuple)
-                A_temp = X[:, temp_idx]  # view
-                coeffs_temp, *_ = np.linalg.lstsq(A_temp, y_dPHI, rcond=None)
-                r_temp = y_dPHI - A_temp @ coeffs_temp
-                rn = np.linalg.norm(r_temp)
+                # Batch projections
+                X_rem = X[:, remaining]                        # (M_obs, R)
+                u = X_rem.conj().T @ r                         # (R,)   correlations with residual
+                B = Q.conj().T @ X_rem                         # (k, R) projection onto current subspace
+                denom = col_norm_sq[remaining] - np.sum(np.abs(B)**2, axis=0)  # (R,)
 
-                if rn < best_residual_norm:
-                    best_residual_norm = rn
-                    best_tuple = cand_tuple
+            # Avoid division by zero / nearly dependent candidates
+            eps = 1e-15
+            valid = denom > eps
+            if not np.any(valid):
+                print("   No linearly independent candidates left. Stopping.")
+                break
+            
+            # Exact residual for each candidate after refit
+            rn_sq_candidates = np.full(remaining.shape, np.inf, dtype=float)
+            rn_sq_candidates[valid] = rn_sq - (np.abs(u[valid])**2) / denom[valid]
 
-            # Add the chosen atom(s) (same semantics as your tuple/singleton handling)
-            chosen_atom = best_tuple if (comb_first_atom > 1) else best_tuple[0]
-            # Extend selected list
-            for j in best_tuple:
-                if j not in selected_idx:
-                    selected_idx.append(j)
+            # Pick best candidate (min residual)
+            best_pos = int(np.argmin(rn_sq_candidates))
+            best_j = int(remaining[best_pos])
+            best_rn = float(np.sqrt(max(rn_sq_candidates[best_pos], 0.0)))
 
-            # Refit with the updated set
+            # Add chosen atom
+            selected_idx.append(best_j)
+
+            # Refit with updated set
             A = X[:, selected_idx]
             coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
             residual = y_dPHI - A @ coeffs
             residual_norm = np.linalg.norm(residual)
 
-            chosen_atom_keys = tuple(keys[j] for j in best_tuple) if isinstance(chosen_atom, tuple) else keys[chosen_atom]
-            print(f"   Chosen atom = {chosen_atom_keys}, length of selected atoms = {len(selected_idx)}, "
+            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
                   f"current residual norm = {residual_norm:.6e}")
 
-            # Maintain your "constant_len_counter" logic (will almost never trigger, but kept intact)
             if len(selected_idx) == prev_selected_len:
                 constant_len_counter += 1
             else:
                 constant_len_counter = 0
             prev_selected_len = len(selected_idx)
-
             if constant_len_counter >= 10:
                 print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
                 break
@@ -2283,17 +2300,33 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
         else:
             print(f"Criterion not met with first atom {first_atom_keys}. Restarting with a new atom.")
 
-    # Final check for the best solution
-    if valid_solutions_GREEDY:
-        best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
-        print(f"The best valid solution is with atom {best_atom} with selected atoms = {valid_solutions_GREEDY[best_atom]}.")
-        valid_solution_GREEDY = valid_solutions_GREEDY[best_atom]
 
-        A = np.array([G_dictionary_sampled[k] for k in valid_solution_GREEDY]).T
-        coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
-        coefficients = dict(zip(valid_solution_GREEDY, coeffs))
-        dPHI_temp_GREEDY = sum(c * G_dictionary[k] for k, c in zip(valid_solution_GREEDY, coeffs))
-        print(dPHI_temp_GREEDY.shape)
+    if valid_solutions_GREEDY:
+        best_entry = None  # (residual_norm_obs, num_terms, first_atom_keys, sel_idx, coeffs_obs)
+        for first_atom_keys, selected_key_list in valid_solutions_GREEDY.items():
+            sel_idx = [key_to_idx[k] for k in selected_key_list]
+
+            # Observed fit (consistent with selection space)
+            A_obs = X[:, sel_idx]
+            coeffs_obs, *_ = np.linalg.lstsq(A_obs, y_dPHI, rcond=None)
+            rn_obs = np.linalg.norm(y_dPHI - A_obs @ coeffs_obs)
+
+            cand = (rn_obs, len(sel_idx), first_atom_keys, sel_idx, coeffs_obs)
+            if best_entry is None or cand < best_entry:
+                best_entry = cand
+
+        rn_best, num_terms_best, best_atom, best_sel_idx, _ = best_entry
+        print(f"The best valid solution is with atom {best_atom} "
+              f"with {num_terms_best} term(s), residual (obs) = {rn_best:.6e}.")
+
+        # Final coefficients on FULL dictionary (more robust globally)
+        A_full = G_full[:, best_sel_idx]  # view
+        coeffs, *_ = np.linalg.lstsq(A_full, y_full, rcond=None)
+
+        best_selected_keys = [keys[j] for j in best_sel_idx]
+        coefficients = dict(zip(best_selected_keys, coeffs))
+
+        dPHI_temp_GREEDY = A_full @ coeffs  # vectorized, no Python sum
     else:
         print("Failed to find a valid solution within the maximum number of outer iterations.")
 
@@ -2320,11 +2353,9 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
         ######################################################################################################
         # --------------- UNFOLD GREEEN'S FUNCTION USING DIRECT METHOD -------------------
         print(f'\nSolve for dS using Direct Method')
-        G_inverse = scipy.linalg.inv(G_matrix)
+        lu, piv = lu_factor(G_matrix)
+        dS_unfold_GREEDY_temp = lu_solve((lu, piv), dPHI_temp_GREEDY)
 
-        # UNFOLD ALL INTERPOLATED
-        dS_unfold_GREEDY_temp = np.dot(G_inverse, dPHI_temp_GREEDY)
-    
         # POSTPROCESS
         print(f'Postprocessing to appropriate dPHI')
         non_zero_conv = np.nonzero(conv_tri)[0]

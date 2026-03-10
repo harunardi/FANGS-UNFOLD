@@ -1,10 +1,10 @@
-Iteration: 1, num_source: 1, loc_conv = [107], loc = [316], frequency: 0.01, Real magnitude = [0.01], Imaginary magnitude = [0.06]
-	Timing: Green=10.626353s, GREEDY=345.758091s, GREEDY_OPTIMIZED=167.107235s, Total_iter=530.386450s
-Iteration: 2, num_source: 1, loc_conv = [142], loc = [351], frequency: 0.05623413251903491, Real magnitude = [0.08], Imaginary magnitude = [0.05]
-	Timing: Green=13.257447s, GREEDY=354.863317s, GREEDY_OPTIMIZED=171.819904s, Total_iter=547.059991s
-Iteration: 3, num_source: 1, loc_conv = [361], loc = [654], frequency: 0.31622776601683794, Real magnitude = [0.06], Imaginary magnitude = [0.06]
-	Timing: Green=13.791430s, GREEDY=350.021521s, GREEDY_OPTIMIZED=171.905204s, Total_iter=542.394291s
-Iteration: 4, num_source: 1, loc_conv = [752], loc = [1207], frequency: 1.7782794100389228, Real magnitude = [0.05], Imaginary magnitude = [0.0]
-	Timing: Green=13.936504s, GREEDY=358.168676s, GREEDY_OPTIMIZED=172.491096s, Total_iter=551.281118s
-Iteration: 5, num_source: 1, loc_conv = [585], loc = [932], frequency: 10.0, Real magnitude = [0.05], Imaginary magnitude = [0.07]
-	Timing: Green=14.222733s, GREEDY=356.475225s, GREEDY_OPTIMIZED=175.554914s, Total_iter=553.684871s
+Iteration: 1, num_source: 1, loc_conv = [26], loc = [157], frequency: 0.01, Real magnitude = [0.01], Imaginary magnitude = [0.09]
+	Timing: Green=9.621693s, GREEDY_OPTIMIZED=26.408080s, Total_iter=45.456758s
+Iteration: 2, num_source: 1, loc_conv = [904], loc = [1701], frequency: 0.05623413251903491, Real magnitude = [0.1], Imaginary magnitude = [0.0]
+	Timing: Green=9.402561s, GREEDY_OPTIMIZED=12.040939s, Total_iter=26.927749s
+Iteration: 3, num_source: 1, loc_conv = [1479], loc = [2480], frequency: 0.31622776601683794, Real magnitude = [0.07], Imaginary magnitude = [0.01]
+	Timing: Green=8.947162s, GREEDY_OPTIMIZED=10.684101s, Total_iter=25.214338s
+Iteration: 4, num_source: 1, loc_conv = [1361], loc = [2296], frequency: 1.7782794100389228, Real magnitude = [0.06], Imaginary magnitude = [0.01]
+	Timing: Green=7.978994s, GREEDY_OPTIMIZED=13.523114s, Total_iter=27.065616s
+Iteration: 5, num_source: 1, loc_conv = [1268], loc = [2179], frequency: 10.0, Real magnitude = [0.06], Imaginary magnitude = [0.06]
+	Timing: Green=9.216869s, GREEDY_OPTIMIZED=11.375248s, Total_iter=26.082792s
