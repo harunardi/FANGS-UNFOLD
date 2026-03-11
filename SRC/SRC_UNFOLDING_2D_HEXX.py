@@ -7,7 +7,6 @@ import scipy.linalg
 from itertools import combinations, islice
 from math import comb
 from petsc4py import PETSc
-from scipy.linalg import qr, solve_triangular
 from scipy.linalg import lstsq
 from scipy.linalg import lu_factor, lu_solve
 
@@ -2300,33 +2299,16 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
         else:
             print(f"Criterion not met with first atom {first_atom_keys}. Restarting with a new atom.")
 
-
+    # Final check for the best solution
     if valid_solutions_GREEDY:
-        best_entry = None  # (residual_norm_obs, num_terms, first_atom_keys, sel_idx, coeffs_obs)
-        for first_atom_keys, selected_key_list in valid_solutions_GREEDY.items():
-            sel_idx = [key_to_idx[k] for k in selected_key_list]
+        best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
+        print(f"The best valid solution is with atom {best_atom} with selected atoms = {valid_solutions_GREEDY[best_atom]}.")
+        valid_solution_GREEDY = valid_solutions_GREEDY[best_atom]
 
-            # Observed fit (consistent with selection space)
-            A_obs = X[:, sel_idx]
-            coeffs_obs, *_ = np.linalg.lstsq(A_obs, y_dPHI, rcond=None)
-            rn_obs = np.linalg.norm(y_dPHI - A_obs @ coeffs_obs)
-
-            cand = (rn_obs, len(sel_idx), first_atom_keys, sel_idx, coeffs_obs)
-            if best_entry is None or cand < best_entry:
-                best_entry = cand
-
-        rn_best, num_terms_best, best_atom, best_sel_idx, _ = best_entry
-        print(f"The best valid solution is with atom {best_atom} "
-              f"with {num_terms_best} term(s), residual (obs) = {rn_best:.6e}.")
-
-        # Final coefficients on FULL dictionary (more robust globally)
-        A_full = G_full[:, best_sel_idx]  # view
-        coeffs, *_ = np.linalg.lstsq(A_full, y_full, rcond=None)
-
-        best_selected_keys = [keys[j] for j in best_sel_idx]
-        coefficients = dict(zip(best_selected_keys, coeffs))
-
-        dPHI_temp_GREEDY = A_full @ coeffs  # vectorized, no Python sum
+        A = np.array([G_dictionary_sampled[k] for k in valid_solution_GREEDY]).T
+        coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+        coefficients = dict(zip(valid_solution_GREEDY, coeffs))
+        dPHI_temp_GREEDY = sum(c * G_dictionary[k] for k, c in zip(valid_solution_GREEDY, coeffs))
     else:
         print("Failed to find a valid solution within the maximum number of outer iterations.")
 

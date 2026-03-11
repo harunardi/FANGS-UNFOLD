@@ -7,6 +7,7 @@ import scipy.linalg
 from itertools import combinations, islice
 from math import comb
 from petsc4py import PETSc
+from scipy.linalg import lu_factor, lu_solve
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -2223,3 +2224,443 @@ def main_unfold_3D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group
         print("Failed to find a valid solution within the maximum number of outer iterations.")
 
     return dPHI_temp_GREEDY, dS_unfold_GREEDY_temp
+
+def main_unfold_3D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, K_max, conv, output_dir, case_name, x, y, z):
+    conv_array = np.array(conv)
+    max_conv = max(conv)
+    non_zero_conv = np.nonzero(conv)[0]
+    dPHI_temp_conv = conv_array[non_zero_conv] - 1
+    dPHI = np.zeros(group * N, dtype=complex)
+    S_all = np.zeros(group * N, dtype=complex)
+    for g in range(group):
+        dPHI_temp_start = g * max(conv)
+        dPHI[g * N + non_zero_conv] = dPHI_temp[dPHI_temp_start + dPHI_temp_conv]
+        S_all[g * N + non_zero_conv] = S[dPHI_temp_start + dPHI_temp_conv]
+        for n in range(N):
+            if conv[n] == 0:
+                dPHI[g*N+n] = np.nan
+                S_all[g*N+n] = np.nan
+    dPHI_reshaped_plot = np.reshape(dPHI, (group, K_max, J_max, I_max))
+    S_all_reshaped = np.reshape(S_all, (group, N))
+
+    non_zero_indices = np.nonzero(dPHI_temp_meas)[0]
+    dPHI_temp_meas = np.array(dPHI_temp_meas)
+
+    # Create dictionary to store each atom (column of G_matrix_full)
+    G_dictionary = {}
+    for g in range(group):
+        for n in range(max_conv):
+            m = g * max_conv + n
+            G_dictionary[f"G_g{g+1}_n{n+1}"] = G_matrix[:, m]
+
+    # Sample the dictionary atoms at known points (sparse form)
+    G_dictionary_sampled = {k: np.zeros_like(dPHI_temp_meas, dtype=complex) for k in G_dictionary}
+    for k, o in G_dictionary.items():
+        G_dictionary_sampled[k][non_zero_indices] = o[non_zero_indices]
+
+    keys = list(G_dictionary_sampled.keys())
+    key_to_idx = {k: i for i, k in enumerate(keys)}
+    G_full = np.column_stack([G_dictionary[k] for k in keys]).astype(complex, copy=False)#  (full, non‑sampled dictionary)
+    X_full = np.column_stack([G_dictionary_sampled[k] for k in keys]).astype(complex, copy=False)
+    y_full = np.asarray(dPHI_temp_meas, dtype=complex)   
+    obs = np.asarray(non_zero_indices)
+    X = X_full[obs, :]          # shape (M_obs, N)
+    y_dPHI = y_full[obs]             # shape (M_obs,)
+    num_atoms = X.shape[1]      # N
+
+##### 08. GREEDY
+    os.makedirs(f'{output_dir}/{case_name}_08_GREEDY', exist_ok=True)
+    output_GREEDY = f'{output_dir}/{case_name}_08_GREEDY/{case_name}'
+
+    dPHI_temp_meas_reshaped = np.reshape(dPHI_temp_meas, (group, max_conv))
+
+    # Define zeroed dPHI as dPHI_zero
+    non_zero_conv = np.nonzero(conv)[0]
+    dPHI_temp_conv = conv_array[non_zero_conv] - 1
+    dPHI_meas = np.zeros((group* N), dtype=complex) # 1D list, size (group * N)
+
+    for g in range(group):
+        dPHI_temp_start = g * max(conv)
+        dPHI_meas[g * N + non_zero_conv] = dPHI_temp_meas[dPHI_temp_start + dPHI_temp_conv]
+        for n in range(N):
+            if conv[n] == 0:
+                dPHI_meas[g*N+n] = np.nan
+
+    # Plot dPHI_zero_reshaped
+    dPHI_meas_reshaped = np.reshape(dPHI_meas, (group, K_max, J_max, I_max)) #3D array, size (group, J_max, I_max)
+    for g in range(group):
+        image_files_mag = []
+        image_files_phase = []
+        for k in range(K_max):
+            filename_mag_dPHI_meas = plot_heatmap_3D_general(dPHI_meas_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dPHI{g+1}_meas, Z={k+1}', output=output_GREEDY, varname='dPHI_meas', case_name=case_name, process_data='magnitude')
+            filename_phase_dPHI_meas = plot_heatmap_3D_general(dPHI_meas_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dPHI{g+1}_meas, Z={k+1}', output=output_GREEDY, varname='dPHI_meas', case_name=case_name, process_data='phase')
+            image_files_mag.append(filename_mag_dPHI_meas)
+            image_files_phase.append(filename_phase_dPHI_meas)
+        gif_filename_mag_dPHI_meas = f'{output_GREEDY}_magnitude_dPHI_meas_animation_G{g+1}.gif'
+        gif_filename_phase_dPHI_meas = f'{output_GREEDY}_phase_dPHI_meas_animation_G{g+1}.gif'
+        images_mag_dPHI_meas = [Image.open(img) for img in image_files_mag]
+        images_phase_dPHI_meas = [Image.open(img) for img in image_files_phase]
+        images_mag_dPHI_meas[0].save(gif_filename_mag_dPHI_meas, save_all=True, append_images=images_mag_dPHI_meas[1:], duration=300, loop=0)
+        images_phase_dPHI_meas[0].save(gif_filename_phase_dPHI_meas, save_all=True, append_images=images_phase_dPHI_meas[1:], duration=300, loop=0)
+
+    # Initialize variables for the higher loop
+    valid_solution_GREEDY = False  # Flag to indicate a valid solution
+    outer_iter = 0
+#    inner_iter = 0
+    tol_GREEDY = 1E-10  # Stopping tolerance
+    comb_first_atom = 1
+#    selected_atoms = []
+    contribution_threshold = 1e-6  # Define the contribution threshold
+#    all_outer_iter_len = len(G_dictionary) #+ len(list(combinations(G_dictionary_sampled.keys(), 2)))
+
+    # Build all possible "first atom" combinations once
+    first_atom_indices_iter = list(combinations(range(num_atoms), comb_first_atom))
+
+    # Dictionary to store valid solutions with term counts
+    valid_solutions_GREEDY = {}
+
+    # Precompute column norms once outside all loops:
+    col_norm_sq = np.einsum('ij,ij->j', X.conj(), X).real  # shape (N,)
+
+#    # Iterate over possible first atoms
+#    while outer_iter < all_outer_iter_len:
+#        first_atom_iter = combinations(G_dictionary_sampled.keys(), comb_first_atom)
+#
+#        for first_atom in first_atom_iter:
+#            # Initialize residual and coefficients
+#            residual = dPHI_temp_meas.copy()
+#            selected_atoms = list(first_atom)
+#            coefficients = []
+#            residual_norm = np.linalg.norm(residual)
+#
+#            # Form the initial matrix with the first atom
+#            A = np.array([G_dictionary_sampled[k] for k in first_atom]).T
+#            coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+#            residual = dPHI_temp_meas - A @ coeffs
+#            residual_norm = np.linalg.norm(residual)
+#            print(f"Outer iteration {outer_iter+1}: Trying first atom {first_atom}, current residual norm = {residual_norm:.6e}")
+#
+#            # Perform Greedy Residual Minimization
+#            prev_selected_atoms_len = 0
+#            constant_len_counter = 0
+#            while residual_norm > tol_GREEDY:
+#                residuals = {}
+#                for k in combinations(G_dictionary_sampled.keys(), comb_first_atom):
+#                    # Skip this combination if any atom is already selected
+#                    if any(atom in selected_atoms for atom in k):
+#                        continue
+#                    temp_atoms = selected_atoms + list(k) #[k]
+#                    A_temp = np.array([G_dictionary_sampled[a] for a in temp_atoms]).T
+#                    coeffs_temp = np.linalg.lstsq(A_temp, dPHI_temp_meas, rcond=None)[0]
+#                    residuals[k] = np.linalg.norm(dPHI_temp_meas - A_temp @ coeffs_temp)
+#                chosen_atom = min(residuals, key=residuals.get)
+#
+#                if isinstance(chosen_atom, tuple):  # If chosen_atom is a tuple, extend the list
+#                    for atom in chosen_atom:
+#                        if atom not in selected_atoms:
+#                            selected_atoms.append(atom)
+#                else:  # If chosen_atom is a single key, append it
+#                    if chosen_atom not in selected_atoms:
+#                        selected_atoms.append(chosen_atom)
+#
+#                # Form matrix of selected atoms
+#                A = np.array([G_dictionary_sampled[k] for k in selected_atoms]).T
+#
+#                # Solve least-squares problem to update coefficients
+#                coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+#                coefficients = dict(zip(selected_atoms, coeffs))
+#
+#                # Update residual
+#                residual = dPHI_temp_meas - A @ coeffs
+#                residual_norm = np.linalg.norm(residual)
+#
+#                print(f'   Chosen atom = {chosen_atom}, length of selected atoms = {len(selected_atoms)}, current residual norm = {residual_norm:.6e}')
+#
+#                # Check if the length of selected_atoms remains constant
+#                if len(selected_atoms) == prev_selected_atoms_len:
+#                    constant_len_counter += 1
+#                else:
+#                    constant_len_counter = 0  # Reset counter if length changes
+#
+#                prev_selected_atoms_len = len(selected_atoms)
+#
+#                if constant_len_counter >= 10:
+#                    print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
+#                    break
+#
+#                inner_iter += 1
+#
+#            # Check for low contribution atoms
+#            contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_atoms, coeffs)}
+#            low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
+#
+#            if low_contribution_atoms:
+#                for atom in low_contribution_atoms:
+#                    if atom in selected_atoms:
+#                        selected_atoms.remove(atom)
+#            print(f"   Selected_atoms = {selected_atoms}, residual norm = {residual_norm:.6e}")
+#
+#            # Validate the reconstructed signal against the criterion
+#            if residual_norm < tol_GREEDY:
+#                valid_solution = True  # Criterion satisfied
+#                print(f"Valid solution found with first atom {first_atom} in outer iteration {outer_iter+1}.")
+#                valid_solutions_GREEDY[first_atom] = selected_atoms #len(selected_atoms)
+#            else:
+#                print(f"Criterion not met with first atom {first_atom}. Restarting with a new atom.")
+#
+#            outer_iter += 1
+
+    # ---------- Outer loop over first atom(s) ----------
+    for outer_iter, first_atom_idx_tuple in enumerate(first_atom_indices_iter, start=1):
+
+        # Initialize residual and selected atoms
+        selected_idx = list(first_atom_idx_tuple)  # indices into columns of X
+        A = X[:, selected_idx]                     # view, no copy
+        
+        # Solve LS and residual
+        coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+        residual = y_dPHI - A @ coeffs
+        residual_norm = np.linalg.norm(residual)
+
+        first_atom_keys = tuple(keys[j] for j in first_atom_idx_tuple)
+        print(f"Outer iteration {outer_iter}: Trying first atom {first_atom_keys}, "
+          f"current residual norm = {residual_norm:.6e}")
+
+        prev_selected_len = 0
+        constant_len_counter = 0
+
+        # ---------- Inner greedy loop (QR-based exact scoring, no per-candidate LS) ----------
+        while residual_norm > tol_GREEDY:
+            # Build boolean mask / remaining indices
+            selected_mask = np.zeros(num_atoms, dtype=bool)
+            selected_mask[selected_idx] = True
+            remaining = np.flatnonzero(~selected_mask)
+            if remaining.size < comb_first_atom:
+                break
+            if comb_first_atom != 1:
+                raise NotImplementedError("QR shortcut shown here assumes comb_first_atom == 1")
+
+            # Economy QR of current A (once per iteration)
+            if len(selected_idx) == 0:
+                # No columns selected yet: Q is empty, so QQ^H = 0
+                Q = None
+                # Current residual r is y_dPHI itself
+                r = residual  # already y_dPHI in your first step
+                rn_sq = residual_norm**2
+                # For scoring: denom_j = ‖x_j‖², u = X_remᴴ @ r
+                X_rem = X[:, remaining]  # view
+                u = X_rem.conj().T @ r                         # (R,)
+                denom = col_norm_sq[remaining].copy()          # (R,)
+            else:
+                # Compute Q of A = X[:, selected_idx]
+                Q, _ = np.linalg.qr(X[:, selected_idx], mode='reduced')  # Q: (M_obs, k)
+                r = residual - Q @ (Q.conj().T @ residual)
+                rn_sq = float(np.vdot(r, r).real)
+
+                # Batch projections
+                X_rem = X[:, remaining]                        # (M_obs, R)
+                u = X_rem.conj().T @ r                         # (R,)   correlations with residual
+                B = Q.conj().T @ X_rem                         # (k, R) projection onto current subspace
+                denom = col_norm_sq[remaining] - np.sum(np.abs(B)**2, axis=0)  # (R,)
+
+            # Avoid division by zero / nearly dependent candidates
+            eps = 1e-15
+            valid = denom > eps
+            if not np.any(valid):
+                print("   No linearly independent candidates left. Stopping.")
+                break
+            
+            # Exact residual for each candidate after refit
+            rn_sq_candidates = np.full(remaining.shape, np.inf, dtype=float)
+            rn_sq_candidates[valid] = rn_sq - (np.abs(u[valid])**2) / denom[valid]
+
+            # Pick best candidate (min residual)
+            best_pos = int(np.argmin(rn_sq_candidates))
+            best_j = int(remaining[best_pos])
+            best_rn = float(np.sqrt(max(rn_sq_candidates[best_pos], 0.0)))
+
+            # Add chosen atom
+            selected_idx.append(best_j)
+
+            # Refit with updated set
+            A = X[:, selected_idx]
+            coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+            residual = y_dPHI - A @ coeffs
+            residual_norm = np.linalg.norm(residual)
+
+            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
+                  f"current residual norm = {residual_norm:.6e}")
+
+            if len(selected_idx) == prev_selected_len:
+                constant_len_counter += 1
+            else:
+                constant_len_counter = 0
+            prev_selected_len = len(selected_idx)
+            if constant_len_counter >= 10:
+                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
+                break
+
+        # ---------- Post-step pruning (fixed + refit) ----------
+        # Compute contributions relative to the largest coefficient magnitude
+        if coeffs.size > 0:
+            max_abs = float(np.max(np.abs(coeffs)))
+        else:
+            max_abs = 0.0
+
+        if max_abs > 0:
+            contributions = np.abs(coeffs) / max_abs
+            # Find low contribution indices (by position within the selected set)
+            low_positions = [i for i, c in enumerate(contributions) if c < contribution_threshold]
+        else:
+            contributions = np.zeros_like(coeffs)
+            low_positions = list(range(len(coeffs)))  # everything is "low" if all zeros
+
+        if low_positions:
+            # Remove the corresponding selected indices
+            keep_positions = [i for i in range(len(selected_idx)) if i not in low_positions]
+            removed = [selected_idx[i] for i in range(len(selected_idx)) if i in low_positions]
+            selected_idx = [selected_idx[i] for i in keep_positions]
+
+            if len(selected_idx) > 0:
+                # Refit and recompute residual after pruning
+                A = X[:, selected_idx]
+                coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+                residual = y_dPHI - A @ coeffs
+                residual_norm = np.linalg.norm(residual)
+            else:
+                # No atoms left
+                coeffs = np.array([], dtype=complex)
+                residual = y_dPHI.copy()
+                residual_norm = np.linalg.norm(residual)
+
+        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
+
+        # ---------- Validate and store ----------
+        if residual_norm < tol_GREEDY:
+            valid_solution_GREEDY = True
+            print(f"Valid solution found with first atom {first_atom_keys} in outer iteration {outer_iter}.")
+            valid_solutions_GREEDY[first_atom_keys] = [keys[j] for j in selected_idx]
+        else:
+            print(f"Criterion not met with first atom {first_atom_keys}. Restarting with a new atom.")
+
+    # Final check for the best solution
+    if valid_solutions_GREEDY:
+        best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
+        print(f"The best valid solution is with atom {best_atom} with selected atoms = {valid_solutions_GREEDY[best_atom]}.")
+        valid_solution_GREEDY = valid_solutions_GREEDY[best_atom]
+
+        A = np.array([G_dictionary_sampled[k] for k in valid_solution_GREEDY]).T
+        coeffs = np.linalg.lstsq(A, dPHI_temp_meas, rcond=None)[0]
+        coefficients = dict(zip(valid_solution_GREEDY, coeffs))
+        dPHI_temp_GREEDY = sum(c * G_dictionary[k] for k, c in zip(valid_solution_GREEDY, coeffs))
+    else:
+        print("Failed to find a valid solution within the maximum number of outer iterations.")
+
+    ####################################################################################################
+    if valid_solution_GREEDY:
+        # Reshape reconstructed signal
+        non_zero_conv = np.nonzero(conv)[0]
+        dPHI_temp_conv = conv_array[non_zero_conv] - 1
+        dPHI_GREEDY = np.zeros((group* N), dtype=complex) # 1D list, size (group * N)
+
+        for g in range(group):
+            dPHI_temp_start = g * max(conv)
+            dPHI_GREEDY[g * N + non_zero_conv] = dPHI_temp_GREEDY[dPHI_temp_start + dPHI_temp_conv]
+            for n in range(N):
+                if conv[n] == 0:
+                    dPHI_GREEDY[g*N+n] = np.nan
+
+        # Plot dPHI_zero_reshaped
+        dPHI_GREEDY_reshaped = np.reshape(dPHI_GREEDY, (group, K_max, J_max, I_max)) #3D array, size (group, J_max, I_max)
+        for g in range(group):
+            image_files_mag = []
+            image_files_phase = []
+            for k in range(K_max):
+                filename_mag_dPHI_GREEDY = plot_heatmap_3D_general(dPHI_GREEDY_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dPHI{g+1}_GREEDY, Z={k+1}', output=output_GREEDY, varname='dPHI_GREEDY', case_name=case_name, process_data='magnitude')
+                filename_phase_dPHI_GREEDY = plot_heatmap_3D_general(dPHI_GREEDY_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dPHI{g+1}_GREEDY, Z={k+1}', output=output_GREEDY, varname='dPHI_GREEDY', case_name=case_name, process_data='phase')
+                image_files_mag.append(filename_mag_dPHI_GREEDY)
+                image_files_phase.append(filename_phase_dPHI_GREEDY)
+            gif_filename_mag_dPHI_GREEDY = f'{output_GREEDY}_magnitude_dPHI_GREEDY_animation_G{g+1}.gif'
+            gif_filename_phase_dPHI_GREEDY = f'{output_GREEDY}_phase_dPHI_GREEDY_animation_G{g+1}.gif'
+            images_mag_dPHI_GREEDY = [Image.open(img) for img in image_files_mag]
+            images_phase_dPHI_GREEDY = [Image.open(img) for img in image_files_phase]
+            images_mag_dPHI_GREEDY[0].save(gif_filename_mag_dPHI_GREEDY, save_all=True, append_images=images_mag_dPHI_GREEDY[1:], duration=300, loop=0)
+            images_phase_dPHI_GREEDY[0].save(gif_filename_phase_dPHI_GREEDY, save_all=True, append_images=images_phase_dPHI_GREEDY[1:], duration=300, loop=0)
+
+        ######################################################################################################
+        # --------------- UNFOLD GREEEN'S FUNCTION USING DIRECT METHOD -------------------
+        print(f'\nSolve for dS using Direct Method')
+#        G_inverse = scipy.linalg.inv(G_matrix)
+#
+#        # UNFOLD ALL INTERPOLATED
+#        dS_unfold_GREEDY_temp = np.dot(G_inverse, dPHI_temp_GREEDY)
+        lu, piv = lu_factor(G_matrix)
+        dS_unfold_GREEDY_temp = lu_solve((lu, piv), dPHI_temp_GREEDY)
+    
+        # POSTPROCESS
+        print(f'Postprocessing to appropriate dPHI')
+        non_zero_conv = np.nonzero(conv)[0]
+        dS_unfold_temp_indices = conv_array[non_zero_conv] - 1
+        dS_unfold_GREEDY = np.zeros((group* N), dtype=complex)
+
+        for g in range(group):
+            dS_unfold_temp_start = g * max(conv)
+            dS_unfold_GREEDY[g * N + non_zero_conv] = dS_unfold_GREEDY_temp[dS_unfold_temp_start + dS_unfold_temp_indices]
+            for n in range(N):
+                if conv[n] == 0:
+                    dS_unfold_GREEDY[g*N+n] = np.nan
+
+        dS_unfold_GREEDY_reshaped = np.reshape(dS_unfold_GREEDY,(group,N))
+        dS_unfold_GREEDY_plot = np.reshape(dS_unfold_GREEDY, (group, K_max, J_max, I_max))
+
+        for g in range(group):
+            image_files_mag = []
+            image_files_phase = []
+            for k in range(K_max):
+                filename_mag_dS_unfold_GREEDY = plot_heatmap_3D_general(dS_unfold_GREEDY_plot[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dS{g+1}_unfold_GREEDY, Z={k+1}', output=output_GREEDY, varname='dS_unfold_GREEDY', case_name=case_name, process_data='magnitude')
+                filename_phase_dS_unfold_GREEDY = plot_heatmap_3D_general(dS_unfold_GREEDY_plot[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of dS{g+1}_unfold_GREEDY, Z={k+1}', output=output_GREEDY, varname='dS_unfold_GREEDY', case_name=case_name, process_data='phase')
+                image_files_mag.append(filename_mag_dS_unfold_GREEDY)
+                image_files_phase.append(filename_phase_dS_unfold_GREEDY)
+            gif_filename_mag_dS_unfold_GREEDY = f'{output_GREEDY}_magnitude_dS_unfold_GREEDY_animation_G{g+1}.gif'
+            gif_filename_phase_dS_unfold_GREEDY = f'{output_GREEDY}_phase_dS_unfold_GREEDY_animation_G{g+1}.gif'
+            images_mag_dS_unfold_GREEDY = [Image.open(img) for img in image_files_mag]
+            images_phase_dS_unfold_GREEDY = [Image.open(img) for img in image_files_phase]
+            images_mag_dS_unfold_GREEDY[0].save(gif_filename_mag_dS_unfold_GREEDY, save_all=True, append_images=images_mag_dS_unfold_GREEDY[1:], duration=300, loop=0)
+            images_phase_dS_unfold_GREEDY[0].save(gif_filename_phase_dS_unfold_GREEDY, save_all=True, append_images=images_phase_dS_unfold_GREEDY[1:], duration=300, loop=0)
+
+        # OUTPUT
+        print(f'Generating JSON output for dS')
+        output_direct1 = {}
+        for g in range(group):
+            dS_unfold_direct_groupname = f'dS_unfold{g+1}'
+            dS_unfold_direct_list = [{"real": x.real, "imaginary": x.imag} for x in dS_unfold_GREEDY_reshaped[g]]
+            output_direct1[dS_unfold_direct_groupname] = dS_unfold_direct_list
+
+        # Save data to JSON file
+        with open(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
+            json.dump(output_direct1, json_file, indent=4)
+
+        # Calculate error and compare
+        diff_S1_GREEDY = np.abs(np.array(dS_unfold_GREEDY_reshaped[0]) - np.array(S_all_reshaped[0]))/(np.abs(np.array(S_all_reshaped[0])) + 1E-6) * 100
+        diff_S2_GREEDY = np.abs(np.array(dS_unfold_GREEDY_reshaped[1]) - np.array(S_all_reshaped[1]))/(np.abs(np.array(S_all_reshaped[1])) + 1E-6) * 100
+        diff_S_GREEDY = [[diff_S1_GREEDY], [diff_S2_GREEDY]]
+        diff_S_GREEDY_array = np.array(diff_S_GREEDY)
+        diff_S_GREEDY_reshaped = diff_S_GREEDY_array.reshape(group, K_max, J_max, I_max)
+
+        for g in range(group):
+            image_files_mag = []
+            image_files_phase = []
+            for k in range(K_max):
+                filename_mag_diff_S_GREEDY = plot_heatmap_3D_general(diff_S_GREEDY_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of diff_S{g+1}_GREEDY, Z={k+1}', output=output_GREEDY, varname='diff_S_GREEDY', case_name=case_name, process_data='magnitude')
+                filename_phase_diff_S_GREEDY = plot_heatmap_3D_general(diff_S_GREEDY_reshaped[g, k, :, :], g+1, k+1, x, y, cmap='viridis', title=f'2D Plot of diff_S{g+1}_GREEDY, Z={k+1}', output=output_GREEDY, varname='diff_S_GREEDY', case_name=case_name, process_data='phase')
+                image_files_mag.append(filename_mag_diff_S_GREEDY)
+                image_files_phase.append(filename_phase_diff_S_GREEDY)
+            gif_filename_mag_diff_S_GREEDY = f'{output_GREEDY}_magnitude_diff_S_GREEDY_animation_G{g+1}.gif'
+            gif_filename_phase_diff_S_GREEDY = f'{output_GREEDY}_phase_diff_S_GREEDY_animation_G{g+1}.gif'
+            images_mag_diff_S_GREEDY = [Image.open(img) for img in image_files_mag]
+            images_phase_diff_S_GREEDY = [Image.open(img) for img in image_files_phase]
+            images_mag_diff_S_GREEDY[0].save(gif_filename_mag_diff_S_GREEDY, save_all=True, append_images=images_mag_diff_S_GREEDY[1:], duration=300, loop=0)
+            images_phase_diff_S_GREEDY[0].save(gif_filename_phase_diff_S_GREEDY, save_all=True, append_images=images_phase_diff_S_GREEDY[1:], duration=300, loop=0)
+
+    return dPHI_temp_GREEDY, dS_unfold_GREEDY_temp
+

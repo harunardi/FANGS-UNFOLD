@@ -7,6 +7,7 @@ from scipy.linalg import lstsq
 import scipy.linalg
 from itertools import combinations, islice
 from math import comb
+from scipy.linalg import lu_factor, lu_solve
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -1096,6 +1097,286 @@ def main_unfold_1D_greedy_new(dPHI_meas, dPHI, S, G_matrix, group, N, output_dir
 
         # Save data to JSON file
         with open(f'{output_dir}/{case_name}_08_GREEDY_NEW/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
+            json.dump(output_direct1, json_file, indent=4)
+
+    else:
+        print("Failed to find a valid solution within the maximum number of outer iterations.")
+
+    return dPHI_GREEDY, dS_unfold_GREEDY
+
+#######################################################################################################
+def main_unfold_1D_greedy_optimized(dPHI_meas, dPHI, S, G_matrix, group, N, output_dir, case_name, x):
+    dPHI_reshaped = np.reshape(dPHI, (group, N))
+    S_reshaped = np.reshape(S, (group, N))
+    non_zero_indices = np.nonzero(dPHI_meas)[0]
+    dPHI_meas = np.array(dPHI_meas)
+    dPHI_meas_reshaped = np.reshape(dPHI_meas, (group, N))
+
+    # Create dictionary to store each atom (column of G_matrix_full)
+    G_dictionary = {}
+    for g in range(group):
+        for n in range(N):
+            m = g * N + n
+            G_dictionary[f"G_g{g+1}_n{n+1}"] = G_matrix[:, m]
+
+    # Sample the dictionary atoms at known points (sparse form)
+    G_dictionary_sampled = {k: np.zeros_like(dPHI_meas, dtype=complex) for k in G_dictionary}
+    for k, o in G_dictionary.items():
+        G_dictionary_sampled[k][non_zero_indices] = o[non_zero_indices]
+
+    keys = list(G_dictionary_sampled.keys())
+    key_to_idx = {k: i for i, k in enumerate(keys)}
+    G_full = np.column_stack([G_dictionary[k] for k in keys]).astype(complex, copy=False)#  (full, non‑sampled dictionary)
+    X_full = np.column_stack([G_dictionary_sampled[k] for k in keys]).astype(complex, copy=False)
+    y_full = np.asarray(dPHI_meas, dtype=complex)   
+    obs = np.asarray(non_zero_indices)
+    X = X_full[obs, :]          # shape (M_obs, N)
+    y_dPHI = y_full[obs]             # shape (M_obs,)
+    num_atoms = X.shape[1]      # N
+
+##### 08. GREEDY
+    os.makedirs(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED', exist_ok=True)
+
+    # Initialize variables for the higher loop
+    valid_solution_GREEDY = False  # Flag to indicate a valid solution
+    outer_iter = 0
+    tol_GREEDY = 1E-10  # Stopping tolerance
+    comb_first_atom = 1
+    contribution_threshold = 1e-6  # Define the contribution threshold
+    selected_atoms = []
+
+    # Build all possible "first atom" combinations once
+    first_atom_indices_iter = list(combinations(range(num_atoms), comb_first_atom))
+
+    # Dictionary to store valid solutions with term counts
+    valid_solutions_GREEDY = {}
+
+    # Precompute column norms once outside all loops:
+    col_norm_sq = np.einsum('ij,ij->j', X.conj(), X).real  # shape (N,)
+
+    # ---------- Outer loop over first atom(s) ----------
+    for outer_iter, first_atom_idx_tuple in enumerate(first_atom_indices_iter, start=1):
+
+        # Initialize residual and selected atoms
+        selected_idx = list(first_atom_idx_tuple)  # indices into columns of X
+        A = X[:, selected_idx]                     # view, no copy
+        
+        # Solve LS and residual
+        coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+        residual = y_dPHI - A @ coeffs
+        residual_norm = np.linalg.norm(residual)
+
+        first_atom_keys = tuple(keys[j] for j in first_atom_idx_tuple)
+        print(f"Outer iteration {outer_iter}: Trying first atom {first_atom_keys}, "
+          f"current residual norm = {residual_norm:.6e}")
+
+        prev_selected_len = 0
+        constant_len_counter = 0
+
+        # ---------- Inner greedy loop (QR-based exact scoring, no per-candidate LS) ----------
+        while residual_norm > tol_GREEDY:
+            # Build boolean mask / remaining indices
+            selected_mask = np.zeros(num_atoms, dtype=bool)
+            selected_mask[selected_idx] = True
+            remaining = np.flatnonzero(~selected_mask)
+            if remaining.size < comb_first_atom:
+                break
+            if comb_first_atom != 1:
+                raise NotImplementedError("QR shortcut shown here assumes comb_first_atom == 1")
+
+            # Economy QR of current A (once per iteration)
+            if len(selected_idx) == 0:
+                # No columns selected yet: Q is empty, so QQ^H = 0
+                Q = None
+                # Current residual r is y_dPHI itself
+                r = residual  # already y_dPHI in your first step
+                rn_sq = residual_norm**2
+                # For scoring: denom_j = ‖x_j‖², u = X_remᴴ @ r
+                X_rem = X[:, remaining]  # view
+                u = X_rem.conj().T @ r                         # (R,)
+                denom = col_norm_sq[remaining].copy()          # (R,)
+            else:
+                # Compute Q of A = X[:, selected_idx]
+                Q, _ = np.linalg.qr(X[:, selected_idx], mode='reduced')  # Q: (M_obs, k)
+                r = residual - Q @ (Q.conj().T @ residual)
+                rn_sq = float(np.vdot(r, r).real)
+
+                # Batch projections
+                X_rem = X[:, remaining]                        # (M_obs, R)
+                u = X_rem.conj().T @ r                         # (R,)   correlations with residual
+                B = Q.conj().T @ X_rem                         # (k, R) projection onto current subspace
+                denom = col_norm_sq[remaining] - np.sum(np.abs(B)**2, axis=0)  # (R,)
+
+            # Avoid division by zero / nearly dependent candidates
+            eps = 1e-15
+            valid = denom > eps
+            if not np.any(valid):
+                print("   No linearly independent candidates left. Stopping.")
+                break
+            
+            # Exact residual for each candidate after refit
+            rn_sq_candidates = np.full(remaining.shape, np.inf, dtype=float)
+            rn_sq_candidates[valid] = rn_sq - (np.abs(u[valid])**2) / denom[valid]
+
+            # Pick best candidate (min residual)
+            best_pos = int(np.argmin(rn_sq_candidates))
+            best_j = int(remaining[best_pos])
+            best_rn = float(np.sqrt(max(rn_sq_candidates[best_pos], 0.0)))
+
+            # Add chosen atom
+            selected_idx.append(best_j)
+
+            # Refit with updated set
+            A = X[:, selected_idx]
+            coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+            residual = y_dPHI - A @ coeffs
+            residual_norm = np.linalg.norm(residual)
+
+            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
+                  f"current residual norm = {residual_norm:.6e}")
+
+            if len(selected_idx) == prev_selected_len:
+                constant_len_counter += 1
+            else:
+                constant_len_counter = 0
+            prev_selected_len = len(selected_idx)
+            if constant_len_counter >= 10:
+                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
+                break
+
+        # ---------- Post-step pruning (fixed + refit) ----------
+        # Compute contributions relative to the largest coefficient magnitude
+        if coeffs.size > 0:
+            max_abs = float(np.max(np.abs(coeffs)))
+        else:
+            max_abs = 0.0
+
+        if max_abs > 0:
+            contributions = np.abs(coeffs) / max_abs
+            # Find low contribution indices (by position within the selected set)
+            low_positions = [i for i, c in enumerate(contributions) if c < contribution_threshold]
+        else:
+            contributions = np.zeros_like(coeffs)
+            low_positions = list(range(len(coeffs)))  # everything is "low" if all zeros
+
+        if low_positions:
+            # Remove the corresponding selected indices
+            keep_positions = [i for i in range(len(selected_idx)) if i not in low_positions]
+            removed = [selected_idx[i] for i in range(len(selected_idx)) if i in low_positions]
+            selected_idx = [selected_idx[i] for i in keep_positions]
+
+            if len(selected_idx) > 0:
+                # Refit and recompute residual after pruning
+                A = X[:, selected_idx]
+                coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+                residual = y_dPHI - A @ coeffs
+                residual_norm = np.linalg.norm(residual)
+            else:
+                # No atoms left
+                coeffs = np.array([], dtype=complex)
+                residual = y_dPHI.copy()
+                residual_norm = np.linalg.norm(residual)
+
+        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
+
+        # ---------- Validate and store ----------
+        if residual_norm < tol_GREEDY:
+            valid_solution_GREEDY = True
+            print(f"Valid solution found with first atom {first_atom_keys} in outer iteration {outer_iter}.")
+            valid_solutions_GREEDY[first_atom_keys] = [keys[j] for j in selected_idx]
+        else:
+            print(f"Criterion not met with first atom {first_atom_keys}. Restarting with a new atom.")
+
+    # Final check for the best solution
+    if valid_solutions_GREEDY:
+        best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
+        print(f"\nThe best valid solution is with atom {best_atom} with selected atoms = {valid_solutions_GREEDY[best_atom]}.")
+        valid_solution_GREEDY = valid_solutions_GREEDY[best_atom]
+
+        A = np.array([G_dictionary_sampled[k] for k in valid_solution_GREEDY]).T
+        coeffs = np.linalg.lstsq(A, dPHI_meas, rcond=None)[0]
+        coefficients = dict(zip(valid_solution_GREEDY, coeffs))
+        dPHI_GREEDY = sum(c * G_dictionary[k] for k, c in zip(valid_solution_GREEDY, coeffs))
+
+    ####################################################################################################
+    if valid_solution_GREEDY:
+        # Reshape reconstructed signal
+        dPHI_GREEDY_reshaped = np.reshape(dPHI_GREEDY, (group, N))
+
+        # Plot results
+        for g in range(group):
+            plt.figure()
+            plt.plot(x, np.abs(dPHI_reshaped[g])/np.max(np.abs(dPHI_reshaped[0])), 'g-', label=f'Group {g+1} - dPHI_sol')
+            plt.plot(x, np.abs(dPHI_GREEDY_reshaped[g])/np.max(np.abs(dPHI_GREEDY_reshaped[0])), 'r--', label=f'Group {g+1} - dPHI_GREEDY')
+            plt.scatter(x, np.abs(dPHI_meas_reshaped[g])/np.max(np.abs(dPHI_reshaped[0])), color='blue', label=f'Group {g+1} - dPHI_meas')
+            plt.legend()
+            plt.ylabel('Normalized amplitude of the induced neutron noise')
+            plt.title(f'Magnitude of neutron noise - Group {g+1}')
+            plt.xlabel('Distance from core centre [cm]')
+            plt.grid()
+            plt.savefig(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dPHI_GREEDY_magnitude_G{g+1}.png')
+            plt.close()
+
+        for g in range(group):
+            plt.figure()
+            plt.plot(x, np.degrees(np.angle(dPHI_reshaped[g])), 'g-', label=f'Group {g+1} - dPHI_sol')
+            plt.plot(x, np.degrees(np.angle(dPHI_GREEDY_reshaped[g])), 'r--', label=f'Group {g+1} - dPHI_GREEDY')
+            plt.legend()
+            plt.ylabel('Phase of the induced neutron noise')
+            plt.title(f'Phase of neutron noise - Group {g+1}')
+            plt.xlabel('Distance from core centre [cm]')
+            plt.grid()
+            plt.savefig(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dPHI_GREEDY_phase_G{g+1}.png')
+            plt.close()
+
+        for g in range(group):
+            plt.figure()
+            plt.plot(x, dPHI_reshaped[g].real, 'g-', label=f'Group {g+1} - dPHI_sol')
+            plt.plot(x, dPHI_GREEDY_reshaped[g].real, 'r--', label=f'Group {g+1} - dPHI_GREEDY')
+            plt.scatter(x, dPHI_meas_reshaped[g].real, color='blue', label=f'Group {g+1} - dPHI_meas')
+            plt.legend()
+            plt.ylabel('Real component of the induced neutron noise')
+            plt.title(f'Real component of neutron noise - Group {g+1}')
+            plt.xlabel('Distance from core centre [cm]')
+            plt.grid()
+            plt.savefig(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dPHI_GREEDY_real_G{g+1}.png')
+            plt.close()
+
+        ######################################################################################################
+        # --------------- UNFOLD GREEEN'S FUNCTION USING DIRECT METHOD -------------------
+        print(f'\nSolve for dS using Direct Method')
+        G_inverse = scipy.linalg.inv(G_matrix)
+
+        # UNFOLD ALL INTERPOLATED
+        dS_unfold_GREEDY = np.dot(G_inverse, dPHI_GREEDY)
+
+        # POSTPROCESS
+        print(f'Postprocessing to appropriate dPHI')
+        dS_unfold_GREEDY_reshaped = np.reshape(dS_unfold_GREEDY,(group,N))
+
+        # Plotting of the neutron noise induced by the noise source #1 in the frequency domain
+        for g in range(group):
+            plt.figure()
+            plt.plot(x, np.abs(S_reshaped[g]), 'g-', label=f'Group {g+1} - S_all')
+            plt.plot(x, np.abs(dS_unfold_GREEDY_reshaped[g]), 'r--', label=f'Group {g+1} - dS_unfold_GREEDY')
+            plt.legend()
+            plt.ylabel('Normalized amplitude of the induced neutron noise')
+            plt.title(f'Magnitude of neutron noise - Group {g+1}')
+            plt.xlabel('Distance from core centre [cm]')
+            plt.grid()
+            plt.savefig(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dS_GREEDY_magnitude_G{g+1}.png')
+            plt.close()
+
+        # OUTPUT
+        print(f'Generating JSON output for dS')
+        output_direct1 = {}
+        for g in range(group):
+            dS_unfold_direct_groupname = f'dS_unfold{g+1}'
+            dS_unfold_direct_list = [{"real": x.real, "imaginary": x.imag} for x in dS_unfold_GREEDY_reshaped[g]]
+            output_direct1[dS_unfold_direct_groupname] = dS_unfold_direct_list
+
+        # Save data to JSON file
+        with open(f'{output_dir}/{case_name}_08_GREEDY_OPTIMIZED/{case_name}_dS_unfold_GREEDY_output.json', 'w') as json_file:
             json.dump(output_direct1, json_file, indent=4)
 
     else:

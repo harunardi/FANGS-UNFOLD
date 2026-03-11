@@ -1,9 +1,0 @@
-INVERT 
-ZONE 
-SCAN 
-BRUTE 
-BACK 
-GREEDY 
-GREEDY_new 
-GREEDY_new2 
-GREEDY_optimized no, no, no, no, no

@@ -1,0 +1,10 @@
+Iteration: 1, num_source: 1, loc_conv = [147], loc = [386], frequency: 0.01, Real magnitude = [0.02], Imaginary magnitude = [0.03]
+	Timing: Green=32.801325s, GREEDY_OPTIMIZED=11.074319s, Total_iter=52.320913s
+Iteration: 2, num_source: 1, loc_conv = [162], loc = [401], frequency: 0.05623413251903491, Real magnitude = [0.1], Imaginary magnitude = [0.04]
+	Timing: Green=34.295286s, GREEDY_OPTIMIZED=13.986332s, Total_iter=58.992373s
+Iteration: 3, num_source: 1, loc_conv = [87], loc = [260], frequency: 0.31622776601683794, Real magnitude = [0.08], Imaginary magnitude = [0.0]
+	Timing: Green=35.201126s, GREEDY_OPTIMIZED=13.918458s, Total_iter=57.226058s
+Iteration: 4, num_source: 1, loc_conv = [208], loc = [471], frequency: 1.7782794100389228, Real magnitude = [0.1], Imaginary magnitude = [0.0]
+	Timing: Green=35.673206s, GREEDY_OPTIMIZED=13.516678s, Total_iter=57.085908s
+Iteration: 5, num_source: 1, loc_conv = [338], loc = [619], frequency: 10.0, Real magnitude = [0.03], Imaginary magnitude = [0.05]
+	Timing: Green=37.213896s, GREEDY_OPTIMIZED=36.406398s, Total_iter=91.400618s
