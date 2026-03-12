@@ -2090,32 +2090,58 @@ def main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
             residual = y_dPHI - A @ coeffs
             residual_norm = np.linalg.norm(residual)
 
-            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
-                  f"current residual norm = {residual_norm:.6e}")
-
-            if len(selected_idx) == prev_selected_len:
-                constant_len_counter += 1
-            else:
-                constant_len_counter = 0
-            prev_selected_len = len(selected_idx)
-            if constant_len_counter >= 10:
-                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
-                break
+#            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
+#                  f"current residual norm = {residual_norm:.6e}")
 
         # Check for low contribution atoms
-        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_idx, coeffs)}
-        low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
-
-        if low_contribution_atoms:
-            for atom in low_contribution_atoms:
-                if atom in selected_idx:
-                    selected_idx.remove(atom)
-        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
+#        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_idx, coeffs)}
+#        low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
+#
+#        if low_contribution_atoms:
+#            for atom in low_contribution_atoms:
+#                if atom in selected_idx:
+#                    selected_idx.remove(atom)
+#        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
+        keep_pruning = True
+        while keep_pruning and len(selected_idx) > 1:
+        
+            residual_effects = {}   # atom_key -> residual norm after removal
+    
+            # Try removing each atom and compute residual effect
+            for i, atom in enumerate(selected_idx):
+                trial_idx = selected_idx[:i] + selected_idx[i+1:]
+                A_trial = X[:, trial_idx]
+                coeffs_trial, *_ = np.linalg.lstsq(A_trial, y_dPHI, rcond=None)
+                r_trial = y_dPHI - A_trial @ coeffs_trial
+                rn_trial = np.linalg.norm(r_trial)
+    
+                # Save effect
+                residual_effects[atom] = rn_trial
+    
+            # Find atom whose removal results in the MINIMAL degradation
+            atom_to_remove = min(residual_effects.keys(), key=lambda a: residual_effects[a])
+            best_rn_after_removal = residual_effects[atom_to_remove]
+    
+            # Condition to accept removal
+            if best_rn_after_removal < tol_GREEDY:
+                print(f"   Pruning atom {keys[atom_to_remove]}: new residual = {best_rn_after_removal:.3e}")
+    
+                # Perform the removal
+                selected_idx.remove(atom_to_remove)
+                A = X[:, selected_idx]
+                coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+                residual = y_dPHI - A @ coeffs
+                residual_norm = np.linalg.norm(residual)
+    
+            else:
+                # Cannot remove any atom safely → stop pruning
+                keep_pruning = False
+                print(f"   Cannot prune any more atoms without exceeding tolerance. Stopping pruning.")
 
         # ---------- Validate and store ----------
         if residual_norm < tol_GREEDY:
             valid_solution_GREEDY = True
-            print(f"Valid solution found with first atom {first_atom_keys} in outer iteration {outer_iter}.")
+            print(f"Valid solution found with first atom {first_atom_keys} in outer iteration {outer_iter}, number of selected atoms = {len(selected_idx)}.")
             valid_solutions_GREEDY[first_atom_keys] = [keys[j] for j in selected_idx]
         else:
             print(f"Criterion not met with first atom {first_atom_keys}. Restarting with a new atom.")
@@ -2123,7 +2149,7 @@ def main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
     # Final check for the best solution
     if valid_solutions_GREEDY:
         best_atom = min(valid_solutions_GREEDY, key=lambda k: len(valid_solutions_GREEDY[k]))
-        print(f"The best valid solution is with atom {best_atom} with selected atoms = {valid_solutions_GREEDY[best_atom]}.")
+        print(f"The best valid solution is with atom {best_atom} with number of selected atoms = {len(valid_solutions_GREEDY[best_atom])}, selected atoms = {valid_solutions_GREEDY[best_atom]}.")
         valid_solution_GREEDY = valid_solutions_GREEDY[best_atom]
 
         A = np.array([G_dictionary_sampled[k] for k in valid_solution_GREEDY]).T
