@@ -281,23 +281,23 @@ while add_iter < additional_iter:
         else:
             validity_GREEDY.append('no')
 
-        t0_greedy_new = time.perf_counter()
-        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy_new = time.perf_counter()
-        time_greedy_new = t1_greedy_new - t0_greedy_new
-        if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
-            validity_GREEDY_new.append('yes')
-        else:
-            validity_GREEDY_new.append('no')
-
-        t0_greedy_new2 = time.perf_counter()
-        dPHI_temp_GREEDY_new2, dS_unfold_GREEDY_new2_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
-        t1_greedy_new2 = time.perf_counter()
-        time_greedy_new2 = t1_greedy_new2 - t0_greedy_new2
-        if np.allclose(S, dS_unfold_GREEDY_new2_temp, atol=1E-06):
-            validity_GREEDY_new2.append('yes')
-        else:
-            validity_GREEDY_new2.append('no')
+#        t0_greedy_new = time.perf_counter()
+#        dPHI_temp_GREEDY_new, dS_unfold_GREEDY_new_temp = main_unfold_2D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy_new = time.perf_counter()
+#        time_greedy_new = t1_greedy_new - t0_greedy_new
+#        if np.allclose(S, dS_unfold_GREEDY_new_temp, atol=1E-06):
+#            validity_GREEDY_new.append('yes')
+#        else:
+#            validity_GREEDY_new.append('no')
+#
+#        t0_greedy_new2 = time.perf_counter()
+#        dPHI_temp_GREEDY_new2, dS_unfold_GREEDY_new2_temp = main_unfold_2D_hexx_greedy_new2(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
+#        t1_greedy_new2 = time.perf_counter()
+#        time_greedy_new2 = t1_greedy_new2 - t0_greedy_new2
+#        if np.allclose(S, dS_unfold_GREEDY_new2_temp, atol=1E-06):
+#            validity_GREEDY_new2.append('yes')
+#        else:
+#            validity_GREEDY_new2.append('no')
 
         t0_greedy_optimized = time.perf_counter()
         dPHI_temp_GREEDY_optimized, dS_unfold_GREEDY_optimized_temp = main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y)
@@ -311,8 +311,8 @@ while add_iter < additional_iter:
         total_time_green += time_green
         total_time_scan += time_scan
         total_time_greedy += time_greedy
-        total_time_greedy_new += time_greedy_new
-        total_time_greedy_new2 += time_greedy_new2
+#        total_time_greedy_new += time_greedy_new
+#        total_time_greedy_new2 += time_greedy_new2
         total_time_greedy_optimized += time_greedy_optimized
 
         validity = [validity_INVERT, validity_ZONE, validity_SCAN, validity_BRUTE, validity_BACK, validity_GREEDY, validity_GREEDY_new, validity_GREEDY_new2, validity_GREEDY_optimized]
@@ -328,8 +328,8 @@ while add_iter < additional_iter:
                 f"\tTiming: Green={time_green:.6f}s, "
                 f"SCAN={time_scan:.6f}s, "
                 f"GREEDY={time_greedy:.6f}s, "
-                f"GREEDY_NEW={time_greedy_new:.6f}s, "
-                f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
+ #               f"GREEDY_NEW={time_greedy_new:.6f}s, "
+ #               f"GREEDY_NEW2={time_greedy_new2:.6f}s, "
                 f"GREEDY_OPTIMIZED={time_greedy_optimized:.6f}s, "
                 f"Total_iter={time_iter:.6f}s\n"
             )
