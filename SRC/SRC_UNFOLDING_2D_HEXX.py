@@ -2256,39 +2256,14 @@ def main_unfold_2D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
                 print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
                 break
 
-        # ---------- Post-step pruning (fixed + refit) ----------
-        # Compute contributions relative to the largest coefficient magnitude
-        if coeffs.size > 0:
-            max_abs = float(np.max(np.abs(coeffs)))
-        else:
-            max_abs = 0.0
+        # Check for low contribution atoms
+        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_idx, coeffs)}
+        low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
 
-        if max_abs > 0:
-            contributions = np.abs(coeffs) / max_abs
-            # Find low contribution indices (by position within the selected set)
-            low_positions = [i for i, c in enumerate(contributions) if c < contribution_threshold]
-        else:
-            contributions = np.zeros_like(coeffs)
-            low_positions = list(range(len(coeffs)))  # everything is "low" if all zeros
-
-        if low_positions:
-            # Remove the corresponding selected indices
-            keep_positions = [i for i in range(len(selected_idx)) if i not in low_positions]
-            removed = [selected_idx[i] for i in range(len(selected_idx)) if i in low_positions]
-            selected_idx = [selected_idx[i] for i in keep_positions]
-
-            if len(selected_idx) > 0:
-                # Refit and recompute residual after pruning
-                A = X[:, selected_idx]
-                coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
-                residual = y_dPHI - A @ coeffs
-                residual_norm = np.linalg.norm(residual)
-            else:
-                # No atoms left
-                coeffs = np.array([], dtype=complex)
-                residual = y_dPHI.copy()
-                residual_norm = np.linalg.norm(residual)
-
+        if low_contribution_atoms:
+            for atom in low_contribution_atoms:
+                if atom in selected_idx:
+                    selected_idx.remove(atom)
         print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
 
         # ---------- Validate and store ----------

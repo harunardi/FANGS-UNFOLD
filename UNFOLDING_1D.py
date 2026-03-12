@@ -20,11 +20,11 @@ from SRC.SRC_UNFOLDING_1D import *
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-from INPUTS.TASK3_TEST01a_1D1G_1SRC import *
+#from INPUTS.TASK3_TEST01a_1D1G_1SRC import *
 #from INPUTS.TASK3_TEST01b_1D1G_2SRC import *
 #from INPUTS.TASK3_TEST01c_1DMG_CSTest03 import *
 #from INPUTS.TASK3_TEST01d_1D1G_COMPLEX import *
-#from INPUTS.TASK3_TEST01e_1D1G_4SRC import *
+from INPUTS.TASK3_TEST01e_1D1G_4SRC import *
 
 # Restore the original sys.path
 sys.path = original_sys_path

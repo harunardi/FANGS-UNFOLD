@@ -32,7 +32,10 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES45_TEST02_2DMG_BIBLIS3_FAV import *
 #from INPUTS.OBJECTIVES45_TEST09_2DMG_BIBLIS_AVS3S import *
 
-from INPUTS.TASK3_TEST02a_2DMG_PWRMOX1_1SRC_AVS_NONCENTER import *
+#from INPUTS.TASK3_TEST02a_2DMG_PWRMOX1_1SRC_AVS_NONCENTER import *
+#from INPUTS.TASK3_TEST02b_2DMG_PWRMOX1_2SRC_AVS_NONCENTER import *
+#from INPUTS.TASK3_TEST02c_2DMG_PWRMOX1_3SRC_AVS_NONCENTER import *
+from INPUTS.TASK3_TEST02d_2DMG_PWRMOX1_4SRC_AVS_NONCENTER import *
 
 # Restore the original sys.path
 sys.path = original_sys_path
@@ -95,16 +98,16 @@ def main():
 #    dS_unfold_ZONE_temp = main_unfold_2D_rect_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, map_detector, map_zone, output_dir, case_name, x, y)
 #    dS_unfold_SCAN_temp = main_unfold_2D_rect_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, map_detector, map_zone, output_dir, case_name, x, y)
 #
-#### BRUTE FORCE METHOD
-    if type_noise == 'FVX' or type_noise == 'FAV':
-        print("Brute Force Skipped")
-        pass
-    else:
-        dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_2D_rect_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, map_detector, output_dir, case_name, x, y)
+##### BRUTE FORCE METHOD
+#    if type_noise == 'FVX' or type_noise == 'FAV':
+#        print("Brute Force Skipped")
+#        pass
+#    else:
+#        dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_2D_rect_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, map_detector, output_dir, case_name, x, y)
 
 #### GREEDY METHOD
 #    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
-    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
+#    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
     dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
 
     end_time = time.time()
