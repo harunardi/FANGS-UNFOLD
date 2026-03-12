@@ -2090,18 +2090,7 @@ def main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
             residual = y_dPHI - A @ coeffs
             residual_norm = np.linalg.norm(residual)
 
-#            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
-#                  f"current residual norm = {residual_norm:.6e}")
-
         # Check for low contribution atoms
-#        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_idx, coeffs)}
-#        low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
-#
-#        if low_contribution_atoms:
-#            for atom in low_contribution_atoms:
-#                if atom in selected_idx:
-#                    selected_idx.remove(atom)
-#        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
         keep_pruning = True
         while keep_pruning and len(selected_idx) > 1:
         

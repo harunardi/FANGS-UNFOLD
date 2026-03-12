@@ -1232,27 +1232,42 @@ def main_unfold_1D_greedy_optimized(dPHI_meas, dPHI, S, G_matrix, group, N, outp
             residual = y_dPHI - A @ coeffs
             residual_norm = np.linalg.norm(residual)
 
-            print(f"   Chosen atom = {keys[best_j]}, length of selected atoms = {len(selected_idx)}, "
-                  f"current residual norm = {residual_norm:.6e}")
-
-            if len(selected_idx) == prev_selected_len:
-                constant_len_counter += 1
-            else:
-                constant_len_counter = 0
-            prev_selected_len = len(selected_idx)
-            if constant_len_counter >= 10:
-                print("   Terminating loop: Length of selected_atoms remained constant for 10 iterations.")
-                break
-
         # Check for low contribution atoms
-        contributions = {atom: abs(coeff) / max(abs(coeffs)) for atom, coeff in zip(selected_idx, coeffs)}
-        low_contribution_atoms = [atom for atom, contribution in contributions.items() if contribution < contribution_threshold]
-
-        if low_contribution_atoms:
-            for atom in low_contribution_atoms:
-                if atom in selected_idx:
-                    selected_idx.remove(atom)
-        print(f"   Selected_atoms = {[keys[j] for j in selected_idx]}, residual norm = {residual_norm:.6e}")
+        keep_pruning = True
+        while keep_pruning and len(selected_idx) > 1:
+        
+            residual_effects = {}   # atom_key -> residual norm after removal
+    
+            # Try removing each atom and compute residual effect
+            for i, atom in enumerate(selected_idx):
+                trial_idx = selected_idx[:i] + selected_idx[i+1:]
+                A_trial = X[:, trial_idx]
+                coeffs_trial, *_ = np.linalg.lstsq(A_trial, y_dPHI, rcond=None)
+                r_trial = y_dPHI - A_trial @ coeffs_trial
+                rn_trial = np.linalg.norm(r_trial)
+    
+                # Save effect
+                residual_effects[atom] = rn_trial
+    
+            # Find atom whose removal results in the MINIMAL degradation
+            atom_to_remove = min(residual_effects.keys(), key=lambda a: residual_effects[a])
+            best_rn_after_removal = residual_effects[atom_to_remove]
+    
+            # Condition to accept removal
+            if best_rn_after_removal < tol_GREEDY:
+                print(f"   Pruning atom {keys[atom_to_remove]}: new residual = {best_rn_after_removal:.3e}")
+    
+                # Perform the removal
+                selected_idx.remove(atom_to_remove)
+                A = X[:, selected_idx]
+                coeffs, *_ = np.linalg.lstsq(A, y_dPHI, rcond=None)
+                residual = y_dPHI - A @ coeffs
+                residual_norm = np.linalg.norm(residual)
+    
+            else:
+                # Cannot remove any atom safely → stop pruning
+                keep_pruning = False
+                print(f"   Cannot prune any more atoms without exceeding tolerance. Stopping pruning.")
 
         # ---------- Validate and store ----------
         if residual_norm < tol_GREEDY:
