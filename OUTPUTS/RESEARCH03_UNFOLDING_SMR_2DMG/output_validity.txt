@@ -1,2 +1,0 @@
-SCAN yes
-GREEDY yes
