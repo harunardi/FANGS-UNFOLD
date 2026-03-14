@@ -8,6 +8,8 @@ from itertools import combinations, islice
 from math import comb
 from petsc4py import PETSc
 from scipy.linalg import lu_factor, lu_solve
+from sklearn.linear_model import OrthogonalMatchingPursuit
+
 
 # Prevent .pyc file generation
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
@@ -2218,4 +2220,236 @@ def main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix,
             Utils.plot_2D_rect_fixed_general(solver_type, diff_S_GREEDY_reshaped[g], x, y, g+1, cmap='viridis', output=output_GREEDY, varname=f'diff_dS_GREEDY', case_name=case_name, title=f'2D Plot of dS{g+1} GREEDY Difference Phase', process_data='phase')
 
     return dPHI_temp_GREEDY, dS_unfold_GREEDY_temp
+
+
+
+def block_omp(X, y, group, max_conv, max_blocks=5, tol=1e-10):
+    """
+    Block Orthogonal Matching Pursuit
+    Blocks = all energy groups at same spatial index
+    """
+
+    M, N = X.shape
+    residual = y.copy()
+    selected_blocks = []
+    selected_cols = []
+
+    for it in range(max_blocks):
+
+        # ----- Block correlation -----
+        block_scores = np.zeros(max_conv)
+
+        for n in range(max_conv):
+            if n in selected_blocks:
+                block_scores[n] = 0.0
+                continue
+
+            cols = [g * max_conv + n for g in range(group)]
+            Xb = X[:, cols]
+
+            # block correlation || Xb^H r ||
+            block_scores[n] = np.linalg.norm(Xb.conj().T @ residual)
+
+        # Select best block
+        best_block = int(np.argmax(block_scores))
+        best_score = block_scores[best_block]
+
+        if best_score < tol:
+            break
+
+        selected_blocks.append(best_block)
+
+        # Add all columns in the block
+        for g in range(group):
+            selected_cols.append(g * max_conv + best_block)
+
+        # ----- Refit -----
+        A = X[:, selected_cols]
+        coeffs, *_ = np.linalg.lstsq(A, y, rcond=None)
+
+        residual = y - A @ coeffs
+        res_norm = np.linalg.norm(residual)
+
+        print(f"Block-OMP iter {it+1}: selected block {best_block+1}, "
+              f"residual = {res_norm:.3e}")
+
+        if res_norm < tol:
+            break
+
+    return selected_cols, coeffs
+
+def main_unfold_2D_rect_OMP(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y):
+
+    conv_array = np.array(conv)
+    max_conv = max(conv)
+    non_zero_conv = np.nonzero(conv)[0]
+    dPHI_temp_conv = conv_array[non_zero_conv] - 1
+    dPHI = np.zeros(group * N, dtype=complex)
+    S_all = np.zeros(group * N, dtype=complex)
+    for g in range(group):
+        dPHI_temp_start = g * max(conv)
+        dPHI[g * N + non_zero_conv] = dPHI_temp[dPHI_temp_start + dPHI_temp_conv]
+        S_all[g * N + non_zero_conv] = S[dPHI_temp_start + dPHI_temp_conv]
+        for n in range(N):
+            if conv[n] == 0:
+                dPHI[g*N+n] = np.nan
+                S_all[g*N+n] = np.nan
+    dPHI_reshaped_plot = np.reshape(dPHI, (group, J_max, I_max))
+    S_all_reshaped = np.reshape(S_all, (group, N))
+
+    S_reshaped = np.reshape(S, (group, max(conv)))
+
+    non_zero_indices = np.nonzero(dPHI_temp_meas)[0]
+    dPHI_temp_meas = np.array(dPHI_temp_meas)
+
+    # Create dictionary to store each atom (column of G_matrix_full)
+    G_dictionary = {}
+    for g in range(group):
+        for n in range(max_conv):
+            m = g * max_conv + n
+            G_dictionary[f"G_g{g+1}_n{n+1}"] = G_matrix[:, m]
+
+    # Sample the dictionary atoms at known points (sparse form)
+    G_dictionary_sampled = {k: np.zeros_like(dPHI_temp_meas, dtype=complex) for k in G_dictionary}
+    for k, o in G_dictionary.items():
+        G_dictionary_sampled[k][non_zero_indices] = o[non_zero_indices]
+
+    keys = list(G_dictionary_sampled.keys())
+    key_to_idx = {k: i for i, k in enumerate(keys)}
+    G_full = np.column_stack([G_dictionary[k] for k in keys]).astype(complex, copy=False)#  (full, non‑sampled dictionary)
+    X_full = np.column_stack([G_dictionary_sampled[k] for k in keys]).astype(complex, copy=False)
+    y_full = np.asarray(dPHI_temp_meas, dtype=complex)   
+    obs = np.asarray(non_zero_indices)
+    X = X_full[obs, :]          # shape (M_obs, N)
+    y_dPHI = y_full[obs]             # shape (M_obs,)
+    num_atoms = X.shape[1]      # N
+
+    column_norms = np.linalg.norm(X, axis=0) + 1e-20
+    Xn = X / column_norms     # normalized dictionary for OMP
+
+##### 09. OMP
+    solver_type = 'noise'
+    os.makedirs(f'{output_dir}/{case_name}_09_OMP', exist_ok=True)
+    output_OMP = f'{output_dir}/{case_name}_09_OMP/{case_name}'
+
+    dPHI_temp_meas_reshaped = np.reshape(dPHI_temp_meas, (group, max_conv))
+
+    # Define zeroed dPHI as dPHI_zero
+    non_zero_conv = np.nonzero(conv)[0]
+    dPHI_temp_conv = conv_array[non_zero_conv] - 1
+    dPHI_meas = np.zeros((group* N), dtype=complex) # 1D list, size (group * N)
+
+    for g in range(group):
+        dPHI_temp_start = g * max(conv)
+        dPHI_meas[g * N + non_zero_conv] = dPHI_temp_meas[dPHI_temp_start + dPHI_temp_conv]
+        for n in range(N):
+            if conv[n] == 0:
+                dPHI_meas[g*N+n] = np.nan
+
+    zero_cols = np.linalg.norm(X, axis=0) < 1e-14
+    if np.any(zero_cols):
+        print(f"Warning: removing {np.sum(zero_cols)} zero dictionary atoms")
+        X = X[:, ~zero_cols]
+        Xn = Xn[:, ~zero_cols]
+
+    # OMP solver
+    # Use normalized dictionary
+    selected_cols, coeffs_norm = block_omp(
+        Xn,
+        y_dPHI,
+        group=group,
+        max_conv=max_conv,
+        max_blocks=1000,   # number of spatial sources
+        tol=1e-10
+    )
+
+    # Convert back to physical coefficients
+    coeffs_physical = np.zeros(X.shape[1], dtype=complex)
+    for i, col in enumerate(selected_cols):
+        coeffs_physical[col] = coeffs_norm[i] / column_norms[col]
+
+#    omp = OrthogonalMatchingPursuit(tol=1e-10, n_nonzero_coefs=20, fit_intercept=False)
+#    Xn_real = np.vstack([Xn.real, Xn.imag])
+#    y_real  = np.hstack([y_dPHI.real, y_dPHI.imag])
+#
+#    omp.fit(Xn_real, y_real)
+##    omp.fit(Xn, y_dPHI)
+#
+#    # Normalized coefficients -> physical coefficients
+#    coeffs_normalized = omp.coef_
+#    coeffs_physical = coeffs_normalized / column_norms
+
+    # Reconstruct the signal from the selected atoms and their coefficients
+    dPHI_temp_OMP = np.zeros_like(dPHI_temp_meas, dtype=complex)
+    for k_idx, key in enumerate(keys):
+        dPHI_temp_OMP += coeffs_physical[k_idx] * G_dictionary[key]
+
+    # Postprocess to appropriate dPHI
+    non_zero_conv = np.nonzero(conv)[0]
+    dPHI_OMP = np.zeros(group * N, dtype=complex)
+
+    for g in range(group):
+        start_tmp = g * max_conv
+        dPHI_OMP[g*N + non_zero_conv] = dPHI_temp_OMP[start_tmp + dPHI_temp_conv]
+        for n in range(N):
+            if conv[n] == 0:
+                dPHI_OMP[g*N+n] = np.nan
+
+
+    # Plotting (same as greedy)
+    dPHI_OMP_reshaped = np.reshape(dPHI_OMP, (group, J_max, I_max))
+    for g in range(group):
+        Utils.plot_2D_rect_fixed_general(solver_type, dPHI_OMP_reshaped[g], x, y,
+                                         g+1, cmap="viridis", output=output_OMP,
+                                         varname="dPHI_OMP", case_name=case_name,
+                                         title=f"2D OMP dPHI{g+1} Magnitude", process_data="magnitude")
+        Utils.plot_2D_rect_fixed_general(solver_type, dPHI_OMP_reshaped[g], x, y,
+                                         g+1, cmap="viridis", output=output_OMP,
+                                         varname="dPHI_OMP", case_name=case_name,
+                                         title=f"2D OMP dPHI{g+1} Phase", process_data="phase")
+
+    # ------------------------------------------------------------------------------------
+    # 6. DIRECT PHYSICAL UNFOLDING (IDENTICAL TO GREEDY)
+    # ------------------------------------------------------------------------------------
+    print("\nSolving for dS using Direct Method...")
+    lu, piv = lu_factor(G_matrix)
+    dS_unfold_OMP_temp = lu_solve((lu, piv), dPHI_temp_OMP)
+
+    # POSTPROCESS
+    print(f'Postprocessing to appropriate dPHI')
+    non_zero_conv = np.nonzero(conv)[0]
+    dS_unfold_temp_indices = conv_array[non_zero_conv] - 1
+    dS_unfold_OMP = np.zeros((group* N), dtype=complex)
+    for g in range(group):
+        dS_unfold_temp_start = g * max(conv)
+        dS_unfold_OMP[g * N + non_zero_conv] = dS_unfold_OMP_temp[dS_unfold_temp_start + dS_unfold_temp_indices]
+        for n in range(N):
+            if conv[n] == 0:
+                dS_unfold_OMP[g*N+n] = np.nan
+    dS_unfold_OMP_reshaped = np.reshape(dS_unfold_OMP,(group,N))
+    dS_unfold_OMP_plot = np.reshape(dS_unfold_OMP, (group, J_max, I_max))
+    for g in range(group):
+        Utils.plot_2D_rect_fixed_general(solver_type, dS_unfold_OMP_plot[g], x, y, g+1, cmap='viridis', output=output_OMP, varname=f'dS_OMP', case_name=case_name, title=f'2D Plot of dS{g+1} OMP Magnitude', process_data='magnitude')
+        Utils.plot_2D_rect_fixed_general(solver_type, dS_unfold_OMP_plot[g], x, y, g+1, cmap='viridis', output=output_OMP, varname=f'dS_OMP', case_name=case_name, title=f'2D Plot of dS{g+1} OMP Phase', process_data='phase')
+    # OUTPUT
+    print(f'Generating JSON output for dS')
+    output_direct1 = {}
+    for g in range(group):
+        dS_unfold_direct_groupname = f'dS_unfold{g+1}'
+        dS_unfold_direct_list = [{"real": x.real, "imaginary": x.imag} for x in dS_unfold_OMP_reshaped[g]]
+        output_direct1[dS_unfold_direct_groupname] = dS_unfold_direct_list
+    # Save data to JSON file
+    with open(f'{output_dir}/{case_name}_09_OMP/{case_name}_dS_unfold_OMP_output.json', 'w') as json_file:
+        json.dump(output_direct1, json_file, indent=4)
+    # Calculate error and compare
+    diff_S1_OMP = np.abs(np.array(dS_unfold_OMP_reshaped[0]) - np.array(S_all_reshaped[0]))/(np.abs(np.array(S_all_reshaped[0])) + 1E-6) * 100
+    diff_S2_OMP = np.abs(np.array(dS_unfold_OMP_reshaped[1]) - np.array(S_all_reshaped[1]))/(np.abs(np.array(S_all_reshaped[1])) + 1E-6) * 100
+    diff_S_OMP = [[diff_S1_OMP], [diff_S2_OMP]]
+    diff_S_OMP_array = np.array(diff_S_OMP)
+    diff_S_OMP_reshaped = diff_S_OMP_array.reshape(group, J_max, I_max)
+    for g in range(group):
+        Utils.plot_2D_rect_fixed_general(solver_type, diff_S_OMP_reshaped[g], x, y, g+1, cmap='viridis', output=output_OMP, varname=f'diff_dS_OMP', case_name=case_name, title=f'2D Plot of dS{g+1} OMP Difference Magnitude', process_data='magnitude')
+        Utils.plot_2D_rect_fixed_general(solver_type, diff_S_OMP_reshaped[g], x, y, g+1, cmap='viridis', output=output_OMP, varname=f'diff_dS_OMP', case_name=case_name, title=f'2D Plot of dS{g+1} OMP Difference Phase', process_data='phase')
+
+    return dPHI_temp_OMP, dS_unfold_OMP_temp
 

@@ -33,10 +33,10 @@ sys.path.append('../')
 #from INPUTS.OBJECTIVES45_TEST09_2DMG_BIBLIS_AVS3S import *
 
 #from INPUTS.TASK3_TEST02a_2DMG_PWRMOX1_1SRC_AVS_NONCENTER import *
-#from INPUTS.TASK3_TEST02b_2DMG_PWRMOX1_2SRC_AVS_NONCENTER import *
+from INPUTS.TASK3_TEST02b_2DMG_PWRMOX1_2SRC_AVS_NONCENTER import *
 #from INPUTS.TASK3_TEST02c_2DMG_PWRMOX1_3SRC_AVS_NONCENTER import *
 #from INPUTS.TASK3_TEST02d_2DMG_PWRMOX1_4SRC_AVS_NONCENTER import *
-from INPUTS.TASK3_TEST02e_2DMG_PWRMOX1_5SRC_AVS_NONCENTER import *
+#from INPUTS.TASK3_TEST02e_2DMG_PWRMOX1_5SRC_AVS_NONCENTER import *
 #from INPUTS.TASK3_TEST02f_2DMG_PWRMOX1_6SRC_AVS_NONCENTER import *
 
 # Restore the original sys.path
@@ -111,6 +111,8 @@ def main():
 #    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
 #    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
     dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
+
+    dPHI_temp_OMP, dS_unfold_OMP_temp = main_unfold_2D_rect_OMP(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
 
     end_time = time.time()
     elapsed_time = end_time - start_time
