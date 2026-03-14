@@ -271,8 +271,8 @@ REM = [
 ]
 
 ## INITIALIZATION
-case_name_base = "RESEARCH03_UNFOLDING_SMR50DET_2DMG"
-case_name2 = "RESEARCH03_UNFOLDING_SMR50DET_2DMG"
+case_name_base = "RESEARCH03_UNFOLDING_SMR11DET_2DMG"
+case_name2 = "RESEARCH03_UNFOLDING_SMR11DET_2DMG"
 geom_type = '2D rectangular'
 precond = 2
 I_max = len(D1[0]) # N row
@@ -507,10 +507,8 @@ for num_source in range(max_num_source):
     total_time_greedy_optimized = 0.0
 
     # Choose location, energy, magnitude
-    loc_conv = []
+    loc_conv = random.sample(range(1, group * max(conv) + 1), source)
     loc = []
-    for s in range(source):
-        loc_conv.append(random.randint(1, group * max(conv)))
     for l, lo in enumerate(loc_conv):
         for g in range(group):
             for n in range(N):

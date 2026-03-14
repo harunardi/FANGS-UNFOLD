@@ -112,8 +112,6 @@ def main():
 #    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
     dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_2D_rect_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
 
-    dPHI_temp_OMP, dS_unfold_OMP_temp = main_unfold_2D_rect_OMP(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, N, I_max, J_max, conv, output_dir, case_name, x, y)
-
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f'Time elapsed: {elapsed_time:3e} seconds')
