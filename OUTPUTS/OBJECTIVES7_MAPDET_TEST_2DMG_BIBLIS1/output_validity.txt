@@ -1,0 +1,6 @@
+INVERT no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, fail, fail
+ZONE no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, fail, fail
+SCAN yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, fail, fail
+BRUTE yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, no, no, no, no, no, no, no, no, no, no, no, no
+BACK 
+GREEDY yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, yes, no
