@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST06_3DMG_CSTest09_FAV
+    Simulation Type: noise Simulation
+    Number of groups: 2
+    Dimensions: 3D rectangular
+    Final keff: 1.000966
+    Elapsed Time: 1.442e+03 seconds
+    Solver Used: LU
+    

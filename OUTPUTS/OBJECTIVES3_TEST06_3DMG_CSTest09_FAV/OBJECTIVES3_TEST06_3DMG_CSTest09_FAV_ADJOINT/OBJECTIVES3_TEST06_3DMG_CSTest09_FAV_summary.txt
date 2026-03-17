@@ -1,0 +1,10 @@
+
+    --- Simulation Summary ---
+    Case Name: OBJECTIVES3_TEST06_3DMG_CSTest09_FAV
+    Simulation Type: adjoint Simulation
+    Number of groups: 2
+    Dimensions: 3D rectangular
+    Final keff: 1.000966+0.000000j
+    Elapsed Time: 1.774e+04 seconds
+    Solver Used: LU
+    
