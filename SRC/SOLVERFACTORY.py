@@ -1,13 +1,13 @@
-from SRC.METHODS import PowerMethodSolver1D
-from SRC.METHODS import FixedSourceSolver1D
-from SRC.METHODS import PowerMethodSolver2DRect
-from SRC.METHODS import FixedSourceSolver2DRect
-from SRC.METHODS import PowerMethodSolver2DHexx
-from SRC.METHODS import FixedSourceSolver2DHexx
-from SRC.METHODS import PowerMethodSolver3DRect
-from SRC.METHODS import FixedSourceSolver3DRect
-from SRC.METHODS import PowerMethodSolver3DHexx
-from SRC.METHODS import FixedSourceSolver3DHexx
+from METHODS import PowerMethodSolver1D
+from METHODS import FixedSourceSolver1D
+from METHODS import PowerMethodSolver2DRect
+from METHODS import FixedSourceSolver2DRect
+from METHODS import PowerMethodSolver2DHexx
+from METHODS import FixedSourceSolver2DHexx
+from METHODS import PowerMethodSolver3DRect
+from METHODS import FixedSourceSolver3DRect
+from METHODS import PowerMethodSolver3DHexx
+from METHODS import FixedSourceSolver3DHexx
 
 class SolverFactory:
     @staticmethod

@@ -1,8 +1,8 @@
-from SRC.XSPROCESS_1D_RECT import *
-from SRC.XSPROCESS_2D_RECT import *
-from SRC.XSPROCESS_2D_HEXX import *
-from SRC.XSPROCESS_3D_RECT import *
-from SRC.XSPROCESS_3D_HEXX import *
+from XSPROCESS_1D_RECT import *
+from XSPROCESS_2D_RECT import *
+from XSPROCESS_2D_HEXX import *
+from XSPROCESS_3D_RECT import *
+from XSPROCESS_3D_HEXX import *
 
 ##############################################################################
 class MatrixBuilderForward1D:

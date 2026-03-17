@@ -11,18 +11,18 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from SRC.UTILS import Utils
-from SRC.MATRIX_BUILDER import *
-from SRC.METHODS import *
-from SRC.POSTPROCESS import PostProcessor
-from SRC.SOLVERFACTORY import SolverFactory
+from UTILS import Utils
+from MATRIX_BUILDER import *
+from METHODS import *
+from POSTPROCESS import PostProcessor
+from SOLVERFACTORY import SolverFactory
 
 #######################################################################################################
 # INPUTS
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
+#from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_CENTER_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_CENTER_FAV import *
@@ -36,6 +36,12 @@ from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES3_TEST09_3DMG_LangenOBJECTIbuch_AVS import *
 
+#from INPUTS.RESEARCH_UNHAN1_TEST01_2DMG_BIBLIS_CENTER_FAV_EXPAND1 import *
+#from INPUTS.RESEARCH_UNHAN1_TEST02_2DMG_BIBLIS_CENTER_FAV_EXPAND5 import *
+#from INPUTS.RESEARCH_UNHAN1_TEST03_2DMG_BIBLIS_CENTER_FAV_EXPAND10 import *
+#from INPUTS.RESEARCH_UNHAN1_TEST04_2DMG_BIBLIS_CENTER_FAV_EXPAND20 import *
+from INPUTS.RESEARCH_UNHAN1_TEST05_2DMG_BIBLIS_CENTER_FAV_EXPAND50 import *
+
 # Restore the original sys.path
 sys.path = original_sys_path
 
@@ -44,7 +50,7 @@ def main():
     start_time = time.time()
 
     if geom_type =='1D':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         dx = globals().get("dx")
         N = globals().get("N")
@@ -172,7 +178,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dRHO_time.png')
 
     elif geom_type =='2D rectangular':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         dx = globals().get("dx")
@@ -361,7 +367,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'OUTPUTS/{input_name}'
+        output_dir = f'../OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'
@@ -545,7 +551,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_PK_COMPONENTS/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_dRHO_time.png')
 
     elif geom_type =='3D rectangular':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         z = globals().get("z")
@@ -817,7 +823,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'OUTPUTS/{input_name}'
+        output_dir = f'../OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'

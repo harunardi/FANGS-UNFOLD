@@ -11,31 +11,27 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from SRC.UTILS import Utils
-from SRC.MATRIX_BUILDER import *
-from SRC.METHODS import *
-from SRC.POSTPROCESS import PostProcessor
-from SRC.SOLVERFACTORY import SolverFactory
+from UTILS import Utils
+from MATRIX_BUILDER import *
+from METHODS import *
+from POSTPROCESS import PostProcessor
+from SOLVERFACTORY import SolverFactory
 
 #######################################################################################################
 # INPUTS
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-#######################################################################################################
-# FOR TEST PURPOSES
 #from INPUTS.OBJECTIVES2_TEST01_1DMG_CSTest03 import *
-from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
-#from INPUTS.OBJECTIVES2_TEST04_2DTriMG_HOMOG_VandV import *
-#from INPUTS.OBJECTIVES2_TEST09_3DTriMG_HTTR import *
-#from INPUTS.OBJECTIVES2_TEST10_3DMG_Langenbuch import *
-
-#######################################################################################################
+#from INPUTS.OBJECTIVES2_TEST02_2DMG_C3_VandV import *
 #from INPUTS.OBJECTIVES2_TEST03_2DMG_BIBLIS_VandV import *
+#from INPUTS.OBJECTIVES2_TEST04_2DTriMG_HOMOG_VandV import *
 #from INPUTS.OBJECTIVES2_TEST05_2DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES2_TEST06_3DMG_CSTest09_VandV_new import *
 #from INPUTS.OBJECTIVES2_TEST07_3DTriMG_VVER400_VandV import *
 #from INPUTS.OBJECTIVES2_TEST08_2DTriMG_HTTR2G_VandV import *
+from INPUTS.OBJECTIVES2_TEST09_3DTriMG_HTTR import *
+#from INPUTS.OBJECTIVES2_TEST10_3DMG_Langenbuch import *
 
 #from INPUTS.OBJECTIVES3_TEST01_2DMG_BIBLIS_AVS import *
 #from INPUTS.OBJECTIVES3_TEST02_2DMG_BIBLIS_FAV import *
@@ -57,7 +53,7 @@ def main():
     start_time = time.time()
 
     if geom_type =='1D':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         dx = globals().get("dx")
         N = globals().get("N")
@@ -201,7 +197,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER_DEVIATION/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Magnitude_omega.png')
 
     elif geom_type =='2D rectangular':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         dx = globals().get("dx")
@@ -389,7 +385,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'OUTPUTS/{input_name}'
+        output_dir = f'../OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'
@@ -570,7 +566,7 @@ def main():
         plt.savefig(f'{output_dir}/{case_name}_TRANSFER_DEVIATION/{case_name}_{solver_type.upper()}/{case_name}_{solver_type.upper()}_Magnitude_omega.png')
 
     elif geom_type =='3D rectangular':
-        output_dir = f'OUTPUTS/{case_name}'
+        output_dir = f'../OUTPUTS/{case_name}'
         x = globals().get("x")
         y = globals().get("y")
         z = globals().get("z")
@@ -764,7 +760,7 @@ def main():
         NUFIS = globals().get("NUFIS")
         BC = globals().get("BC")
         input_name = globals().get("input_name")
-        output_dir = f'OUTPUTS/{input_name}'
+        output_dir = f'../OUTPUTS/{input_name}'
 
         # Forward Simulation
         solver_type = 'forward'

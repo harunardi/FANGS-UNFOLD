@@ -15,22 +15,22 @@ sys.dont_write_bytecode = True
 
 start_time = time.time()
 
-from SRC.UTILS import Utils
-from SRC.MATRIX_BUILDER import *
-from SRC.METHODS import *
-from SRC.POSTPROCESS import PostProcessor
-from SRC.SOLVERFACTORY import SolverFactory
-from SRC.SRC_UNFOLDING_3D_HEXX import *
+from UTILS import Utils
+from MATRIX_BUILDER import *
+from METHODS import *
+from POSTPROCESS import PostProcessor
+from SOLVERFACTORY import SolverFactory
+from SRC_UNFOLDING_3D_HEXX import *
 
 #######################################################################################################
 # INPUTS
 original_sys_path = sys.path.copy()
 sys.path.append('../')
 
-from INPUTS.OBJECTIVES45_TEST07_3DTriMG_HTTR_AVS import * # take 8.175611e+04 seconds
+#from INPUTS.OBJECTIVES45_TEST07_3DTriMG_HTTR_AVS import * # take 8.175611e+04 seconds
 #from INPUTS.OBJECTIVES45_TEST08_3DTriMG_HTTR_FAV import *
 #from INPUTS.OBJECTIVES45_TEST12_3DTriMG_HTTR_AVS3S import * # take 
-#from INPUTS.OBJECTIVES45_TEST15_3DTriMG_HTTR_AVS2S import * # take 
+from INPUTS.OBJECTIVES45_TEST15_3DTriMG_HTTR_AVS2S import * # take 
 
 # Restore the original sys.path
 sys.path = original_sys_path
@@ -39,7 +39,7 @@ sys.path = original_sys_path
 def main():
     start_time = time.time()
 
-    output_dir = f'OUTPUTS/{input_name}'
+    output_dir = f'../OUTPUTS/{input_name}'
     global level
 
 ##### Forward Simulation
@@ -131,22 +131,21 @@ def main():
     G_matrix = main_unfold_3D_hexx_green(PHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
     S, dPHI_temp_meas = main_unfold_3D_hexx_solve(PHI_temp, G_matrix, dPHI_temp, keff, group, I_max, J_max, K_max, N_hexx, conv_tri, conv_neighbor_3D, TOT, SIGS_reshaped, BC, h, dz, level, D, chi, NUFIS, v, Beff, omega, l, dTOT_hexx, dSIGS_hexx, chi_hexx, dNUFIS_hexx, noise_section, type_noise, map_detector_hexx, output_dir, case_name, precond, tri_indices, x, y, z)
 
-####### OLD METHODS (INVERSION, ZONING, and SCANNING)
-##    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#    dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#    dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
-#
-###### BRUTE FORCE METHOD
-#    if type_noise == 'FVX' or type_noise == 'FAV':
-#        print("Brute Force Skipped")
-#        pass
-#    else:
-#        dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
-#
+###### OLD METHODS (INVERSION, ZONING, and SCANNING)
+#    dPHI_temp_INVERT, dS_unfold_INVERT_temp = main_unfold_3D_hexx_invert(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+    dS_unfold_ZONE_temp = main_unfold_3D_hexx_zone(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+    dS_unfold_SCAN_temp = main_unfold_3D_hexx_scan(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, I_max, J_max, K_max, N_hexx, conv_tri, level, map_detector_hexx, map_zone, output_dir, case_name, tri_indices, x, y, z, all_triangles)
+
+##### BRUTE FORCE METHOD
+    if type_noise == 'FVX' or type_noise == 'FAV':
+        print("Brute Force Skipped")
+        pass
+    else:
+        dPHI_temp_BRUTE, dS_unfold_BRUTE_temp = main_unfold_3D_hexx_brute(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
+
 #### GREEDY METHOD
 #    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
     dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_new(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
-    dPHI_temp_GREEDY, dS_unfold_GREEDY_temp = main_unfold_3D_hexx_greedy_optimized(dPHI_temp_meas, dPHI_temp, S, G_matrix, group, K_max, N_hexx, conv_tri, output_dir, case_name, tri_indices, x, y, z)
 
     ####################################################################################################
     end_time = time.time()
